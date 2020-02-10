@@ -40,4 +40,16 @@ return [
     'reset-password'=>'Đặt lại mật khẩu',
     'password-reset-link'=>'Chúng tôi đã gửi email liên kết đặt lại mật khẩu của bạn',
     'enter-your-email-address'=> 'Trước khi tiếp tục lấy lại mật khẩu bạn vui lòng nhập địa chỉ email để xác minh. Nếu bạn kiểm tra hòm thư không có vui lòng nhấn gửi lại.',
+
+    //tem
+    'lang' => 'LANG',
+    'logout' => 'Đăng xuất',
+    'language' => 'NGÔN NGỮ',
+    'account' => 'TÀI KHOẢN',
+    'change-information' => 'Thay đổi thông tin',
+    'change-password' => 'Thay đổi mật khẩu',
+    'order' => 'Đơn mua',
+    'ORDER' => 'ĐƠN MUA',
+
+    'change' => 'Thay đỏi',
 ];
