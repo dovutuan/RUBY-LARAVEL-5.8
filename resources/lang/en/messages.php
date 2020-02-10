@@ -37,7 +37,20 @@ return [
     'send' => 'Send',
 
     //Reset Password
-    'reset-password'=>'Reset password',
-    'password-reset-link'=>'We have e-mailed your password reset link',
-    'enter-your-email-address'=>'Before continuing to recover your password, please enter your email address to verify. If you have checked your mailbox, please do not send again.',
+    'reset-password' => 'Reset password',
+    'password-reset-link' => 'We have e-mailed your password reset link',
+    'enter-your-email-address' => 'Before continuing to recover your password, please enter your email address to verify. If you have checked your mailbox, please do not send again.',
+
+    //tem
+    'lang' => 'LANG',
+    'logout' => 'Logout',
+    'language' => 'LANGUAGE',
+    'account' => 'ACCOUNT',
+    'change-information' => 'Change information',
+    'change-password' => 'Change password',
+    'order' => 'Order',
+    'ORDER' => 'ORDER',
+
+    'change' => 'Change',
+
 ];

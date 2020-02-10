@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{{ asset('theme_home') }}/css/magnific-popup.css">
     <link rel="stylesheet" href="{{ asset('theme_home') }}/css/slick.css">
     <link rel="stylesheet" href="{{ asset('theme_home') }}/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 </head>
 <body>
 <header class="main_menu home_menu">
@@ -26,7 +27,7 @@
                     <div class="hearer_icon d-flex">
                         <div class="dropdown">
                             <button class="btn btn-outline-primary dropdown-toggle" type="button"
-                                    data-toggle="dropdown">LANG<span class="caret"></span></button>
+                                    data-toggle="dropdown">{{ __('messages.lang') }}<span class="caret"></span></button>
                             <ul class="dropdown-menu">
                                 <li><a href="{{ route('lang',['lang' => 'vi']) }}"><img src="{{ asset('icon') }}/vn.png"></a></li>
                                 <li><a href="{{ route('lang',['lang' => 'en' ]) }}"><img src="{{ asset('icon') }}/en.png"></a></li>
