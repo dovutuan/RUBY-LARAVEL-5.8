@@ -1,5 +1,5 @@
 <div class="header-area header-bottom">
-    <div class="container">
+    <div class="container-fluid">
         <div class="row align-items-center">
             <div class="col-lg-9  d-none d-lg-block">
                 <div class="horizontal-menu">

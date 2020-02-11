@@ -18,7 +18,8 @@
                                 </nav>
                             </div>
                             <div class="col-md-1 clearfix text-right">
-                                <a href="{{route('export.user')}}" class="btn btn-sm btn-info"><i class="fa fa-file-excel-o"></i></a>
+                                <a href="{{route('export.user')}}" class="btn btn-sm btn-info"><i
+                                        class="fa fa-file-excel-o"></i></a>
                                 <button type="button" class="btn btn-sm btn-success" data-toggle="modal"
                                         data-target="#myModal">
                                     <i class="fa fa-plus"></i>
@@ -55,24 +56,32 @@
                                         <tr>
                                             <th>{{$loop->iteration}}</th>
                                             <td>{{$user->name}}</td>
-                                            <td><a href="{{route('change.status.user', $user->id)}}"><input readonly type="radio" {{ $user->getStatus($user->status)['check'] }}> {{ $user->getStatus($user->status)['name'] }}</a></td>
+                                            <td><a href="{{route('change.status.user', $user->id)}}"><input readonly
+                                                                                                            type="radio" {{ $user->getStatus($user->status)['check'] }}> {{ $user->getStatus($user->status)['name'] }}
+                                                </a></td>
                                             <td>{{$user->created_at->format('H:i:s d-m-Y')}}</td>
                                             <td class="text-right">
-                                                <a href="" class="btn btn-xs btn-outline-success"><i class="fa fa-edit"></i></a>
-                                                <a href="{{route('destroy.user', $user->id)}}" class="btn btn-xs btn-outline-danger" onclick="return confirm('Do you want to delete?')"><i class="fa fa-trash"></i></a>
+                                                <a href="" class="btn btn-xs btn-outline-success"><i
+                                                        class="fa fa-edit"></i></a>
+                                                <a href="{{route('destroy.user', $user->id)}}"
+                                                   class="btn btn-xs btn-outline-danger"
+                                                   onclick="return confirm('Do you want to delete?')"><i
+                                                        class="fa fa-trash"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach
                                     </tbody>
                                     <tfoot>
                                     <tr>
-                                        <th colspan="5" class="text-right">{{ __('messages.a-total-user:') }} {{$totalUser}}
+                                        <th colspan="5"
+                                            class="text-right">{{ __('messages.a-total-user:') }} {{$totalUser}}
                                             <sup>{{ __('messages.a-user') }}</sup></th>
                                     </tr>
                                     </tfoot>
                                 </table>
                             </div>
                         </div>
+                        {{ $users->links() }}
                     </div>
                 </div>
             </div>
