@@ -60,4 +60,15 @@ return [
     'a-email' => 'Email',
     'a-gender' => 'Giới tính',
     'a-image' => 'Ảnh',
+    'a-date-create' => 'Ngày tạo',
+    'a-total-user:' => 'Tổng tài khoản',
+    'a-status' => 'Trạng thái',
+    'do-you-want-to-delete?' => 'Bạn có muốn xóa?',
+    'update-successfully' => 'Cập nhật thành công',
+    'delete-successfully' => 'Xóa thánh công',
+
+    //admin
+    'dashboard' =>'Dashboard',
+    'a-user' => 'Tài khoản',
+    'no-data' => 'không có dữ liệu'
 ];
