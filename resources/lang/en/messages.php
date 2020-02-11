@@ -60,5 +60,16 @@ return [
     'a-email' => 'Email',
     'a-gender' => 'Gender',
     'a-image' => 'Image',
+    'a-date-create' => 'Date create',
+    'a-total-user:' => 'Total user',
+    'a-status' => 'Status',
+    'do-you-want-to-delete?' => 'Do you want to delete?',
+    'update-successfully' => 'Update successfully',
+    'delete-successfully' => 'delete successfully',
 
+    //admin
+    'a-dashboard' => 'Dashboard',
+    'a-user' => 'User',
+    'a-home' => 'Home',
+    'no-data' => 'No data'
 ];
