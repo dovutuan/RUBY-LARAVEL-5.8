@@ -12,6 +12,14 @@ Route::group(['middleware' => 'auth'], function () {
 
 //        Route::any('/ckfinder/examples/{example?}', 'CKSource\CKFinderBridge\Controller\CKFinderController@examplesAction')->name('ckfinder_examples');
 
+        //admin
+        Route::group(['namespace' => 'Admin'], function (){
+            Route::group(['prefix' => 'admin'], function (){
+                Route::get('user', 'UserController@index')->name('list.user');
+            });
+        });
+
+
         //home
         Route::group(['namespace' => 'Home'], function (){
             Route::get('home', 'HomeController@index')->name('home');
@@ -21,7 +29,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::group(['namespace' => 'Account'], function (){
 
             Route::group(['prefix' => 'account'], function (){
-                Route::get('', 'AccountController@index')->name('account');
+                Route::get('', 'AccountController@index')->name('information');
 
                 Route::get('change-information', 'AccountController@editChangeInformation')->name('change-information');
                 Route::post('change-information', 'AccountController@updateChangeInformation');

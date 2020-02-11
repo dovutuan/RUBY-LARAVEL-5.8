@@ -79,9 +79,8 @@
                                         src="{{ asset('icon') }}/en.png"></a>
                                 <div class="dropdown-divider"></div>
                                 <div class="dropdown-header">{{ __('messages.account') }}</div>
-                                <a href="{{route('change-information')}}" class="dropdown-item"> {{ __('messages.change-information') }}</a>
-                                <a href="{{route('change-password')}}" class="dropdown-item"> {{ __('messages.change-password') }}</a>
-                                <a href="{{route('change-information')}}"
+                                <a href="{{route('information')}}" class="dropdown-item"> {{ __('messages.information') }}</a>
+                                <a href=""
                                    class="dropdown-item"> {{ __('messages.order') }}</a>
                                 <div class="dropdown-divider"></div>
                                 <div class="dropdown-divider"></div>

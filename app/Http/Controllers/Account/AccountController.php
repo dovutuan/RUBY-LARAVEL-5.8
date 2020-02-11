@@ -11,6 +11,15 @@ use Illuminate\Support\Facades\Auth;
 
 class AccountController extends Controller
 {
+    public function index()
+    {
+        $user = Auth::user();
+
+        $user->phone = substr($user->phone, 0, 3) . '*****' . substr($user->phone, -3);
+
+        return view('account.index', compact('user'));
+    }
+
     public function editChangeInformation()
     {
         $user = Auth::user();

@@ -50,7 +50,15 @@ return [
     'change-password' => 'Change password',
     'order' => 'Order',
     'ORDER' => 'ORDER',
-
+    'information' => 'Information',
     'change' => 'Change',
+
+    'a-name' => 'Name',
+    'a-phone' => 'Phone',
+    'a-birth' => 'Birth',
+    'a-address' => 'Address',
+    'a-email' => 'Email',
+    'a-gender' => 'Gender',
+    'a-image' => 'Image',
 
 ];

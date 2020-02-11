@@ -50,6 +50,14 @@ return [
     'change-password' => 'Thay đổi mật khẩu',
     'order' => 'Đơn mua',
     'ORDER' => 'ĐƠN MUA',
-
+    'information' => 'Thông tin',
     'change' => 'Thay đỏi',
+
+    'a-name' => 'Họ và tên',
+    'a-phone' => 'Số điện thoại',
+    'a-birth' => 'Ngày sinh',
+    'a-address' => 'Địa chỉ',
+    'a-email' => 'Email',
+    'a-gender' => 'Giới tính',
+    'a-image' => 'Ảnh',
 ];

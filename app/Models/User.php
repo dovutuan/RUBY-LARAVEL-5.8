@@ -33,4 +33,44 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected $changeStatus = [
+        1 => [
+            'name' => 'Active',
+            'class' => 'btn-primary',
+            'check' => 'checked',
+        ],
+        0 => [
+            'name' => 'Inactive',
+            'class' => 'btn-danger',
+            'check' => '',
+        ]
+    ];
+
+    protected $setGender = [
+        0 => ['check' => 'checked'],
+        1 => ['check' => 'checked'],
+        2 => ['check' => 'checked'],
+    ];
+
+    public function getGender()
+    {
+        return array_get($this->setGender, $this->gender, '[N\A]');
+    }
+
+    public function getStatus()
+    {
+        return array_get($this->changeStatus, $this->status, '[N\A]');
+    }
+
+    static function search($key)
+    {
+        if ($key) {
+            $users = self::findOrFail($key) ? self::where('id', $key)->get() : self::where('name', $key)->get();
+        } else {
+            $users = self::all();
+        }
+
+        return $users;
+    }
 }

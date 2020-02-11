@@ -23,11 +23,9 @@
                                         src="{{ asset('icon') }}/en.png"></a>
                                 <div class="dropdown-divider"></div>
                                 <div class="dropdown-header">{{ __('messages.account') }}</div>
-                                <a href="{{route('change-information')}}"
-                                   class="dropdown-item">{{ __('messages.change-information') }}</a>
-                                <a href="{{route('change-password')}}"
-                                   class="dropdown-item">{{ __('messages.change-password') }}</a>
-                                <a href="{{route('change-information')}}"
+                                <a href="{{route('information')}}"
+                                   class="dropdown-item">{{ __('messages.information') }}</a>
+                                <a href=""
                                    class="dropdown-item">{{ __('messages.order') }}</a>
                                 <div class="dropdown-divider"></div>
                                 <div class="dropdown-divider"></div>
@@ -52,8 +50,12 @@
     <div class="row">
         <div id="admin-sidebar" class="col-md-2 p-x-0 p-y-3">
             <ul class="sidenav admin-sidenav list-unstyled">
-                <li class="{{\Request::route()->getName()==('change-information') || \Request::route()->getName()==('change-information') ?'active':''}}"><a href="{{route('change-information')}}">{{ __('messages.change-information') }}</a></li>
-                <li class="{{\Request::route()->getName()==('change-password') || \Request::route()->getName()==('change-password') ?'active':''}}"><a href="{{route('change-password')}}">{{ __('messages.change-password') }}</a></li>
+                <li class="{{\Request::route()->getName()==('information') || \Request::route()->getName()==('information') ?'active':''}}">
+                    <a href="{{route('information')}}">{{ __('messages.information') }}</a></li>
+                <li class="{{\Request::route()->getName()==('change-information') || \Request::route()->getName()==('change-information') ?'active':''}}">
+                    <a href="{{route('change-information')}}">{{ __('messages.change-information') }}</a></li>
+                <li class="{{\Request::route()->getName()==('change-password') || \Request::route()->getName()==('change-password') ?'active':''}}">
+                    <a href="{{route('change-password')}}">{{ __('messages.change-password') }}</a></li>
                 <li><a href="#">{{ __('messages.order') }}</a></li>
             </ul>
         </div>
