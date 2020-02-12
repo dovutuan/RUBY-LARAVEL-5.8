@@ -81,7 +81,7 @@
                                 </table>
                             </div>
                         </div>
-                        {{ $users->links() }}
+                        {{ $users->appends(['key' => $key])->links() }}
                     </div>
                 </div>
             </div>

@@ -13,10 +13,11 @@ class UserController extends Controller
     public function index(Request $request)
     {
         try {
-            $users = User::search($request->input('key'));
+            $key = $request->input('key');
+            $users = User::search($key);
             $totalUser = $users->count();
 
-            return view('admin.user.index', compact('users', 'totalUser'));
+            return view('admin.user.index', compact('users', 'totalUser', 'key'));
         } catch (\Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
         }
