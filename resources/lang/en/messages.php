@@ -64,12 +64,16 @@ return [
     'a-total-user:' => 'Total user',
     'a-status' => 'Status',
     'do-you-want-to-delete?' => 'Do you want to delete?',
+    'create-successfully' => 'Create successfully',
     'update-successfully' => 'Update successfully',
     'delete-successfully' => 'delete successfully',
 
     //admin
     'a-dashboard' => 'Dashboard',
     'a-user' => 'User',
+    'a-permission' => 'Permission',
     'a-home' => 'Home',
+    'a-role' => 'Role',
+    'a-total-role:' => 'Total role',
     'no-data' => 'No data'
 ];

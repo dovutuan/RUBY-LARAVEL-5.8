@@ -6,7 +6,7 @@
     <title>RUBYSHOP - Trang quản trị</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="{{ asset('logo') }}ruby.png" type="image/png">
+    <link rel="icon" href="{{ asset('logo') }}/ruby.png" type="image/png">
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -25,6 +25,10 @@
     <script src="{{ asset('theme_admin') }}/assets/js/vendor/modernizr-2.8.3.min.js"></script>
 
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+
+    <link href="{{ asset('theme_admin') }}/select/dist/css/selectize.css" rel="stylesheet">
+    <script src="{{ asset('theme_admin') }}/select/js/jquery.js"></script>
+    <script src="{{ asset('theme_admin') }}/select/dist/js/standalone/selectize.js"></script>
 </head>
 
 <body class="body-bg">
@@ -36,6 +40,11 @@
     @include('layouts_admin.header')
     @yield('content')
 </div>
+<script>
+    $('#select-state').selectize({
+        maxItems: 100
+    });
+</script>
 <script src="{{ asset('theme_admin') }}/assets/js/vendor/jquery-2.2.4.min.js"></script>
 <script src="{{ asset('theme_admin') }}/assets/js/popper.min.js"></script>
 <script src="{{ asset('theme_admin') }}/assets/js/bootstrap.min.js"></script>
@@ -46,39 +55,6 @@
 
 <script src="{{ asset('theme_admin') }}/assets/js/plugins.js"></script>
 <script src="{{ asset('theme_admin') }}/assets/js/scripts.js"></script>
-
-{{--@include('ckfinder::setup')--}}
-{{--<script src="{{ asset('theme_admin') }}/assets/js/controller/ckfinder.js"></script>--}}
-
-
-<script src="{{ asset('theme_admin') }}/ckeditor/ckeditor.js"></script>
-<script>
-    CKEDITOR.replace('content');
-    CKEDITOR.replace('detail');
-</script>
-{{--<script>--}}
-{{--    $(".ac1").click(function (event) {--}}
-{{--        event.preventDefault();--}}
-{{--        if ($(".form-image1").hasClass('hide') && $(".faac1").hasClass('fa-angle-double-down')) {--}}
-{{--            $(".form-image1").addClass('show').removeClass('hide');--}}
-{{--            $(".faac1").addClass('fa-angle-double-up').removeClass('fa-angle-double-down')--}}
-{{--        } else {--}}
-{{--            $(".form-image1").addClass('hide').removeClass('show');--}}
-{{--            $(".faac1").addClass('fa-angle-double-down').removeClass('fa-angle-double-up')--}}
-{{--        }--}}
-{{--    })--}}
-{{--    $(".ac2").click(function (event) {--}}
-{{--        event.preventDefault();--}}
-{{--        if ($(".form-image2").hasClass('hide') && $(".faac2").hasClass('fa-angle-double-down')) {--}}
-{{--            $(".form-image2").addClass('show').removeClass('hide');--}}
-{{--            $(".faac2").addClass('fa-angle-double-up').removeClass('fa-angle-double-down')--}}
-{{--        } else {--}}
-{{--            $(".form-image2").addClass('hide').removeClass('show');--}}
-{{--            $(".faac2").addClass('fa-angle-double-down').removeClass('fa-angle-double-up')--}}
-{{--        }--}}
-{{--    })--}}
-{{--</script>--}}
-
 @yield('script')
 </body>
 </html>

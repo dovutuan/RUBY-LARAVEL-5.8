@@ -1,0 +1,40 @@
+<div class="modal" id="myModal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form action="{{route('create.role')}}" method="post">
+                @csrf
+                <div class="modal-header">
+                    <h4 class="modal-title">Create user</h4>
+                    <button type="button" class="close" data-dismiss="modal"><i class="fa fa-close"></i></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="control-label"><b>Name role</b></label>
+                        <input name="name" id="name" type="text" class="form-control"
+                               placeholder=" Please enter the user name" value="{{old('name')}}">
+                        @error('name')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <div class="demo">
+                            <div class="control-group">
+                                <label class="control-label"><b>Permission</b></label>
+                                <select id="select-state" name="permission[]" multiple class="demo-default">
+                                    @foreach($permissions as $permission)
+                                        <option value="{{$permission->id}}">{{$permission->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-sm btn-info"><i class="fa fa-check"></i></button>
+                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal"><i
+                            class="fa fa-close"></i></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
