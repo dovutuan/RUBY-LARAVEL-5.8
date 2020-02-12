@@ -64,6 +64,7 @@ return [
     'a-total-user:' => 'Tổng tài khoản',
     'a-status' => 'Trạng thái',
     'do-you-want-to-delete?' => 'Bạn có muốn xóa?',
+    'create-successfully' => 'Thêm thành công',
     'update-successfully' => 'Cập nhật thành công',
     'delete-successfully' => 'Xóa thánh công',
 

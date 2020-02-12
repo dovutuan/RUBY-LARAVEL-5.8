@@ -17,9 +17,20 @@ Route::group(['middleware' => 'auth'], function () {
             Route::group(['prefix' => 'admin'], function () {
                 Route::group(['prefix' => 'user'], function () {
                     Route::get('', 'UserController@index')->name('list.user');
+                    Route::post('', 'UserController@store')->name('store.user');
                     Route::get('status/{id}', 'UserController@changeStatus')->name('change.status.user');
                     Route::get('export/', 'UserController@export')->name('export.user');
                     Route::get('delete/{id}', 'UserController@destroy')->name('destroy.user');
+                });
+
+                Route::group(['prefix' => 'role'], function () {
+                    Route::get('', 'RoleController@index')->name('list.role');
+                    Route::post('', 'RoleController@store')->name('create.role');
+                });
+
+                Route::group(['prefix' => 'permission'], function () {
+                    Route::get('', 'PermissionController@index')->name('list.permission');
+                    Route::post('', 'PermissionController@store')->name('create.permission');
                 });
             });
         });
