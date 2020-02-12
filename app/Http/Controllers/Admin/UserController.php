@@ -18,10 +18,11 @@ class UserController extends Controller
     {
         try {
             $roles = Role::all();
-            $users = User::search($request->input('key'));
+            $key = $request->input('key');
+            $users = User::search($key);
             $totalUser = $users->count();
 
-            return view('admin.user.index', compact('users', 'totalUser', 'roles'));
+            return view('admin.user.index', compact('users', 'totalUser', 'key'));
         } catch (\Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
         }
