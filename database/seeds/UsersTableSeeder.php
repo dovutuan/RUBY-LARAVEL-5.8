@@ -17,10 +17,11 @@ class UsersTableSeeder extends Seeder
             'address' => 'HN',
             'gender' => 0,
             'status' => 1,
-            'email' => 'Admin@gmail.com',
+            'email' => 'admin@gmail.com',
             'email_verified_at'=>Carbon::now(),
             'password' => Hash::make('ruby12345'),
         ]);
+
         $role = Role::create(['name' => 'Admin']);
 
         $permissions = Permission::pluck('id','id')->all();
