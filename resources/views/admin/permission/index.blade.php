@@ -13,7 +13,7 @@
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="#">{{ __('messages.a-home') }}</a></li>
                                         <li class="breadcrumb-item active"
-                                            aria-current="page">{{ __('messages.a-role') }}</li>
+                                            aria-current="page">{{ __('messages.a-permission') }}</li>
                                     </ol>
                                 </nav>
                             </div>
@@ -45,6 +45,7 @@
                                         <th>Stt</th>
                                         <th>{{ __('messages.a-name') }}</th>
                                         <th>{{ __('messages.a-date-create') }}</th>
+                                        <th></th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -53,6 +54,14 @@
                                             <th>{{$loop->iteration}}</th>
                                             <td>{{$permission->name}}</td>
                                             <td>{{$permission->created_at->format('H:i:s d-m-Y')}}</td>
+                                            <td class="text-right">
+                                                <a href="{{route('edit.permission', $permission->id)}}" class="btn btn-xs btn-outline-success"><i
+                                                        class="fa fa-edit"></i></a>
+                                                <a href="{{route('destroy.permission', $permission->id)}}"
+                                                   class="btn btn-xs btn-outline-danger"
+                                                   onclick="return confirm('Do you want to delete?')"><i
+                                                        class="fa fa-trash"></i></a>
+                                            </td>
                                         </tr>
                                     @endforeach
                                     </tbody>

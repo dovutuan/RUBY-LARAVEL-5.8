@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PermissionRequest extends FormRequest
+class RoleRequest extends FormRequest
 {
     public function authorize()
     {
@@ -14,7 +14,7 @@ class PermissionRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:255|unique:permissions,name,' . $this->id,
+            'name' => 'required|max:255|unique:roles,name,' . $this->id,
         ];
     }
 }

@@ -53,7 +53,7 @@ return [
     'information' => 'Thông tin',
     'change' => 'Thay đỏi',
 
-    'a-name' => 'Họ và tên',
+    'a-name' => 'Tên',
     'a-phone' => 'Số điện thoại',
     'a-birth' => 'Ngày sinh',
     'a-address' => 'Địa chỉ',
@@ -66,10 +66,28 @@ return [
     'do-you-want-to-delete?' => 'Bạn có muốn xóa?',
     'create-successfully' => 'Thêm thành công',
     'update-successfully' => 'Cập nhật thành công',
+    'update-password-successfully' => 'Cập nhật lại mật khẩu thành công',
     'delete-successfully' => 'Xóa thánh công',
 
     //admin
     'dashboard' =>'Dashboard',
     'a-user' => 'Tài khoản',
-    'no-data' => 'không có dữ liệu'
+    'a-permission' => 'Permission',
+    'a-permission-edit' => 'Permission edit',
+    'a-home' => 'Trang chủ',
+    'a-role' => 'Quyền',
+    'a-total-role:' => 'Tổng quyền',
+    'no-data' => 'không có dữ liệu',
+
+    'name-permission' => 'Name permission',
+    'back-to-list' => 'Trở lại',
+    'edit' => 'Sửa',
+    'a-role-edit' => 'Sửa quyền',
+    'name-role' => 'Tên quyền',
+    'create-user' => 'Thêm tài khoản',
+    'a-password' => 'Mật khẩu',
+    'a-password-confirmation' => 'Nhập lại mật khẩu',
+    'select-image' => 'Chọn ảnh',
+    'active' => 'Hoạt động',
+    'inactive' => 'Không hoạt động',
 ];

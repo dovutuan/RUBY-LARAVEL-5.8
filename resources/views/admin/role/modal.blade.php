@@ -1,7 +1,7 @@
 <div class="modal" id="myModal">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <form action="{{route('create.role')}}" method="post">
+            <form action="{{route('store.role')}}" method="post">
                 @csrf
                 <div class="modal-header">
                     <h4 class="modal-title">Create user</h4>
@@ -20,11 +20,14 @@
                         <div class="demo">
                             <div class="control-group">
                                 <label class="control-label"><b>Permission</b></label>
-                                <select id="select-state" name="permission[]" multiple class="demo-default">
+                                <select id="select-state" name="permission_id[]" multiple class="demo-default">
                                     @foreach($permissions as $permission)
                                         <option value="{{$permission->id}}">{{$permission->name}}</option>
                                     @endforeach
                                 </select>
+                                @error('permission_id')
+                                <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                     </div>

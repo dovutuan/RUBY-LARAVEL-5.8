@@ -9,6 +9,14 @@ use Spatie\Permission\Models\Permission;
 
 class PermissionController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:permission-list', ['only' => ['index']]);
+        $this->middleware('permission:permission-create', ['only' => ['index', 'store']]);
+        $this->middleware('permission:permission-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:permission-delete', ['only' => ['destroy']]);
+    }
+
     public function index(Request $request)
     {
         try {
@@ -28,5 +36,27 @@ class PermissionController extends Controller
         ]);
 
         return redirect()->back()->with('success', __('messages.create-successfully'));
+    }
+
+    public function edit($id)
+    {
+        $permission = Permission::findOrFail($id);
+        return view('admin.permission.edit', compact('permission'));
+    }
+
+    public function update(PermissionRequest $request, $id)
+    {
+        $permission = Permission::find($id);
+        $permission->update([
+            'name' => $request->input('name'),
+        ]);
+
+        return redirect()->route('list.permission')->with('success', __('messages.update-successfully'));
+    }
+
+    public function destroy($id)
+    {
+        Permission::findOrFail($id)->delete();
+        return redirect()->back()->with('success', __('messages.delete-successfully'));
     }
 }

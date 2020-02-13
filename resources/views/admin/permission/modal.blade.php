@@ -1,7 +1,7 @@
 <div class="modal" id="myModal">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <form action="{{route('create.permission')}}" method="post">
+            <form action="{{route('store.permission')}}" method="post">
                 @csrf
                 <div class="modal-header">
                     <h4 class="modal-title">Create user</h4>

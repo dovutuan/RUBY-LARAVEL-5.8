@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class UserRequest extends FormRequest
+class AccountRequest extends FormRequest
 {
     public function authorize()
     {
@@ -19,7 +19,7 @@ class UserRequest extends FormRequest
             'birth' => 'required',
             'phone' => 'required|max:11',
             'address' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users,email,' . $this->id,
+            'email' => 'required|email|max:255|unique:users,email,' . Auth::user()->id,
         ];
     }
 }

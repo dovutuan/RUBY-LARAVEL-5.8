@@ -66,14 +66,29 @@ return [
     'do-you-want-to-delete?' => 'Do you want to delete?',
     'create-successfully' => 'Create successfully',
     'update-successfully' => 'Update successfully',
+    'update-password-successfully' => 'Update password successfully',
     'delete-successfully' => 'delete successfully',
 
     //admin
     'a-dashboard' => 'Dashboard',
     'a-user' => 'User',
     'a-permission' => 'Permission',
+    'a-permission-edit' => 'Permission edit',
     'a-home' => 'Home',
     'a-role' => 'Role',
     'a-total-role:' => 'Total role',
-    'no-data' => 'No data'
+    'no-data' => 'No data',
+
+    'name-permission' => 'Name permission',
+    'back-to-list' => 'Back to list',
+    'edit' => 'Edit',
+    'a-role-edit' => 'Role edit',
+    'name-role' => 'Name role',
+    'create-user' => 'Create user',
+    'a-password' => 'Password',
+    'a-password-confirmation' => 'Password confirmation',
+    'select-image' => 'Select image',
+    'active' => 'Active',
+    'inactive' => 'Inactive',
+
 ];

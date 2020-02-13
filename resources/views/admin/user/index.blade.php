@@ -47,6 +47,7 @@
                                         <th>Stt</th>
                                         <th>{{ __('messages.a-name') }}</th>
                                         <th>{{ __('messages.a-status') }}</th>
+                                        <th>{{ __('messages.a-role') }}</th>
                                         <th>{{ __('messages.a-date-create') }}</th>
                                         <th></th>
                                     </tr>
@@ -59,21 +60,32 @@
                                             <td><a href="{{route('change.status.user', $user->id)}}"><input readonly
                                                                                                             type="radio" {{ $user->getStatus($user->status)['check'] }}> {{ $user->getStatus($user->status)['name'] }}
                                                 </a></td>
+                                            <td>
+                                                @foreach($user->getRoleNames() as $getRoleName)
+                                                    <lable class="badge badge-success">{{$getRoleName}}</lable>
+                                                @endforeach
+                                            </td>
                                             <td>{{$user->created_at->format('H:i:s d-m-Y')}}</td>
                                             <td class="text-right">
-                                                <a href="" class="btn btn-xs btn-outline-success"><i
-                                                        class="fa fa-edit"></i></a>
-                                                <a href="{{route('destroy.user', $user->id)}}"
-                                                   class="btn btn-xs btn-outline-danger"
-                                                   onclick="return confirm('Do you want to delete?')"><i
-                                                        class="fa fa-trash"></i></a>
+                                                <a title="reset password" href="{{route('refresh.password.user', $user->id)}}" class="btn btn-xs btn-outline-info" onclick="return confirm('Do you want to delete?')"><i class="fa fa-refresh"></i></a>
+                                                @can('user-edit')
+                                                    <a href="{{route('edit.user', $user->id)}}"
+                                                       class="btn btn-xs btn-outline-success"><i
+                                                            class="fa fa-edit"></i></a>
+                                                @endcan
+                                                @can('user-delete')
+                                                    <a href="{{route('destroy.user', $user->id)}}"
+                                                       class="btn btn-xs btn-outline-danger"
+                                                       onclick="return confirm('Do you want to delete?')"><i
+                                                            class="fa fa-trash"></i></a>
+                                                @endcan
                                             </td>
                                         </tr>
                                     @endforeach
                                     </tbody>
                                     <tfoot>
                                     <tr>
-                                        <th colspan="5"
+                                        <th colspan="6"
                                             class="text-right">{{ __('messages.a-total-user:') }} {{$totalUser}}
                                             <sup>{{ __('messages.a-user') }}</sup></th>
                                     </tr>

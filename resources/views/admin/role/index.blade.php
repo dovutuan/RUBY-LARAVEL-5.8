@@ -45,6 +45,7 @@
                                         <th>Stt</th>
                                         <th>{{ __('messages.a-name') }}</th>
                                         <th>{{ __('messages.a-date-create') }}</th>
+                                        <th></th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -53,12 +54,20 @@
                                             <th>{{$loop->iteration}}</th>
                                             <td>{{$role->name}}</td>
                                             <td>{{$role->created_at->format('H:i:s d-m-Y')}}</td>
+                                            <td class="text-right">
+                                                <a href="{{route('edit.role', $role->id)}}" class="btn btn-xs btn-outline-success"><i
+                                                        class="fa fa-edit"></i></a>
+                                                <a href="{{route('destroy.role', $role->id)}}"
+                                                   class="btn btn-xs btn-outline-danger"
+                                                   onclick="return confirm('Do you want to delete?')"><i
+                                                        class="fa fa-trash"></i></a>
+                                            </td>
                                         </tr>
                                     @endforeach
                                     </tbody>
                                     <tfoot>
                                     <tr>
-                                        <th colspan="3"
+                                        <th colspan="4"
                                             class="text-right">{{ __('messages.a-total-role:') }} {{$totalRole}}
                                             <sup>{{ __('messages.a-role') }}</sup>
                                         </th>
