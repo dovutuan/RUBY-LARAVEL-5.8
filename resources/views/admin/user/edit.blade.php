@@ -83,10 +83,10 @@
                                         <label class="control-label"><b>{{ __('messages.a-image') }}</b></label>
                                         <div class="input-group mb-3">
                                             <div class="input-group-prepend">
-                                                <buton id="btnImage1"
+                                                <buton id="btnImage"
                                                        class="btn btn-outline-success">{{ __('messages.select-image') }}</buton>
                                             </div>
-                                            <input name="image" id="txtImage1" type="text" class="form-control"
+                                            <input name="image" id="txtImage" type="text" class="form-control"
                                                    value="{{old('image')}}">
                                         </div>
                                     </div>

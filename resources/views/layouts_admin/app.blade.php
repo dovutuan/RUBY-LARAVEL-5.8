@@ -55,6 +55,8 @@
 
 <script src="{{ asset('theme_admin') }}/assets/js/plugins.js"></script>
 <script src="{{ asset('theme_admin') }}/assets/js/scripts.js"></script>
+@include('ckfinder::setup')
+<script src="{{ asset('theme_admin') }}/assets/js/controller/ckfinder.js"></script>
 @yield('script')
 </body>
 </html>

@@ -10,7 +10,7 @@ Route::get('lang/{lang}', 'LangController@changeLang')->name('lang');
 Route::group(['middleware' => 'auth'], function () {
     Route::group(['middleware' => 'verified'], function () {
 
-//        Route::any('/ckfinder/examples/{example?}', 'CKSource\CKFinderBridge\Controller\CKFinderController@examplesAction')->name('ckfinder_examples');
+        Route::any('/ckfinder/examples/{example?}', 'CKSource\CKFinderBridge\Controller\CKFinderController@examplesAction')->name('ckfinder_examples');
 
         //admin
         Route::group(['namespace' => 'Admin'], function () {

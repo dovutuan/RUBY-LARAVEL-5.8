@@ -1,7 +1,7 @@
 <div class="modal" id="myModal">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
-            <form action="{{route('store.user')}}" method="post">
+            <form action="{{route('store.user')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-header">
                     <h4 class="modal-title">Create user</h4>
@@ -70,9 +70,10 @@
                                 <label class="control-label"><b>{{ __('messages.a-image') }}</b></label>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <buton id="btnImage1" class="btn btn-outline-success">{{ __('messages.select-image') }}</buton>
+                                        <buton id="btnImage"
+                                               class="btn btn-outline-success">{{ __('messages.select-image') }}</buton>
                                     </div>
-                                    <input name="image" id="txtImage1" type="text" class="form-control"
+                                    <input name="image" id="txtImage" type="text" class="form-control"
                                            value="{{old('image')}}">
                                 </div>
                             </div>

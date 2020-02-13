@@ -56,10 +56,14 @@
                                     @foreach($users as $user)
                                         <tr>
                                             <th>{{$loop->iteration}}</th>
-                                            <td>{{$user->name}}</td>
-                                            <td><a href="{{route('change.status.user', $user->id)}}"><input readonly
-                                                                                                            type="radio" {{ $user->getStatus($user->status)['check'] }}> {{ $user->getStatus($user->status)['name'] }}
-                                                </a></td>
+                                            <th class="text-left"><img class="img-user" src="{{$user->image}}"
+                                                                       alt=""> {{$user->name}}</th>
+                                            <td>
+                                                <a href="{{route('change.status.user', $user->id)}}">
+                                                    <input readonly type="radio" {{ $user->getStatus($user->status)['check'] }}>
+                                                    {{ $user->getStatus($user->status)['name'] }}
+                                                </a>
+                                            </td>
                                             <td>
                                                 @foreach($user->getRoleNames() as $getRoleName)
                                                     <lable class="badge badge-success">{{$getRoleName}}</lable>
@@ -67,7 +71,11 @@
                                             </td>
                                             <td>{{$user->created_at->format('H:i:s d-m-Y')}}</td>
                                             <td class="text-right">
-                                                <a title="reset password" href="{{route('refresh.password.user', $user->id)}}" class="btn btn-xs btn-outline-info" onclick="return confirm('Do you want to delete?')"><i class="fa fa-refresh"></i></a>
+                                                <a title="reset password"
+                                                   href="{{route('refresh.password.user', $user->id)}}"
+                                                   class="btn btn-xs btn-outline-info"
+                                                   onclick="return confirm('Do you want to update the password?')"><i
+                                                        class="fa fa-refresh"></i></a>
                                                 @can('user-edit')
                                                     <a href="{{route('edit.user', $user->id)}}"
                                                        class="btn btn-xs btn-outline-success"><i
