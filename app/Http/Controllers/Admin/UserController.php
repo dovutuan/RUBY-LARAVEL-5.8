@@ -91,7 +91,7 @@ class UserController extends Controller
         return redirect()->route('list.user')->with('success', __('messages.update-successfully'));
     }
 
-    public function delete($id)
+    public function destroy($id)
     {
         $user = User::findOrFail($id);
         $user->update([
@@ -126,11 +126,5 @@ class UserController extends Controller
     public function export()
     {
         return Excel::download(new UsersExport, 'users.xlsx');
-    }
-
-    public function destroy($id)
-    {
-        User::findOrFail($id)->delete();
-        return redirect()->back()->with('success', __('messages.delete-successfully'));
     }
 }

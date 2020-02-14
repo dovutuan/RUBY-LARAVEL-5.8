@@ -34,6 +34,31 @@
                                             class="fa fa-fw fa-list-alt"></i><span>{{__('messages.a-category')}}</span></a>
                                 </li>
                             @endcan
+                            <li class="{{\Request::route()->getName()==('list.color') || \Request::route()->getName()==('list.size') || \Request::route()->getName()==('list.product') ?'active':''}}">
+                                <a href="javascript:void(0)"><i
+                                        class="fa fa-fw fa-users"></i><span>{{__('messages.a-product')}}</span></a>
+                                <ul class="submenu">
+                                    @can('product-list')
+                                        <li class="{{\Request::route()->getName()=='list.product'?'active':''}}"><a
+                                                href="{{route('list.product')}}">{{__('messages.a-product')}}</a></li>
+                                    @endcan
+                                    @can('color-list')
+                                        <li class="{{\Request::route()->getName()=='list.color'?'active':''}}"><a
+                                                href="{{route('list.color')}}">{{__('messages.a-color')}}</a></li>
+                                    @endcan
+                                    @can('size-list')
+                                        <li class="{{\Request::route()->getName()=='list.size'?'active':''}}"><a
+                                                href="{{route('list.size')}}">{{__('messages.a-size')}}</a>
+                                        </li>
+                                    @endcan
+                                </ul>
+                            </li>
+                            @can('discount-list')
+                                <li class="{{\Request::route()->getName()=='list.discount'?'active':''}}">
+                                    <a href="{{route('list.discount')}}"><i
+                                            class="fa fa-fw fa-list-alt"></i><span>{{__('messages.a-discount')}}</span></a>
+                                </li>
+                            @endcan
                         </ul>
                     </nav>
                 </div>

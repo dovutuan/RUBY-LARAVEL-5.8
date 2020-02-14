@@ -19,6 +19,10 @@ use Spatie\Permission\Traits\HasRoles;
  * @property int gender
  * @property int status
  * @property string email
+ * @property string password
+ * @property string email_verified_at
+ * @property string updated_by
+ * @property string deleted_by
  */
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -60,7 +64,7 @@ class User extends Authenticatable implements MustVerifyEmail
         if ($key) {
             $users = self::where('id', 'like', "%$key%")->orWhere('name', 'like', "%$key%")->paginate($paginate);
         } else {
-            $users = User::paginate($paginate);
+            $users = self::paginate($paginate);
         }
         if ($users->count() > 0) {
             return $users;

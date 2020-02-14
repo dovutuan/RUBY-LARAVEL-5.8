@@ -26,6 +26,14 @@ Route::group(['middleware' => 'auth'], function () {
                     Route::get('delete/{id}', 'UserController@destroy')->name('destroy.user');
                 });
 
+                Route::group(['prefix' => 'product'], function () {
+                    Route::get('', 'ProductController@index')->name('list.product');
+                    Route::post('', 'ProductController@store')->name('store.product');
+                    Route::get('edit/{id}', 'ProductController@edit')->name('edit.product');
+                    Route::post('edit/{id}', 'ProductController@update');
+                    Route::get('delete/{id}', 'ProductController@destroy')->name('destroy.product');
+                });
+
                 Route::group(['prefix' => 'role'], function () {
                     Route::get('', 'RoleController@index')->name('list.role');
                     Route::post('', 'RoleController@store')->name('store.role');
@@ -48,6 +56,30 @@ Route::group(['middleware' => 'auth'], function () {
                     Route::get('edit/{id}', 'CategoryController@edit')->name('edit.category');
                     Route::post('edit/{id}', 'CategoryController@update');
                     Route::get('delete/{id}', 'CategoryController@destroy')->name('destroy.category');
+                });
+
+                Route::group(['prefix' => 'size'], function () {
+                    Route::get('', 'SizeController@index')->name('list.size');
+                    Route::post('', 'SizeController@store')->name('store.size');
+                    Route::get('edit/{id}', 'SizeController@edit')->name('edit.size');
+                    Route::post('edit/{id}', 'SizeController@update');
+                    Route::get('delete/{id}', 'SizeController@destroy')->name('destroy.size');
+                });
+
+                Route::group(['prefix' => 'color'], function () {
+                    Route::get('', 'ColorController@index')->name('list.color');
+                    Route::post('', 'ColorController@store')->name('store.color');
+                    Route::get('edit/{id}', 'ColorController@edit')->name('edit.color');
+                    Route::post('edit/{id}', 'ColorController@update');
+                    Route::get('delete/{id}', 'ColorController@destroy')->name('destroy.color');
+                });
+
+                Route::group(['prefix' => 'discount'], function () {
+                    Route::get('', 'DiscountController@index')->name('list.discount');
+                    Route::post('', 'DiscountController@store')->name('store.discount');
+                    Route::get('edit/{id}', 'DiscountController@edit')->name('edit.discount');
+                    Route::post('edit/{id}', 'DiscountController@update');
+                    Route::get('delete/{id}', 'DiscountController@destroy')->name('destroy.discount');
                 });
             });
         });
