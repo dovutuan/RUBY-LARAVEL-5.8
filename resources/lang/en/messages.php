@@ -101,4 +101,20 @@ return [
     'search...' => 'Search...',
     'a-category-edit' => 'Category edit',
 
+    'a-product' => 'Product',
+    'a-color' => 'Color',
+    'a-size' => 'Size',
+    'a-stt' => 'Stt',
+    'a-total-size:' => 'Total size:',
+    'create-size' => 'Create size',
+    'a-name-permission' => 'Name permission',
+    'a-name-size' => 'Name size',
+    'a-total-color:' => 'Total color:',
+    'create-color' => 'Create color',
+    'a-name-color' => 'Name color',
+    'a-code-color' => 'Code color',
+    'a-discount' => 'Discount',
+    'a-total-discount:' => 'Total discount:',
+    'a-code' => 'Code',
+
 ];

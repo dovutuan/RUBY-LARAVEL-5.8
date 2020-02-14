@@ -42,7 +42,7 @@
                                 <table class="table table-hover progress-table text-center">
                                     <thead class="text-uppercase">
                                     <tr>
-                                        <th>Stt</th>
+                                        <th>{{ __('messages.a-stt') }}</th>
                                         <th>{{ __('messages.a-name') }}</th>
                                         <th>{{ __('messages.a-date-create') }}</th>
                                         <th></th>

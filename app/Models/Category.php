@@ -5,6 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Class Category
+ * @package App\Models
+ * @property string name
+ * @property string icon
+ * @property string image
+ * @property int status
+ * @property int category_id
+ * @property string slug
+ * @property string updated_by
+ * @property string deleted_by
+ */
 class Category extends Model
 {
     use SoftDeletes;
@@ -28,7 +40,7 @@ class Category extends Model
             $categories = self::where('id', 'like', "%$key%")->orWhere('name', 'like', "%$key%");
             $categories = $categories->whereNull('category_id')->with('childrenCategories')->paginate($paginate);
         } else {
-            $categories = Category::whereNull('category_id')->with('childrenCategories')->paginate($paginate);
+            $categories = self::whereNull('category_id')->with('childrenCategories')->paginate($paginate);
         }
         if ($categories->count() > 0) {
             return $categories;
