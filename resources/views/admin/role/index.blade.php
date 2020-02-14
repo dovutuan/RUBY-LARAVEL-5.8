@@ -18,10 +18,12 @@
                                 </nav>
                             </div>
                             <div class="col-md-1 clearfix text-right">
-                                <button type="button" class="btn btn-sm btn-success" data-toggle="modal"
-                                        data-target="#myModal">
-                                    <i class="fa fa-plus"></i>
-                                </button>
+                                @can('category-create')
+                                    <button type="button" class="btn btn-sm btn-success" data-toggle="modal"
+                                            data-target="#myModal">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
+                                @endcan
                             </div>
                         </div>
                         <br>
@@ -29,7 +31,7 @@
                             <div class="col-md-12 clearfix text-right">
                                 <div class="search-box pull-right">
                                     <form action="" method="GET">
-                                        <input type="text" name="key" placeholder="Search..."
+                                        <input type="text" name="key" placeholder="{{ __('messages.search...') }}"
                                                value="{{ isset($key) ? $key : old('key') }}">
                                         <i class="ti-search"></i>
                                     </form>
@@ -52,10 +54,11 @@
                                     @foreach($roles as $role)
                                         <tr>
                                             <th>{{$loop->iteration}}</th>
-                                            <td>{{$role->name}}</td>
+                                            <th>{{$role->name}}</th>
                                             <td>{{$role->created_at->format('H:i:s d-m-Y')}}</td>
                                             <td class="text-right">
-                                                <a href="{{route('edit.role', $role->id)}}" class="btn btn-xs btn-outline-success"><i
+                                                <a href="{{route('edit.role', $role->id)}}"
+                                                   class="btn btn-xs btn-outline-success"><i
                                                         class="fa fa-edit"></i></a>
                                                 <a href="{{route('destroy.role', $role->id)}}"
                                                    class="btn btn-xs btn-outline-danger"

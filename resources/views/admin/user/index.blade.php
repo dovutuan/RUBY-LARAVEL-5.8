@@ -20,10 +20,12 @@
                             <div class="col-md-1 clearfix text-right">
                                 <a href="{{route('export.user')}}" class="btn btn-sm btn-info"><i
                                         class="fa fa-file-excel-o"></i></a>
-                                <button type="button" class="btn btn-sm btn-success" data-toggle="modal"
-                                        data-target="#myModal">
-                                    <i class="fa fa-plus"></i>
-                                </button>
+                                @can('user-create')
+                                    <button type="button" class="btn btn-sm btn-success" data-toggle="modal"
+                                            data-target="#myModal">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
+                                @endcan
                             </div>
                         </div>
                         <br>
@@ -31,7 +33,7 @@
                             <div class="col-md-12 clearfix text-right">
                                 <div class="search-box pull-right">
                                     <form action="" method="GET">
-                                        <input type="text" name="key" placeholder="Search..."
+                                        <input type="text" name="key" placeholder="{{ __('messages.search...') }}"
                                                value="{{ isset($key) ? $key : old('key') }}">
                                         <i class="ti-search"></i>
                                     </form>
@@ -60,7 +62,8 @@
                                                                        alt=""> {{$user->name}}</th>
                                             <td>
                                                 <a href="{{route('change.status.user', $user->id)}}">
-                                                    <input readonly type="radio" {{ $user->getStatus($user->status)['check'] }}>
+                                                    <input readonly
+                                                           type="radio" {{ $user->getStatus($user->status)['check'] }}>
                                                     {{ $user->getStatus($user->status)['name'] }}
                                                 </a>
                                             </td>

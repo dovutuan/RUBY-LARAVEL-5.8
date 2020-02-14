@@ -7,11 +7,11 @@
                         <ul id="nav_menu">
                             <li>
                                 <a href="javascript:void(0)"><i
-                                        class="ti-dashboard"></i><span>{{__('messages.a-dashboard')}}</span></a>
+                                        class="fa fa-fw fa-dashboard"></i><span>{{__('messages.a-dashboard')}}</span></a>
                             </li>
-
                             <li class="{{\Request::route()->getName()==('list.role') || \Request::route()->getName()==('list.user') || \Request::route()->getName()==('list.permission') ?'active':''}}">
-                                <a href="javascript:void(0)"><i class="fa fa-fw fa-users"></i><span>User</span></a>
+                                <a href="javascript:void(0)"><i
+                                        class="fa fa-fw fa-users"></i><span>{{__('messages.a-user')}}</span></a>
                                 <ul class="submenu">
                                     @can('user-list')
                                         <li class="{{\Request::route()->getName()=='list.user'?'active':''}}"><a
@@ -28,7 +28,12 @@
                                     @endcan
                                 </ul>
                             </li>
-
+                            @can('category-list')
+                                <li class="{{\Request::route()->getName()=='list.category'?'active':''}}">
+                                    <a href="{{route('list.category')}}"><i
+                                            class="fa fa-fw fa-list-alt"></i><span>{{__('messages.a-category')}}</span></a>
+                                </li>
+                            @endcan
                         </ul>
                     </nav>
                 </div>

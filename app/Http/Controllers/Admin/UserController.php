@@ -8,6 +8,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
@@ -80,6 +81,7 @@ class UserController extends Controller
             'gender' => $request->input('gender'),
             'birth' => $request->input('birth'),
             'address' => $request->input('address'),
+            'updated_by' => Auth::user()->name,
         ]);
 
         DB::table('model_has_roles')->where('model_id', $id)->delete();
@@ -92,8 +94,10 @@ class UserController extends Controller
     public function delete($id)
     {
         $user = User::findOrFail($id);
+        $user->update([
+            'deleted_by' => Auth::user()->name,
+        ]);
         DB::table('model_has_roles')->where('model_id', $id)->delete();
-
         $user->delete();
 
         return redirect()->back()->with('success', __('messages.delete-successfully'));
@@ -104,6 +108,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->update([
             'password' => Hash::make($password),
+            'updated_by' => Auth::user()->name,
         ]);
 
         return redirect()->back()->with('success', __('messages.update-password-successfully'));

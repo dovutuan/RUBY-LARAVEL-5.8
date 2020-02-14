@@ -18,7 +18,7 @@ return [
     'already-have-an-account-login?' => 'Đã có tài khoản đăng nhập?',
     'sign-in-to-receive-the-latest-offers-for-you.' => 'Đăng nhập để nhận được ưu đãi mới nhất cho bạn.',
     'sign-up-now' => 'Đăng kí ngay',
-    'name' => 'Vui lòng nhập họ và tên',
+    'name' => 'Vui lòng nhập tên',
     'male' => 'Nam',
     'female' => 'Nữ',
     'other' => 'Khác',
@@ -90,4 +90,14 @@ return [
     'select-image' => 'Chọn ảnh',
     'active' => 'Hoạt động',
     'inactive' => 'Không hoạt động',
+
+    'create-role' => 'Thêm quyền',
+    'create-permission' => 'Thêm permission',
+    'create-category' => 'Thêm danh mục',
+    'a-category' => 'Danh mục',
+    'a-total-category:' => 'Tổng danh mục:',
+    'a-parent-category' => 'Danh mục cha',
+    'a-icon' => 'Biểu tượng',
+    'search...' => 'Tìm kiếm...',
+    'a-category-edit' => 'Sửa danh mục',
 ];

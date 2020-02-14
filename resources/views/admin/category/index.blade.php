@@ -13,7 +13,7 @@
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="#">{{ __('messages.a-home') }}</a></li>
                                         <li class="breadcrumb-item active"
-                                            aria-current="page">{{ __('messages.a-permission') }}</li>
+                                            aria-current="page">{{ __('messages.a-category') }}</li>
                                     </ol>
                                 </nav>
                             </div>
@@ -49,31 +49,54 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($permissions as $permission)
+                                    @foreach($categories as $category)
                                         <tr>
                                             <th>{{$loop->iteration}}</th>
-                                            <th>{{$permission->name}}</th>
-                                            <td>{{$permission->created_at->format('H:i:s d-m-Y')}}</td>
+                                            <th class="text-left">
+                                                <ul>
+                                                    <li>
+                                                        {{$category->name}}
+                                                        <ul>
+                                                            @foreach ($category->childrenCategories as $childCategory)
+                                                                @include('admin.category.child_category', ['child_category' => $childCategory])
+                                                            @endforeach
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+
+                                            </th>
+                                            <td>{{$category->created_at->format('H:i:s d-m-Y')}}</td>
                                             <td class="text-right">
-                                                <a href="{{route('edit.permission', $permission->id)}}" class="btn btn-xs btn-outline-success"><i
-                                                        class="fa fa-edit"></i></a>
-                                                <a href="{{route('destroy.permission', $permission->id)}}"
-                                                   class="btn btn-xs btn-outline-danger"
-                                                   onclick="return confirm('Do you want to delete?')"><i
-                                                        class="fa fa-trash"></i></a>
+                                                @can('category-edit')
+                                                    <a href="{{route('edit.category', $category->id)}}" class="btn btn-xs btn-outline-success"><i
+                                                            class="fa fa-edit"></i></a>
+                                                @endcan
+                                                @can('category-delete')
+                                                    <a href="{{route('destroy.category', $category->id)}}"
+                                                       class="btn btn-xs btn-outline-danger"
+                                                       onclick="return confirm('Do you want to delete?')"><i
+                                                            class="fa fa-trash"></i></a>
+                                                @endcan
                                             </td>
                                         </tr>
                                     @endforeach
                                     </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <th colspan="6"
+                                            class="text-right">{{ __('messages.a-total-category:') }} {{$totalCategory}}
+                                            <sup>{{ __('messages.a-category') }}</sup></th>
+                                    </tr>
+                                    </tfoot>
                                 </table>
                             </div>
                         </div>
-                        {{ $permissions->appends(['key' => $key])->links() }}
+                        {{ $categories->appends(['key' => $key])->links() }}
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    @include('admin.permission.modal')
+    @include('admin.category.modal')
 
 @endsection

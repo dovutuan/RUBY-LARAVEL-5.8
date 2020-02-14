@@ -87,7 +87,7 @@
                                                        class="btn btn-outline-success">{{ __('messages.select-image') }}</buton>
                                             </div>
                                             <input name="image" id="txtImage" type="text" class="form-control"
-                                                   value="{{old('image')}}">
+                                                   value="{{$user->image}}">
                                         </div>
                                     </div>
                                 </div>

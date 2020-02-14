@@ -18,7 +18,7 @@ return [
     'already-have-an-account-login?' => 'Already have an account login?',
     'sign-in-to-receive-the-latest-offers-for-you.' => 'Sign in to receive the latest offers for you.',
     'sign-up-now' => 'Sign up now',
-    'name' => 'Please enter user name',
+    'name' => 'Please enter name',
     'male' => 'Male',
     'female' => 'Female',
     'other' => 'Other',
@@ -90,5 +90,15 @@ return [
     'select-image' => 'Select image',
     'active' => 'Active',
     'inactive' => 'Inactive',
+
+    'create-role' => 'Create role',
+    'create-permission' => 'Create permission',
+    'create-category' => 'Create category',
+    'a-category' => 'Category',
+    'a-total-category:' => 'Total category:',
+    'a-parent-category' => 'Parent category',
+    'a-icon' => 'Icon',
+    'search...' => 'Search...',
+    'a-category-edit' => 'Category edit',
 
 ];
