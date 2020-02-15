@@ -11,7 +11,6 @@ use Spatie\Permission\Models\Permission;
 
 class RoleController extends Controller
 {
-
     function __construct()
     {
         $this->middleware('permission:role-list', ['only' => ['index']]);

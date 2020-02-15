@@ -13,7 +13,7 @@
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="#">{{ __('messages.a-home') }}</a></li>
                                         <li class="breadcrumb-item active"
-                                            aria-current="page">{{ __('messages.a-discount') }}</li>
+                                            aria-current="page">{{ __('messages.a-supplier') }}</li>
                                     </ol>
                                 </nav>
                             </div>
@@ -43,32 +43,35 @@
                                     <thead class="text-uppercase">
                                     <tr>
                                         <th>{{ __('messages.a-stt') }}</th>
-                                        <th>{{ __('messages.a-code') }}</th>
-                                        <th>{{ __('messages.a-time-remaining') }}</th>
+                                        <th>{{ __('messages.a-company') }}</th>
+                                        <th>{{ __('messages.a-information') }}</th>
                                         <th>{{ __('messages.a-date-create') }}</th>
                                         <th></th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($discounts as $stt => $discount)
+                                    @foreach($suppliers as $supplier)
                                         <tr>
                                             <th>{{$loop->iteration}}</th>
-                                            <th>{{$discount->code}}</th>
-                                            <td>
-                                                @foreach($times as $time)
-                                                    {{$time[0]}}
-                                                @endforeach
-                                                <sup>{{ __('messages.a-day') }}</sup>
+                                            <th>{{$supplier->company}}</th>
+                                            <td class="text-left">
+                                                <ul>
+                                                    <li><b>{{ __('messages.a-name') }}</b>: {{$supplier->name}}</li>
+                                                    <li><b>{{ __('messages.a-phone') }}</b>: {{$supplier->phone}}</li>
+                                                    <li><b>{{ __('messages.a-fax') }}</b>: {{$supplier->fax}}</li>
+                                                    <li><b>{{ __('messages.a-email') }}</b>: {{$supplier->email}}</li>
+                                                    <li><b>{{ __('messages.a-address') }}</b>: {{$supplier->address}}</li>
+                                                </ul>
                                             </td>
-                                            <td>{{$discount->created_at->format('H:i:s d-m-Y')}}</td>
+                                            <td>{{$supplier->created_at->format('H:i:s d-m-Y')}}</td>
                                             <td class="text-right">
-                                                @can('discount-edit')
-                                                    <a href="{{route('edit.discount', $discount->id)}}"
+                                                @can('supplier-edit')
+                                                    <a href="{{route('edit.supplier', $supplier->id)}}"
                                                        class="btn btn-xs btn-outline-success"><i
                                                             class="fa fa-edit"></i></a>
                                                 @endcan
-                                                @can('discount-delete')
-                                                    <a href="{{route('destroy.discount', $discount->id)}}"
+                                                @can('supplier-delete')
+                                                    <a href="{{route('destroy.supplier', $supplier->id)}}"
                                                        class="btn btn-xs btn-outline-danger"
                                                        onclick="return confirm('Do you want to delete?')"><i
                                                             class="fa fa-trash"></i></a>
@@ -80,19 +83,19 @@
                                     <tfoot>
                                     <tr>
                                         <th colspan="6"
-                                            class="text-right">{{ __('messages.a-total-discount:') }} {{$totalDiscount}}
-                                            <sup>{{ __('messages.a-discount') }}</sup></th>
+                                            class="text-right">{{ __('messages.a-total-supplier:') }} {{$totalSupplier}}
+                                            <sup>{{ __('messages.a-supplier') }}</sup></th>
                                     </tr>
                                     </tfoot>
                                 </table>
                             </div>
                         </div>
-                        {{ $discounts->appends(['key' => $key])->links() }}
+                        {{--                        {{ $suppliers->appends(['key' => $key])->links() }}--}}
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    @include('admin.discount.modal')
+@include('admin.supplier.modal')
 
 @endsection

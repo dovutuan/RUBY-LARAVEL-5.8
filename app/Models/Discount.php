@@ -22,13 +22,12 @@ class Discount extends Model
 {
     use SoftDeletes;
     protected $table = 'discounts';
-
-    protected $fillable = ['name', 'updated_by', 'deleted_by', 'code', 'price', 'amount', 'status', 'start', 'finish',];
+    protected $fillable = ['name', 'updated_by', 'deleted_by', 'code', 'price', 'amount', 'status', 'start', 'finish'];
 
     static function search($key, $paginate = 30)
     {
         if ($key) {
-            $discounts = self::where('id', 'like', "%$key%")->orWhere('name', 'like', "%$key%")->paginate($paginate);
+            $discounts = self::where('id', 'like', "%$key%")->orWhere('code', 'like', "%$key%")->paginate($paginate);
         } else {
             $discounts = self::paginate($paginate);
         }

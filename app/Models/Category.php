@@ -21,7 +21,6 @@ class Category extends Model
 {
     use SoftDeletes;
     protected $table = 'categories';
-
     protected $fillable = ['name', 'icon', 'image', 'status', 'category_id', 'slug', 'updated_by', 'deleted_by'];
 
     public function categories()
@@ -32,6 +31,11 @@ class Category extends Model
     public function childrenCategories()
     {
         return $this->hasMany(Category::class)->with('categories');
+    }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'category_id', 'id');
     }
 
     static function search($key, $paginate = 30)

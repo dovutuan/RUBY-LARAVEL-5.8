@@ -10,6 +10,14 @@ use Illuminate\Support\Facades\Auth;
 
 class ColorController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:color-list', ['only' => ['index']]);
+        $this->middleware('permission:color-create', ['only' => ['index', 'store']]);
+        $this->middleware('permission:color-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:color-delete', ['only' => ['destroy']]);
+    }
+
     public function index(Request $request)
     {
         try {

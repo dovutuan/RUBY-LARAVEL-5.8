@@ -34,6 +34,14 @@ Route::group(['middleware' => 'auth'], function () {
                     Route::get('delete/{id}', 'ProductController@destroy')->name('destroy.product');
                 });
 
+                Route::group(['prefix' => 'supplier'], function () {
+                    Route::get('', 'SupplierController@index')->name('list.supplier');
+                    Route::post('', 'SupplierController@store')->name('store.supplier');
+                    Route::get('edit/{id}', 'SupplierController@edit')->name('edit.supplier');
+                    Route::post('edit/{id}', 'SupplierController@update');
+                    Route::get('delete/{id}', 'SupplierController@destroy')->name('destroy.supplier');
+                });
+
                 Route::group(['prefix' => 'role'], function () {
                     Route::get('', 'RoleController@index')->name('list.role');
                     Route::post('', 'RoleController@store')->name('store.role');

@@ -16,8 +16,12 @@ class Size extends Model
 {
     use SoftDeletes;
     protected $table = 'sizes';
-
     protected $fillable = ['name', 'updated_by', 'deleted_by'];
+
+    public function optionProduct()
+    {
+        return $this->hasMany(OptionProduct::class, 'size_id', 'id');
+    }
 
     static function search($key, $paginate = 30)
     {

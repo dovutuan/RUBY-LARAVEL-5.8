@@ -17,8 +17,12 @@ class Color extends Model
 {
     use SoftDeletes;
     protected $table = 'colors';
-
     protected $fillable = ['name', 'code', 'updated_by', 'deleted_by'];
+
+    public function optionProduct()
+    {
+        return $this->hasMany(OptionProduct::class, 'color_id', 'id');
+    }
 
     static function search($key, $paginate = 30)
     {
