@@ -64,6 +64,30 @@ class ProductController extends Controller
                 ];
             }
             ImageProduct::insert($listImage);
+            
+            // foreach ($request->input('color_id') as $color_id) {
+//             $color = $color_id;
+//         }
+//         foreach ($request->input('size_id') as $size_id) {
+//             $size = $size_id;
+//         }
+//         foreach ($request->input('amount') as $amount_id) {
+//             $amount = $amount_id;
+//         }
+//         foreach ($request->input('price') as $price_id) {
+//             $price = $price_id;
+//         }
+//         $list[] = [
+//             'product_id' => $product->id,
+//             'supplier_id' => $request->input('supplier_id'),
+//             'color_id' => $color,
+//             'size_id' => $size,
+//             'amount' => $amount,
+//             'price' => $price,
+//         ];
+
+//         OptionProduct::insert($list); 
+            
         }
 
         if ($product) {
