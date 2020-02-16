@@ -7,6 +7,7 @@ use App\Http\Requests\ProductRequest;
 use App\Models\Category;
 use App\Models\Color;
 use App\Models\ImageProduct;
+use App\Models\OptionProduct;
 use App\Models\Product;
 use App\Models\Size;
 use App\Models\Supplier;
@@ -46,7 +47,6 @@ class ProductController extends Controller
 
     public function store(ProductRequest $request)
     {
-        dd($request->all());
         $product = Product::create([
             'name' => $request->input('name'),
             'slug' => str_slug($request->input('name')),
@@ -57,14 +57,36 @@ class ProductController extends Controller
         ]);
         if ($product) {
             $listImage = [];
-            foreach ($request->input('image') as $item) {
+            foreach ($request->input('image') as $image) {
                 $listImage[] = [
                     'product_id' => $product->id,
-                    'image' => $item,
+                    'image' => $image,
                 ];
             }
             ImageProduct::insert($listImage);
         }
+
+        if ($product) {
+            $list = [];
+            foreach ($request->input('size_id') as $size) {
+                foreach ($request->input('color_id') as $color) {
+                    foreach ($request->input('amount') as $amount) {
+                        foreach ($request->input('price') as $price) {
+                            $list[] = [
+                                'product_id' => $product->id,
+                                'supplier_id' => $request->input('supplier_id'),
+                                'color_id' => $color,
+                                'size_id' => $size,
+                                'amount' => $amount,
+                                'price' => $product,
+                            ];
+                        }
+                    }
+                }
+            }
+            OptionProduct::insert($list);
+        }
+        return redirect()->back()->with('success', __('messages.create-successfully'));
     }
 
     public function show($id)
