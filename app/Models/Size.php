@@ -23,14 +23,14 @@ class Size extends Model
         return $this->hasMany(OptionProduct::class, 'size_id', 'id');
     }
 
-    static function search($key, $paginate = 30)
+    static function search($key, $paginate = PAGINATE)
     {
         if ($key) {
             $sizes = self::where('id', 'like', "%$key%")->orWhere('name', 'like', "%$key%")->paginate($paginate);
         } else {
             $sizes = self::paginate($paginate);
         }
-        if ($sizes->count() > 0) {
+        if ($sizes->count() > ZERO) {
             return $sizes;
         } else {
             throw new \Exception(__('messages.no-data', ['value' => $key]));

@@ -31,8 +31,13 @@ class UserController extends Controller
             $key = $request->input('key');
             $users = User::search($key);
             $totalUser = $users->count();
-
-            return view('admin.user.index', compact('users', 'totalUser', 'key', 'roles'));
+            $data = [
+                'users' => $users,
+                'totalUser' => $totalUser,
+                'roles' => $roles,
+                'key' => $key,
+            ];
+            return view('admin.user.index', $data);
         } catch (\Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
         }
@@ -118,7 +123,7 @@ class UserController extends Controller
     {
         $users = User::findOrFail($id);
         $users->update([
-            'status' => $users->status ? 0 : 1,
+            'status' => $users->status ? ZERO : ONE,
         ]);
         return redirect()->back()->with('success', __('messages.update-successfully'));
     }

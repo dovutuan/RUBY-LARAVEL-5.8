@@ -4,17 +4,15 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDiscountsTable extends Migration
+class CreateSalesTable extends Migration
 {
     public function up()
     {
-        Schema::create('discounts', function (Blueprint $table) {
+        Schema::create('sales', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('code');
-            $table->double('price');
-            $table->bigInteger('amount')->default(0);
-            $table->tinyInteger('status')->default(1)->comment('1: Instock, 0: Outstok');
+            $table->bigInteger('product_id')->unsigned();
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->integer('sale')->default(0);
             $table->date('start')->nullable();
             $table->date('finish')->nullable();
             $table->string('updated_by')->nullable();
@@ -26,6 +24,6 @@ class CreateDiscountsTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('discounts');
+        Schema::dropIfExists('sales');
     }
 }

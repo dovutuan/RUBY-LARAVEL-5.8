@@ -44,7 +44,7 @@
                                     <tr>
                                         <th>{{ __('messages.a-stt') }}</th>
                                         <th>{{ __('messages.a-code') }}</th>
-                                        <th>{{ __('messages.a-time-remaining') }}</th>
+                                        <th>{{ __('messages.a-information') }}</th>
                                         <th>{{ __('messages.a-date-create') }}</th>
                                         <th></th>
                                     </tr>
@@ -54,11 +54,15 @@
                                         <tr>
                                             <th>{{$loop->iteration}}</th>
                                             <th>{{$discount->code}}</th>
-                                            <td>
-                                                @foreach($times as $time)
-                                                    {{$time[0]}}
-                                                @endforeach
-                                                <sup>{{ __('messages.a-day') }}</sup>
+                                            <td class="text-left">
+                                                <ul>
+                                                    <li><lable class="badge {{ $discount->getStatus($discount->status)['class'] }}">{{ $discount->getStatus($discount->status)['name'] }}</lable></li>
+                                                    <li>{{ __('messages.a-price') }}: {{number_format($discount->price)}} <sup>{{ __('messages.a-vnđ') }}</sup></li>
+                                                    <li>{{ __('messages.a-use') }}: {{$discount->use}}</li>
+                                                    <li>{{ __('messages.a-time-remaining') }}: {{$discount->calculatingTime($discount->start, $discount->finish)}} <sup>{{ __('messages.a-day') }}</sup></li>
+                                                    <li>{{ __('messages.a-quantity-remaining') }}: {{$discount->quantityRemaining($discount->amount, $discount->use)}}</li>
+                                                    <li>{{ __('messages.a-expired') }}:  {{$discount->finish}}</li>
+                                                </ul>
                                             </td>
                                             <td>{{$discount->created_at->format('H:i:s d-m-Y')}}</td>
                                             <td class="text-right">

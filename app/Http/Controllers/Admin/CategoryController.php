@@ -25,8 +25,13 @@ class CategoryController extends Controller
             $categories = Category::search($key);
             $totalCategory = $categories->count();
             $allCategories = Category::all();
-
-            return view('admin.category.index', compact('categories', 'totalCategory', 'key', 'allCategories'));
+            $data = [
+                'categories' => $categories,
+                'totalCategory' => $totalCategory,
+                'allCategories' => $allCategories,
+                'key' => $key,
+            ];
+            return view('admin.category.index', $data);
         } catch (\Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
         }

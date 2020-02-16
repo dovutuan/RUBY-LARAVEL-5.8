@@ -15,7 +15,7 @@ class AccountController extends Controller
     {
         $user = Auth::user();
 
-        $user->phone = substr($user->phone, 0, 3) . '*****' . substr($user->phone, -3);
+        $user->phone = substr($user->phone, ZERO, THREE) . '*****' . substr($user->phone, -THREE);
 
         return view('account.index', compact('user'));
     }

@@ -22,8 +22,11 @@ class PermissionController extends Controller
         try {
             $key = $request->input('key');
             $permissions = Permission::search($key);
-
-            return view('admin.permission.index', compact('permissions', 'key'));
+            $data = [
+                'permissions' => $permissions,
+                'key' => $key,
+            ];
+            return view('admin.permission.index', $data);
         } catch (\Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
         }

@@ -23,13 +23,17 @@ class RoleController extends Controller
     {
         try {
             $key = $request->input('key');
-
             $permissions = Permission::all();
             $roles = Role::search($key);
-
             $totalRole = $roles->count();
+            $data = [
+                'permissions' => $permissions,
+                'roles' => $roles,
+                'totalRole' => $totalRole,
+                'key' => $key,
+            ];
 
-            return view('admin.role.index', compact('roles', 'totalRole', 'permissions', 'key'));
+            return view('admin.role.index', $data);
         } catch (\Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
         }

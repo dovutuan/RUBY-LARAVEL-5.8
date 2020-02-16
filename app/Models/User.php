@@ -59,14 +59,14 @@ class User extends Authenticatable implements MustVerifyEmail
         return array_get($this->changeStatus, $this->status, '[N\A]');
     }
 
-    static function search($key, $paginate = 30)
+    static function search($key, $paginate = PAGINATE)
     {
         if ($key) {
             $users = self::where('id', 'like', "%$key%")->orWhere('name', 'like', "%$key%")->paginate($paginate);
         } else {
             $users = self::paginate($paginate);
         }
-        if ($users->count() > 0) {
+        if ($users->count() > ZERO) {
             return $users;
         } else {
             throw new \Exception(__('messages.no-data', ['value' => $key]));

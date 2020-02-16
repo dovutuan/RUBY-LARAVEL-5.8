@@ -19,7 +19,7 @@
                     <div class="form-group">
                         <div class="demo">
                             <div class="control-group">
-                                <label class="control-label"><b>Permission</b></label>
+                                <label class="control-label"><b>{{ __('messages.a-permission') }}</b></label>
                                 <select id="select-state" name="permission_id[]" multiple class="demo-default">
                                     @foreach($permissions as $permission)
                                         <option value="{{$permission->id}}">{{$permission->name}}</option>

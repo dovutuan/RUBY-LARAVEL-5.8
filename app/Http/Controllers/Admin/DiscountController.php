@@ -24,11 +24,12 @@ class DiscountController extends Controller
             $key = $request->input('key');
             $discounts = Discount::search($key);
             $totalDiscount = $discounts->count();
-            $times = [];
-            foreach ($discounts as $discount) {
-                $times[] = [self::calculatingTime($discount->start, $discount->finish)];
-            }
-            return view('admin.discount.index', compact('discounts', 'totalDiscount', 'key', 'times'));
+            $data = [
+                'discounts' => $discounts,
+                'totalDiscount' => $totalDiscount,
+                'key' => $key,
+            ];
+            return view('admin.discount.index', $data);
         } catch (\Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
         }
@@ -60,19 +61,5 @@ class DiscountController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public static function formatTime($time, $format = null)
-    {
-        $item = Carbon::parse($time)->format($format);
-        return Carbon::createFromFormat($format, $item);
-    }
-
-    public static function calculatingTime($start, $finish)
-    {
-        $start = self::formatTime($start, 'd-m-Y');
-        $finish = self::formatTime($finish, 'd-m-Y');
-
-        return $finish->diffInDays($start);
     }
 }

@@ -25,8 +25,13 @@ class SizeController extends Controller
             $key = $request->input('key');
             $sizes = Size::search($key);
             $totalSize = $sizes->count();
+            $data = [
+                'sizes' => $sizes,
+                'totalSize' => $totalSize,
+                'key' => $key,
+            ];
 
-            return view('admin.size.index', compact('sizes', 'totalSize', 'key'));
+            return view('admin.size.index', $data);
         } catch (\Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
         }

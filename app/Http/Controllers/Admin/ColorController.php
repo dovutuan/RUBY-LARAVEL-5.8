@@ -24,8 +24,13 @@ class ColorController extends Controller
             $key = $request->input('key');
             $colors = Color::search($key);
             $totalColor = $colors->count();
+            $data = [
+                'colors' => $colors,
+                'totalColor' => $totalColor,
+                'key' => $key,
+            ];
 
-            return view('admin.color.index', compact('colors', 'totalColor', 'key'));
+            return view('admin.color.index', $data);
         } catch (\Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
         }

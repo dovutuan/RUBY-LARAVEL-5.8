@@ -22,8 +22,13 @@ class SupplierController extends Controller
         $key = $request->input('key');
         $suppliers = Supplier::all();
         $totalSupplier = $suppliers->count();
+        $data = [
+            'suppliers' => $suppliers,
+            'totalSupplier' => $totalSupplier,
+            'key' => $key,
+        ];
 
-        return view('admin.supplier.index', compact('suppliers', 'totalSupplier', 'key'));
+        return view('admin.supplier.index', $data);
     }
 
     public function store(SupplierRequest $request)

@@ -38,7 +38,7 @@ class Category extends Model
         return $this->hasMany(Product::class, 'category_id', 'id');
     }
 
-    static function search($key, $paginate = 30)
+    static function search($key, $paginate = PAGINATE)
     {
         if ($key) {
             $categories = self::where('id', 'like', "%$key%")->orWhere('name', 'like', "%$key%");
@@ -46,7 +46,7 @@ class Category extends Model
         } else {
             $categories = self::whereNull('category_id')->with('childrenCategories')->paginate($paginate);
         }
-        if ($categories->count() > 0) {
+        if ($categories->count() > ZERO) {
             return $categories;
         } else {
             throw new \Exception(__('messages.no-data', ['value' => $key]));

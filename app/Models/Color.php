@@ -24,14 +24,14 @@ class Color extends Model
         return $this->hasMany(OptionProduct::class, 'color_id', 'id');
     }
 
-    static function search($key, $paginate = 30)
+    static function search($key, $paginate = PAGINATE)
     {
         if ($key) {
             $colors = self::where('id', 'like', "%$key%")->orWhere('name', 'like', "%$key%")->paginate($paginate);
         } else {
             $colors = self::paginate($paginate);
         }
-        if ($colors->count() > 0) {
+        if ($colors->count() > ZERO) {
             return $colors;
         } else {
             throw new \Exception(__('messages.no-data', ['value' => $key]));

@@ -40,14 +40,14 @@ class Product extends Model
         return $this->hasOne(WearHouse::class, 'product_id', 'id');
     }
 
-    static function search($key, $paginate = 30)
+    static function search($key, $paginate = PAGINATE)
     {
         if ($key) {
             $products = self::where('id', 'like', "%$key%")->orWhere('code', 'like', "%$key%")->paginate($paginate);
         } else {
             $products = self::paginate($paginate);
         }
-        if ($products->count() > 0) {
+        if ($products->count() > ZERO) {
             return $products;
         } else {
             throw new \Exception(__('messages.no-data', ['value' => $key]));
