@@ -24,14 +24,14 @@
                                     <div class="col-md-12">
                                         <div class="card1">
                                             <div class="card1-body">
-                                                <h4 class="header-title">Product information</h4>
+                                                <h4 class="header-title">{{ __('messages.a-product-information') }}</h4>
                                                 <div class="form-group">
-                                                    <label class="control-label"><b>Name</b></label>
+                                                    <label class="control-label"><b>{{ __('messages.a-name') }}</b></label>
                                                     <input class="form-control input-rounded" type="text"
                                                            value="{{$product->name}}" Disabled>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="control-label"><b>Category</b></label>
+                                                    <label class="control-label"><b>{{ __('messages.a-category') }}</b></label>
                                                     <input class="form-control input-rounded" type="text"
                                                            value="{{$product->category->name}}" Disabled>
                                                 </div>
@@ -44,7 +44,7 @@
                                     <div class="col-md-12">
                                         <div class="card1">
                                             <div class="card1-body">
-                                                <h4 class="header-title">Image product</h4>
+                                                <h4 class="header-title">{{ __('messages.a-image') }}</h4>
                                                 <div class="form-group">
                                                     <div class="row">
                                                         @foreach($product->image as $image)
@@ -64,19 +64,12 @@
                                     <div class="col-md-12">
                                         <div class="card1">
                                             <div class="card1-body">
-                                                <h4 class="header-title">Option</h4>
+                                                <h4 class="header-title">{{ __('messages.a-option') }}</h4>
                                                 @foreach($product->optionProduct as $optionProduct)
                                                     <div class="row">
                                                         <div class="col-md-2">
                                                             <div class="form-group">
-                                                                <label class="control-label"><b>Size</b></label>
-                                                                <input class="form-control input-rounded" type="text"
-                                                                       value="{{$optionProduct->size->name}}" Disabled>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-2">
-                                                            <div class="form-group">
-                                                                <label class="control-label"><b>Color</b></label>
+                                                                <label class="control-label"><b>{{ __('messages.a-color') }}</b></label>
                                                                 <div class="input-group mb-3">
                                                                     <input type="text" class="form-control"
                                                                            value="{{$optionProduct->color->name}}" Disabled>
@@ -89,21 +82,28 @@
                                                         </div>
                                                         <div class="col-md-2">
                                                             <div class="form-group">
-                                                                <label class="control-label"><b>Amount</b></label>
+                                                                <label class="control-label"><b>{{ __('messages.a-size') }}</b></label>
+                                                                <input class="form-control input-rounded" type="text"
+                                                                       value="{{$optionProduct->size->name}}" Disabled>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                <label class="control-label"><b>{{ __('messages.a-amount') }}</b></label>
                                                                 <input class="form-control input-rounded" type="text"
                                                                        value="{{$optionProduct->amount}}" Disabled>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-2">
                                                             <div class="form-group">
-                                                                <label class="control-label"><b>Pay</b></label>
+                                                                <label class="control-label"><b>{{ __('messages.a-pay') }}</b></label>
                                                                 <input class="form-control input-rounded" type="text"
                                                                        value="{{$optionProduct->pay}}" Disabled>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-4">
                                                             <div class="form-group">
-                                                                <label class="control-label"><b>Price</b></label>
+                                                                <label class="control-label"><b>{{ __('messages.a-price') }}</b></label>
                                                                 <div class="input-group mb-3">
                                                                     <input type="text" class="form-control"
                                                                            value="{{number_format($optionProduct->price)}}" Disabled>
@@ -114,6 +114,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <hr>
                                                 @endforeach
                                             </div>
                                         </div>
@@ -125,28 +126,30 @@
                                         <div class="col-md-12">
                                             <div class="card1">
                                                 <div class="card1-body">
-                                                    <h4 class="header-title">Sale</h4>
-                                                    <div class="form-group">
-                                                        <label class="control-label"><b>Sale</b></label>
-                                                        <div class="input-group mb-3">
-                                                            <input type="number" class="form-control"
-                                                                   value="{{$product->sale->sale}}" Disabled>
-                                                            <div class="input-group-append">
-                                                                <span class="input-group-text">%</span>
+                                                    <h4 class="header-title">{{ __('messages.a-sale') }}</h4>
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label class="control-label"><b>{{ __('messages.a-sale') }}</b></label>
+                                                                <div class="input-group mb-3">
+                                                                    <input type="number" class="form-control"
+                                                                           value="{{$product->sale->sale}}" Disabled>
+                                                                    <div class="input-group-append">
+                                                                        <span class="input-group-text">%</span>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-4">
                                                             <div class="form-group">
-                                                                <label class="control-label"><b>Start</b></label>
+                                                                <label class="control-label"><b>{{ __('messages.a-start') }}</b></label>
                                                                 <input class="form-control input-rounded" type="date"
                                                                        value="{{$product->sale->start}}" Disabled>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-4">
                                                             <div class="form-group">
-                                                                <label class="control-label"><b>Finish</b></label>
+                                                                <label class="control-label"><b>{{ __('messages.a-finish') }}</b></label>
                                                                 <input class="form-control input-rounded" type="date"
                                                                        value="{{$product->sale->finish}}" Disabled>
                                                             </div>

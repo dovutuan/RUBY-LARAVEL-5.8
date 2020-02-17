@@ -135,17 +135,19 @@ return [
     'a-fax' => 'Fax',
     'fax' => 'Please enter fax',
     'a-use' => 'Use',
-    'a-quantity-remaining'=> 'Quantity remaining',
+    'a-quantity-remaining' => 'Quantity remaining',
     'a-expired' => 'Expired',
     'a-vnđ' => 'Vnđ',
     'a-total-product:' => 'Total product:',
     'create-product' => 'Create product',
     'a-product-information' => 'Product information',
     'a-image-product' => 'Image product',
-    'a-option-information'=> 'Option information',
+    'a-option-information' => 'Option information',
     'a-content' => 'Content',
     'a-detail' => 'Detail',
     'a-sale' => 'Sale',
-
+    'a-option' => "Option",
+    'a-pay' => 'Pay',
+    'a-product-detail' => 'Product detail',
 
 ];

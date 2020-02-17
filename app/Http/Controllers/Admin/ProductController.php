@@ -28,24 +28,30 @@ class ProductController extends Controller
         $this->middleware('permission:product-delete', ['only' => ['destroy']]);
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $categories = Category::all();
-        $colors = Color::all();
-        $sizes = Size::all();
-        $suppliers = Supplier::all();
-        $products = Product::all();
-        $totalProduct = $products->count();
-        $data = [
-            'products' => $products,
-            'categories' => $categories,
-            'colors' => $colors,
-            'sizes' => $sizes,
-            'suppliers' => $suppliers,
-            'totalProduct' => $totalProduct,
-        ];
+        try {
+            $key = $request->input('key');
+            $categories = Category::all();
+            $colors = Color::all();
+            $sizes = Size::all();
+            $suppliers = Supplier::all();
+            $products = Product::search($key);
+            $totalProduct = $products->count();
+            $data = [
+                'products' => $products,
+                'categories' => $categories,
+                'colors' => $colors,
+                'sizes' => $sizes,
+                'suppliers' => $suppliers,
+                'totalProduct' => $totalProduct,
+                'key' => $key,
+            ];
 
-        return view('admin.product.index', $data);
+            return view('admin.product.index', $data);
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage());
+        }
     }
 
     public function store(ProductRequest $request)

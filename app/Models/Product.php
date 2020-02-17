@@ -49,7 +49,7 @@ class Product extends Model
     static function search($key, $paginate = PAGINATE)
     {
         if ($key) {
-            $products = self::where('id', 'like', "%$key%")->orWhere('code', 'like', "%$key%")->paginate($paginate);
+            $products = self::where('id', 'like', "%$key%")->orWhere('name', 'like', "%$key%")->paginate($paginate);
         } else {
             $products = self::paginate($paginate);
         }

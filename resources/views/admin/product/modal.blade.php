@@ -136,7 +136,7 @@
                                         </select>
                                     </div>
                                     <div class="row" id="dynamic_field">
-                                        <div class="col-md-3">
+                                        <div class="col-md-2">
                                             <div class="form-group">
                                                 <label class="control-label"><b>{{ __('messages.a-size') }}</b></label>
                                                 <select name="size_id[]" class="s-example-basic-single form-control">
@@ -169,18 +169,18 @@
                                                 <label
                                                     class="control-label"><b>{{ __('messages.a-amount') }}</b></label>
                                                 <input name="amount[]" id="amount" type="number" min="0"
-                                                       class="form-control" value="{{old('amount')}}"/>
+                                                       class="form-control" value="{{old('amount[]')}}"/>
                                                 @error('amount')
                                                 <div class="text-danger">{{ $message }}</div>
                                                 @enderror
                                             </div>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-4">
                                             <div class="form-group">
                                                 <label class="control-label"><b>{{ __('messages.a-price') }}</b></label>
                                                 <div class="input-group mb-3">
                                                     <input name="price[]" id="price" min="0" type="number"
-                                                           class="form-control" value="{{old('price')}}">
+                                                           class="form-control" value="{{old('price[]')}}">
                                                     <div class="input-group-append">
                                                         <span class="input-group-text">vnđ</span>
                                                     </div>

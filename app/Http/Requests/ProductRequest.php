@@ -16,10 +16,10 @@ class ProductRequest extends FormRequest
         return [
             'name' => 'required|max:255',
             'detail' => 'required',
-            'category_id'=>'required',
-            'color_id'=>'required',
-            'size_id'=>'required',
-            'price' =>'required',
+//            'category_id'=>'required',
+//            'color_id[]'=>'required',
+//            'size_id[]'=>'required',
+//            'price[]' =>'required',
         ];
     }
 }

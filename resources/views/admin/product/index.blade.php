@@ -62,7 +62,8 @@
                                             </td>
                                             <td>{{$product->created_at->format('H:i:s d-m-Y')}}</td>
                                             <td class="text-right">
-                                                <a href="{{route('edit.product', $product->id)}}" class="btn btn-xs btn-outline-success"><i
+                                                <a href="{{route('edit.product', $product->id)}}"
+                                                   class="btn btn-xs btn-outline-success"><i
                                                         class="fa fa-edit"></i></a>
                                                 <a href="{{route('destroy.product', $product->id)}}"
                                                    class="btn btn-xs btn-outline-danger"
@@ -82,6 +83,7 @@
                                 </table>
                             </div>
                         </div>
+                        {{ $products->appends(['key' => $key])->links() }}
                     </div>
                 </div>
             </div>
@@ -94,7 +96,7 @@
     <script>
         $(document).ready(function () {
             $('#add').click(function () {
-                $('#dynamic_field').append('<div class="col-md-3"><div class="form-group"> <label class="control-label"><b>{{ __('messages.a-size') }}</b></label> <select name="size_id[]" class="s-example-basic-single form-control">@foreach($sizes as $size)<option value="{{$size->id}}">{{$size->name}}</option>@endforeach</select></div></div><div class="col-md-3"><div class="form-group"><label class="control-label"><b>{{ __('messages.a-color') }}</b></label><select name="color_id[]" class="s-example-basic-single form-control">@foreach($colors as $color)<option value="{{$color->id}}">{{$color->name}}</option>@endforeach</select></div></div><div class="col-md-3"><div class="form-group"><label class="control-label"><b>{{ __('messages.a-amount') }}</b></label><input name="amount[]" id="amount" type="number" min="0"class="form-control" value="{{old('amount')}}"/></div></div><div class="col-md-3"><div class="form-group"><label class="control-label"><b>{{ __('messages.a-price') }}</b></label><div class="input-group mb-3"><input name="price[]" id="price" min="0" type="number" class="form-control" value="{{old('price')}}"><div class="input-group-append"><span class="input-group-text">vnđ</span></div></div></div></div>');
+                $('#dynamic_field').append('<div class="col-md-2"><div class="form-group"> <label class="control-label"><b>{{ __('messages.a-size') }}</b></label> <select name="size_id[]" class="s-example-basic-single form-control">@foreach($sizes as $size)<option value="{{$size->id}}">{{$size->name}}</option>@endforeach</select></div></div><div class="col-md-3"><div class="form-group"><label class="control-label"><b>{{ __('messages.a-color') }}</b></label><select name="color_id[]" class="s-example-basic-single form-control">@foreach($colors as $color)<option value="{{$color->id}}">{{$color->name}}</option>@endforeach</select></div></div><div class="col-md-3"><div class="form-group"><label class="control-label"><b>{{ __('messages.a-amount') }}</b></label><input name="amount[]" id="amount" type="number" min="0"class="form-control" value="{{old('amount[]')}}"/></div></div><div class="col-md-4"><div class="form-group"><label class="control-label"><b>{{ __('messages.a-price') }}</b></label><div class="input-group mb-3"><input name="price[]" id="price" min="0" type="number" class="form-control" value="{{old('price[]')}}"><div class="input-group-append"><span class="input-group-text">vnđ</span></div></div></div></div>');
             });
         });
     </script>
