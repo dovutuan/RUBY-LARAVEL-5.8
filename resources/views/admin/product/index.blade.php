@@ -57,8 +57,8 @@
                                     @foreach($products as $product)
                                         <tr>
                                             <th>{{$loop->iteration}}</th>
-                                            <td>
-                                                <a href="{{route('show.product', $product->id)}}">{{$product->name}}</a>
+                                            <td class="text-left">
+                                                <a href="{{route('show.product', $product->id)}}"><b>{{$product->name}}</b></a>
                                             </td>
                                             <td>{{$product->created_at->format('H:i:s d-m-Y')}}</td>
                                             <td class="text-right">

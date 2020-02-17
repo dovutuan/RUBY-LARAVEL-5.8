@@ -24,11 +24,11 @@
     <link rel="stylesheet" href="{{ asset('theme_admin') }}/assets/css/responsive.css">
     <script src="{{ asset('theme_admin') }}/assets/js/vendor/modernizr-2.8.3.min.js"></script>
 
-    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-
     <link href="{{ asset('theme_admin') }}/select/dist/css/selectize.css" rel="stylesheet">
     <script src="{{ asset('theme_admin') }}/select/js/jquery.js"></script>
     <script src="{{ asset('theme_admin') }}/select/dist/js/standalone/selectize.js"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 </head>
 
 <body class="body-bg">

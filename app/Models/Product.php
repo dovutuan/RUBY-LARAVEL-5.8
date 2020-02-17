@@ -51,7 +51,7 @@ class Product extends Model
         if ($key) {
             $products = self::where('id', 'like', "%$key%")->orWhere('name', 'like', "%$key%")->paginate($paginate);
         } else {
-            $products = self::paginate($paginate);
+            $products = self::latest('id')->paginate($paginate);
         }
         if ($products->count() > ZERO) {
             return $products;
