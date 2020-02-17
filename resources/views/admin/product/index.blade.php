@@ -19,7 +19,8 @@
                                 </nav>
                             </div>
                             <div class="col-md-1 clearfix text-right">
-                                <a href="{{route('export.product')}}" class="btn btn-sm btn-info"><i class="fa fa-file-excel-o"></i></a>
+                                <a href="{{route('export.product')}}" class="btn btn-sm btn-info"><i
+                                        class="fa fa-file-excel-o"></i></a>
                                 @can('product-create')
                                     <button type="button" class="btn btn-sm btn-success" data-toggle="modal"
                                             data-target="#myModal">
@@ -57,21 +58,24 @@
                                         <tr>
                                             <th>{{$loop->iteration}}</th>
                                             <td>
-                                                <a href="{{route('detail.product', $product->id)}}">{{$product->name}}</a>
+                                                <a href="{{route('show.product', $product->id)}}">{{$product->name}}</a>
                                             </td>
                                             <td>{{$product->created_at->format('H:i:s d-m-Y')}}</td>
                                             <td class="text-right">
-                                                <ul class="d-flex justify-content-end">
-                                                    <li class="mr-3"><a href="{{route('edit.product', $product->id)}}" class="text-secondary"><i class="fa fa-edit"></i></a></li>
-                                                    <li><a href="{{route('destroy.product', $product->id)}}" class="text-danger"><i class="ti-trash"></i></a></li>
-                                                </ul>
+                                                <a href="{{route('edit.product', $product->id)}}" class="btn btn-xs btn-outline-success"><i
+                                                        class="fa fa-edit"></i></a>
+                                                <a href="{{route('destroy.product', $product->id)}}"
+                                                   class="btn btn-xs btn-outline-danger"
+                                                   onclick="return confirm('Do you want to delete?')"><i
+                                                        class="fa fa-trash"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach
                                     </tbody>
                                     <tfoot>
                                     <tr>
-                                        <th colspan="4" class="text-right">{{ __('messages.a-total-product:') }} {{$totalProduct}}
+                                        <th colspan="4"
+                                            class="text-right">{{ __('messages.a-total-product:') }} {{$totalProduct}}
                                             <sup>{{ __('messages.a-product') }}</sup></th>
                                     </tr>
                                     </tfoot>
@@ -84,5 +88,16 @@
         </div>
     </div>
     @include('admin.product.modal')
+
+
+@section('script')
+    <script>
+        $(document).ready(function () {
+            $('#add').click(function () {
+                $('#dynamic_field').append('<div class="col-md-3"><div class="form-group"> <label class="control-label"><b>{{ __('messages.a-size') }}</b></label> <select name="size_id[]" class="s-example-basic-single form-control">@foreach($sizes as $size)<option value="{{$size->id}}">{{$size->name}}</option>@endforeach</select></div></div><div class="col-md-3"><div class="form-group"><label class="control-label"><b>{{ __('messages.a-color') }}</b></label><select name="color_id[]" class="s-example-basic-single form-control">@foreach($colors as $color)<option value="{{$color->id}}">{{$color->name}}</option>@endforeach</select></div></div><div class="col-md-3"><div class="form-group"><label class="control-label"><b>{{ __('messages.a-amount') }}</b></label><input name="amount[]" id="amount" type="number" min="0"class="form-control" value="{{old('amount')}}"/></div></div><div class="col-md-3"><div class="form-group"><label class="control-label"><b>{{ __('messages.a-price') }}</b></label><div class="input-group mb-3"><input name="price[]" id="price" min="0" type="number" class="form-control" value="{{old('price')}}"><div class="input-group-append"><span class="input-group-text">vnđ</span></div></div></div></div>');
+            });
+        });
+    </script>
+@stop
 
 @endsection

@@ -9,10 +9,13 @@ use App\Models\Color;
 use App\Models\ImageProduct;
 use App\Models\OptionProduct;
 use App\Models\Product;
+use App\Models\Sale;
 use App\Models\Size;
 use App\Models\Supplier;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ProductController extends Controller
@@ -47,75 +50,71 @@ class ProductController extends Controller
 
     public function store(ProductRequest $request)
     {
-        $product = Product::create([
-            'name' => $request->input('name'),
-            'slug' => str_slug($request->input('name')),
-            'content' => $request->input('content'),
-            'detail' => $request->input('detail'),
-            'status' => $request->input('status'),
-            'category_id' => $request->input('category_id'),
-        ]);
-        if ($product) {
-            $listImage = [];
-            foreach ($request->input('image') as $image) {
-                $listImage[] = [
-                    'product_id' => $product->id,
-                    'image' => $image,
-                ];
-            }
-            ImageProduct::insert($listImage);
-            
-            // foreach ($request->input('color_id') as $color_id) {
-//             $color = $color_id;
-//         }
-//         foreach ($request->input('size_id') as $size_id) {
-//             $size = $size_id;
-//         }
-//         foreach ($request->input('amount') as $amount_id) {
-//             $amount = $amount_id;
-//         }
-//         foreach ($request->input('price') as $price_id) {
-//             $price = $price_id;
-//         }
-//         $list[] = [
-//             'product_id' => $product->id,
-//             'supplier_id' => $request->input('supplier_id'),
-//             'color_id' => $color,
-//             'size_id' => $size,
-//             'amount' => $amount,
-//             'price' => $price,
-//         ];
-
-//         OptionProduct::insert($list); 
-            
-        }
-
-        if ($product) {
-            $list = [];
-            foreach ($request->input('size_id') as $size) {
-                foreach ($request->input('color_id') as $color) {
-                    foreach ($request->input('amount') as $amount) {
-                        foreach ($request->input('price') as $price) {
-                            $list[] = [
-                                'product_id' => $product->id,
-                                'supplier_id' => $request->input('supplier_id'),
-                                'color_id' => $color,
-                                'size_id' => $size,
-                                'amount' => $amount,
-                                'price' => $product,
-                            ];
-                        }
-                    }
+        try {
+            DB::beginTransaction();
+            $product = Product::create([
+                'name' => $request->input('name'),
+                'slug' => str_slug($request->input('name')),
+                'content' => $request->input('content'),
+                'detail' => $request->input('detail'),
+                'status' => $request->input('status'),
+                'category_id' => $request->input('category_id'),
+            ]);
+            if ($product) {
+                $listImage = [];
+                foreach ($request->input('image') as $image) {
+                    $listImage[] = [
+                        'product_id' => $product->id,
+                        'image' => $image,
+                    ];
                 }
+                ImageProduct::insert($listImage);
+
+                if ($request->input('sale')) {
+                    Sale::insert([
+                        'product_id' => $product->id,
+                        'sale' => $request->input('sale'),
+                        'start' => $request->input('start'),
+                        'finish' => $request->input('finish'),
+                        'created_at' => Carbon::now(),
+                        'updated_at' => Carbon::now(),
+                    ]);
+                }
+
+                $listOptionProduct = [];
+                $color = $request->input('color_id');
+                $price = $request->input('price');
+                $amount = $request->input('amount');
+                foreach ($request->input('size_id') as $key => $size_id) {
+                    $listOptionProduct[] = [
+                        'product_id' => $product->id,
+                        'supplier_id' => $request->input('supplier_id'),
+                        'price' => $price[$key],
+                        'amount' => $amount[$key],
+                        'color_id' => $color[$key],
+                        'size_id' => $size_id,
+                        'created_at' => Carbon::now(),
+                        'updated_at' => Carbon::now(),
+                    ];
+                }
+                OptionProduct::insert($listOptionProduct);
             }
-            OptionProduct::insert($list);
+            DB::commit();
+            return redirect()->back()->with('success', __('messages.create-successfully'));
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->with('error', $e->getMessage());
         }
-        return redirect()->back()->with('success', __('messages.create-successfully'));
     }
 
     public function show($id)
     {
-        //
+        $product = Product::findOrFail($id);
+
+        $data = [
+            'product' => $product,
+        ];
+        return view('admin.product.show', $data);
     }
 
     public function edit($id)

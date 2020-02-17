@@ -29,6 +29,7 @@ Route::group(['middleware' => 'auth'], function () {
                 Route::group(['prefix' => 'product'], function () {
                     Route::get('', 'ProductController@index')->name('list.product');
                     Route::post('', 'ProductController@store')->name('store.product');
+                    Route::get('detail/{id}', 'ProductController@show')->name('show.product');
                     Route::get('edit/{id}', 'ProductController@edit')->name('edit.product');
                     Route::post('edit/{id}', 'ProductController@update');
                     Route::get('export/', 'ProductController@export')->name('export.product');

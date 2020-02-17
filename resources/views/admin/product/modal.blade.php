@@ -126,25 +126,14 @@
                             <div id="collapseThree" class="collapse"
                                  aria-labelledby="headingThree" data-parent="#accordionExample">
                                 <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-11">
-                                            <div class="form-group">
-                                                <label
-                                                    class="control-label"><b>{{ __('messages.a-supplier') }}</b></label>
-                                                <select class="form-control" name="supplier_id" id="supplier_id">
-                                                    @foreach($suppliers as $supplier)
-                                                        <option value="{{$supplier->id}}">{{$supplier->name}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-1">
-                                            <div class="form-group">
-                                                <label></label>
-                                                <button type="button" name="add" id="add" class="form-control btn btn-sm btn-outline-success"><i
-                                                        class="fa fa-plus"></i></button>
-                                            </div>
-                                        </div>
+                                    <div class="form-group">
+                                        <label
+                                            class="control-label"><b>{{ __('messages.a-supplier') }}</b></label>
+                                        <select class="form-control" name="supplier_id" id="supplier_id">
+                                            @foreach($suppliers as $supplier)
+                                                <option value="{{$supplier->id}}">{{$supplier->name}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                     <div class="row" id="dynamic_field">
                                         <div class="col-md-3">
@@ -201,6 +190,11 @@
                                                 @enderror
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="button" name="add" id="add"
+                                                class="form-control btn btn-sm btn-outline-success"><i
+                                                class="fa fa-plus"></i></button>
                                     </div>
                                 </div>
                             </div>

@@ -20,7 +20,7 @@ use Illuminate\Database\Eloquent\Model;
 class OptionProduct extends Model
 {
     protected $table = 'option_products';
-    protected $fillable = ['product_id', 'color_id', 'size_id', 'supplier_id', 'price', 'amount', 'pay', 'updated_by', 'deleted_by'];
+    protected $fillable = ['product_id', 'color_id', 'size_id', 'supplier_id', 'price', 'amount', 'pay', 'updated_by', 'deleted_by', 'created_at', 'updated_at', 'deleted_at'];
 
     public function product()
     {

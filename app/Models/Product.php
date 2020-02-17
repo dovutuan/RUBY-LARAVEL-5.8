@@ -30,15 +30,21 @@ class Product extends Model
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
-    public function images()
+    public function image()
     {
         return $this->hasMany(ImageProduct::class, 'product_id', 'id');
     }
 
-    public function wareHouse()
+    public function optionProduct()
     {
-        return $this->hasOne(WearHouse::class, 'product_id', 'id');
+        return $this->hasMany(OptionProduct::class, 'product_id', 'id');
     }
+
+    public function sale()
+    {
+        return $this->hasOne(Sale::class, 'product_id', 'id');
+    }
+
 
     static function search($key, $paginate = PAGINATE)
     {
