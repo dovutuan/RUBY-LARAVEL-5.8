@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ColorRequest extends FormRequest
+class SpeciesRequest extends FormRequest
 {
     public function authorize()
     {
@@ -14,7 +14,7 @@ class ColorRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'required|max:150',
+            'name' => 'required|max:150|unique:species,name,' . $this->id,
         ];
     }
 }

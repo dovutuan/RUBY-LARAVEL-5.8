@@ -35,7 +35,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $role = [];
-        $roles = Role::where('name', 'Customer')->orWhere('name', 'customer')->get();
+        $roles = Role::where('name', 'Customer')->orWhere('name', 'customer')->first();
         foreach ($roles as $role) {
             $role = $role->id;
         }

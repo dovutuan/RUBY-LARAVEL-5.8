@@ -18,6 +18,7 @@ use phpDocumentor\Reflection\Types\Self_;
  * @property int status
  * @property string start
  * @property string finish
+ * @property string created_by
  * @property string updated_by
  * @property string deleted_by
  */
@@ -25,7 +26,7 @@ class Discount extends Model
 {
     use SoftDeletes;
     protected $table = 'discounts';
-    protected $fillable = ['name', 'updated_by', 'deleted_by', 'code', 'price', 'amount', 'use', 'status', 'start', 'finish'];
+    protected $fillable = ['name', 'created_by', 'updated_by', 'deleted_by', 'code', 'price', 'amount', 'use', 'status', 'start', 'finish'];
 
     static function search($key, $paginate = PAGINATE)
     {
@@ -34,11 +35,7 @@ class Discount extends Model
         } else {
             $discounts = self::paginate($paginate);
         }
-        if ($discounts->count() > ZERO) {
-            return $discounts;
-        } else {
-            throw new \Exception(__('messages.no-data', ['value' => $key]));
-        }
+        return $discounts;
     }
 
     public static function formatTime($time, $format = null)

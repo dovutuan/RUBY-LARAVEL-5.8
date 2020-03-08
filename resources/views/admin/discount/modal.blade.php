@@ -8,13 +8,24 @@
                     <button type="button" class="close" data-dismiss="modal"><i class="fa fa-close"></i></button>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label class="control-label"><b>{{ __('messages.a-name-discount') }}</b></label>
-                        <input name="name" ype="text" class="form-control"
-                               placeholder="{{ __('messages.name') }}" value="{{old('name')}}">
-                        @error('name')
-                        <div class="text-danger">{{ $message }}</div>
-                        @enderror
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label class="control-label"><b>{{ __('messages.a-name-discount') }}</b></label>
+                                <input name="name" type="text" class="form-control"
+                                       placeholder="{{ __('messages.name') }}" value="{{old('name')}}">
+                                @error('name')
+                                <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label"><b>{{ __('messages.a-code-discount') }}</b></label>
+                                <input name="code" type="text" class="form-control" maxlength="5"
+                                       placeholder="{{ __('messages.code') }}" value="{{old('code')}}">
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">

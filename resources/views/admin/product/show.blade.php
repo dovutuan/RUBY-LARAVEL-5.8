@@ -47,7 +47,7 @@
                                                 <h4 class="header-title">{{ __('messages.a-image') }}</h4>
                                                 <div class="form-group">
                                                     <div class="row">
-                                                        @foreach($product->image as $image)
+                                                        @foreach($product->images as $image)
                                                             <div class="col-md-2">
                                                                 <img src="{{$image->image}}" class="img-fluid rounded">
                                                             </div>
@@ -65,7 +65,7 @@
                                         <div class="card1">
                                             <div class="card1-body">
                                                 <h4 class="header-title">{{ __('messages.a-option') }}</h4>
-                                                @foreach($product->optionProduct as $optionProduct)
+                                                @foreach($product->optionProducts as $optionProduct)
                                                     <div class="row">
                                                         <div class="col-md-2">
                                                             <div class="form-group">
@@ -74,7 +74,7 @@
                                                                     <input type="text" class="form-control"
                                                                            value="{{$optionProduct->color->name}}" Disabled>
                                                                     <div class="input-group-append">
-                                                                    <span style="background: {{$optionProduct->size->code}}"
+                                                                    <span style="background: {{$optionProduct->color->code}}"
                                                                           class="input-group-text"></span>
                                                                     </div>
                                                                 </div>

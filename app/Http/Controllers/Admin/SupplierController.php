@@ -6,6 +6,7 @@ use App\Http\Requests\SupplierRequest;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class SupplierController extends Controller
 {
@@ -33,14 +34,12 @@ class SupplierController extends Controller
 
     public function store(SupplierRequest $request)
     {
-        Supplier::create([
-            'name' => $request->input('name'),
-            'company' => $request->input('company'),
-            'phone' => $request->input('phone'),
-            'fax' => $request->input('fax'),
-            'email' => $request->input('email'),
-            'address' => $request->input('address'),
-        ]);
+        Supplier::create(
+            array_merge($request->all(), [
+                'created_by' => Auth::user()->id,
+            ])
+        );
+
         return redirect()->back()->with('success', __('messages.create-successfully'));
     }
 

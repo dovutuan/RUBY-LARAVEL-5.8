@@ -149,5 +149,10 @@ return [
     'a-option' => "Option",
     'a-pay' => 'Pay',
     'a-product-detail' => 'Product detail',
-
+    'a-code-discount' => 'Code discount',
+    'code' => 'Code',
+    'a-species' => 'Species',
+    'a-total-species:' => 'Total species:',
+    'a-name-species' => 'Name species',
+    'create-species' => 'Create species',
 ];

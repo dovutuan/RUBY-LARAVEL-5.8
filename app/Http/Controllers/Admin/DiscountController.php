@@ -7,6 +7,7 @@ use App\Models\Discount;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class DiscountController extends Controller
 {
@@ -37,14 +38,13 @@ class DiscountController extends Controller
 
     public function store(DiscountRequest $request)
     {
-        Discount::create([
-            'name' => $request->input('name'),
-            'code' => strtoupper(str_random(5)),
-            'price' => $request->input('price'),
-            'amount' => $request->input('amount'),
-            'start' => $request->input('start'),
-            'finish' => $request->input('finish'),
-        ]);
+        Discount::create(
+            array_merge($request->all(), [
+                'code' => $request->input('code') ? strtoupper($request->input('code')) : strtoupper(str_random(5)),
+                'created_by' => Auth::user()->id,
+            ])
+        );
+
         return redirect()->back()->with('success', __('messages.create-successfully'));
     }
 

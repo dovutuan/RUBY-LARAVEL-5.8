@@ -13,7 +13,7 @@
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="#">{{ __('messages.a-home') }}</a></li>
                                         <li class="breadcrumb-item active"
-                                            aria-current="page">{{ __('messages.a-size') }}</li>
+                                            aria-current="page">{{ __('messages.a-species') }}</li>
                                     </ol>
                                 </nav>
                             </div>
@@ -49,18 +49,18 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($sizes as $size)
+                                    @foreach($species as $species)
                                         <tr>
                                             <th>{{$loop->iteration}}</th>
-                                            <th>{{$size->name}}</th>
-                                            <td>{{$size->created_at->format('H:i:s d-m-Y')}}</td>
+                                            <th>{{$species->name}}</th>
+                                            <td>{{$species->created_at->format('H:i:s d-m-Y')}}</td>
                                             <td class="text-right">
-                                                @can('size-edit')
-                                                    <a href="{{route('edit.size', $size->id)}}" class="btn btn-xs btn-outline-success"><i
+                                                @can('species-edit')
+                                                    <a href="{{route('edit.species', $species->id)}}" class="btn btn-xs btn-outline-success"><i
                                                             class="fa fa-edit"></i></a>
                                                 @endcan
-                                                @can('size-delete')
-                                                    <a href="{{route('destroy.size', $size->id)}}"
+                                                @can('species-delete')
+                                                    <a href="{{route('destroy.species', $species->id)}}"
                                                        class="btn btn-xs btn-outline-danger"
                                                        onclick="return confirm('Do you want to delete?')"><i
                                                             class="fa fa-trash"></i></a>
@@ -72,19 +72,19 @@
                                     <tfoot>
                                     <tr>
                                         <th colspan="6"
-                                            class="text-right">{{ __('messages.a-total-size:') }} {{$totalSize}}
-                                            <sup>{{ __('messages.a-size') }}</sup></th>
+                                            class="text-right">{{ __('messages.a-total-species:') }} {{$totalSpecies}}
+                                            <sup>{{ __('messages.a-species') }}</sup></th>
                                     </tr>
                                     </tfoot>
                                 </table>
                             </div>
                         </div>
-                        {{ $sizes->appends(['key' => $key])->links() }}
+                        {{ $species->appends(['key' => $key])->links() }}
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    @include('admin.size.modal')
+    @include('admin.species.modal')
 
 @endsection

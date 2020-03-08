@@ -19,8 +19,9 @@ class CreateProductsTable extends Migration
             $table->bigInteger('views')->default(0);
             $table->text('content')->nullable();
             $table->longText('detail');
-            $table->string('updated_by')->nullable();
-            $table->string('deleted_by')->nullable();
+            $table->bigInteger('created_by')->nullable();
+            $table->bigInteger('updated_by')->nullable();
+            $table->bigInteger('deleted_by')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

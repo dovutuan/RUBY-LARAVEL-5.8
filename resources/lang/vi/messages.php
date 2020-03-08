@@ -149,4 +149,10 @@ return [
     'a-option' => 'Lựa chọn',
     'a-pay' => 'Bán',
     'a-product-detail' => 'Chi tiết sản phẩm',
+    'a-code-discount' => 'Mã giảm giá',
+    'code' => 'Mã giảm giá',
+    'a-species' => 'Loại',
+    'a-total-species:' => 'Tổng loại:',
+    'a-name-species' => 'Tên loại',
+    'create-species' => 'Thêm loại',
 ];

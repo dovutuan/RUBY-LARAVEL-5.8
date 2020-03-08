@@ -16,8 +16,9 @@ class CreateSuppliersTable extends Migration
             $table->integer('fax')->nullable();
             $table->string('email')->nullable();
             $table->string('address');
-            $table->string('updated_by')->nullable();
-            $table->string('deleted_by')->nullable();
+            $table->bigInteger('created_by')->nullable();
+            $table->bigInteger('updated_by')->nullable();
+            $table->bigInteger('deleted_by')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

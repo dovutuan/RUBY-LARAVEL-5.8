@@ -4,15 +4,16 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSizesTable extends Migration
+class CreateSpeciesTable extends Migration
 {
     public function up()
     {
-        Schema::create('sizes', function (Blueprint $table) {
+        Schema::create('species', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('updated_by')->nullable();
-            $table->string('deleted_by')->nullable();
+            $table->bigInteger('created_by')->nullable();
+            $table->bigInteger('updated_by')->nullable();
+            $table->bigInteger('deleted_by')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -20,6 +21,6 @@ class CreateSizesTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('sizes');
+        Schema::dropIfExists('species_tables');
     }
 }

@@ -39,13 +39,12 @@ class CategoryController extends Controller
 
     public function store(CategoryRequest $request)
     {
-        Category::create([
-            'name' => $request->input('name'),
-            'category_id' => $request->input('category_id'),
-            'status' => $request->input('status'),
-            'icon' => $request->input('icon'),
-            'slug' => str_slug($request->input('name')),
-        ]);
+        Category::create(
+            array_merge($request->all(), [
+                'slug' => str_slug($request->input('name')),
+                'created_by' => Auth::user()->id,
+            ])
+        );
 
         return redirect()->back()->with('success', __('messages.create-successfully'));
     }
@@ -61,14 +60,12 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $category = Category::find($id);
-        $category->update([
-            'name' => $request->input('name'),
-            'category_id' => $request->input('category_id'),
-            'status' => $request->input('status'),
-            'icon' => $request->input('icon'),
-            'slug' => str_slug($request->input('name')),
-            'updated_by' => Auth::user()->name,
-        ]);
+        $category->update(
+            array_merge($request->all(), [
+                'slug' => str_slug($request->input('name')),
+                'updated_by' => Auth::user()->id,
+            ])
+        );
 
         return redirect()->route('list.category')->with('success', __('messages.update-successfully'));
     }
@@ -76,10 +73,9 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $category = Category::findOrFail($id);
-        $category->update([
-            'deleted_by' => Auth::user()->name,
-        ]);
+        $category->update(['deleted_by' => Auth::user()->id]);
         $category->delete();
+
         return redirect()->back()->with('success', __('messages.delete-successfully'));
     }
 }

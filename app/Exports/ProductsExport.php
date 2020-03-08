@@ -27,7 +27,7 @@ class ProductsExport implements FromCollection, WithHeadings
             $product[] = array(
                 '0' => $row->id,
                 '1' => $row->name,
-                '2' => $row->category_id,
+                '2' => $row->category->name,
                 '5' => $row->likes,
                 '6' => $row->views,
                 '10' => $row->created_at

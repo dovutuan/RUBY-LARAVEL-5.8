@@ -99,8 +99,6 @@ class ProductController extends Controller
                         'amount' => $amount[$key],
                         'color_id' => $color[$key],
                         'size_id' => $size_id,
-                        'created_at' => Carbon::now(),
-                        'updated_at' => Carbon::now(),
                     ];
                 }
                 OptionProduct::insert($listOptionProduct);

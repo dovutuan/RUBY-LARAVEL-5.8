@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int status
  * @property int category_id
  * @property string slug
+ * @property string created_by
  * @property string updated_by
  * @property string deleted_by
  */
@@ -21,7 +22,7 @@ class Category extends Model
 {
     use SoftDeletes;
     protected $table = 'categories';
-    protected $fillable = ['name', 'icon', 'image', 'status', 'category_id', 'slug', 'updated_by', 'deleted_by'];
+    protected $fillable = ['name', 'icon', 'image', 'status', 'category_id', 'slug', 'created_by', 'updated_by', 'deleted_by'];
 
     public function categories()
     {
@@ -46,10 +47,6 @@ class Category extends Model
         } else {
             $categories = self::whereNull('category_id')->with('childrenCategories')->paginate($paginate);
         }
-        if ($categories->count() > ZERO) {
-            return $categories;
-        } else {
-            throw new \Exception(__('messages.no-data', ['value' => $key]));
-        }
+        return $categories;
     }
 }

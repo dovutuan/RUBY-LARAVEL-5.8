@@ -27,6 +27,7 @@ class PermissionTableSeeder extends Seeder
             'permission-create',
             'permission-edit',
             'permission-delete',
+
         ];
 
 

@@ -15,8 +15,9 @@ class CreateSalesTable extends Migration
             $table->integer('sale')->default(0);
             $table->date('start')->nullable();
             $table->date('finish')->nullable();
-            $table->string('updated_by')->nullable();
-            $table->string('deleted_by')->nullable();
+            $table->bigInteger('created_by')->nullable();
+            $table->bigInteger('updated_by')->nullable();
+            $table->bigInteger('deleted_by')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

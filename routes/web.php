@@ -1,5 +1,4 @@
 <?php
-
 Route::get('/', function () {
     return redirect()->route('home');
 });
@@ -68,20 +67,12 @@ Route::group(['middleware' => 'auth'], function () {
                     Route::get('delete/{id}', 'CategoryController@destroy')->name('destroy.category');
                 });
 
-                Route::group(['prefix' => 'size'], function () {
-                    Route::get('', 'SizeController@index')->name('list.size');
-                    Route::post('', 'SizeController@store')->name('store.size');
-                    Route::get('edit/{id}', 'SizeController@edit')->name('edit.size');
-                    Route::post('edit/{id}', 'SizeController@update');
-                    Route::get('delete/{id}', 'SizeController@destroy')->name('destroy.size');
-                });
-
-                Route::group(['prefix' => 'color'], function () {
-                    Route::get('', 'ColorController@index')->name('list.color');
-                    Route::post('', 'ColorController@store')->name('store.color');
-                    Route::get('edit/{id}', 'ColorController@edit')->name('edit.color');
-                    Route::post('edit/{id}', 'ColorController@update');
-                    Route::get('delete/{id}', 'ColorController@destroy')->name('destroy.color');
+                Route::group(['prefix' => 'species'], function () {
+                    Route::get('', 'SpeciesController@index')->name('list.species');
+                    Route::post('', 'SpeciesController@store')->name('store.species');
+                    Route::get('edit/{id}', 'SpeciesController@edit')->name('edit.species');
+                    Route::post('edit/{id}', 'SpeciesController@update');
+                    Route::get('delete/{id}', 'SpeciesController@destroy')->name('destroy.species');
                 });
 
                 Route::group(['prefix' => 'discount'], function () {

@@ -34,7 +34,7 @@
                                             class="fa fa-fw fa-list-alt"></i><span>{{__('messages.a-category')}}</span></a>
                                 </li>
                             @endcan
-                            <li class="{{\Request::route()->getName()==('list.supplier') || \Request::route()->getName()==('list.color') || \Request::route()->getName()==('list.size') || \Request::route()->getName()==('list.product') ?'active':''}}">
+                            <li class="{{\Request::route()->getName()==('list.supplier') || \Request::route()->getName()==('list.species') || \Request::route()->getName()==('list.product') ?'active':''}}">
                                 <a href="javascript:void(0)"><i
                                         class="fa fa-fw fa-users"></i><span>{{__('messages.a-product')}}</span></a>
                                 <ul class="submenu">
@@ -46,14 +46,9 @@
                                             <li class="{{\Request::route()->getName()=='list.supplier'?'active':''}}"><a
                                                     href="{{route('list.supplier')}}">{{__('messages.a-supplier')}}</a></li>
                                         @endcan
-                                    @can('color-list')
-                                        <li class="{{\Request::route()->getName()=='list.color'?'active':''}}"><a
-                                                href="{{route('list.color')}}">{{__('messages.a-color')}}</a></li>
-                                    @endcan
-                                    @can('size-list')
-                                        <li class="{{\Request::route()->getName()=='list.size'?'active':''}}"><a
-                                                href="{{route('list.size')}}">{{__('messages.a-size')}}</a>
-                                        </li>
+                                    @can('species-list')
+                                        <li class="{{\Request::route()->getName()=='list.species'?'active':''}}"><a
+                                                href="{{route('list.species')}}">{{__('messages.a-species')}}</a></li>
                                     @endcan
                                 </ul>
                             </li>

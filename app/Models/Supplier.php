@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int fax
  * @property string email
  * @property string address
+ * @property string created_by
  * @property string updated_by
  * @property string deleted_by
  */
@@ -21,10 +22,10 @@ class Supplier extends Model
 {
     use SoftDeletes;
     protected $table = 'suppliers';
-    protected $fillable = ['name', 'company', 'phone', 'fax', 'email', 'address', 'updated_by', 'deleted_by'];
+    protected $fillable = ['name', 'company', 'phone', 'fax', 'email', 'address', 'created_by', 'updated_by', 'deleted_by'];
 
-    public function wareHouse()
+    public function optionProducts()
     {
-        return $this->hasMany(WearHouse::class, 'supplier_id', 'id');
+        return $this->hasMany(OptionProduct::class, 'supplier_id', 'id');
     }
 }

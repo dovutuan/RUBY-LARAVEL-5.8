@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int sale
  * @property string start
  * @property string finish
+ * @property string created_by
  * @property string updated_by
  * @property string deleted_by
  */
@@ -19,7 +20,7 @@ class Sale extends Model
 {
     use SoftDeletes;
     protected $table = 'sales';
-    protected $fillable = ['product_id', 'sale', 'start', 'finish', 'updated_by', 'deleted_by'];
+    protected $fillable = ['product_id', 'sale', 'start', 'finish', 'created_by', 'updated_by', 'deleted_by'];
 
     public function product()
     {

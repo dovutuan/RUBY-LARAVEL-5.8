@@ -37,6 +37,7 @@ class UserController extends Controller
                 'roles' => $roles,
                 'key' => $key,
             ];
+
             return view('admin.user.index', $data);
         } catch (\Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
@@ -45,19 +46,13 @@ class UserController extends Controller
 
     public function store(UserRequest $request)
     {
-        $user = User::create([
-            'name' => $request->input('name'),
-            'phone' => $request->input('phone'),
-            'email' => $request->input('email'),
-            'status' => $request->input('status'),
-            'gender' => $request->input('gender'),
-            'image' => $request->input('image'),
-            'birth' => $request->input('birth'),
-            'address' => $request->input('address'),
-            'email_verified_at' => Carbon::now(),
-            'password' => Hash::make($request->input('password')),
-        ]);
-
+        $user = User::create(
+            array_merge($request->all(), [
+                'email_verified_at' => Carbon::now(),
+                'password' => Hash::make($request->input('password')),
+                'created_by' => Auth::user()->id,
+            ])
+        );
         $user->assignRole($request->input('role_id'));
 
         return redirect()->back()->with('success', __('messages.create-successfully'));
@@ -66,9 +61,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
-
         $roles = Role::all();
-
         $userRoles = $user->roles->pluck('name', 'name')->all();
 
         return view('admin.user.edit', compact('user', 'roles', 'userRoles'));
@@ -77,20 +70,12 @@ class UserController extends Controller
     public function update(UserRequest $request, $id)
     {
         $user = User::find($id);
-        $user->update([
-            'name' => $request->input('name'),
-            'phone' => $request->input('phone'),
-            'email' => $request->input('email'),
-            'image' => $request->input('image'),
-            'status' => $request->input('status'),
-            'gender' => $request->input('gender'),
-            'birth' => $request->input('birth'),
-            'address' => $request->input('address'),
-            'updated_by' => Auth::user()->name,
-        ]);
-
+        $user->update(
+            array_merge($request->all(), [
+                'updated_by' => Auth::user()->id,
+            ])
+        );
         DB::table('model_has_roles')->where('model_id', $id)->delete();
-
         $user->assignRole($request->input('role_id'));
 
         return redirect()->route('list.user')->with('success', __('messages.update-successfully'));
@@ -99,9 +84,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = User::findOrFail($id);
-        $user->update([
-            'deleted_by' => Auth::user()->name,
-        ]);
+        $user->update(['deleted_by' => Auth::user()->id]);
         DB::table('model_has_roles')->where('model_id', $id)->delete();
         $user->delete();
 
@@ -113,7 +96,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->update([
             'password' => Hash::make($password),
-            'updated_by' => Auth::user()->name,
+            'updated_by' => Auth::user()->id,
         ]);
 
         return redirect()->back()->with('success', __('messages.update-password-successfully'));
@@ -124,7 +107,9 @@ class UserController extends Controller
         $users = User::findOrFail($id);
         $users->update([
             'status' => $users->status ? ZERO : ONE,
+            'updated_by' => Auth::user()->id,
         ]);
+
         return redirect()->back()->with('success', __('messages.update-successfully'));
     }
 

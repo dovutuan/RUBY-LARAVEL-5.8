@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string slug
  * @property string content
  * @property string detail
+ * @property string created_by
  * @property string updated_by
  * @property string deleted_by
  */
@@ -23,19 +24,19 @@ class Product extends Model
 {
     use SoftDeletes;
     protected $table = 'products';
-    protected $fillable = ['name', 'slug', 'category_id', 'status', 'likes', 'views', 'content', 'detail', 'updated_by', 'deleted_by'];
+    protected $fillable = ['name', 'slug', 'category_id', 'status', 'likes', 'views', 'content', 'detail', 'created_by', 'updated_by', 'deleted_by'];
 
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
-    public function image()
+    public function images()
     {
         return $this->hasMany(ImageProduct::class, 'product_id', 'id');
     }
 
-    public function optionProduct()
+    public function optionProducts()
     {
         return $this->hasMany(OptionProduct::class, 'product_id', 'id');
     }
@@ -45,6 +46,15 @@ class Product extends Model
         return $this->hasOne(Sale::class, 'product_id', 'id');
     }
 
+    public function getSalePrice()
+    {
+        return $this->price * (100 - $this->sale) / 100;
+    }
+
+    public function getPrice()
+    {
+        return $this->sale ? $this->getSalePrice() : $this->price;
+    }
 
     static function search($key, $paginate = PAGINATE)
     {
@@ -53,10 +63,6 @@ class Product extends Model
         } else {
             $products = self::latest('id')->paginate($paginate);
         }
-        if ($products->count() > ZERO) {
-            return $products;
-        } else {
-            throw new \Exception(__('messages.no-data', ['value' => $key]));
-        }
+        return $products;
     }
 }
