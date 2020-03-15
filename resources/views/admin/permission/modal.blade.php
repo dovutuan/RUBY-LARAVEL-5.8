@@ -9,7 +9,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label class="control-label"><b>{{ __('messages.a-name-permission') }}</b></label>
+                        <label class="control-label"><b>{{ __('messages.a-name-permission') }} <span class="text-danger">*</span></b></label>
                         <input name="name" id="name" type="text" class="form-control"
                                placeholder="{{ __('messages.name') }}" value="{{old('name')}}">
                         @error('name')

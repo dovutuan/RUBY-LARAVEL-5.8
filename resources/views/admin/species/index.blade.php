@@ -49,18 +49,18 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($species as $species)
+                                    @foreach($species as $specie)
                                         <tr>
                                             <th>{{$loop->iteration}}</th>
-                                            <th>{{$species->name}}</th>
-                                            <td>{{$species->created_at->format('H:i:s d-m-Y')}}</td>
+                                            <th>{{$specie->name}}</th>
+                                            <td>{{$specie->created_at->format('H:i:s d-m-Y')}}</td>
                                             <td class="text-right">
                                                 @can('species-edit')
-                                                    <a href="{{route('edit.species', $species->id)}}" class="btn btn-xs btn-outline-success"><i
+                                                    <a href="{{route('edit.species', $specie->id)}}" class="btn btn-xs btn-outline-success"><i
                                                             class="fa fa-edit"></i></a>
                                                 @endcan
                                                 @can('species-delete')
-                                                    <a href="{{route('destroy.species', $species->id)}}"
+                                                    <a href="{{route('destroy.species', $specie->id)}}"
                                                        class="btn btn-xs btn-outline-danger"
                                                        onclick="return confirm('Do you want to delete?')"><i
                                                             class="fa fa-trash"></i></a>

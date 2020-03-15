@@ -23,7 +23,7 @@
                         <form action="" method="post">
                             @csrf
                             <div class="form-group">
-                                <label class="control-label"><b>{{ __('messages.name-role') }}</b></label>
+                                <label class="control-label"><b>{{ __('messages.name-role') }} <span class="text-danger">*</span></b></label>
                                 <input name="name" type="text" class="form-control" value="{{$role->name}}">
                                 @error('name')
                                 <div class="text-danger">{{ $message }}</div>

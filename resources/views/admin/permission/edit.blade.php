@@ -23,7 +23,7 @@
                         <form action="" method="post">
                             @csrf
                             <div class="form-group">
-                                <label class="control-label"><b>{{ __('messages.name-permission') }}</b></label>
+                                <label class="control-label"><b>{{ __('messages.name-permission') }} <span class="text-danger">*</span></b></label>
                                 <input name="name" type="text" class="form-control" value="{{$permission->name}}">
                                 @error('name')
                                 <div class="text-danger">{{ $message }}</div>

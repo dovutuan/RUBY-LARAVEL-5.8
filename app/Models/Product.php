@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class Product
@@ -26,7 +27,7 @@ class Product extends Model
     protected $table = 'products';
     protected $fillable = ['name', 'slug', 'category_id', 'status', 'likes', 'views', 'content', 'detail', 'created_by', 'updated_by', 'deleted_by'];
 
-    public function category()
+    public function categories()
     {
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
@@ -58,11 +59,10 @@ class Product extends Model
 
     static function search($key, $paginate = PAGINATE)
     {
-        if ($key) {
-            $products = self::where('id', 'like', "%$key%")->orWhere('name', 'like', "%$key%")->paginate($paginate);
-        } else {
-            $products = self::latest('id')->paginate($paginate);
-        }
-        return $products;
+        return self::where('created_by', Auth::user()->id)
+            ->when($key, function ($qr) use ($key) {
+                $qr->where('name', 'like', "%$key%");
+            })
+            ->latest()->paginate($paginate);
     }
 }

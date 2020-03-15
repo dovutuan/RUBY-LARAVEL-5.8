@@ -155,4 +155,12 @@ return [
     'a-total-species:' => 'Total species:',
     'a-name-species' => 'Name species',
     'create-species' => 'Create species',
+    'title-create-minishop' => 'INITIALIZATION MINISHOP',
+    'title-header-create-minishop' => 'I agree with the terms of service and privacy policy when creating minishop',
+    'a-name-minishop' => 'Name minishop',
+    'create-mini-shop' => 'Create minishop',
+    'submit' => 'Gửi',
+    'error' => 'Error',
+    'featured-category' => 'Featured Category',
+    'explore-now' => 'EXPLORE NOW',
 ];

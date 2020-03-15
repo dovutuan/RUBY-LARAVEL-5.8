@@ -136,51 +136,40 @@
                                         </select>
                                     </div>
                                     <div class="row" id="dynamic_field">
-                                        <div class="col-md-2">
-                                            <div class="form-group">
-                                                <label class="control-label"><b>{{ __('messages.a-size') }}</b></label>
-                                                <select name="size_id[]" class="s-example-basic-single form-control">
-                                                    @foreach($sizes as $size)
-                                                        <option
-                                                            value="{{$size->id}}">{{$size->name}}</option>
-                                                    @endforeach
-                                                </select>
-                                                @error('size_id')
-                                                <div class="text-danger">{{ $message }}</div>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label class="control-label"><b>{{ __('messages.a-color') }}</b></label>
-                                                <select name="color_id[]" class="s-example-basic-single form-control">
-                                                    @foreach($colors as $color)
-                                                        <option
-                                                            value="{{$color->id}}">{{$color->name}}</option>
-                                                    @endforeach
-                                                </select>
-                                                @error('color_id')
-                                                <div class="text-danger">{{ $message }}</div>
-                                                @enderror
-                                            </div>
-                                        </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label
-                                                    class="control-label"><b>{{ __('messages.a-amount') }}</b></label>
-                                                <input name="amount[]" id="amount" type="number" min="0"
-                                                       class="form-control" value="{{old('amount[]')}}"/>
-                                                @error('amount')
+                                                    class="control-label"><b>{{ __('messages.a-species') }}</b></label>
+                                                <select name="specie_id[]" class="s-example-basic-single form-control">
+                                                    @foreach($species as $specie)
+                                                        <option
+                                                            value="{{$specie->id}}">{{$specie->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                                @error('specie_id')
                                                 <div class="text-danger">{{ $message }}</div>
                                                 @enderror
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
+                                                <label
+                                                    class="control-label"><b>{{ __('messages.a-amount') }}</b></label>
+                                                <input name="amount[]" id="amount" type="number" min="0"
+                                                       class="form-control"
+                                                       value="{{old('amount[]') ? old('amount[]') : 0}}"/>
+                                                @error('amount')
+                                                <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div class="form-group">
                                                 <label class="control-label"><b>{{ __('messages.a-price') }}</b></label>
                                                 <div class="input-group mb-3">
                                                     <input name="price[]" id="price" min="0" type="number"
-                                                           class="form-control" value="{{old('price[]')}}">
+                                                           class="form-control"
+                                                           value="{{old('price[]') ? old('price[]') :0}}">
                                                     <div class="input-group-append">
                                                         <span class="input-group-text">vnđ</span>
                                                     </div>
@@ -209,7 +198,7 @@
                                                 <label class="control-label"><b>{{ __('messages.a-sale') }}</b></label>
                                                 <input name="sale" id="sale" type="number" min="0" max="100"
                                                        class="form-control"
-                                                       value="{{old('sale')}}">
+                                                       value="{{old('sale')}}" placeholder="0">
                                             </div>
                                         </div>
                                         <div class="col-md-3">

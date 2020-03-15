@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class Product
@@ -26,11 +27,9 @@ class Species extends Model
 
     static function search($key, $paginate = PAGINATE)
     {
-        if ($key) {
-            $species = self::where('id', 'like', "%$key%")->orWhere('name', 'like', "%$key%")->paginate($paginate);
-        } else {
-            $species = self::latest('id')->paginate($paginate);
-        }
-        return $species;
+        return self::when($key, function ($qr) use ($key) {
+            $qr->where('name', 'like', "%$key%");
+        })
+            ->paginate($paginate);
     }
 }

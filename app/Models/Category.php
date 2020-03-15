@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class Category
@@ -41,12 +42,11 @@ class Category extends Model
 
     static function search($key, $paginate = PAGINATE)
     {
-        if ($key) {
-            $categories = self::where('id', 'like', "%$key%")->orWhere('name', 'like', "%$key%");
-            $categories = $categories->whereNull('category_id')->with('childrenCategories')->paginate($paginate);
-        } else {
-            $categories = self::whereNull('category_id')->with('childrenCategories')->paginate($paginate);
-        }
-        return $categories;
+        return self::where('created_by', Auth::user()->id)
+            ->whereNull('category_id')->with('childrenCategories')
+            ->when($key, function ($qr) use ($key) {
+                $qr->where('name', 'like', "%$key%");
+            })
+            ->paginate($paginate);
     }
 }

@@ -22,21 +22,21 @@
                         </div>
                         <form action="" method="post">
                             @csrf
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-md-8">
-                                        <div class="form-group">
-                                            <label
-                                                class="control-label"><b>{{ __('messages.a-parent-category') }}</b></label>
-                                            <select name="category_id" class="form-control">
-                                                <option></option>
-                                                @foreach($allCategories as $item)
-                                                    <option value="{{$item->id}}">{{$item->name}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label
+                                            class="control-label"><b>{{ __('messages.a-parent-category') }}</b></label>
+                                        <select name="category_id" class="form-control">
+                                            <option></option>
+                                            @foreach($allCategories as $item)
+                                                <option value="{{$item->id}}">{{$item->name}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
-                                    <div class="col-md-4">
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
                                         <label class="control-label"><b>{{ __('messages.a-status') }}</b></label>
                                         <select name="status" class="form-control">
                                             <option value="1">{{ __('messages.active') }}</option>
@@ -44,18 +44,35 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-8">
-                                        <label class="control-label"><b>{{ __('messages.a-name') }}</b></label>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label class="control-label"><b>{{ __('messages.a-name') }} <span
+                                                    class="text-danger">*</span></b></label>
                                         <input name="name" type="text" class="form-control" value="{{$category->name}}">
                                         @error('name')
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    <div class="col-md-4">
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
                                         <label class="control-label"><b>{{ __('messages.a-icon') }}</b></label>
                                         <input type="text" class="form-control" name="icon" value="{{$category->icon}}">
                                     </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label"><b>{{ __('messages.a-image') }}</b></label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <buton id="btnImage"
+                                               class="btn btn-outline-success">{{ __('messages.select-image') }}
+                                        </buton>
+                                    </div>
+                                    <input name="image" id="txtImage" type="text" class="form-control"
+                                           value="{{$category->image}}">
                                 </div>
                             </div>
                             <div class="form-group">

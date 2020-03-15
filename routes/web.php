@@ -98,6 +98,8 @@ Route::group(['middleware' => 'auth'], function () {
                 Route::post('change-information', 'AccountController@updateChangeInformation');
                 Route::get('change-password', 'AccountController@editChangePassword')->name('change-password');
                 Route::post('change-password', 'AccountController@updateChangePassword');
+                Route::get('create-mini-shop', 'AccountController@CreateMiniShop')->name('create-mini-shop');
+                Route::post('create-mini-shop', 'AccountController@SeedMailCreateMiniShop');
             });
         });
     });

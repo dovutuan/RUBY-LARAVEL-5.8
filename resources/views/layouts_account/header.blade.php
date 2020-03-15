@@ -56,6 +56,12 @@
                     <a href="{{route('change-information')}}">{{ __('messages.change-information') }}</a></li>
                 <li class="{{\Request::route()->getName()==('change-password') || \Request::route()->getName()==('change-password') ?'active':''}}">
                     <a href="{{route('change-password')}}">{{ __('messages.change-password') }}</a></li>
+                @foreach(\Illuminate\Support\Facades\Auth::user()->getRoleNames() as $role)
+                    @if($role == 'Customer' || $role == 'customer')
+                        <li class="{{\Request::route()->getName()==('create-mini-shop') || \Request::route()->getName()==('create-mini-shop') ?'active':''}}">
+                            <a href="{{route('create-mini-shop')}}">{{ __('messages.create-mini-shop') }}</a></li>
+                    @endif
+                @endforeach
                 <li><a href="#">{{ __('messages.order') }}</a></li>
             </ul>
         </div>

@@ -6,3 +6,5 @@ define('ONE', 1);
 define('TWO', 2);
 define('PAGINATE', 30);
 define('THREE', 3);
+define('TWELVE', 12);
+define('EIGHT', 8);

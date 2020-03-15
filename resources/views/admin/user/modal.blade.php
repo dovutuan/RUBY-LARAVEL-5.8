@@ -24,7 +24,7 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-7">
-                                <label class="control-label"><b>{{ __('messages.a-name') }}</b></label>
+                                <label class="control-label"><b>{{ __('messages.a-name') }} <span class="text-danger">*</span></b></label>
                                 <input name="name" id="name" type="text" class="form-control"
                                        placeholder="{{ __('messages.name') }}" value="{{old('name')}}">
                                 @error('name')
@@ -32,7 +32,7 @@
                                 @enderror
                             </div>
                             <div class="col-md-5">
-                                <label class="control-label"><b>{{ __('messages.a-phone') }}</b></label>
+                                <label class="control-label"><b>{{ __('messages.a-phone') }} <span class="text-danger">*</span></b></label>
                                 <input name="phone" id="phone" type="number" class="form-control"
                                        placeholder="{{ __('messages.phone-number') }}" value="{{old('phone')}}">
                                 @error('phone')
@@ -51,7 +51,7 @@
                                 </select>
                             </div>
                             <div class="col-md-3">
-                                <label class="control-label"><b>{{ __('messages.a-gender') }}</b></label>
+                                <label class="control-label"><b>{{ __('messages.a-gender') }} <span class="text-danger">*</span></b></label>
                                 <select name="gender" id="gender" class="form-control">
                                     <option value="0">{{ __('messages.male') }}</option>
                                     <option value="1">{{ __('messages.female') }}</option>
@@ -59,7 +59,7 @@
                                 </select>
                             </div>
                             <div class="col-md-3">
-                                <label class="control-label"><b>{{ __('messages.a-birth') }}</b></label>
+                                <label class="control-label"><b>{{ __('messages.a-birth') }} <span class="text-danger">*</span></b></label>
                                 <input name="birth" id="birth" type="date" class="form-control"
                                        value="{{old('birth')}}">
                                 @error('birth')
@@ -82,7 +82,7 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-7">
-                                <label class="control-label"><b>{{ __('messages.a-address') }}</b></label>
+                                <label class="control-label"><b>{{ __('messages.a-address') }} <span class="text-danger">*</span></b></label>
                                 <input name="address" id="address" type="text" class="form-control"
                                        placeholder="{{ __('messages.address') }}" value="{{old('address')}}">
                                 @error('address')
@@ -90,7 +90,7 @@
                                 @enderror
                             </div>
                             <div class="col-md-5">
-                                <label class="control-label"><b>{{ __('messages.a-email') }}</b></label>
+                                <label class="control-label"><b>{{ __('messages.a-email') }} <span class="text-danger">*</span></b></label>
                                 <input name="email" id="email" type="email" class="form-control"
                                        placeholder="{{ __('messages.email') }}" value="{{old('email')}}">
                                 @error('email')
@@ -100,7 +100,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label"><b>{{ __('messages.a-password') }}</b></label>
+                        <label class="control-label"><b>{{ __('messages.a-password') }} <span class="text-danger">*</span></b></label>
                         <input name="password" id="password" type="password" class="form-control"
                                placeholder="{{ __('messages.password') }}" value="{{old('password')}}">
                         @error('password')
@@ -108,7 +108,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label class="control-label"><b>{{ __('messages.a-password-confirmation') }}</b></label>
+                        <label class="control-label"><b>{{ __('messages.a-password-confirmation') }} <span class="text-danger">*</span></b></label>
                         <input name="password_confirmation" id="password_confirmation" type="password"
                                class="form-control"
                                placeholder="{{ __('messages.password-confirmation') }}"

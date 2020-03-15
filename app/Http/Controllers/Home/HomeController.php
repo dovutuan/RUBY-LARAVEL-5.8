@@ -17,44 +17,15 @@ class HomeController extends Controller
 
     public function index()
     {
-        $categories = Category::whereNull('category_id')->with('childrenCategories')->get();
-
-        $products = OptionProduct::latest('pay')->limit(8)->get();
-        $id = [];
-        {
-            foreach ($products as $product)
-            {
-                $id[]=[Product::where('id', $product->product_id)->get()];
-            }
-        }
-        foreach ($id as $item) {
-            foreach ($item as $i)
-            {
-                foreach ($i as $a)
-                {
-                    foreach ($a->optionProducts as $ize)
-                    {
-                        dd($ize->size->name);
-                    }
-                    dd($a->optionProducts);
-                }
-            }
-       }
-        foreach ($products as $product)
-        {
-            foreach ($product->optionProducts as $i)
-            {
-                dd($i);
-            }
-        }
-        $products = $products->optionProducts->latest('pay')->limit(8)->get();
-        foreach ($products as $product)
-        {
-            dd($product);
-        }
-
+        $categories = Category::whereNull('category_id')->get();
+        $fastFoods = $categories->where('name', 'Đồ uống và đồ ăn nhanh')->first();
+        $productOfFastFoods = Product::
+            whereHas('categories', function ($qr) use ($fastFoods) {
+                $qr->where('category_id', $fastFoods->id);
+            })->take(EIGHT)->get();
         $data = [
             'categories' => $categories,
+            'productOfFastFoods' => $productOfFastFoods,
 
         ];
         return view('home.index', $data);

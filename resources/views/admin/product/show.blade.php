@@ -69,35 +69,22 @@
                                                     <div class="row">
                                                         <div class="col-md-2">
                                                             <div class="form-group">
-                                                                <label class="control-label"><b>{{ __('messages.a-color') }}</b></label>
-                                                                <div class="input-group mb-3">
-                                                                    <input type="text" class="form-control"
-                                                                           value="{{$optionProduct->color->name}}" Disabled>
-                                                                    <div class="input-group-append">
-                                                                    <span style="background: {{$optionProduct->color->code}}"
-                                                                          class="input-group-text"></span>
-                                                                    </div>
-                                                                </div>
+                                                                <label class="control-label"><b>{{ __('messages.a-species') }}</b></label>
+                                                                <input class="form-control" type="text"
+                                                                       value="{{$optionProduct->species->name}}" Disabled>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-2">
-                                                            <div class="form-group">
-                                                                <label class="control-label"><b>{{ __('messages.a-size') }}</b></label>
-                                                                <input class="form-control input-rounded" type="text"
-                                                                       value="{{$optionProduct->size->name}}" Disabled>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-2">
+                                                        <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label class="control-label"><b>{{ __('messages.a-amount') }}</b></label>
-                                                                <input class="form-control input-rounded" type="text"
+                                                                <input class="form-control" type="text"
                                                                        value="{{$optionProduct->amount}}" Disabled>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-2">
+                                                        <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label class="control-label"><b>{{ __('messages.a-pay') }}</b></label>
-                                                                <input class="form-control input-rounded" type="text"
+                                                                <input class="form-control" type="text"
                                                                        value="{{$optionProduct->pay}}" Disabled>
                                                             </div>
                                                         </div>

@@ -9,7 +9,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label class="control-label"><b>{{ __('messages.a-name') }}</b></label>
+                        <label class="control-label"><b>{{ __('messages.a-name') }} <span class="text-danger">*</span></b></label>
                         <input name="name" type="text" class="form-control"
                                placeholder="{{ __('messages.name') }}" value="{{old('name')}}">
                         @error('name')
@@ -27,7 +27,7 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-4">
-                                <label class="control-label"><b>{{ __('messages.a-email') }}</b></label>
+                                <label class="control-label"><b>{{ __('messages.a-email') }} <span class="text-danger">*</span></b></label>
                                 <input name="email" type="email" class="form-control"
                                        placeholder="{{ __('messages.email') }}" value="{{old('email')}}">
                                 @error('email')
@@ -35,7 +35,7 @@
                                 @enderror
                             </div>
                             <div class="col-md-4">
-                                <label class="control-label"><b>{{ __('messages.a-phone') }}</b></label>
+                                <label class="control-label"><b>{{ __('messages.a-phone') }} <span class="text-danger">*</span></b></label>
                                 <input name="phone" type="number" class="form-control"
                                        placeholder="{{ __('messages.phone-number') }}" value="{{old('phone')}}">
                                 @error('phone')
@@ -50,7 +50,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label"><b>{{ __('messages.a-address') }}</b></label>
+                        <label class="control-label"><b>{{ __('messages.a-address') }} <span class="text-danger">*</span></b></label>
                         <input name="address" type="text" class="form-control"
                                placeholder="{{ __('messages.address') }}" value="{{old('address')}}">
                         @error('address')

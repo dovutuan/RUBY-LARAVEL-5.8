@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class AccountController extends Controller
 {
@@ -48,6 +49,26 @@ class AccountController extends Controller
         $user = Auth::user();
 
         $user->update($request->all());
+
+        return redirect()->back()->with('success', 'Successfully change password');
+    }
+
+    public function createMiniShop()
+    {
+        $user = Auth::user();
+
+        return view('account.create_mini_shop', compact('user'));
+    }
+
+    public function SeedMailCreateMiniShop()
+    {
+        $user = Auth::user();
+
+        Mail::send('account.seed_create_mini_shop', compact('user'), function($message) use ($user) {
+            $message->to(env('MAIL_USERNAME'), env('MAIL_FROM_NAME'))->subject
+            ('Tạo mini shop');
+            $message->from($user->email, $user->name);
+        });
 
         return redirect()->back()->with('success', 'Successfully change password');
     }

@@ -5,16 +5,16 @@ namespace App\Http\Controllers\Admin;
 use App\Exports\ProductsExport;
 use App\Http\Requests\ProductRequest;
 use App\Models\Category;
-use App\Models\Color;
 use App\Models\ImageProduct;
 use App\Models\OptionProduct;
 use App\Models\Product;
 use App\Models\Sale;
-use App\Models\Size;
+use App\Models\Species;
 use App\Models\Supplier;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -32,17 +32,15 @@ class ProductController extends Controller
     {
         try {
             $key = $request->input('key');
-            $categories = Category::all();
-            $colors = Color::all();
-            $sizes = Size::all();
+            $categories = Category::whereNotNull('category_id')->get();
+            $species = Species::all();
             $suppliers = Supplier::all();
             $products = Product::search($key);
             $totalProduct = $products->count();
             $data = [
                 'products' => $products,
                 'categories' => $categories,
-                'colors' => $colors,
-                'sizes' => $sizes,
+                'species' => $species,
                 'suppliers' => $suppliers,
                 'totalProduct' => $totalProduct,
                 'key' => $key,
@@ -65,6 +63,7 @@ class ProductController extends Controller
                 'detail' => $request->input('detail'),
                 'status' => $request->input('status'),
                 'category_id' => $request->input('category_id'),
+                'created_by' => Auth::user()->id,
             ]);
             if ($product) {
                 $listImage = [];
@@ -88,17 +87,15 @@ class ProductController extends Controller
                 }
 
                 $listOptionProduct = [];
-                $color = $request->input('color_id');
                 $price = $request->input('price');
                 $amount = $request->input('amount');
-                foreach ($request->input('size_id') as $key => $size_id) {
+                foreach ($request->input('specie_id') as $key => $species_id) {
                     $listOptionProduct[] = [
                         'product_id' => $product->id,
                         'supplier_id' => $request->input('supplier_id'),
                         'price' => $price[$key],
                         'amount' => $amount[$key],
-                        'color_id' => $color[$key],
-                        'size_id' => $size_id,
+                        'species_id' => $species_id,
                     ];
                 }
                 OptionProduct::insert($listOptionProduct);
@@ -114,7 +111,9 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = Product::findOrFail($id);
-
+        if ($product->created_by != Auth::user()->id) {
+            return redirect()->back()->with('error', __('messages.error'));
+        }
         $data = [
             'product' => $product,
         ];

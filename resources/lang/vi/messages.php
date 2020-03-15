@@ -37,9 +37,9 @@ return [
     'send' => 'Gửi',
 
     //Reset Password
-    'reset-password'=>'Đặt lại mật khẩu',
-    'password-reset-link'=>'Chúng tôi đã gửi email liên kết đặt lại mật khẩu của bạn',
-    'enter-your-email-address'=> 'Trước khi tiếp tục lấy lại mật khẩu bạn vui lòng nhập địa chỉ email để xác minh. Nếu bạn kiểm tra hòm thư không có vui lòng nhấn gửi lại.',
+    'reset-password' => 'Đặt lại mật khẩu',
+    'password-reset-link' => 'Chúng tôi đã gửi email liên kết đặt lại mật khẩu của bạn',
+    'enter-your-email-address' => 'Trước khi tiếp tục lấy lại mật khẩu bạn vui lòng nhập địa chỉ email để xác minh. Nếu bạn kiểm tra hòm thư không có vui lòng nhấn gửi lại.',
 
     //tem
     'lang' => 'LANG',
@@ -70,7 +70,7 @@ return [
     'delete-successfully' => 'Xóa thánh công',
 
     //admin
-    'dashboard' =>'Dashboard',
+    'dashboard' => 'Dashboard',
     'a-user' => 'Tài khoản',
     'a-permission' => 'Permission',
     'a-permission-edit' => 'Permission edit',
@@ -155,4 +155,10 @@ return [
     'a-total-species:' => 'Tổng loại:',
     'a-name-species' => 'Tên loại',
     'create-species' => 'Thêm loại',
+    'title-create-minishop' => 'KHỞI TẠO MINISHOP',
+    'title-header-create-minishop' => 'Tôi đồng ý với điều khoản dịch vụ và chính sách bảo mật khi khởi tạo minishop',
+    'a-name-minishop' => 'Tên minishop',
+    'create-mini-shop' => 'Tạo minishop',
+    'submit' => 'Gửi',
+    'error' => 'Lỗi',
 ];

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Traits\HasRoles;
 
 /**
@@ -62,11 +63,9 @@ class User extends Authenticatable implements MustVerifyEmail
 
     static function search($key, $paginate = PAGINATE)
     {
-        if ($key) {
-            $users = self::where('id', 'like', "%$key%")->orWhere('name', 'like', "%$key%")->paginate($paginate);
-        } else {
-            $users = self::paginate($paginate);
-        }
-        return $users;
+        return self::when($key, function ($qr) use ($key) {
+            $qr->where('id', 'like', "%$key%")->orWhere('name', 'like', "%$key%");
+        })
+            ->paginate($paginate);
     }
 }

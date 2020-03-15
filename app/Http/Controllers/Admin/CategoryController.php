@@ -52,6 +52,9 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category = Category::findOrFail($id);
+        if ($category->created_by != Auth::user()->id) {
+            return redirect()->back()->with('error', __('messages.error'));
+        }
         $allCategories = Category::all();
 
         return view('admin.category.edit', compact('category', 'allCategories'));
@@ -73,6 +76,9 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $category = Category::findOrFail($id);
+        if ($category->created_by != Auth::user()->id) {
+            return redirect()->back()->with('error', __('messages.error'));
+        }
         $category->update(['deleted_by' => Auth::user()->id]);
         $category->delete();
 

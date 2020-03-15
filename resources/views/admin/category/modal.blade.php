@@ -12,35 +12,54 @@
                         <div class="row">
                             <div class="col-md-8">
                                 <div class="form-group">
-                                    <label class="control-label"><b>{{ __('messages.a-parent-category') }}</b></label>
-                                    <select name="category_id" id="category_id" class="form-control">
+                                    <label
+                                        class="control-label"><b>{{ __('messages.a-parent-category') }}</b></label>
+                                    <select name="category_id" class="form-control">
                                         <option></option>
-                                        @foreach($allCategories as $category)
-                                            <option value="{{$category->id}}">{{$category->name}}</option>
+                                        @foreach($allCategories as $item)
+                                            <option value="{{$item->id}}">{{$item->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <label class="control-label"><b>{{ __('messages.a-status') }}</b></label>
-                                <select name="status" id="status" class="form-control">
-                                    <option value="1">{{ __('messages.active') }}</option>
-                                    <option value="0">{{ __('messages.inactive') }}</option>
-                                </select>
+                                <div class="form-group">
+                                    <label class="control-label"><b>{{ __('messages.a-status') }}</b></label>
+                                    <select name="status" class="form-control">
+                                        <option value="1">{{ __('messages.active') }}</option>
+                                        <option value="0">{{ __('messages.inactive') }}</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-8">
-                                <label class="control-label"><b>{{ __('messages.a-name') }}</b></label>
-                                <input name="name" id="name" type="text" class="form-control"
-                                       placeholder="{{ __('messages.name') }}">
-                                @error('name')
-                                <div class="text-danger">{{ $message }}</div>
-                                @enderror
+                                <div class="form-group">
+                                    <label class="control-label"><b>{{ __('messages.a-name') }} <span
+                                                class="text-danger">*</span></b></label>
+                                    <input name="name" type="text" class="form-control" value="{{old('name')}}">
+                                    @error('name')
+                                    <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
                             </div>
                             <div class="col-md-4">
-                                <label class="control-label"><b>{{ __('messages.a-icon') }}</b></label>
-                                <input type="text" class="form-control" name="icon" id="icon">
+                                <div class="form-group">
+                                    <label class="control-label"><b>{{ __('messages.a-icon') }}</b></label>
+                                    <input type="text" class="form-control" name="icon" value="{{old('icon')}}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label"><b>{{ __('messages.a-image') }}</b></label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <buton id="btnImage"
+                                           class="btn btn-outline-success">{{ __('messages.select-image') }}
+                                    </buton>
+                                </div>
+                                <input name="image" id="txtImage" type="text" class="form-control"
+                                       value="{{old('image')}}">
                             </div>
                         </div>
                     </div>

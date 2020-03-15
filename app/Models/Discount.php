@@ -5,6 +5,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 use phpDocumentor\Reflection\Types\Self_;
 
 /**
@@ -30,12 +31,11 @@ class Discount extends Model
 
     static function search($key, $paginate = PAGINATE)
     {
-        if ($key) {
-            $discounts = self::where('id', 'like', "%$key%")->orWhere('code', 'like', "%$key%")->paginate($paginate);
-        } else {
-            $discounts = self::paginate($paginate);
-        }
-        return $discounts;
+        return self::where('created_by', Auth::user()->id)
+            ->when($key, function ($qr) use ($key){
+               $qr->where('code', 'like', "%$key%");
+            })
+            ->latest()->paginate($paginate);
     }
 
     public static function formatTime($time, $format = null)

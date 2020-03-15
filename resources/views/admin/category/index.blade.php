@@ -42,15 +42,27 @@
                                 <table class="table table-hover progress-table text-center">
                                     <thead class="text-uppercase">
                                     <tr>
-                                        <th>Stt</th>
-                                        <th>{{ __('messages.a-name') }}</th>
-                                        <th>{{ __('messages.a-date-create') }}</th>
                                         <th></th>
+                                        <th>Stt</th>
+                                        <th class="text-left">{{ __('messages.a-name') }}</th>
+                                        <th>{{ __('messages.a-date-create') }}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @foreach($categories as $category)
                                         <tr>
+                                            <td class="text-left">
+                                                @can('category-edit')
+                                                    <a href="{{route('edit.category', $category->id)}}" class="btn btn-xs btn-outline-success"><i
+                                                            class="fa fa-edit"></i></a>
+                                                @endcan
+                                                @can('category-delete')
+                                                    <a href="{{route('destroy.category', $category->id)}}"
+                                                       class="btn btn-xs btn-outline-danger"
+                                                       onclick="return confirm('Do you want to delete?')"><i
+                                                            class="fa fa-trash"></i></a>
+                                                @endcan
+                                            </td>
                                             <th>{{$loop->iteration}}</th>
                                             <th class="text-left">
                                                 <ul>
@@ -66,18 +78,6 @@
 
                                             </th>
                                             <td>{{$category->created_at->format('H:i:s d-m-Y')}}</td>
-                                            <td class="text-right">
-                                                @can('category-edit')
-                                                    <a href="{{route('edit.category', $category->id)}}" class="btn btn-xs btn-outline-success"><i
-                                                            class="fa fa-edit"></i></a>
-                                                @endcan
-                                                @can('category-delete')
-                                                    <a href="{{route('destroy.category', $category->id)}}"
-                                                       class="btn btn-xs btn-outline-danger"
-                                                       onclick="return confirm('Do you want to delete?')"><i
-                                                            class="fa fa-trash"></i></a>
-                                                @endcan
-                                            </td>
                                         </tr>
                                     @endforeach
                                     </tbody>

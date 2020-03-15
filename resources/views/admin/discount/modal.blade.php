@@ -11,7 +11,7 @@
                     <div class="row">
                         <div class="col-md-8">
                             <div class="form-group">
-                                <label class="control-label"><b>{{ __('messages.a-name-discount') }}</b></label>
+                                <label class="control-label"><b>{{ __('messages.a-name-discount') }} <span class="text-danger">*</span></b></label>
                                 <input name="name" type="text" class="form-control"
                                        placeholder="{{ __('messages.name') }}" value="{{old('name')}}">
                                 @error('name')
@@ -30,7 +30,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label"><b>{{ __('messages.a-price') }}</b></label>
+                                <label class="control-label"><b>{{ __('messages.a-price') }} <span class="text-danger">*</span></b></label>
                                 <input name="price" type="number" class="form-control" min="0"
                                        placeholder="{{ __('messages.price') }}" value="{{old('price')}}">
                                 @error('price')
@@ -40,7 +40,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label"><b>{{ __('messages.a-amount') }}</b></label>
+                                <label class="control-label"><b>{{ __('messages.a-amount') }} <span class="text-danger">*</span></b></label>
                                 <input name="amount" type="number" class="form-control" min="0"
                                        placeholder="{{ __('messages.amount') }}" value="{{old('amount')}}">
                                 @error('amount')
@@ -52,7 +52,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label"><b>{{ __('messages.a-start') }}</b></label>
+                                <label class="control-label"><b>{{ __('messages.a-start') }} <span class="text-danger">*</span></b></label>
                                 <input name="start" type="date" class="form-control" value="{{old('start')}}">
                                 @error('start')
                                 <div class="text-danger">{{ $message }}</div>
@@ -61,7 +61,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label"><b>{{ __('messages.a-finish') }}</b></label>
+                                <label class="control-label"><b>{{ __('messages.a-finish') }} <span class="text-danger">*</span></b></label>
                                 <input name="finish" type="date" class="form-control" value="{{old('finish')}}">
                                 @error('finish')
                                 <div class="text-danger">{{ $message }}</div>

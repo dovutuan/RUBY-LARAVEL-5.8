@@ -23,11 +23,11 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
+            'name' => 'required|max:255|unique:users,name',
             'birth' => 'required',
             'phone' => 'required|max:11',
             'address' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
+            'email' => 'required|email|max:255|unique:users,email',
             'password' => 'required|confirmed|min:6|max:255',
         ]);
     }
@@ -35,7 +35,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $role = [];
-        $roles = Role::where('name', 'Customer')->orWhere('name', 'customer')->first();
+        $roles = Role::where('name', 'Customer')->orWhere('name', 'customer')->get();
         foreach ($roles as $role) {
             $role = $role->id;
         }

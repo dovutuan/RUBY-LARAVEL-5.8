@@ -39,14 +39,14 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-7">
-                                        <label class="control-label"><b>{{ __('messages.a-name') }}</b></label>
+                                        <label class="control-label"><b>{{ __('messages.a-name') }} <span class="text-danger">*</span></b></label>
                                         <input name="name" type="text" class="form-control" value="{{$user->name}}">
                                         @error('name')
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="col-md-5">
-                                        <label class="control-label"><b>{{ __('messages.a-phone') }}</b></label>
+                                        <label class="control-label"><b>{{ __('messages.a-phone') }} <span class="text-danger">*</span></b></label>
                                         <input name="phone" type="number" class="form-control" value="{{$user->phone}}">
                                         @error('phone')
                                         <div class="text-danger">{{ $message }}</div>
@@ -64,7 +64,7 @@
                                         </select>
                                     </div>
                                     <div class="col-md-3">
-                                        <label class="control-label"><b>{{ __('messages.a-gender') }}</b></label>
+                                        <label class="control-label"><b>{{ __('messages.a-gender') }} <span class="text-danger">*</span></b></label>
                                         <select name="gender" class="form-control">
                                             <option value="0">{{ __('messages.male') }}</option>
                                             <option value="1">{{ __('messages.female') }}</option>
@@ -72,7 +72,7 @@
                                         </select>
                                     </div>
                                     <div class="col-md-3">
-                                        <label class="control-label"><b>{{ __('messages.a-birth') }}</b></label>
+                                        <label class="control-label"><b>{{ __('messages.a-birth') }} <span class="text-danger">*</span></b></label>
                                         <input name="birth" type="date" class="form-control"
                                                value="{{$user->birth}}">
                                         @error('birth')
@@ -95,7 +95,7 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-7">
-                                        <label class="control-label"><b>{{ __('messages.a-address') }}</b></label>
+                                        <label class="control-label"><b>{{ __('messages.a-address') }} <span class="text-danger">*</span></b></label>
                                         <input name="address" type="text" class="form-control"
                                                value="{{$user->address}}">
                                         @error('address')
@@ -103,7 +103,7 @@
                                         @enderror
                                     </div>
                                     <div class="col-md-5">
-                                        <label class="control-label"><b>{{ __('messages.a-email') }}</b></label>
+                                        <label class="control-label"><b>{{ __('messages.a-email') }} <span class="text-danger">*</span></b></label>
                                         <input name="email" type="email" class="form-control" value="{{$user->email}}">
                                         @error('email')
                                         <div class="text-danger">{{ $message }}</div>
