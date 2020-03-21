@@ -172,4 +172,5 @@ return [
     'comments' => 'Bình luận',
     'comment-facebook' => 'Bình luận từ facebook',
     'reviews' => 'Đánh giá',
+    'seller' => 'Người bán',
 ];

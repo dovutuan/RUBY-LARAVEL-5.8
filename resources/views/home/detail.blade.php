@@ -23,8 +23,8 @@
                         <div class="s_product_text">
                             <h3>{{$product->name}}</h3>
                             <ul class="list">
-                                <li><a class="active" href="#"><span>{{ __('messages.category') }}</span> : {{$product->categories->name}}</a>
-                                </li>
+                                <li><a class="active"><span>{{ __('messages.category') }}</span> : {{$product->categories->name}}</a></li>
+                                <li><a class="active"><span>{{ __('messages.seller') }}</span> : {{$product->Users->name}}</a></li>
                                 <li><a class="active"><span>{{ __('messages.view') }}</span> : {{$product->views}} <sup>{{ __('messages.innings') }}</sup></a></li>
                                 <li><a class="active"><span>{{ __('messages.like') }}</span> : {{$product->likes}} <sup>{{ __('messages.innings') }}</sup></a></li>
                             </ul>

@@ -32,7 +32,7 @@ class OptionProduct extends Model
         return $this->belongsTo(Species::class, 'species_id', 'id');
     }
 
-    public function supplier()
+    public function suppliers()
     {
         return $this->belongsTo(Supplier::class, 'supplier_id', 'id');
     }

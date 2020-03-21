@@ -172,4 +172,5 @@ return [
     'comments' => 'Comments',
     'comment-facebook' => 'Comments facebook',
     'reviews' => 'Reviews',
+    'seller' => 'Seller',
 ];
