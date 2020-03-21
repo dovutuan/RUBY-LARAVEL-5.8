@@ -26,7 +26,7 @@
                         <div class="dropdown cart">
                             <a class="dropdown-toggle" href="#" id="navbarDropdown3" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="ti-shopping-cart"></i>
+                                <i class="ti-shopping-cart"></i> <sup>{{Cart::count()}}</sup>
                             </a>
                         </div>
                         <div class="btn-group">

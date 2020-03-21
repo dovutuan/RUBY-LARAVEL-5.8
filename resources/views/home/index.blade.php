@@ -105,12 +105,12 @@
                                 @foreach($productOfFastFoods as $productOfFastFood)
                                     <div class="col-lg-3 col-sm-6">
                                         <div class="single_product_item">
-                                            @foreach($productOfFastFood->images as $image)
-                                                <img src="{{$image->image}}" alt="">
-                                            @endforeach
+                                            <img src="{{$productOfFastFood->image}}" alt="">
                                             <div class="single_product_text">
-                                                <a href="{{route('detail-product', $productOfFastFood->id)}}"><h4>{{$productOfFastFood->name}}</h4></a>
-                                                <a href="#" class="add_cart"><i class="ti-shopping-cart-full"></i>Add to cart</a>
+                                                <a href="{{route('detail-product', $productOfFastFood->id)}}">
+                                                    <h4>{{$productOfFastFood->name}}</h4></a>
+                                                <a href="#" class="add_cart"><i class="ti-shopping-cart-full"></i>Add to
+                                                    cart</a>
                                                 <br>
                                                 <a href="#" class="add_cart"><i class="ti-heart"></i>Heart</a>
                                             </div>

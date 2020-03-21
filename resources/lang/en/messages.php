@@ -163,4 +163,13 @@ return [
     'error' => 'Error',
     'featured-category' => 'Featured Category',
     'explore-now' => 'EXPLORE NOW',
+    'category' => 'Category',
+    'view' => 'View',
+    'like' => 'Like',
+    'innings' => 'Innings',
+    'description' => 'Description',
+    'specification' => 'Specification',
+    'comments' => 'Comments',
+    'comment-facebook' => 'Comments facebook',
+    'reviews' => 'Reviews',
 ];

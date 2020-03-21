@@ -33,7 +33,7 @@
                                                 <div class="form-group">
                                                     <label class="control-label"><b>{{ __('messages.a-category') }}</b></label>
                                                     <input class="form-control input-rounded" type="text"
-                                                           value="{{$product->category->name}}" Disabled>
+                                                           value="{{$product->categories->name}}" Disabled>
                                                 </div>
                                             </div>
                                         </div>
@@ -47,7 +47,10 @@
                                                 <h4 class="header-title">{{ __('messages.a-image') }}</h4>
                                                 <div class="form-group">
                                                     <div class="row">
-                                                        @foreach($product->images as $image)
+                                                        <div class="col-md-2">
+                                                            <img src="{{$product->image}}" class="img-fluid rounded">
+                                                        </div>
+                                                        @foreach($product->img as $image)
                                                             <div class="col-md-2">
                                                                 <img src="{{$image->image}}" class="img-fluid rounded">
                                                             </div>
@@ -65,7 +68,7 @@
                                         <div class="card1">
                                             <div class="card1-body">
                                                 <h4 class="header-title">{{ __('messages.a-option') }}</h4>
-                                                @foreach($product->optionProducts as $optionProduct)
+                                                @foreach($product->optionProduct as $optionProduct)
                                                     <div class="row">
                                                         <div class="col-md-2">
                                                             <div class="form-group">

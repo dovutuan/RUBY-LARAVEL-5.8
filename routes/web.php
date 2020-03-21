@@ -89,6 +89,14 @@ Route::group(['middleware' => 'auth'], function () {
         Route::group(['namespace' => 'Home'], function () {
             Route::get('home', 'HomeController@index')->name('home');
             Route::get('detail/{id}', 'HomeController@detailProduct')->name('detail-product');
+            Route::get('heart/{id}', 'HomeController@heart')->name('heart-product');
+        });
+
+        //shopping
+        Route::group(['namespace' => 'Home'], function () {
+            Route::group(['prefix' => 'shopping'], function () {
+                Route::get('add/{id}', 'ShoppingController@addCart')->name('add-shopping-cart');
+            });
         });
 
         //account

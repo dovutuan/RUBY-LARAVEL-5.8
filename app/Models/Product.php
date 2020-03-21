@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
  * @property int views
  * @property int status
  * @property int category_id
+ * @property string image
  * @property string slug
  * @property string content
  * @property string detail
@@ -25,19 +26,19 @@ class Product extends Model
 {
     use SoftDeletes;
     protected $table = 'products';
-    protected $fillable = ['name', 'slug', 'category_id', 'status', 'likes', 'views', 'content', 'detail', 'created_by', 'updated_by', 'deleted_by'];
+    protected $fillable = ['name', 'slug', 'category_id', 'image', 'status', 'likes', 'views', 'content', 'detail', 'created_by', 'updated_by', 'deleted_by'];
 
     public function categories()
     {
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
-    public function images()
+    public function img()
     {
         return $this->hasMany(ImageProduct::class, 'product_id', 'id');
     }
 
-    public function optionProducts()
+    public function optionProduct()
     {
         return $this->hasMany(OptionProduct::class, 'product_id', 'id');
     }
