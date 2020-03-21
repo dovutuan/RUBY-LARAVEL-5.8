@@ -109,8 +109,10 @@
                                                 <img src="{{$image->image}}" alt="">
                                             @endforeach
                                             <div class="single_product_text">
-                                                <h4>{{$productOfFastFood->name}}</h4>
-                                                <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
+                                                <a href="{{route('detail-product', $productOfFastFood->id)}}"><h4>{{$productOfFastFood->name}}</h4></a>
+                                                <a href="#" class="add_cart"><i class="ti-shopping-cart-full"></i>Add to cart</a>
+                                                <br>
+                                                <a href="#" class="add_cart"><i class="ti-heart"></i>Heart</a>
                                             </div>
                                         </div>
                                     </div>

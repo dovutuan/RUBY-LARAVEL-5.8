@@ -88,6 +88,7 @@ Route::group(['middleware' => 'auth'], function () {
         //home
         Route::group(['namespace' => 'Home'], function () {
             Route::get('home', 'HomeController@index')->name('home');
+            Route::get('detail/{id}', 'HomeController@detailProduct')->name('detail-product');
         });
 
         //account

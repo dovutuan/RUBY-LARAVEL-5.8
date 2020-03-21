@@ -30,4 +30,13 @@ class HomeController extends Controller
         ];
         return view('home.index', $data);
     }
+
+    public function detailProduct($id)
+    {
+        $product = Product::findOrFail($id);
+        $data = [
+            'product' => $product
+        ];
+        return view('home.index', $data);
+    }
 }

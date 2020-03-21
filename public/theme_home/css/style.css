@@ -2909,13 +2909,13 @@ ul {
 /* line 82, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_product_list.scss */
 .single_product_item .single_product_text a {
     color: #ff3368;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     font-size: 18px;
     font-weight: 500;
-    display: block;
+    /*display: block;*/
     margin-top: 10px;
     opacity: 0;
-    visibility: hidden;
+    /*visibility: hidden;*/
     -webkit-transition: 0.5s;
     transition: 0.5s;
 }
