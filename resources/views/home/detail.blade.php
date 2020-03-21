@@ -38,7 +38,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <button type="submit" class="btn_3"><i class="ti-shopping-cart"></i></button>
+                                <button type="submit" class="btn_3" onclick="return confirm('Are you sure you want to buy this product?')"><i class="ti-shopping-cart"></i></button>
                                 <a href="{{route('heart-product', $product->id)}}" class="like_us spinner-grow text-dark">
                                     <i style="color: #ffffff" class="ti-heart"></i> </a>
                             </div>
