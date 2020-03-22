@@ -173,4 +173,13 @@ return [
     'comment-facebook' => 'Bình luận từ facebook',
     'reviews' => 'Đánh giá',
     'seller' => 'Người bán',
+    'a-total' => 'Tổng',
+    'subtotal'=> 'Tổng tiền: ',
+    'update-cart'=> 'Cập nhật giỏ hàng',
+    'delete-all'=> 'Xóa tất cả',
+    'continue-shopping'=> 'Tiếp tục mua hàng',
+    'success-update-cart'=> 'Cập nhật giỏ hàng thành công',
+    'error-update-cart'=> 'Lỗi cập nhật giỏ hàng',
+    'delete-all-cart'=> 'Xóa tất cả sản phẩm trong giỏ hàng thành công',
+    'delete-cart'=> 'Xóa sản phẩm khỏi giỏ hàng thành công',
 ];

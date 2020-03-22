@@ -173,4 +173,13 @@ return [
     'comment-facebook' => 'Comments facebook',
     'reviews' => 'Reviews',
     'seller' => 'Seller',
+    'a-total' => 'Total',
+    'subtotal'=> 'Subtotal: ',
+    'update-cart'=> 'Update cart',
+    'delete-all'=> 'Delete all',
+    'continue-shopping'=> 'Continue Shopping',
+    'success-update-cart'=> 'Update cart successfully',
+    'error-update-cart'=> 'Shopping cart update error',
+    'delete-all-cart'=> 'Successfully deleted all products in the cart',
+    'delete-cart'=> 'Product successfully removed from cart',
 ];

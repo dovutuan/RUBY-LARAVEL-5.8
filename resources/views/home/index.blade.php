@@ -106,6 +106,9 @@
                                     <div class="col-lg-3 col-sm-6">
                                         <div class="single_product_item">
                                             <img src="{{$productOfFastFood->image}}" alt="">
+                                            @if($productOfFastFood->sale)
+                                            <lable class="product-discount-label">- {{$productOfFastFood->sale->sale}} %</lable>
+                                            @endif
                                             <div class="single_product_text">
                                                 <a href="{{route('detail-product', $productOfFastFood->id)}}">
                                                     <h4>{{$productOfFastFood->name}}</h4></a>

@@ -24,8 +24,7 @@
                     <div class="hearer_icon d-flex">
                         <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a>
                         <div class="dropdown cart">
-                            <a class="dropdown-toggle" href="#" id="navbarDropdown3" role="button"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="dropdown-toggle" href="{{route('cart')}}">
                                 <i class="ti-shopping-cart"></i> <sup>{{Cart::count()}}</sup>
                             </a>
                         </div>

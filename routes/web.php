@@ -99,6 +99,16 @@ Route::group(['middleware' => 'auth'], function () {
             });
         });
 
+        //
+        Route::group(['namespace' => 'Home'], function () {
+            Route::group(['prefix' => 'cart'], function () {
+                Route::get('', 'CartController@index')->name('cart');
+                Route::get('update-cart/{key}', 'CartController@update')->name('update-cart');
+                Route::get('delete/{key}', 'CartController@destroy')->name('delete-cart');
+                Route::get('delete-all', 'CartController@destroyAll')->name('delete-all-cart');
+            });
+        });
+
         //account
         Route::group(['namespace' => 'Account'], function () {
             Route::group(['prefix' => 'account'], function () {

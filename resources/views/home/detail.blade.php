@@ -23,23 +23,40 @@
                         <div class="s_product_text">
                             <h3>{{$product->name}}</h3>
                             <ul class="list">
-                                <li><a class="active"><span>{{ __('messages.category') }}</span> : {{$product->categories->name}}</a></li>
-                                <li><a class="active"><span>{{ __('messages.seller') }}</span> : {{$product->Users->name}}</a></li>
-                                <li><a class="active"><span>{{ __('messages.view') }}</span> : {{$product->views}} <sup>{{ __('messages.innings') }}</sup></a></li>
-                                <li><a class="active"><span>{{ __('messages.like') }}</span> : {{$product->likes}} <sup>{{ __('messages.innings') }}</sup></a></li>
+                                <li><a class="active"><span>{{ __('messages.a-sale') }}</span> :
+                                        - {{$product->sale->sale}} %</a></li>
+                                <li><a class="active"><span>{{ __('messages.category') }}</span>
+                                        : {{$product->categories->name}}</a></li>
+                                <li><a class="active"><span>{{ __('messages.seller') }}</span>
+                                        : {{$product->Users->name}}</a></li>
+                                <li><a class="active"><span>{{ __('messages.view') }}</span> : {{$product->views}}
+                                        <sup>{{ __('messages.innings') }}</sup></a></li>
+                                <li><a class="active"><span>{{ __('messages.like') }}</span> : {{$product->likes}}
+                                        <sup>{{ __('messages.innings') }}</sup></a></li>
                             </ul>
                             {!! $product->content !!}
                             <div class="card_area d-flex justify-content-between align-items-center">
                                 <div class="single_product_menu d-flex">
                                     <select name="option" id="option_product">
                                         @foreach($product->optionProduct as $optionProduct)
-                                            <option value="{{$optionProduct->id}}">{{number_format($optionProduct->price)}} {{ __('messages.a-vnđ') }}
+                                            <option
+                                                value="{{$optionProduct->id}}">{{number_format($optionProduct->getPrice())}} {{ __('messages.a-vnđ') }}
                                                 - {{$optionProduct->amount}} {{$optionProduct->species->name}}</option>
                                         @endforeach
                                     </select>
+                                    &nbsp;
+                                    <select name="amount" id="amount">
+                                        @for($i =1; $i <= 5; $i++)
+                                            <option value="{{$i}}">{{$i}}</option>
+                                        @endfor
+                                    </select>
                                 </div>
-                                <button type="submit" class="btn_3" onclick="return confirm('Are you sure you want to buy this product?')"><i class="ti-shopping-cart"></i></button>
-                                <a href="{{route('heart-product', $product->id)}}" class="like_us spinner-grow text-dark">
+                                &nbsp;
+                                <button type="submit" class="btn_3"
+                                        onclick="return confirm('Are you sure you want to buy this product?')"><i
+                                        class="ti-shopping-cart"></i></button>
+                                <a href="{{route('heart-product', $product->id)}}"
+                                   class="like_us spinner-grow text-dark">
                                     <i style="color: #ffffff" class="ti-heart"></i> </a>
                             </div>
                         </div>
@@ -74,10 +91,11 @@
             </ul>
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
-                   {!! $product->detail !!}
+                    {!! $product->detail !!}
                 </div>
                 <div class="tab-pane fade" id="contactFace" role="tabpanel" aria-labelledby="contact-face-tab">
-                        <div class="fb-comments" data-href="{{env('APP_URL_NAME_DETAIL')}}{{$product->id}}" data-width="100%" data-numposts="20"></div>
+                    <div class="fb-comments" data-href="{{env('APP_URL_NAME_DETAIL')}}{{$product->id}}"
+                         data-width="100%" data-numposts="20"></div>
                 </div>
                 <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                     <div class="row">

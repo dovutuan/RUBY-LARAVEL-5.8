@@ -22,7 +22,7 @@ class OptionProduct extends Model
     protected $table = 'option_products';
     protected $fillable = ['product_id', 'species_id ', 'supplier_id', 'price', 'amount', 'pay', 'created_by', 'updated_by', 'deleted_by'];
 
-    public function product()
+    public function products()
     {
         return $this->belongsTo(Product::class, 'product_id', 'id');
     }
@@ -35,5 +35,15 @@ class OptionProduct extends Model
     public function suppliers()
     {
         return $this->belongsTo(Supplier::class, 'supplier_id', 'id');
+    }
+
+    public function getSalePrice()
+    {
+        return $this->price * (100 - $this->products->sale->sale) / 100;
+    }
+
+    public function getPrice()
+    {
+        return $this->products->sale ? $this->getSalePrice() : $this->price;
     }
 }

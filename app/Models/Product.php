@@ -55,12 +55,14 @@ class Product extends Model
 
     public function getSalePrice()
     {
-        return $this->price * (100 - $this->sale) / 100;
+        foreach ($this->optionProduct as $item) {
+            return $item->price * (100 - $this->sale->sale) / 100;
+        }
     }
 
     public function getPrice()
     {
-        return $this->sale ? $this->getSalePrice() : $this->price;
+        return $this->sale->sale ? $this->getSalePrice() : $this->optionProduct->price;
     }
 
     static function search($key, $paginate = PAGINATE)
