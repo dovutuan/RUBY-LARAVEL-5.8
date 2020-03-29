@@ -182,4 +182,7 @@ return [
     'error-update-cart'=> 'Shopping cart update error',
     'delete-all-cart'=> 'Successfully deleted all products in the cart',
     'delete-cart'=> 'Product successfully removed from cart',
+    'money-goods'=> 'Money goods',
+    'transport-fee'=> 'Transport fee',
+    'total-payment'=> 'Total payment',
 ];

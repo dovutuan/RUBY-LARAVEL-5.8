@@ -80,7 +80,7 @@
                         <div class="single_feature_post_text">
                             <h3>{{$category->name}}</h3>
                             <a href="#" class="feature_btn">{{ __('messages.explore-now') }}</a>
-                            <img style="border-radius: 5px; max-width: 340px; max-height: 280px"
+                            <img class="image-width"
                                  src="{{ $category->image }}" alt="">
                         </div>
                     </div>

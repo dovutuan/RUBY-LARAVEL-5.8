@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Models\Category;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -10,20 +11,31 @@ class CartController extends Controller
 {
     public function index()
     {
+        $categories = Category::loadCategories();
         $carts = Cart::content();
-//        $price = [];
-//        foreach ($carts as $cart) {
-//            $price[] = [$cart->price * $cart->qty];
-//        }
-//        if ($carts->price->count() <= 10000)
-//            Cart::setGlobalTax(9);
-//        elseif ($carts->price->count() > 10000 && $carts->price->count() <= 100000)
-//            Cart::setGlobalTax(6);
-//        elseif ($carts->price->count() > 100000 && $carts->price->count() <= 1000000)
-//            Cart::setGlobalTax(3);
-//        elseif ($carts->price->count() > 1000000 && $carts->price->count() <= 10000000)
-//            Cart::setGlobalTax(0);
+        $price = [];
+        foreach ($carts as $cart) {
+            $price[] = ($cart->price * $cart->qty);
+        }
+        $price = array_sum($price);
+        switch ($price) {
+            case($price <= 10000) :
+                Cart::setGlobalTax(6);
+                break;
+            case($price > 10000 && $price <= 100000) :
+                Cart::setGlobalTax(4);
+                break;
+            case($price > 100000 && $price <= 1000000) :
+                Cart::setGlobalTax(2);
+                break;
+            case($price > 1000000) :
+                Cart::setGlobalTax(0);
+                break;
+            default:
+                Cart::setGlobalTax(0);
+        };
         $data = [
+            'categories' => $categories,
             'carts' => $carts
         ];
         return view('home.cart', $data);

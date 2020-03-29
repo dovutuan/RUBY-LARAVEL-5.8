@@ -17,12 +17,12 @@
                                 <a class="nav-link" href="index.html">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" >Contact</a>
+                                <a class="nav-link">Contact</a>
                             </li>
                         </ul>
                     </div>
                     <div class="hearer_icon d-flex">
-                        <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a>
+                        <a id="search_1"><i class="ti-search"></i></a>
                         <div class="dropdown cart">
                             <a class="dropdown-toggle" href="{{route('cart')}}">
                                 <i class="ti-shopping-cart"></i> <sup>{{Cart::count()}}</sup>
@@ -35,12 +35,12 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <div class="dropdown-header"><b
-                                        style="text-transform: uppercase;">HI: {{\Auth::user()->name}}</b></div>
+                                            style="text-transform: uppercase;">HI: {{\Auth::user()->name}}</b></div>
                                 <div class="dropdown-header">{{ __('messages.language') }}</div>
                                 <a href="{{route('lang',['lang' => 'vi'])}}" class="dropdown-item"><img
-                                        src="{{ asset('icon') }}/vn.png"></a>
+                                            src="{{ asset('icon') }}/vn.png"></a>
                                 <a href="{{route('lang',['lang' => 'en'])}}" class="dropdown-item"><img
-                                        src="{{ asset('icon') }}/en.png"></a>
+                                            src="{{ asset('icon') }}/en.png"></a>
                                 <div class="dropdown-divider"></div>
                                 <div class="dropdown-header">{{ __('messages.account') }}</div>
                                 <a href="{{route('information')}}"
@@ -65,9 +65,17 @@
         </div>
     </div>
     <div class="search_input" id="search_input_box">
-        <div class="container ">
-            <form class="d-flex justify-content-between search-inner">
-                <input type="text" class="form-control" id="search_input" placeholder="Search Here">
+        <div class="container">
+            <form class="d-flex justify-content-between search-inner" method="GET" action="{{route('search')}}">
+                <input type="text" class="form-control" name="name" placeholder="{{ __('messages.search...') }}">
+                @if($categories)
+                    <select name="category" class="selectize-dropdown">
+                        <option value="">Chọn category</option>
+                        @foreach($categories as $category)
+                            <option value="{{$category->id}}">{{$category->name}}</option>
+                        @endforeach
+                    </select>
+                @endif
                 <button type="submit" class="btn"></button>
                 <span class="ti-close" id="close_search" title="Close Search"></span>
             </form>

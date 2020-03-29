@@ -5146,11 +5146,10 @@ input[type=submit].btn-block {
 }
 
 .page-item.disabled .page-link {
-    color: #6c757d;
+    color: #ffffff;
     pointer-events: none;
     cursor: auto;
-    background-color: #fff;
-    border-color: #dee2e6
+    background-color: #0072ff
 }
 
 .pagination-lg .page-link {

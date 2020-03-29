@@ -90,6 +90,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('home', 'HomeController@index')->name('home');
             Route::get('detail/{id}', 'HomeController@detailProduct')->name('detail-product');
             Route::get('heart/{id}', 'HomeController@heart')->name('heart-product');
+            Route::get('search', 'HomeController@search')->name('search');
         });
 
         //shopping

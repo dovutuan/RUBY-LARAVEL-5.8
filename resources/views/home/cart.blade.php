@@ -47,7 +47,7 @@
                                         <h5>{{number_format($cart->qty*$cart->price)}} <sup>{{ __('messages.a-vnđ') }}</sup>
                                         </h5>
                                     </td>
-                                    <td class="text-right">
+                                    <td class="text-right text-white-space">
                                         <button type="submit" class="btn btn-sm btn-outline-info"><i class="fa fa-edit"></i></button>
                                         <a href="{{route('delete-cart', $key)}}"
                                            class="btn btn-sm btn-outline-danger"
@@ -67,22 +67,21 @@
                             </tr>
                         @endif
                         <tr>
-                            <td colspan="4" class="text-right">
-                                <h4>{{ __('messages.subtotal') }}</h4>
-                            </td>
-                            <td class="text-white-space text-right">
-                                <h4>{{Cart::subtotal(0, 3)}} <sup>{{ __('messages.a-vnđ') }}</sup></h4>
-                            </td>
-                        </tr><tr>
-                            <td colspan="4" class="text-right">
-                                <h4>{{ __('messages.subtotal') }}</h4>
-                            </td>
-                            <td class="text-white-space text-right">
-                                <h4>{{Cart::tax(0, 3)}}</h4>
-                                <h4>{{Cart::discount(0, 3)}}</h4>
-                                <h4>{{Cart::initial(0, 3)}}</h4>
-                                <h4>{{Cart::priceTotal(0, 3)}}</h4>
-                                <h4>{{Cart::tax(0, 3)}}</h4>
+                            <td colspan="5" class="text-right">
+                                <table class="text-margin-left-auto text-right">
+                                    <tr>
+                                        <th>{{ __('messages.money-goods') }}</th>
+                                        <th><span class="text-white-space">{{Cart::priceTotal(0, 3)}} <sup>{{ __('messages.a-vnđ') }}</sup></span></th>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ __('messages.transport-fee') }}</th>
+                                        <th><span class="text-white-space">{{Cart::tax(0, 3)}} <sup>{{ __('messages.a-vnđ') }}</sup></span></th>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ __('messages.total-payment') }}</th>
+                                        <th><span class="text-white-space">{{Cart::total(0, 3)}} <sup>{{ __('messages.a-vnđ') }}</sup></span></th>
+                                    </tr>
+                                </table>
                             </td>
                         </tr>
                         </tbody>

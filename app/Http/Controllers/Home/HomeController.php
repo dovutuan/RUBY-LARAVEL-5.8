@@ -17,7 +17,7 @@ class HomeController extends Controller
 
     public function index()
     {
-        $categories = Category::whereNull('category_id')->get();
+        $categories = Category::loadCategories();
         $fastFoods = $categories->where('name', 'Đồ uống và đồ ăn nhanh')->first();
         $productOfFastFoods = Product::
         whereHas('categories', function ($qr) use ($fastFoods) {
@@ -28,14 +28,17 @@ class HomeController extends Controller
             'productOfFastFoods' => $productOfFastFoods,
 
         ];
+
         return view('home.index', $data);
     }
 
     public function detailProduct($id)
     {
+        $categories = Category::loadCategories();
         $product = Product::findOrFail($id);
-        $product->update(['views' => $product->views + ONE ]);
+        $product->update(['views' => $product->views + ONE]);
         $data = [
+            'categories' => $categories,
             'product' => $product
         ];
         return view('home.detail', $data);
@@ -44,7 +47,26 @@ class HomeController extends Controller
     public function heart($id)
     {
         $product = Product::findOrFail($id);
-        $product->update(['likes' => $product->likes + ONE ]);
+        $product->update(['likes' => $product->likes + ONE]);
         return redirect()->back();
+    }
+
+    public function search(Request $request)
+    {
+        $categories = Category::loadCategories();
+        $short  = $request->input('short') ? $request->input('short') : null;
+        $name = $request->input('name');
+        $products = Product::
+        when($name, function ($qr) use ($name) {
+            $qr->where('name', 'like', "%$name%");
+        })
+            ->latest($short)
+            ->simplePaginate(1);
+        $data = [
+            'categories' => $categories,
+            'counts' => $products->count(),
+            'products' => $products,
+        ];
+        return view('home.search', $data);
     }
 }

@@ -49,4 +49,10 @@ class Category extends Model
             })
             ->paginate($paginate);
     }
+
+    static function loadCategories()
+    {
+        return self::whereNull('category_id')->get();
+    }
 }
+
