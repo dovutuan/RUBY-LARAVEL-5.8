@@ -63,6 +63,7 @@ class ProductController extends Controller
                 'detail' => $request->input('detail'),
                 'status' => $request->input('status'),
                 'category_id' => $request->input('category_id'),
+                'image' => $request->input('image_product'),
                 'created_by' => Auth::user()->id,
             ]);
             if ($product) {

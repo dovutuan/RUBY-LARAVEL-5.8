@@ -70,18 +70,17 @@
                                                 <h4 class="header-title">{{ __('messages.a-option') }}</h4>
                                                 @foreach($product->optionProduct as $optionProduct)
                                                     <div class="row">
-                                                        <div class="col-md-2">
+                                                        <div class="col-md-5">
                                                             <div class="form-group">
-                                                                <label class="control-label"><b>{{ __('messages.a-species') }}</b></label>
-                                                                <input class="form-control" type="text"
-                                                                       value="{{$optionProduct->species->name}}" Disabled>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <div class="form-group">
-                                                                <label class="control-label"><b>{{ __('messages.a-amount') }}</b></label>
-                                                                <input class="form-control" type="text"
-                                                                       value="{{$optionProduct->amount}}" Disabled>
+                                                                <label class="control-label"><b>{{ __('messages.a-amount') }} / {{ __('messages.a-species') }}</b></label>
+                                                                <div class="input-group mb-3">
+                                                                    <input class="form-control" type="text"
+                                                                           value="{{$optionProduct->amount}}" Disabled>
+                                                                    <div class="input-group-append">
+                                                                        <input class="form-control" type="text"
+                                                                               value="{{$optionProduct->species->name}}" Disabled>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3">

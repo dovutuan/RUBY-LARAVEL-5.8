@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
+use App\Models\Role as RoleModel;
 use Spatie\Permission\Models\Permission;
 
 class RoleController extends Controller
@@ -24,7 +25,7 @@ class RoleController extends Controller
         try {
             $key = $request->input('key');
             $permissions = Permission::all();
-            $roles = Role::search($key);
+            $roles = RoleModel::search($key);
             $totalRole = $roles->count();
             $data = [
                 'permissions' => $permissions,

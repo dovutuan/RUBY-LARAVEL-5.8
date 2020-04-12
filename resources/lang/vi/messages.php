@@ -182,4 +182,8 @@ return [
     'error-update-cart'=> 'Lỗi cập nhật giỏ hàng',
     'delete-all-cart'=> 'Xóa tất cả sản phẩm trong giỏ hàng thành công',
     'delete-cart'=> 'Xóa sản phẩm khỏi giỏ hàng thành công',
+    'money-goods'=> 'Tổng tiền hàng',
+    'transport-fee'=> 'Phí vận chuyển',
+    'total-payment'=> 'Tổng tiền thanh toán',
+    'a-user-edit'=>'Sửa tài khoản'
 ];

@@ -43,6 +43,11 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+    public function addressUser()
+    {
+        return $this->hasMany(AddressUser::class, 'user_id', 'id');
+    }
+
     protected $changeStatus = [
         1 => [
             'name' => 'Active',

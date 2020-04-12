@@ -6,6 +6,7 @@ use App\Http\Requests\PermissionRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Spatie\Permission\Models\Permission;
+use App\Models\Permission as ModelPermission;
 
 class PermissionController extends Controller
 {
@@ -21,7 +22,7 @@ class PermissionController extends Controller
     {
         try {
             $key = $request->input('key');
-            $permissions = Permission::search($key);
+            $permissions = ModelPermission::search($key);
             $data = [
                 'permissions' => $permissions,
                 'key' => $key,

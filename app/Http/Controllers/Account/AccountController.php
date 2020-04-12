@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Account;
 
 use App\Http\Requests\ChangeInfomationRequest;
 use App\Http\Requests\ChangePasswordRequest;
+use App\Models\AddressUser;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -33,6 +34,10 @@ class AccountController extends Controller
         $user = Auth::user();
 
         $user->update($request->all());
+        AddressUser::create([
+            'user_id' => $user->id,
+            'address' => $request->input('address'),
+        ]);
 
         return redirect()->back()->with('success', 'Successfully change information');
     }

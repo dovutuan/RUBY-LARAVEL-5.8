@@ -109,7 +109,7 @@
                                                        class="btn btn-outline-success">{{ __('messages.select-image') }}
                                                 </buton>
                                             </div>
-                                            <input name="image[]" id="txtImage" type="text" class="form-control"
+                                            <input name="image_product" id="txtImage" type="text" class="form-control"
                                                    value="{{old('image')}}">
                                         </div>
                                     </div>
@@ -136,31 +136,30 @@
                                         </select>
                                     </div>
                                     <div class="row" id="dynamic_field">
-                                        <div class="col-md-3">
+                                        <div class="col-md-7">
                                             <div class="form-group">
                                                 <label
-                                                    class="control-label"><b>{{ __('messages.a-species') }}</b></label>
-                                                <select name="specie_id[]" class="s-example-basic-single form-control">
-                                                    @foreach($species as $specie)
-                                                        <option
-                                                            value="{{$specie->id}}">{{$specie->name}}</option>
-                                                    @endforeach
-                                                </select>
-                                                @error('specie_id')
-                                                <div class="text-danger">{{ $message }}</div>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label
-                                                    class="control-label"><b>{{ __('messages.a-amount') }}</b></label>
-                                                <input name="amount[]" id="amount" type="number" min="0"
-                                                       class="form-control"
-                                                       value="{{old('amount[]') ? old('amount[]') : 0}}"/>
-                                                @error('amount')
-                                                <div class="text-danger">{{ $message }}</div>
-                                                @enderror
+                                                    class="control-label"><b>{{ __('messages.a-amount') }} / {{ __('messages.a-species') }}</b></label>
+                                                <div class="input-group mb-3">
+                                                    <input name="amount[]" id="amount" type="number" min="0"
+                                                           class="form-control"
+                                                           value="{{old('amount[]') ? old('amount[]') : 0}}"/>
+                                                    @error('amount')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                    @enderror
+                                                    <div class="input-group-prepend">
+                                                        <select name="specie_id[]"
+                                                                class="s-example-basic-single form-control">
+                                                            @foreach($species as $specie)
+                                                                <option
+                                                                    value="{{$specie->id}}">{{$specie->name}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        @error('specie_id')
+                                                        <div class="text-danger">{{ $message }}</div>
+                                                        @enderror
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-md-5">

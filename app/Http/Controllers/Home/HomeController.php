@@ -18,7 +18,7 @@ class HomeController extends Controller
     public function index()
     {
         $categories = Category::loadCategories();
-        $fastFoods = $categories->where('name', 'Đồ uống và đồ ăn nhanh')->first();
+        $fastFoods = $categories->where('name', 'Đồ ăn và đồ uống nhanh')->first();
         $productOfFastFoods = Product::
         whereHas('categories', function ($qr) use ($fastFoods) {
             $qr->where('category_id', $fastFoods->id);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Exports\UsersExport;
 use App\Http\Requests\UserRequest;
+use App\Models\AddressUser;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -53,6 +54,11 @@ class UserController extends Controller
                 'created_by' => Auth::user()->id,
             ])
         );
+        AddressUser::create([
+            'user_id' => $user->id,
+            'address' => $request->input('address'),
+        ]);
+
         $user->assignRole($request->input('role_id'));
 
         return redirect()->back()->with('success', __('messages.create-successfully'));
@@ -67,7 +73,7 @@ class UserController extends Controller
         return view('admin.user.edit', compact('user', 'roles', 'userRoles'));
     }
 
-    public function update(UserRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $user = User::find($id);
         $user->update(
@@ -75,6 +81,11 @@ class UserController extends Controller
                 'updated_by' => Auth::user()->id,
             ])
         );
+        AddressUser::create([
+            'user_id' => $user->id,
+            'address' => $request->input('address'),
+        ]);
+
         DB::table('model_has_roles')->where('model_id', $id)->delete();
         $user->assignRole($request->input('role_id'));
 

@@ -32,8 +32,7 @@
                                     </div>
                                 </td>
                                 <td class="text-white-space">
-                                    <h5>{{number_format($cart->price)}} <sup>{{ __('messages.a-vnđ') }}</sup>
-                                        - {{$cart->options->amount}} <sup>{{$cart->options->species}}</sup></h5>
+                                    <h5>{{$cart->options->amount}} <sup>{{$cart->options->species}}</sup> - {{number_format($cart->price)}} <sup>{{ __('messages.a-vnđ') }}</sup></h5>
                                 </td>
                                 <form action="{{route('update-cart', $key)}}" method="GET">
                                     <td>

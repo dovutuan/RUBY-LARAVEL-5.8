@@ -185,4 +185,5 @@ return [
     'money-goods'=> 'Money goods',
     'transport-fee'=> 'Transport fee',
     'total-payment'=> 'Total payment',
+    'a-user-edit'=>'User edit'
 ];

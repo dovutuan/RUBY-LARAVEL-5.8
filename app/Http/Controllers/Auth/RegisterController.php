@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\AddressUser;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -48,6 +49,10 @@ class RegisterController extends Controller
             'address' => $data['address'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+        ]);
+        AddressUser::create([
+            'user_id' => $user->id,
+            'address' => $data['address'],
         ]);
 
         $user->assignRole($role);
