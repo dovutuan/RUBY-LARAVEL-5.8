@@ -30,6 +30,7 @@ class ShoppingController extends Controller
                     'species' => $option_product->species->name,
                     'amount' => $option_product->amount,
                     'image' => $product->image,
+                    'seller' => $product->created_by,
                 ],
             ]);
             return redirect()->back();

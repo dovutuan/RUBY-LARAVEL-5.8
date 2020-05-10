@@ -54,5 +54,10 @@ class Category extends Model
     {
         return self::whereNull('category_id')->get();
     }
+
+    static function loadAllCategories()
+    {
+        return self::whereNotNull('category_id')->get();
+    }
 }
 

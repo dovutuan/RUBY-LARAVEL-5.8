@@ -91,6 +91,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('detail/{id}', 'HomeController@detailProduct')->name('detail-product');
             Route::get('heart/{id}', 'HomeController@heart')->name('heart-product');
             Route::get('search', 'HomeController@search')->name('search');
+            Route::get('pay', 'CheckoutController@pay')->name('pay');
         });
 
         //shopping
@@ -107,6 +108,7 @@ Route::group(['middleware' => 'auth'], function () {
                 Route::get('update-cart/{key}', 'CartController@update')->name('update-cart');
                 Route::get('delete/{key}', 'CartController@destroy')->name('delete-cart');
                 Route::get('delete-all', 'CartController@destroyAll')->name('delete-all-cart');
+                Route::post('check-discount', 'CartController@checkDiscount')->name('check-discount');
             });
         });
 

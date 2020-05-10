@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Home;
 
 use App\Models\Category;
+use App\Models\Discount;
+use Carbon\Carbon;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -12,7 +14,9 @@ class CartController extends Controller
     public function index()
     {
         $categories = Category::loadCategories();
+        $allCategories = Category::loadAllCategories();
         $carts = Cart::content();
+//        dd($carts);
         $price = [];
         foreach ($carts as $cart) {
             $price[] = ($cart->price * $cart->qty);
@@ -33,9 +37,11 @@ class CartController extends Controller
                 break;
             default:
                 Cart::setGlobalTax(0);
-        };
+        }
+//        dd($carts);
         $data = [
             'categories' => $categories,
+            'allCategories' => $allCategories,
             'carts' => $carts
         ];
         return view('home.cart', $data);
@@ -62,6 +68,34 @@ class CartController extends Controller
     {
         Cart::destroy();
         return redirect()->back()->with('success', __('messages.delete-all-cart'));
+    }
+
+    public function checkDiscount(Request $request)
+    {
+        $discount_code = $request->input('discount');
+        $carts = Cart::content();
+        $sellers = [];
+        $discounts = [];
+
+        if (empty($discount_code)) {
+            return redirect()->back()->with('warning', __('messages.discount-empty'));
+        }
+
+        foreach ($carts as $cart) {
+            $sellers[] = $cart->options->seller;
+        }
+        $sellers = array_unique($sellers);
+        foreach ($sellers as $seller) {
+            $date_now = Carbon::now()->format('Y-m-d');
+            $discounts[] = Discount::where('code', $discount_code)->where('status', ONE)->where('amount', '>', ZERO)->where('created_by', $seller)->where('finish', '>=', $date_now)->get();
+        }
+        dd($discounts);
+
+//       $discount = Discount::where('code', $discount_code)
+//            ->where('')
+//            ->get();
+//
+//        dd($discount);
     }
 
 }

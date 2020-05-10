@@ -14,8 +14,10 @@ class CreateBillDetailsTable extends Migration
             $table->foreign('bill_id')->references('id')->on('bills')->onDelete('cascade');
             $table->bigInteger('product_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products');
+            $table->bigInteger('specie_id')->unsigned();
             $table->integer('amount')->default(0)->nullable();
             $table->double('price')->default(0)->nullable();
+            $table->integer('qty')->default(0)->nullable();
             $table->bigInteger('created_by')->nullable();
             $table->bigInteger('updated_by')->nullable();
             $table->bigInteger('deleted_by')->nullable();

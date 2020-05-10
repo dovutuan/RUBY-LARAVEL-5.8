@@ -52,16 +52,28 @@
                                     @foreach($categories as $category)
                                         <tr>
                                             <td class="text-left">
-                                                @can('category-edit')
-                                                    <a href="{{route('edit.category', $category->id)}}" class="btn btn-xs btn-outline-success"><i
-                                                            class="fa fa-edit"></i></a>
-                                                @endcan
-                                                @can('category-delete')
-                                                    <a href="{{route('destroy.category', $category->id)}}"
-                                                       class="btn btn-xs btn-outline-danger"
-                                                       onclick="return confirm('Do you want to delete?')"><i
-                                                            class="fa fa-trash"></i></a>
-                                                @endcan
+                                                @if(!($category->category_id))
+                                                    @can('category-edit')
+                                                        <a class="btn btn-xs btn-outline-success"><i
+                                                                class="fa fa-edit"></i></a>
+                                                    @endcan
+                                                    @can('category-delete')
+                                                        <a class="btn btn-xs btn-outline-danger"><i
+                                                                class="fa fa-trash"></i></a>
+                                                    @endcan
+                                                @else
+                                                    @can('category-edit')
+                                                        <a href="{{route('edit.category', $category->id)}}"
+                                                           class="btn btn-xs btn-outline-success"><i
+                                                                class="fa fa-edit"></i></a>
+                                                    @endcan
+                                                    @can('category-delete')
+                                                        <a href="{{route('destroy.category', $category->id)}}"
+                                                           class="btn btn-xs btn-outline-danger"
+                                                           onclick="return confirm('Do you want to delete?')"><i
+                                                                class="fa fa-trash"></i></a>
+                                                    @endcan
+                                                @endif
                                             </td>
                                             <th>{{$loop->iteration}}</th>
                                             <th class="text-left">

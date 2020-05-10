@@ -67,14 +67,14 @@ class ProductController extends Controller
                 'created_by' => Auth::user()->id,
             ]);
             if ($product) {
-                $listImage = [];
-                foreach ($request->input('image') as $image) {
-                    $listImage[] = [
-                        'product_id' => $product->id,
-                        'image' => $image,
-                    ];
-                }
-                ImageProduct::insert($listImage);
+//                $listImage = [];
+//                foreach ($request->input('image') as $image) {
+//                    $listImage[] = [
+//                        'product_id' => $product->id,
+//                        'image' => $image,
+//                    ];
+//                }
+//                ImageProduct::insert($listImage);
 
                 if ($request->input('sale')) {
                     Sale::insert([
