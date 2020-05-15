@@ -77,6 +77,8 @@ class CheckoutController extends Controller
                         'qty' => $cart->qty,
                         'species_id' => $cart->options->species_id,
                         'created_by' => Auth::user()->id,
+                        'created_at' => now(),
+                        'updated_at' => now(),
                     ]);
                 }
             }
