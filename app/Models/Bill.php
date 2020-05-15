@@ -10,6 +10,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @package App\Models
  * @property int user_id
  * @property int price
+ * @property int discount_id
+ * @property string discount_name
+ * @property string discount_code
+ * @property int tax_rate
  * @property int status
  * @property int address
  * @property string note
@@ -21,5 +25,5 @@ class Bill extends Model
 {
     use SoftDeletes;
     protected $table = 'bills';
-    protected $fillable = ['user_id', 'price', 'status', 'address', 'note', 'created_by', 'updated_by', 'deleted_by'];
+    protected $fillable = ['user_id', 'price', 'discount_id', 'discount_name', 'discount_code', 'tax_rate', 'status', 'address', 'note', 'created_by', 'updated_by', 'deleted_by'];
 }

@@ -20,5 +20,5 @@ class BillDetail extends Model
 {
     use SoftDeletes;
     protected $table = 'bill_details';
-    protected $fillable = ['bill_id', 'product_id', 'amount', 'price', 'created_by', 'updated_by', 'deleted_by'];
+    protected $fillable = ['bill_id', 'product_id', 'species_id', 'amount', 'qty', 'price', 'created_by', 'updated_by', 'deleted_by'];
 }

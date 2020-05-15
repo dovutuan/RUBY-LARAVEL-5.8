@@ -218,4 +218,5 @@ return [
     'check-out-note-about' => 'Notes about your order, e.g. special notes for delivery',
     'check-out-address-about' => 'Use another address to pay',
     'discount-empty' => 'Discount code must not be blank',
+    'discount-success' => 'Discount code has been saved',
 ];

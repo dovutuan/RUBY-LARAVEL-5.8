@@ -16,7 +16,6 @@ class CartController extends Controller
         $categories = Category::loadCategories();
         $allCategories = Category::loadAllCategories();
         $carts = Cart::content();
-//        dd($carts);
         $price = [];
         foreach ($carts as $cart) {
             $price[] = ($cart->price * $cart->qty);
@@ -38,7 +37,6 @@ class CartController extends Controller
             default:
                 Cart::setGlobalTax(0);
         }
-//        dd($carts);
         $data = [
             'categories' => $categories,
             'allCategories' => $allCategories,
@@ -75,7 +73,7 @@ class CartController extends Controller
         $discount_code = $request->input('discount');
         $carts = Cart::content();
         $sellers = [];
-        $discounts = [];
+        $discount = '';
 
         if (empty($discount_code)) {
             return redirect()->back()->with('warning', __('messages.discount-empty'));
@@ -87,15 +85,10 @@ class CartController extends Controller
         $sellers = array_unique($sellers);
         foreach ($sellers as $seller) {
             $date_now = Carbon::now()->format('Y-m-d');
-            $discounts[] = Discount::where('code', $discount_code)->where('status', ONE)->where('amount', '>', ZERO)->where('created_by', $seller)->where('finish', '>=', $date_now)->get();
+            $discount = Discount::where('code', $discount_code)->where('status', ONE)->where('amount', '>', ZERO)->where('created_by', $seller)->where('finish', '>=', $date_now)->first();
         }
-        dd($discounts);
-
-//       $discount = Discount::where('code', $discount_code)
-//            ->where('')
-//            ->get();
-//
-//        dd($discount);
+        session([md5('discount_code') => [$discount->id, $discount->code, $discount->name]]);
+        return redirect()->back()->with('success', __('messages.discount-empty'));
     }
 
 }

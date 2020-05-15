@@ -103,7 +103,7 @@
                             <li>{{ __('messages.transport-fee') }} <span>{{Cart::tax(0, 3)}} <sup>{{ __('messages.a-vnđ') }}</sup></span></li>
                             <li>{{ __('messages.total-payment') }} <span>{{Cart::total(0, 3)}} <sup>{{ __('messages.a-vnđ') }}</sup></span></li>
                         </ul>
-                        <a href="{{route('pay')}}" class="primary-btn">{{ __('messages.proceed-to-checkout') }}</a>
+                        <a href="{{route('checkOut')}}" class="primary-btn">{{ __('messages.proceed-to-checkout') }}</a>
                     </div>
                 </div>
             </div>

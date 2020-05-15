@@ -91,7 +91,8 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('detail/{id}', 'HomeController@detailProduct')->name('detail-product');
             Route::get('heart/{id}', 'HomeController@heart')->name('heart-product');
             Route::get('search', 'HomeController@search')->name('search');
-            Route::get('pay', 'CheckoutController@pay')->name('pay');
+            Route::get('pay', 'CheckoutController@checkOut')->name('checkOut');
+            Route::post('pay', 'CheckoutController@pay');
         });
 
         //shopping

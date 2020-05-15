@@ -20,7 +20,8 @@
         <div class="container-half-fluid">
             <div class="checkout__form">
                 <h4>{{ __('messages.billing-details') }}</h4>
-                <form action="#">
+                <form method="POST">
+                    @csrf
                     <div class="row">
                         <div class="col-lg-8 col-md-6">
                             <div class="row">
@@ -57,11 +58,17 @@
                             </div>
                             <div class="checkout__input">
                                 <p>{{ __('messages.check-out-other-address') }}</p>
-                                <textarea class="text-area" placeholder="{{ __('messages.check-out-address-about') }}"></textarea>
+                                <textarea class="text-area" name="other_address"
+                                          placeholder="{{ __('messages.check-out-address-about') }}"></textarea>
                             </div>
                             <div class="checkout__input">
                                 <p>{{ __('messages.check-out-note') }}</p>
-                                <textarea class="text-area" placeholder="{{ __('messages.check-out-note-about') }}"></textarea>
+                                <textarea class="text-area" name="note"
+                                          placeholder="{{ __('messages.check-out-note-about') }}"></textarea>
+                            </div>
+                            <div class="checkout__input">
+                                <button type="submit"
+                                        class="btn btn-xs btn-outline-success">{{ __('messages.proceed-to-checkout') }}</button>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6">
@@ -71,12 +78,26 @@
                                     <span>{{ __('messages.a-total') }}</span></div>
                                 <ul>
                                     @foreach($carts as $cart)
-                                        <li>{{$cart->name}} <span>{{$cart->options->amount}} <sup>{{$cart->options->species}}</sup> - {{number_format($cart->price)}} <sup>{{ __('messages.a-vnđ') }}</sup> x {{$cart->qty}} </span></li>
+                                        <li>{{$cart->name}}
+                                            <span>{{$cart->options->amount}} <sup>{{$cart->options->species}}</sup> - {{number_format($cart->price)}} <sup>{{ __('messages.a-vnđ') }}</sup> x {{$cart->qty}} </span>
+                                        </li>
                                     @endforeach
                                 </ul>
-                                <div class="checkout__order__subtotal">{{ __('messages.money-goods') }} <span>{{Cart::priceTotal(0, 3)}} <sup>{{ __('messages.a-vnđ') }}</sup></span></div>
-                                <div class="checkout__order__subtotal">{{ __('messages.transport-fee') }} <span>{{Cart::tax(0, 3)}} <sup>{{ __('messages.a-vnđ') }}</sup></span></div>
-                                <div class="checkout__order__subtotal">{{ __('messages.total-payment') }} <span>{{Cart::total(0, 3)}} <sup>{{ __('messages.a-vnđ') }}</sup></span></div>
+                                <div class="checkout__order__subtotal">{{ __('messages.money-goods') }} <span>{{Cart::priceTotal(0, 3)}} <sup>{{ __('messages.a-vnđ') }}</sup></span>
+                                </div>
+                                <div class="checkout__order__subtotal">{{ __('messages.transport-fee') }} <span>{{Cart::tax(0, 3)}} <sup>{{ __('messages.a-vnđ') }}</sup></span>
+                                </div>
+                                @if($discount)
+                                    <div class="checkout__order__subtotal">{{ __('messages.a-discount') }} <span>- {{number_format($discount->price)}} <sup>{{ __('messages.a-vnđ') }}</sup></span>
+                                    </div>
+                                @endif
+                                @if($total_price)
+                                    <div class="checkout__order__subtotal">{{ __('messages.total-payment') }} <span>{{number_format($total_price)}} <sup>{{ __('messages.a-vnđ') }}</sup></span>
+                                    </div>
+                                @else
+                                    <div class="checkout__order__subtotal">{{ __('messages.total-payment') }} <span>{{ Cart::total(0, 3)}} <sup>{{ __('messages.a-vnđ') }}</sup></span>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>

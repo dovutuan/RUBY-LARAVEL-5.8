@@ -208,4 +208,5 @@ return [
     'free-shipping' => 'Giao hàng miễn phí cho tất cả Đơn hàng 1.000.000 vnđ',
     'latest-products' => 'Sản phẩm mới',
     'billing-details' => 'Chi tiết thanh toán',
+    'discount-success' => 'Mã giảm giá đã được lưu lại',
 ];
