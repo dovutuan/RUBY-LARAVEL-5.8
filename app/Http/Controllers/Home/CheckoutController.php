@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use phpDocumentor\Reflection\DocBlock\Description;
 
 class CheckoutController extends Controller
 {
@@ -21,10 +22,10 @@ class CheckoutController extends Controller
         $session_discount = session(md5('discount_code'));
         $carts = Cart::content();
 
-        $data = [
-            'allCategories' => $allCategories,
-            'carts' => $carts,
-        ];
+//        $data = [
+//            'allCategories' => $allCategories,
+//            'carts' => $carts,
+//        ];
 
         if ($session_discount) {
             $sellers = [];
@@ -82,6 +83,12 @@ class CheckoutController extends Controller
                     ]);
                 }
             }
+            $discount = Discount::where('code', $session_discount[1])->first();
+            $discount->update([
+                'use' => $discount->use + ONE,
+                'amount' => $discount->amount - ONE,
+
+            ]);
             DB::commit();
             session()->forget(md5('discount_code'));
             Cart::destroy();

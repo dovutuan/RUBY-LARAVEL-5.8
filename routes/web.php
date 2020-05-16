@@ -82,6 +82,11 @@ Route::group(['middleware' => 'auth'], function () {
                     Route::post('edit/{id}', 'DiscountController@update');
                     Route::get('delete/{id}', 'DiscountController@destroy')->name('destroy.discount');
                 });
+
+                Route::group(['prefix' => 'bill'], function () {
+                    Route::get('', 'BillController@index')->name('list.bill');
+                    Route::get('detail/{id}', 'BillController@detail')->name('detail.bill');
+                });
             });
         });
 

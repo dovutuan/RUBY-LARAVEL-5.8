@@ -58,6 +58,12 @@
                                             class="fa fa-fw fa-list-alt"></i><span>{{__('messages.a-discount')}}</span></a>
                                 </li>
                             @endcan
+                            @can('bill-list')
+                                <li class="{{\Request::route()->getName()=='list.bill'?'active':''}}">
+                                    <a href="{{route('list.bill')}}"><i
+                                            class="fa fa-fw fa-shopping-cart"></i><span>{{__('messages.a-bill')}}</span></a>
+                                </li>
+                            @endcan
                         </ul>
                     </nav>
                 </div>

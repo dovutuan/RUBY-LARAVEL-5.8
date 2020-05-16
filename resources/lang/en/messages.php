@@ -219,4 +219,11 @@ return [
     'check-out-address-about' => 'Use another address to pay',
     'discount-empty' => 'Discount code must not be blank',
     'discount-success' => 'Discount code has been saved',
+    'a-bill' => 'Bill',
+    'a-discount-name' => 'Discount name',
+    'a-discount-code' => 'Discount code',
+    'a-discount-price' => 'Discount price',
+    'a-customer' => 'Customer',
+    'a-tax-rate' => 'Tax rate',
+    'a-total-bill:' => 'Total bill:',
 ];

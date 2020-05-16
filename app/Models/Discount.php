@@ -29,6 +29,11 @@ class Discount extends Model
     protected $table = 'discounts';
     protected $fillable = ['name', 'created_by', 'updated_by', 'deleted_by', 'code', 'price', 'amount', 'use', 'status', 'start', 'finish'];
 
+    public function bill()
+    {
+        return $this->hasMany(Bill::class, 'discount_id', 'id');
+    }
+
     static function search($key, $paginate = PAGINATE)
     {
         return self::where('created_by', Auth::user()->id)
