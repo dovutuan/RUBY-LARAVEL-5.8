@@ -35,9 +35,9 @@ class CheckoutController extends Controller
             $sellers = array_unique($sellers);
             foreach ($sellers as $seller) {
                 $date_now = Carbon::now()->format('Y-m-d');
-                $discount = Discount::where('code', $session_discount[1])->where('status', ONE)->where('amount', '>', ZERO)->where('created_by', $seller)->where('finish', '>=', $date_now)->first();
+                $discount = Discount::where('code', $session_discount[ONE])->where('status', ONE)->where('amount', '>', ZERO)->where('created_by', $seller)->where('finish', '>=', $date_now)->first();
             }
-            $total_price = str_replace(',', '', Cart::total(0, 3)) - $discount->price;
+            $total_price = str_replace(',', '', Cart::total(ZERO, THREE)) - $discount->price;
             session()->push(md5('discount_code'), $total_price);
 
 //             array_push($data, ['discount' => $discount, 'total_price' => $total_price]);
@@ -60,13 +60,13 @@ class CheckoutController extends Controller
             $bill = Bill::create([
                 'user_id' => Auth::user()->id,
                 'created_by' => Auth::user()->id,
-                'price' => $session_discount[3],
+                'price' => $session_discount[THREE],
                 'address' => $request->input('other_address'),
                 'note' => $request->input('note'),
-                'discount_id' => $session_discount[0],
-                'discount_code' => $session_discount[1],
-                'discount_name' => $session_discount[2],
-                'tax_rate' => str_replace(',', '', Cart::tax(0, 3)),
+                'discount_id' => $session_discount[ZERO],
+                'discount_code' => $session_discount[ONE],
+                'discount_name' => $session_discount[TWO],
+                'tax_rate' => str_replace(',', '', Cart::tax(ZERO, THREE)),
             ]);
             if ($bill) {
                 foreach ($carts as $cart) {
@@ -83,7 +83,7 @@ class CheckoutController extends Controller
                     ]);
                 }
             }
-            $discount = Discount::where('code', $session_discount[1])->first();
+            $discount = Discount::where('code', $session_discount[ONE])->first();
             $discount->update([
                 'use' => $discount->use + ONE,
                 'amount' => $discount->amount - ONE,

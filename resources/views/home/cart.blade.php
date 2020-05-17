@@ -77,7 +77,7 @@
                     <div class="shoping__cart__btns">
                         <a href="{{route('home')}}"
                            class="primary-btn cart-btn">{{ __('messages.continue-shopping') }}</a>
-                        @if(Cart::count() > 0)
+                        @if(Cart::count() > ZERO)
                             <a class="primary-btn cart-btn cart-btn-right" href="{{route('delete-all-cart')}}"
                                onclick="return confirm('Are you sure you want to delete all products in your cart?')">{{ __('messages.delete-all') }}</a>
                         @endif
@@ -99,9 +99,9 @@
                     <div class="shoping__checkout">
                         <h5>{{ __('messages.cart-total') }}</h5>
                         <ul>
-                            <li>{{ __('messages.money-goods') }} <span>{{Cart::priceTotal(0, 3)}} <sup>{{ __('messages.a-vnđ') }}</sup></span></li>
-                            <li>{{ __('messages.transport-fee') }} <span>{{Cart::tax(0, 3)}} <sup>{{ __('messages.a-vnđ') }}</sup></span></li>
-                            <li>{{ __('messages.total-payment') }} <span>{{Cart::total(0, 3)}} <sup>{{ __('messages.a-vnđ') }}</sup></span></li>
+                            <li>{{ __('messages.money-goods') }} <span>{{Cart::priceTotal(ZERO, THREE)}} <sup>{{ __('messages.a-vnđ') }}</sup></span></li>
+                            <li>{{ __('messages.transport-fee') }} <span>{{Cart::tax(ZERO, THREE)}} <sup>{{ __('messages.a-vnđ') }}</sup></span></li>
+                            <li>{{ __('messages.total-payment') }} <span>{{Cart::total(ZERO, THREE)}} <sup>{{ __('messages.a-vnđ') }}</sup></span></li>
                         </ul>
                         <a href="{{route('checkOut')}}" class="primary-btn">{{ __('messages.proceed-to-checkout') }}</a>
                     </div>

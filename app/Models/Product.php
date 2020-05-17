@@ -56,7 +56,7 @@ class Product extends Model
     public function getSalePrice()
     {
         foreach ($this->optionProduct as $item) {
-            return $item->price * (100 - $this->sale->sale) / 100;
+            return $item->price * (ONE_HUNDRED - $this->sale->sale) / ONE_HUNDRED;
         }
     }
 

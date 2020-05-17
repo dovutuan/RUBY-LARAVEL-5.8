@@ -39,7 +39,7 @@ class OptionProduct extends Model
 
     public function getSalePrice()
     {
-        return $this->price * (100 - $this->products->sale->sale) / 100;
+        return $this->price * (ONE_HUNDRED - $this->products->sale->sale) / ONE_HUNDRED;
     }
 
     public function getPrice()

@@ -83,9 +83,9 @@
                                         </li>
                                     @endforeach
                                 </ul>
-                                <div class="checkout__order__subtotal">{{ __('messages.money-goods') }} <span>{{Cart::priceTotal(0, 3)}} <sup>{{ __('messages.a-vnđ') }}</sup></span>
+                                <div class="checkout__order__subtotal">{{ __('messages.money-goods') }} <span>{{Cart::priceTotal(ZERO, THREE)}} <sup>{{ __('messages.a-vnđ') }}</sup></span>
                                 </div>
-                                <div class="checkout__order__subtotal">{{ __('messages.transport-fee') }} <span>{{Cart::tax(0, 3)}} <sup>{{ __('messages.a-vnđ') }}</sup></span>
+                                <div class="checkout__order__subtotal">{{ __('messages.transport-fee') }} <span>{{Cart::tax(ZERO, THREE)}} <sup>{{ __('messages.a-vnđ') }}</sup></span>
                                 </div>
                                 @if($discount)
                                     <div class="checkout__order__subtotal">{{ __('messages.a-discount') }} <span>- {{number_format($discount->price)}} <sup>{{ __('messages.a-vnđ') }}</sup></span>
@@ -95,7 +95,7 @@
                                     <div class="checkout__order__subtotal">{{ __('messages.total-payment') }} <span>{{number_format($total_price)}} <sup>{{ __('messages.a-vnđ') }}</sup></span>
                                     </div>
                                 @else
-                                    <div class="checkout__order__subtotal">{{ __('messages.total-payment') }} <span>{{ Cart::total(0, 3)}} <sup>{{ __('messages.a-vnđ') }}</sup></span>
+                                    <div class="checkout__order__subtotal">{{ __('messages.total-payment') }} <span>{{ Cart::total(ZERO, THREE)}} <sup>{{ __('messages.a-vnđ') }}</sup></span>
                                     </div>
                                 @endif
                             </div>

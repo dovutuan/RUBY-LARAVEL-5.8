@@ -22,13 +22,13 @@ class CartController extends Controller
         }
         $price = array_sum($price);
         switch ($price) {
-            case($price <= 10000) :
+            case($price <= TEN_THOUSAND) :
                 Cart::setGlobalTax(SIX);
                 break;
-            case($price > 10000 && $price <= 100000) :
+            case($price > TEN_THOUSAND && $price <= ONE_HUNDRED_THOUSAND) :
                 Cart::setGlobalTax(FOUR);
                 break;
-            case($price > 100000 && $price <= 1000000) :
+            case($price > ONE_HUNDRED_THOUSAND && $price <= ONE_MILLION) :
                 Cart::setGlobalTax(TWO);
                 break;
             default:

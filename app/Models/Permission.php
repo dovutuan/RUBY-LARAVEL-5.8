@@ -22,7 +22,7 @@ class Permission extends Model
         } else {
             $roles = self::paginate($paginate);
         }
-        if ($roles->count() > 0) {
+        if ($roles->count() > ZERO) {
             return $roles;
         } else {
             throw new \Exception(__('messages.no-data', ['value' => $key]));

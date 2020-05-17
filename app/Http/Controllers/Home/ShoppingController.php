@@ -17,8 +17,8 @@ class ShoppingController extends Controller
         $product = Product::findOrFail($id);
         $option_product = OptionProduct::where('id', $option)->where('product_id', $product->id)->first();
         if ($product && $option_product) {
-            $sale = $product->sale ? $product->sale->sale : 0;
-            $price = $product->sale ? $option_product->price * (100 - $sale) / 100 : $option_product->price;
+            $sale = $product->sale ? $product->sale->sale : ZERO;
+            $price = $product->sale ? $option_product->price * (ONE_HUNDRED - $sale) / ONE_HUNDRED : $option_product->price;
             Cart::add([
                 'id' => $id,
                 'name' => $product->name,

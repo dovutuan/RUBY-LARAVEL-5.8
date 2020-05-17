@@ -54,12 +54,12 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     protected $changeStatus = [
-        1 => [
+        ONE => [
             'name' => 'Active',
             'class' => 'btn-primary',
             'check' => 'checked',
         ],
-        0 => [
+        ZERO => [
             'name' => 'Inactive',
             'class' => 'btn-danger',
             'check' => '',
