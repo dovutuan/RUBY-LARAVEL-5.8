@@ -39,6 +39,11 @@ class Bill extends Model
         return $this->belongsTo(Discount::class, 'discount_id', 'id');
     }
 
+    public function billDetail()
+    {
+        return $this->hasMany(BillDetail::class, 'bill_id', 'id');
+    }
+
     protected $changeStatus = [
         ZERO => [
             'name' => 'Chưa tiếp nhận đơn hàng',

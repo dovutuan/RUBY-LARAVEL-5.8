@@ -10,7 +10,7 @@ class BillController extends Controller
 {
     function __construct()
     {
-        $this->middleware('permission:bill-list|bill-edit', ['only' => ['index']]);
+        $this->middleware('permission:bill-list|bill-edit', ['only' => ['index', 'changeStatus']]);
         $this->middleware('permission:bill-create', ['only' => ['index', 'store']]);
         $this->middleware('permission:bill-edit', ['only' => ['edit', 'update']]);
         $this->middleware('permission:bill-detail', ['only' => ['detail']]);
@@ -33,5 +33,32 @@ class BillController extends Controller
         } catch (\Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
         }
+    }
+
+    public function changeStatus($id)
+    {
+        $bill = Bill::findOrFail($id);
+        switch ($bill->status) {
+            case ZERO :
+                $bill->update(['status' => ONE]);
+                break;
+            case ONE :
+                $bill->update(['status' => TWO]);
+                break;
+            case TWO :
+                $bill->update(['status' => THREE]);
+                break;
+        }
+        return back()->with('success', __('messages.update-successfully'));
+    }
+
+    public function detail($id)
+    {
+        $bill = Bill::findOrFail($id);
+        $data = [
+            'bill' => $bill,
+        ];
+        return view('admin.bill.show', $data);
+
     }
 }

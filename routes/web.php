@@ -86,6 +86,7 @@ Route::group(['middleware' => 'auth'], function () {
                 Route::group(['prefix' => 'bill'], function () {
                     Route::get('', 'BillController@index')->name('list.bill');
                     Route::get('detail/{id}', 'BillController@detail')->name('detail.bill');
+                    Route::get('change-status/{id}', 'BillController@changeStatus')->name('change.status.bill');
                 });
             });
         });

@@ -23,4 +23,19 @@ class BillDetail extends Model
     use SoftDeletes;
     protected $table = 'bill_details';
     protected $fillable = ['bill_id', 'product_id', 'species_id', 'amount', 'qty', 'price', 'created_by', 'updated_by', 'deleted_by', 'created_at', 'updated_at'];
+
+    public function products()
+    {
+        return $this->belongsTo(Product::class, 'product_id', 'id');
+    }
+
+    public function bills()
+    {
+        return $this->belongsTo(Bill::class, 'bill_id', 'id');
+    }
+
+    public function species()
+    {
+        return $this->belongsTo(Species::class, 'species_id', 'id');
+    }
 }

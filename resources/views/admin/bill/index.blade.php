@@ -66,7 +66,12 @@
                                                             <sup>{{ __('messages.a-vnđ') }}</sup></b></li>
                                                 </ul>
                                             </td>
-                                            <td><lable class="badge {{ $bill->getStatus($bill->status)['class'] }}">{{ $bill->getStatus($bill->status)['name'] }}</lable></td>
+                                            <td>
+                                                <a href="{{route('change.status.bill', $bill->id)}}">
+                                                    <lable
+                                                        class="badge {{ $bill->getStatus($bill->status)['class'] }}">{{ $bill->getStatus($bill->status)['name'] }}</lable>
+                                                </a>
+                                            </td>
                                             <td>{{$bill->created_at->format('H:i:s d-m-Y')}}</td>
                                             <td class="text-left">
                                                 @can('bill-detail')
