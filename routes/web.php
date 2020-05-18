@@ -95,6 +95,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::group(['namespace' => 'Home'], function () {
             Route::get('home', 'HomeController@index')->name('home');
             Route::get('detail/{id}', 'HomeController@detailProduct')->name('detail-product');
+            Route::post('review/{id}', 'HomeController@reviewProduct')->name('review-product');
             Route::get('heart/{id}', 'HomeController@heart')->name('heart-product');
             Route::get('search', 'HomeController@search')->name('search');
             Route::get('pay', 'CheckoutController@checkOut')->name('checkOut');
@@ -108,7 +109,7 @@ Route::group(['middleware' => 'auth'], function () {
             });
         });
 
-        //
+        //cart
         Route::group(['namespace' => 'Home'], function () {
             Route::group(['prefix' => 'cart'], function () {
                 Route::get('', 'CartController@index')->name('cart');

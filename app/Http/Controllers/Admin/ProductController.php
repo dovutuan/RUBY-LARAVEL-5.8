@@ -90,13 +90,13 @@ class ProductController extends Controller
                 $listOptionProduct = [];
                 $price = $request->input('price');
                 $amount = $request->input('amount');
-                foreach ($request->input('specie_id') as $key => $species_id) {
+                foreach ($request->input('specie_id') as $key => $specie_id) {
                     $listOptionProduct[] = [
                         'product_id' => $product->id,
                         'supplier_id' => $request->input('supplier_id'),
                         'price' => $price[$key],
                         'amount' => $amount[$key],
-                        'species_id' => $species_id,
+                        'species_id' => $specie_id,
                     ];
                 }
                 OptionProduct::insert($listOptionProduct);

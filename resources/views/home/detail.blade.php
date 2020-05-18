@@ -45,6 +45,11 @@
                         <div class="product__details__text">
                             <h3>{{$product->name}}</h3>
                             <div class="product__details__rating">
+                                <div class="fb-like" data-href="{{env('APP_URL_NAME_DETAIL')}}{{$product->id}}"
+                                     data-width="" data-layout="box_count" data-action="like" data-size="small"
+                                     data-share="true"></div>
+                            </div>
+                            <div class="product__details__rating">
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
@@ -112,7 +117,7 @@
                     <div class="product__details__tab">
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"
+                                <a class="nav-link" data-toggle="tab" href="#tabs-1" role="tab"
                                    aria-selected="true">{{ __('messages.description') }}</a>
                             </li>
                             <li class="nav-item">
@@ -120,12 +125,12 @@
                                    aria-selected="false">{{ __('messages.comment-facebook') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab"
+                                <a class="nav-link active" data-toggle="tab" href="#tabs-3" role="tab"
                                    aria-selected="false">{{ __('messages.reviews') }}</a>
                             </li>
                         </ul>
                         <div class="tab-content">
-                            <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                            <div class="tab-pane" id="tabs-1" role="tabpanel">
                                 <div class="product__details__tab__desc">
                                     <h6>{{ __('messages.a-content') }}</h6>
                                     {!! $product->content !!}
@@ -139,8 +144,62 @@
                                          data-width="100%" data-numposts="20"></div>
                                 </div>
                             </div>
-                            <div class="tab-pane" id="tabs-3" role="tabpanel">
+                            <div class="tab-pane active" id="tabs-3" role="tabpanel">
                                 <div class="product__details__tab__desc">
+                                    <div class="row">
+                                        <div class="col-md-7">
+                                            @foreach($product->rate as $rate)
+                                                <div class="review_list">
+                                                    <div class="review_item">
+                                                        <div class="media">
+                                                            <div class="d-flex">
+                                                                <img src="" alt="">
+                                                            </div>
+                                                            <div class="media-body">
+                                                                <h4>{{$rate->users->name}}</h4>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                            </div>
+                                                        </div>
+                                                        <p class="text-area-white-space">{{$rate->content}}</p>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div class="review_box">
+                                                <form action="{{route('review-product', $product->id)}}"
+                                                      class="form-contact form-review mt-3" method="post">
+                                                    @csrf
+                                                    <h4>Thêm đánh giá</h4>
+                                                    <div class="form-group">
+                                                        <p>Đánh giá của bạn:</p>
+                                                        <ul class="list list_star">
+                                                            @for($i = ONE; $i <= FIVE; $i++)
+                                                                <li><i class="fa fa-star" data-key="{{$i}}"></i></li>
+                                                            @endfor
+                                                            <span class="rsStar list_text"></span>
+                                                            <input type="hidden" value="" class="number_rating"
+                                                                   name="star">
+                                                        </ul>
+                                                    </div>
+                                                    <div class="form-group">
+                                        <textarea class="form-control different-control w-100 content" name="content"
+                                                  placeholder="Enter Message"></textarea>
+                                                    </div>
+                                                    <div class="form-group text-center text-md-right mt-3">
+                                                        <button type="submit"
+                                                                class="btn btn-xs btn-outline-success">Đánh
+                                                            giá
+                                                        </button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -160,68 +219,146 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="img/product/product-1.jpg">
-                            <ul class="product__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="product__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
+                {{--                <div class="product__discount">--}}
+                {{--                    <div class="product__discount__slider owl-carousel">--}}
+                {{--                        @foreach($product_category as $product)--}}
+                {{--                            <div class="col-lg-4">--}}
+                {{--                                <div class="product__discount__item">--}}
+                {{--                                    <div class="product__discount__item__pic set-bg"--}}
+                {{--                                         data-setbg="{{$product->image}}">--}}
+                {{--                                        <div class="product__discount__percent">-20%</div>--}}
+                {{--                                        <ul class="product__item__pic__hover">--}}
+                {{--                                            <li><a href="{{route('detail-product', $product->id)}}"><i class="fa fa-eye"></i></a></li>--}}
+                {{--                                            <li><a href="{{route('heart-product', $product->id)}}"><i class="fa fa-heart"></i></a></li>--}}
+                {{--                                        </ul>--}}
+                {{--                                    </div>--}}
+                {{--                                    <div class="product__discount__item__text">--}}
+                {{--                                        <h5><a href="{{route('detail-product', $product->id)}}">{{$product->name}}</a></h5>--}}
+                {{--                                    </div>--}}
+                {{--                                </div>--}}
+                {{--                            </div>--}}
+                {{--                        @endforeach--}}
+                {{--                        <div class="col-lg-4">--}}
+                {{--                            <div class="product__discount__item">--}}
+                {{--                                <div class="product__discount__item__pic set-bg"--}}
+                {{--                                     data-setbg="img/product/discount/pd-2.jpg">--}}
+                {{--                                    <div class="product__discount__percent">-20%</div>--}}
+                {{--                                    <ul class="product__item__pic__hover">--}}
+                {{--                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>--}}
+                {{--                                        <li><a href="#"><i class="fa fa-retweet"></i></a></li>--}}
+                {{--                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>--}}
+                {{--                                    </ul>--}}
+                {{--                                </div>--}}
+                {{--                                <div class="product__discount__item__text">--}}
+                {{--                                    <span>Vegetables</span>--}}
+                {{--                                    <h5><a href="#">Vegetables’package</a></h5>--}}
+                {{--                                    <div class="product__item__price">$30.00 <span>$36.00</span></div>--}}
+                {{--                                </div>--}}
+                {{--                            </div>--}}
+                {{--                        </div>--}}
+                {{--                        <div class="col-lg-4">--}}
+                {{--                            <div class="product__discount__item">--}}
+                {{--                                <div class="product__discount__item__pic set-bg"--}}
+                {{--                                     data-setbg="img/product/discount/pd-3.jpg">--}}
+                {{--                                    <div class="product__discount__percent">-20%</div>--}}
+                {{--                                    <ul class="product__item__pic__hover">--}}
+                {{--                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>--}}
+                {{--                                        <li><a href="#"><i class="fa fa-retweet"></i></a></li>--}}
+                {{--                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>--}}
+                {{--                                    </ul>--}}
+                {{--                                </div>--}}
+                {{--                                <div class="product__discount__item__text">--}}
+                {{--                                    <span>Dried Fruit</span>--}}
+                {{--                                    <h5><a href="#">Mixed Fruitss</a></h5>--}}
+                {{--                                    <div class="product__item__price">$30.00 <span>$36.00</span></div>--}}
+                {{--                                </div>--}}
+                {{--                            </div>--}}
+                {{--                        </div>--}}
+                {{--                        <div class="col-lg-4">--}}
+                {{--                            <div class="product__discount__item">--}}
+                {{--                                <div class="product__discount__item__pic set-bg"--}}
+                {{--                                     data-setbg="img/product/discount/pd-4.jpg">--}}
+                {{--                                    <div class="product__discount__percent">-20%</div>--}}
+                {{--                                    <ul class="product__item__pic__hover">--}}
+                {{--                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>--}}
+                {{--                                        <li><a href="#"><i class="fa fa-retweet"></i></a></li>--}}
+                {{--                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>--}}
+                {{--                                    </ul>--}}
+                {{--                                </div>--}}
+                {{--                                <div class="product__discount__item__text">--}}
+                {{--                                    <span>Dried Fruit</span>--}}
+                {{--                                    <h5><a href="#">Raisin’n’nuts</a></h5>--}}
+                {{--                                    <div class="product__item__price">$30.00 <span>$36.00</span></div>--}}
+                {{--                                </div>--}}
+                {{--                            </div>--}}
+                {{--                        </div>--}}
+                {{--                        <div class="col-lg-4">--}}
+                {{--                            <div class="product__discount__item">--}}
+                {{--                                <div class="product__discount__item__pic set-bg"--}}
+                {{--                                     data-setbg="img/product/discount/pd-5.jpg">--}}
+                {{--                                    <div class="product__discount__percent">-20%</div>--}}
+                {{--                                    <ul class="product__item__pic__hover">--}}
+                {{--                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>--}}
+                {{--                                        <li><a href="#"><i class="fa fa-retweet"></i></a></li>--}}
+                {{--                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>--}}
+                {{--                                    </ul>--}}
+                {{--                                </div>--}}
+                {{--                                <div class="product__discount__item__text">--}}
+                {{--                                    <span>Dried Fruit</span>--}}
+                {{--                                    <h5><a href="#">Raisin’n’nuts</a></h5>--}}
+                {{--                                    <div class="product__item__price">$30.00 <span>$36.00</span></div>--}}
+                {{--                                </div>--}}
+                {{--                            </div>--}}
+                {{--                        </div>--}}
+                {{--                        <div class="col-lg-4">--}}
+                {{--                            <div class="product__discount__item">--}}
+                {{--                                <div class="product__discount__item__pic set-bg"--}}
+                {{--                                     data-setbg="img/product/discount/pd-6.jpg">--}}
+                {{--                                    <div class="product__discount__percent">-20%</div>--}}
+                {{--                                    <ul class="product__item__pic__hover">--}}
+                {{--                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>--}}
+                {{--                                        <li><a href="#"><i class="fa fa-retweet"></i></a></li>--}}
+                {{--                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>--}}
+                {{--                                    </ul>--}}
+                {{--                                </div>--}}
+                {{--                                <div class="product__discount__item__text">--}}
+                {{--                                    <span>Dried Fruit</span>--}}
+                {{--                                    <h5><a href="#">Raisin’n’nuts</a></h5>--}}
+                {{--                                    <div class="product__item__price">$30.00 <span>$36.00</span></div>--}}
+                {{--                                </div>--}}
+                {{--                            </div>--}}
+                {{--                        </div>--}}
+                {{--                    </div>--}}
+                {{--                </div>--}}
+                @foreach($product_category as $product)
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="product__discount__item">
+                            <div class="product__discount__item__pic set-bg"
+                                 data-href="{{route('detail-product', $product->id)}}"
+                                 data-setbg="{{$product->image}}">
+                                @if($product->sale)
+                                    <div class="product__discount__percent">- {{$product->sale->sale}} %</div>
+                                @endif
+                                <ul class="product__item__pic__hover">
+                                    <li><a href="{{route('detail-product', $product->id)}}"><i
+                                                class="fa fa-eye"></i></a></li>
+                                    <li><a href="{{route('heart-product', $product->id)}}"><i
+                                                class="fa fa-heart"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="product__discount__item__text">
+                                <h6><a href="{{route('detail-product', $product->id)}}">{{$product->name}}</a></h6>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="img/product/product-2.jpg">
-                            <ul class="product__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="product__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="img/product/product-3.jpg">
-                            <ul class="product__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="product__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="img/product/product-7.jpg">
-                            <ul class="product__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="product__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
+
+
+@section('script')
+    <script src="{{ asset('theme_home_new') }}/js/rating.js"></script>
+@stop
 
 @endsection

@@ -5,10 +5,13 @@ namespace App\Http\Controllers\Home;
 use App\Models\Category;
 use App\Models\OptionProduct;
 use App\Models\Product;
+use App\Models\Rate;
 use App\Models\Species;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -40,11 +43,13 @@ class HomeController extends Controller
         $categories = Category::loadCategories();
         $allCategories = Category::loadAllCategories();
         $product = Product::findOrFail($id);
+        $product_category = Product::where('category_id', $product->category_id)->where('id', '!=', $product->id)->inRandomOrder()->take(EIGHT)->get();
         $product->update(['views' => $product->views + ONE]);
         $data = [
             'categories' => $categories,
             'allCategories' => $allCategories,
-            'product' => $product
+            'product' => $product,
+            'product_category' => $product_category
         ];
         return view('home.detail', $data);
     }
@@ -81,5 +86,24 @@ class HomeController extends Controller
             'productNews' => $productNews
         ];
         return view('home.search', $data);
+    }
+
+    public function reviewProduct(Request $request, $id)
+    {
+        try {
+            DB::beginTransaction();
+            $product = Product::findOrFail($id);
+            Rate::create([
+                'product_id' => $product->id,
+                'user_id' => Auth::user()->id,
+                'star' => $request->input('star'),
+                'content' => $request->input('content'),
+            ]);
+            DB::commit();
+            return back();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->with('error', $e->getMessage());
+        }
     }
 }
