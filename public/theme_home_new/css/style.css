@@ -1880,6 +1880,7 @@ ol {
 
 .product__details__tab .product__details__tab__desc p {
     color: #666666;
+    margin-left: 12%;
 }
 
 /*---------------------
@@ -3833,4 +3834,66 @@ ol {
 
 .text-area-white-space {
     white-space: break-spaces;
+}
+
+.total_rate .box_total {
+    background: #ecfdff;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    /*border: 1px solid #dddddd;*/
+}
+
+.total_rate .box_total h4 {
+    color: #ff3368;
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.total_rate .box_total h5 {
+    color: #2a2a2a;
+    margin-bottom: 0px;
+    font-size: 24px;
+}
+
+.total_rate .box_total h6 {
+    color: #2a2a2a;
+    margin-bottom: 0px;
+    font-size: 14px;
+    color: #797979;
+    font-weight: normal;
+}
+
+.total_rate .rating_list {
+    margin-bottom: 30px;
+}
+
+.total_rate .rating_list h3 {
+    font-size: 18px;
+    color: #2a2a2a;
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.total_rate .rating_list .list li a {
+    font-size: 14px;
+    color: #797979;
+}
+
+.total_rate .rating_list .list li a i {
+    color: #fbd600;
+}
+
+.total_rate .rating_list .list li:nth-child a i:last-child {
+    color: #eeeeee;
+}
+
+.image-review {
+    width: 10% !important;
+    margin-right: 2%;
+}
+
+.review_list {
+    margin-top: 5%;
 }

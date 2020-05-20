@@ -100,6 +100,10 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('search', 'HomeController@search')->name('search');
             Route::get('pay', 'CheckoutController@checkOut')->name('checkOut');
             Route::post('pay', 'CheckoutController@pay');
+
+            Route::get('checkout-payment', 'PaymentController@index')->name('checkout-payment');
+            Route::post('/checkout', 'PaymentController@createPayment')->name('create-payment');
+            Route::get('/confirm', 'PaymentController@confirmPayment')->name('confirm-payment');
         });
 
         //shopping

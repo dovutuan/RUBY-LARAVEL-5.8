@@ -78,7 +78,7 @@
                                     <span>{{ __('messages.a-total') }}</span></div>
                                 <ul>
                                     @foreach($carts as $cart)
-                                        <li>{{$cart->name}}
+                                        <li class="white-space-nowrap">{{$cart->name}}
                                             <span>{{$cart->options->amount}} <sup>{{$cart->options->species}}</sup> - {{number_format($cart->price)}} <sup>{{ __('messages.a-vnđ') }}</sup> x {{$cart->qty}} </span>
                                         </li>
                                     @endforeach
@@ -98,6 +98,14 @@
                                     <div class="checkout__order__subtotal">{{ __('messages.total-payment') }} <span>{{ Cart::total(ZERO, THREE)}} <sup>{{ __('messages.a-vnđ') }}</sup></span>
                                     </div>
                                 @endif
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <a href="{{route('checkout-payment')}}"><img src="https://www.paypalobjects.com/images/shared/paypal-logo-129x32.svg"></a>
+                                    </div>
+                                    <div class="col-md-4"><img src="https://lh3.googleusercontent.com/proxy/lBwIcX5v0utrDAKhqhUmPQvvzoNyktLRlgMhGsWUVWLqGQNgWWNBaFECtzESTQ5rPXgqNNRsz5C6QbZ1oY7eZ6T1mgIz"></div>
+                                    <div class="col-md-4"><img src="https://pluspng.com/img-png/mastercard-hd-png-mastercard-png-picture-1456.png"></div>
+                                </div>
+
                             </div>
                         </div>
                     </div>

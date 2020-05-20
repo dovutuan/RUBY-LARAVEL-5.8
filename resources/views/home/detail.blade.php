@@ -147,29 +147,34 @@
                             <div class="tab-pane active" id="tabs-3" role="tabpanel">
                                 <div class="product__details__tab__desc">
                                     <div class="row">
-                                        <div class="col-md-7">
-                                            @foreach($product->rate as $rate)
-                                                <div class="review_list">
+                                        <div class="col-lg-7 col-md-7">
+                                            <div class="total_rate">
+                                                <div class="box_total">
+                                                    <h5>Overall</h5>
+                                                    <h4>{{$point}}</h4>
+                                                    <h6>({{$total_rate}} Reviews)</h6>
+                                                </div>
+                                            </div>
+                                            <div class="review_list">
+                                                @foreach($rates as $rate)
                                                     <div class="review_item">
                                                         <div class="media">
-                                                            <div class="d-flex">
-                                                                <img src="" alt="">
-                                                            </div>
+                                                            <img class="image-review"
+                                                                 src="https://ptetutorials.com/images/user-profile.png"
+                                                                 alt=""/>
                                                             <div class="media-body">
                                                                 <h4>{{$rate->users->name}}</h4>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
+                                                                @for($i = 1; $i <= $rate->star; $i++)
+                                                                    <i class="fa fa-star"></i>
+                                                                @endfor
                                                             </div>
                                                         </div>
                                                         <p class="text-area-white-space">{{$rate->content}}</p>
                                                     </div>
-                                                </div>
-                                            @endforeach
+                                                @endforeach
+                                            </div>
                                         </div>
-                                        <div class="col-md-5">
+                                        <div class="col-md-5 col-lg-5">
                                             <div class="review_box">
                                                 <form action="{{route('review-product', $product->id)}}"
                                                       class="form-contact form-review mt-3" method="post">
@@ -187,8 +192,9 @@
                                                         </ul>
                                                     </div>
                                                     <div class="form-group">
-                                        <textarea class="form-control different-control w-100 content" name="content"
-                                                  placeholder="Enter Message"></textarea>
+                                                        <textarea class="form-control different-control w-100 content"
+                                                                  name="content" rows="30" cols="30"
+                                                                  placeholder="Enter Message"></textarea>
                                                     </div>
                                                     <div class="form-group text-center text-md-right mt-3">
                                                         <button type="submit"

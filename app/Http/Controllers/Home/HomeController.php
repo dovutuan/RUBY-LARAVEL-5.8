@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Http\Requests\RateRequest;
 use App\Models\Category;
 use App\Models\OptionProduct;
 use App\Models\Product;
@@ -43,13 +44,20 @@ class HomeController extends Controller
         $categories = Category::loadCategories();
         $allCategories = Category::loadAllCategories();
         $product = Product::findOrFail($id);
+        $rates = $product->rate->take(EIGHT);
+        $total_star = $rates->sum('star');
+        $total_rate = $rates->count();
+        $point = ($total_star == 0 && $total_rate == 0) ? 0 : round($total_star / $total_rate);
         $product_category = Product::where('category_id', $product->category_id)->where('id', '!=', $product->id)->inRandomOrder()->take(EIGHT)->get();
         $product->update(['views' => $product->views + ONE]);
         $data = [
             'categories' => $categories,
             'allCategories' => $allCategories,
             'product' => $product,
-            'product_category' => $product_category
+            'product_category' => $product_category,
+            'point' => $point,
+            'rates' => $rates,
+            'total_rate' => $total_rate,
         ];
         return view('home.detail', $data);
     }
@@ -88,7 +96,7 @@ class HomeController extends Controller
         return view('home.search', $data);
     }
 
-    public function reviewProduct(Request $request, $id)
+    public function reviewProduct(RateRequest $request, $id)
     {
         try {
             DB::beginTransaction();
