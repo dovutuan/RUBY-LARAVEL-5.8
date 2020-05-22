@@ -100,9 +100,9 @@
                                 @endif
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <a href="{{route('checkout-payment')}}"><img src="https://www.paypalobjects.com/images/shared/paypal-logo-129x32.svg"></a>
+                                        <a target="_blank" href="{{route('checkout-payment')}}"><img src="https://i0.wp.com/www.ecommerce-nation.com/wp-content/uploads/2018/01/paypal.png?fit=1000%2C600&ssl=1"></a>
                                     </div>
-                                    <div class="col-md-4"><img src="https://lh3.googleusercontent.com/proxy/lBwIcX5v0utrDAKhqhUmPQvvzoNyktLRlgMhGsWUVWLqGQNgWWNBaFECtzESTQ5rPXgqNNRsz5C6QbZ1oY7eZ6T1mgIz"></div>
+                                    <div class="col-md-4"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Visa.svg/1200px-Visa.svg.png"></div>
                                     <div class="col-md-4"><img src="https://pluspng.com/img-png/mastercard-hd-png-mastercard-png-picture-1456.png"></div>
                                 </div>
 
