@@ -50,12 +50,10 @@
                                      data-share="true"></div>
                             </div>
                             <div class="product__details__rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-half-o"></i>
-                                <span>(18 reviews)</span>
+                                @for($i = ONE; $i <= $point; $i++)
+                                    <i class="fa fa-star"></i>
+                                @endfor
+                                    <span>({{$total_rate}} {{ __('messages.innings') }})</span>
                             </div>
                             @if($product->sale)
                                 <div class="product__details__price">
@@ -101,7 +99,7 @@
                                     <span>{{$product->views}} <sup>{{ __('messages.innings') }}</sup></span></li>
                                 <li><b>{{ __('messages.like') }}</b>
                                     <span>{{$product->likes}} <sup>{{ __('messages.innings') }}</sup></span></li>
-                                <li><b>Share on</b>
+                                <li><b>{{ __('messages.share-on') }}</b>
                                     <div class="share">
                                         <a href="#"><i class="fa fa-facebook"></i></a>
                                         <a href="#"><i class="fa fa-twitter"></i></a>
@@ -150,9 +148,9 @@
                                         <div class="col-lg-7 col-md-7">
                                             <div class="total_rate">
                                                 <div class="box_total">
-                                                    <h5>Overall</h5>
-                                                    <h4>{{$point}}</h4>
-                                                    <h6>({{$total_rate}} Reviews)</h6>
+                                                    <h5>{{ __('messages.overall') }}</h5>
+                                                    <h4>{{$point}} / {{FIVE}} <i class="fa fa-star"></i></h4>
+                                                    <h6>({{$total_rate}} {{ __('messages.innings') }})</h6>
                                                 </div>
                                             </div>
                                             <div class="review_list">
@@ -179,9 +177,9 @@
                                                 <form action="{{route('review-product', $product->id)}}"
                                                       class="form-contact form-review mt-3" method="post">
                                                     @csrf
-                                                    <h4>Thêm đánh giá</h4>
+                                                    <h4>{{ __('messages.add-a-review') }}</h4>
                                                     <div class="form-group">
-                                                        <p>Đánh giá của bạn:</p>
+                                                        <p class="margin-text-review">{{ __('messages.your-review:') }}</p>
                                                         <ul class="list list_star">
                                                             @for($i = ONE; $i <= FIVE; $i++)
                                                                 <li><i class="fa fa-star" data-key="{{$i}}"></i></li>
@@ -194,12 +192,11 @@
                                                     <div class="form-group">
                                                         <textarea class="form-control different-control w-100 content"
                                                                   name="content" rows="30" cols="30"
-                                                                  placeholder="Enter Message"></textarea>
+                                                                  placeholder="{{ __('messages.enter-content') }}"></textarea>
                                                     </div>
                                                     <div class="form-group text-center text-md-right mt-3">
                                                         <button type="submit"
-                                                                class="btn btn-xs btn-outline-success">Đánh
-                                                            giá
+                                                                class="btn btn-xs btn-outline-success">{{ __('messages.review') }}
                                                         </button>
                                                     </div>
                                                 </form>

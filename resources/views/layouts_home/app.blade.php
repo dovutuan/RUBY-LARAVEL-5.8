@@ -25,6 +25,8 @@
 
 @include('layouts_home.header')
 
+@include('layouts_home.alert')
+
 @yield('content')
 
 @include('layouts_home.footer')
@@ -62,10 +64,10 @@
 <script src="{{ asset('theme_home_new') }}/js/jquery.slicknav.js"></script>
 <script src="{{ asset('theme_home_new') }}/js/mixitup.min.js"></script>
 <script src="{{ asset('theme_home_new') }}/js/owl.carousel.min.js"></script>
+
 <script src="{{ asset('theme_home_new') }}/js/main.js"></script>
 
 @yield('script')
-
 </body>
 
 </html>

@@ -6,6 +6,7 @@ use App\Models\Bill;
 use App\Models\BillDetail;
 use App\Models\Category;
 use App\Models\Discount;
+use App\Models\Session;
 use Carbon\Carbon;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
@@ -18,35 +19,15 @@ class CheckoutController extends Controller
 {
     public function checkOut()
     {
+        $session_discount = Session::getSessionDiscount();
         $allCategories = Category::loadAllCategories();
-        $session_discount = session(md5('discount_code'));
         $carts = Cart::content();
 
-//        $data = [
-//            'allCategories' => $allCategories,
-//            'carts' => $carts,
-//        ];
-
-        if ($session_discount) {
-            $sellers = [];
-            foreach ($carts as $cart) {
-                $sellers[] = $cart->options->seller;
-            }
-            $sellers = array_unique($sellers);
-            foreach ($sellers as $seller) {
-                $date_now = Carbon::now()->format('Y-m-d');
-                $discount = Discount::where('code', $session_discount[ONE])->where('status', ONE)->where('amount', '>', ZERO)->where('created_by', $seller)->where('finish', '>=', $date_now)->first();
-            }
-            $total_price = str_replace(',', '', Cart::total(ZERO, THREE)) - $discount->price;
-            session()->push(md5('discount_code'), $total_price);
-
-//             array_push($data, ['discount' => $discount, 'total_price' => $total_price]);
-        }
         $data = [
             'allCategories' => $allCategories,
             'carts' => $carts,
-            'discount' => $discount,
-            'total_price' => $total_price
+            'discount_price' => $session_discount['discount_price'],
+            'total_price' => $session_discount['total_price']
         ];
         return view('home.checkout', $data);
     }
@@ -55,17 +36,20 @@ class CheckoutController extends Controller
     {
         try {
             DB::beginTransaction();
-            $session_discount = session(md5('discount_code'));
+            $session_discount = Session::getSessionDiscount();
             $carts = Cart::content();
+
             $bill = Bill::create([
                 'user_id' => Auth::user()->id,
+                'seller_id' => Auth::user()->id,
                 'created_by' => Auth::user()->id,
-                'price' => $session_discount[THREE],
+                'price' => $session_discount['total_price'],
                 'address' => $request->input('other_address'),
                 'note' => $request->input('note'),
-                'discount_id' => $session_discount[ZERO],
-                'discount_code' => $session_discount[ONE],
-                'discount_name' => $session_discount[TWO],
+                'discount_id' => $session_discount['discount_id'],
+                'discount_code' => $session_discount['discount_code'],
+                'discount_name' => $session_discount['discount_name'],
+                'discount_price' => $session_discount['discount_price'],
                 'tax_rate' => str_replace(',', '', Cart::tax(ZERO, THREE)),
             ]);
             if ($bill) {
@@ -83,16 +67,16 @@ class CheckoutController extends Controller
                     ]);
                 }
             }
-            $discount = Discount::where('code', $session_discount[ONE])->first();
+            $discount = Discount::where('id', $session_discount['discount_id'])->first();
             $discount->update([
-                'use' => $discount->use + ONE,
-                'amount' => $discount->amount - ONE,
+                'use' => $discount->use = $discount->use + ONE,
+                'amount' => $discount->amount = $discount->amount - ONE,
 
             ]);
             DB::commit();
             session()->forget(md5('discount_code'));
             Cart::destroy();
-            return redirect()->route('home');
+            return redirect()->route('home')->with('success', __('messages.order-success'));
         } catch (\Exception $e) {
             DB::rollBack();
             return redirect()->back()->with('error', $e->getMessage());

@@ -6,7 +6,6 @@
             <div class="col-12 mt-5">
                 <div class="card">
                     <div class="card-body">
-                        @include('layouts_admin.alert')
                         <div class="row">
                             <div class="col-md-12 text-left">
                                 <nav aria-label="breadcrumb">

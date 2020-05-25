@@ -95,6 +95,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::group(['namespace' => 'Home'], function () {
             Route::get('home', 'HomeController@index')->name('home');
             Route::get('detail/{id}', 'HomeController@detailProduct')->name('detail-product');
+            Route::post('detail/{id}', 'HomeController@reviewProduct');
             Route::post('review/{id}', 'HomeController@reviewProduct')->name('review-product');
             Route::get('heart/{id}', 'HomeController@heart')->name('heart-product');
             Route::get('search', 'HomeController@search')->name('search');

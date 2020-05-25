@@ -45,9 +45,8 @@ class HomeController extends Controller
         $allCategories = Category::loadAllCategories();
         $product = Product::findOrFail($id);
         $rates = $product->rate->take(EIGHT);
-        $total_star = $rates->sum('star');
         $total_rate = $rates->count();
-        $point = ($total_star == 0 && $total_rate == 0) ? 0 : round($total_star / $total_rate);
+        $point = round($product->rate->avg('star'));
         $product_category = Product::where('category_id', $product->category_id)->where('id', '!=', $product->id)->inRandomOrder()->take(EIGHT)->get();
         $product->update(['views' => $product->views + ONE]);
         $data = [
@@ -108,7 +107,7 @@ class HomeController extends Controller
                 'content' => $request->input('content'),
             ]);
             DB::commit();
-            return back();
+            return back()->with('success', __('messages.rate-successfully'));
         } catch (\Exception $e) {
             DB::rollBack();
             return redirect()->back()->with('error', $e->getMessage());

@@ -36,7 +36,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <h2>Featured Product</h2>
+                        <h2>{{ __('messages.featured-product') }}</h2>
                     </div>
                     <div class="featured__controls">
                         <ul>

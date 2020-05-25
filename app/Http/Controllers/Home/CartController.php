@@ -84,8 +84,12 @@ class CartController extends Controller
             $date_now = Carbon::now()->format('Y-m-d');
             $discount = Discount::where('code', $discount_code)->where('status', ONE)->where('amount', '>', ZERO)->where('created_by', $seller)->where('finish', '>=', $date_now)->first();
         }
-        session([md5('discount_code') => [$discount->id, $discount->code, $discount->name]]);
-        return redirect()->back()->with('success', __('messages.discount-empty'));
+        session([md5('discount_code') => [
+            'discount_id' => $discount->id,
+            'discount_code' => $discount->code,
+            'discount_name' => $discount->name
+        ]]);
+        return redirect()->back()->with('success', __('messages.discount-success'));
     }
 
 }

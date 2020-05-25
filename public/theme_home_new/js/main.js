@@ -178,7 +178,7 @@
         }
     });
     minamount.val((Intl.NumberFormat('en').format(rangeSlider.slider("values", 0))) + ' Vnđ');
-    maxamount.val((Intl.NumberFormat('en').format(rangeSlider.slider("values", 1)))  + ' Vnđ');
+    maxamount.val((Intl.NumberFormat('en').format(rangeSlider.slider("values", 1))) + ' Vnđ');
 
     /*--------------------------
         Select
@@ -222,3 +222,9 @@
     });
 
 })(jQuery);
+
+$(document).ready(function () {
+    // $('.toast').toast({delay: 3000});
+    // $(".toast").toast({ autohide: true });
+    $('.toast').toast('show');
+});

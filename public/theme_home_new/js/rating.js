@@ -24,23 +24,24 @@ $(function () {
         });
         $(".list_text").text('').text(listRatingText[$this.attr('data-key')]).show();
     });
-    // $(".js_rating_product").click(function (e) {
-    //     event.preventDefault();
-    //     let content = $(".content").val();
-    //     console.log(content)
-    //     let number = $(".number_rating").val();
-    //     console.log(number)
-    //     let url = $(this).attr('href');
-    //     if (content && number) {
-    //         $.ajax({
-    //             url: url,
-    //             type: 'POST',
-    //             data: {
-    //                 number: number,
-    //                 content: content
-    //             }
-    //         }).done(function (result) {
-    //         });
-    //     }
-    // });
+    $(".js_rating_product").click(function (e) {
+        event.preventDefault();
+        let content = $(".content").val();
+        console.log(content)
+        let number = $(".number_rating").val();
+        console.log(number)
+        let url = $(this).attr('href');
+        if (content && number) {
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: {
+                    star: number,
+                    content: content
+                }
+            }).done(function (result) {
+            });
+            location.reload();
+        }
+    });
 });

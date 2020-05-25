@@ -37,8 +37,13 @@
 </div>
 <div class="horizontal-main-wrapper">
     @include('layouts_admin.main_header')
+
     @include('layouts_admin.header')
+
+    @include('layouts_admin.alert')
+
     @yield('content')
+
 </div>
 <script>
     $('#select-state').selectize({

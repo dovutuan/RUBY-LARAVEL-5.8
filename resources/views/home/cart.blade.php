@@ -19,7 +19,6 @@
 
     <section class="shoping-cart spad">
         <div class="container">
-            @include('layouts_home.alert')
             <div class="row">
                 <div class="col-lg-12">
                     <div class="shoping__cart__table">
@@ -86,11 +85,11 @@
                 <div class="col-lg-6">
                     <div class="shoping__continue">
                         <div class="shoping__discount">
-                            <h5>Discount Codes</h5>
+                            <h5>{{ __('messages.a-discount') }}</h5>
                             <form action="{{route('check-discount')}}" method="POST">
                                 @csrf
-                                <input type="text" placeholder="Enter your coupon code" name="discount">
-                                <button type="submit" class="site-btn">APPLY COUPON</button>
+                                <input type="text" placeholder="{{ __('messages.enter-discount-code') }}" name="discount">
+                                <button type="submit" class="site-btn">{{ __('messages.APPLY') }}</button>
                             </form>
                         </div>
                     </div>
