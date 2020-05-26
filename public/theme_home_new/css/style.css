@@ -3808,7 +3808,8 @@ ol {
 
 .review_box .list li .rating_active {
     display: inline-block;
-    color: #fbd600
+    color: #fbd600;
+    font-size: 22px;
 }
 
 .review_box .contact_form {
