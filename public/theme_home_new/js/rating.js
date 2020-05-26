@@ -11,7 +11,7 @@ $(function () {
         3: 'Bình thường',
         4: 'Tốt',
         5: 'Rất tốt',
-    }
+    };
     listStart.mouseover(function () {
         let $this = $(this);
         let number = $this.attr('data-key');

@@ -16,7 +16,8 @@ class Session extends Model
         $discount_code = null;
         $discount_name = null;
         $discount_price = null;
-        $total_price = ZERO;
+        $total_price = str_replace(',', '', Cart::total(ZERO, THREE));
+        $money_paid = session(md5('totalPricePayPal')) ? session(md5('totalPricePayPal')) : null;
 
         if ($session_discount) {
             $sellers = [];
@@ -32,8 +33,11 @@ class Session extends Model
                 $discount = Discount::where('code', $session_discount['discount_code'])->where('status', ONE)->where('amount', '>', ZERO)->where('created_by', $seller)->where('finish', '>=', $date_now)->first();
                 $discount_price = $discount->price;
             }
-            $total_price = str_replace(',', '', Cart::total(ZERO, THREE)) - $discount->price > ZERO ? str_replace(',', '', Cart::total(ZERO, THREE)) - $discount->price : ZERO;
+            $total_price = $discount_price && $total_price - $discount->price;
+
+            $total_price = ($total_price <= ZERO) && $total_price = ZERO;
         }
+        $total_price = $total_price - $money_paid;
 
         $data = [
             'discount_id' => $discount_id,
@@ -41,6 +45,7 @@ class Session extends Model
             'discount_code' => $discount_code,
             'discount_name' => $discount_name,
             'total_price' => $total_price,
+            'money_paid' => $money_paid,
         ];
         return $data;
     }

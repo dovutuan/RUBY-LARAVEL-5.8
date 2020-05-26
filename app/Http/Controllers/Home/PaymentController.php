@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Http\Requests\PayPalRequest;
+use App\Models\Session;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use PayPal\Rest\ApiContext;
@@ -38,14 +40,13 @@ class PaymentController extends Controller
     }
 
 
-    public function createPayment(Request $request)
+    public function createPayment(PayPalRequest $request)
     {
-        $request->validate(['amount' => 'required|numeric']);
         $pay_amount = $request->amount;
         $payer = new Payer();
         $payer->setPaymentMethod('paypal');
         $item = new Item();
-        $item->setName('Paypal Payment')->setCurrency('USD')->setQuantity(1)->setPrice($pay_amount);
+        $item->setName('Paypal Payment')->setCurrency('USD')->setQuantity(ONE)->setPrice($pay_amount);
         $itemList = new ItemList();
         $itemList->setItems(array($item));
         $amount = new Amount();
@@ -62,9 +63,9 @@ class PaymentController extends Controller
         try {
             $payment->create($this->api_context);
         } catch (PayPalConnectionException $ex) {
-            return back()->withError('Some error occur, sorry for inconvenient');
+            return redirect()->route('checkout')->with('error', __('messages.some-error-occur'));
         } catch (Exception $ex) {
-            return back()->withError('Some error occur, sorry for inconvenient');
+            return redirect()->route('checkout')->with('error', __('messages.some-error-occur'));
         }
         foreach ($payment->getLinks() as $link) {
             if ($link->getRel() == 'approval_url') {
@@ -75,19 +76,27 @@ class PaymentController extends Controller
         if (isset($redirect_url)) {
             return redirect($redirect_url);
         }
-        return redirect()->back()->withError('Unknown error occurred');
+        return redirect()->route('checkout')->with('error', __('messages.unknown-error-occurred'));
     }
 
     public function confirmPayment(Request $request)
     {
-        if (empty($request->query('paymentId')) || empty($request->query('PayerID')) || empty($request->query('token')))
-            return redirect()->route('checkout-payment')->withError('Payment was not successful.');
-        $payment = Payment::get($request->query('paymentId'), $this->api_context);
-        $execution = new PaymentExecution();
-        $execution->setPayerId($request->query('PayerID'));
-        $result = $payment->execute($execution, $this->api_context);
-        if ($result->getState() != 'approved')
-            return redirect()->route('checkout-payment')->withError('Payment was not successful.');
-        return redirect()->route('checkout-payment')->withSuccess('Payment made successfully');
+        try {
+            $price_pay_pal = Session::getSessionDiscount()['money_paid'] + str_replace(',', '', Cart::total(ZERO, THREE));
+
+            session([md5('totalPricePayPal') => $price_pay_pal]);
+
+            if (empty($request->query('paymentId')) || empty($request->query('PayerID')) || empty($request->query('token')))
+                return redirect()->route('checkout')->with('error', __('messages.payment-was-not-successful'));
+            $payment = Payment::get($request->query('paymentId'), $this->api_context);
+            $execution = new PaymentExecution();
+            $execution->setPayerId($request->query('PayerID'));
+            $result = $payment->execute($execution, $this->api_context);
+            if ($result->getState() != 'approved')
+                return redirect()->route('checkout')->with('error', __('messages.payment-was-not-successful'));
+            return redirect()->route('checkout')->with('success', __('messages.payment-made-successfully'));
+        } catch (\Exception $e) {
+            return redirect()->route('checkout')->with('error', $e->getMessage());
+        }
     }
 }

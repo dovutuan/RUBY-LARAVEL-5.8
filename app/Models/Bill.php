@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
  * @property int user_id
  * @property int seller_id
  * @property int price
+ * @property int price_paid
  * @property int discount_id
  * @property string discount_name
  * @property string discount_code
@@ -29,7 +30,7 @@ class Bill extends Model
     use SoftDeletes;
 
     protected $table = 'bills';
-    protected $fillable = ['user_id', 'seller_id', 'price', 'discount_id', 'discount_name', 'discount_price', 'discount_code', 'tax_rate', 'status', 'address', 'note', 'created_by', 'updated_by', 'deleted_by'];
+    protected $fillable = ['user_id', 'seller_id', 'price', 'price_paid', 'discount_id', 'discount_name', 'discount_price', 'discount_code', 'tax_rate', 'status', 'address', 'note', 'created_by', 'updated_by', 'deleted_by'];
 
     public function users()
     {

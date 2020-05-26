@@ -240,4 +240,9 @@ return [
     'order-success' => 'Order Success',
     'featured-product' => 'Featured Product',
     'enter-discount-code' => 'Enter discount code (if applicable)',
+    'some-error-occur' => 'Some error occur, sorry for inconvenient',
+    'unknown-error-occurred' => 'Unknown error occurred',
+    'payment-was-not-successful' => 'Payment was not successful',
+    'payment-made-successfully' => 'Payment made successfully',
+    'money_paid' => 'Money paid',
 ];

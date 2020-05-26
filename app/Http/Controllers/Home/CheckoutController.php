@@ -22,12 +22,12 @@ class CheckoutController extends Controller
         $session_discount = Session::getSessionDiscount();
         $allCategories = Category::loadAllCategories();
         $carts = Cart::content();
-
         $data = [
             'allCategories' => $allCategories,
             'carts' => $carts,
             'discount_price' => $session_discount['discount_price'],
-            'total_price' => $session_discount['total_price']
+            'total_price' => $session_discount['total_price'],
+            'money_paid' => $session_discount['money_paid'],
         ];
         return view('home.checkout', $data);
     }
@@ -44,6 +44,7 @@ class CheckoutController extends Controller
                 'seller_id' => Auth::user()->id,
                 'created_by' => Auth::user()->id,
                 'price' => $session_discount['total_price'],
+                'price_paid' => $session_discount['money_paid'],
                 'address' => $request->input('other_address'),
                 'note' => $request->input('note'),
                 'discount_id' => $session_discount['discount_id'],

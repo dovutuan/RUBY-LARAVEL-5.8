@@ -240,4 +240,9 @@ return [
     'order-success' => 'Đặt hàng thành công',
     'featured-product' => 'Sản phẩm nổi bật',
     'enter-discount-code' => 'Nhập mã giảm giá (Nếu có)',
+    'some-error-occur' => 'Một số lỗi đã xảy ra, xin lỗi vì sự bất tiện',
+    'unknown-error-occurred' => 'Xảy ra lỗi không xác định được',
+    'payment-was-not-successful' => 'Thanh toán không thành công',
+    'payment-made-successfully' => 'Thanh toán thành công',
+    'money_paid' => 'Tiền đã thanh toán',
 ];

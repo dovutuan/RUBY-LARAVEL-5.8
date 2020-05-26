@@ -90,18 +90,24 @@
                                 @if($discount_price)
                                     <div class="checkout__order__subtotal">{{ __('messages.a-discount') }} <span>- {{number_format($discount_price)}} <sup>{{ __('messages.a-vnđ') }}</sup></span>
                                     </div>
-                                    <div class="checkout__order__subtotal">{{ __('messages.total-payment') }} <span>{{number_format($total_price)}} <sup>{{ __('messages.a-vnđ') }}</sup></span>
-                                    </div>
-                                @else
-                                    <div class="checkout__order__subtotal">{{ __('messages.total-payment') }} <span>{{ Cart::total(ZERO, THREE)}} <sup>{{ __('messages.a-vnđ') }}</sup></span>
+                                @endif
+                                @if($money_paid)
+                                    <div class="checkout__order__subtotal">{{ __('messages.money_paid') }} <span>{{number_format($money_paid)}} <sup>{{ __('messages.a-vnđ') }}</sup></span>
                                     </div>
                                 @endif
+                                <div class="checkout__order__subtotal">{{ __('messages.total-payment') }} <span>{{number_format($total_price)}} <sup>{{ __('messages.a-vnđ') }}</sup></span>
+                                </div>
                                 <div class="row margin-top">
                                     <div class="col-md-4">
-                                        <a target="_blank" href="{{route('checkout-payment')}}"><img class="select-pay" src="https://i0.wp.com/www.ecommerce-nation.com/wp-content/uploads/2018/01/paypal.png?fit=1000%2C600&ssl=1"></a>
+                                        <a target="_blank" href="{{route('checkout-payment')}}"><img class="select-pay"
+                                                                                                     src="https://i0.wp.com/www.ecommerce-nation.com/wp-content/uploads/2018/01/paypal.png?fit=1000%2C600&ssl=1"></a>
                                     </div>
-                                    <div class="col-md-4"><img class="select-pay" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Visa.svg/1200px-Visa.svg.png"></div>
-                                    <div class="col-md-4"><img class="select-pay" src="https://pluspng.com/img-png/mastercard-hd-png-mastercard-png-picture-1456.png"></div>
+                                    <div class="col-md-4"><img class="select-pay"
+                                                               src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Visa.svg/1200px-Visa.svg.png">
+                                    </div>
+                                    <div class="col-md-4"><img class="select-pay"
+                                                               src="https://pluspng.com/img-png/mastercard-hd-png-mastercard-png-picture-1456.png">
+                                    </div>
                                 </div>
 
                             </div>

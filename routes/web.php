@@ -99,7 +99,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::post('review/{id}', 'HomeController@reviewProduct')->name('review-product');
             Route::get('heart/{id}', 'HomeController@heart')->name('heart-product');
             Route::get('search', 'HomeController@search')->name('search');
-            Route::get('pay', 'CheckoutController@checkOut')->name('checkOut');
+            Route::get('pay', 'CheckoutController@checkOut')->name('checkout');
             Route::post('pay', 'CheckoutController@pay');
 
             Route::get('checkout-payment', 'PaymentController@index')->name('checkout-payment');
