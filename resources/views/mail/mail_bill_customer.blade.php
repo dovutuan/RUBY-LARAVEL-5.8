@@ -88,7 +88,7 @@
                                              style="padding-right: 25px; padding-left: 25px;">
                                          [RUBY] Đơn hàng
                                             <p style="font-size: 21px; font-weight: 400; margin-top: 3px; margin-bottom: 0;">
-                                                {{\Carbon\Carbon::now()->format('H:i d-m-Y')}}</p>
+                                                {{\Carbon\Carbon::now()->hour . ' Giờ ' . \Carbon\Carbon::now()->minute . ' Phút ' . ',' . ' Ngày ' . \Carbon\Carbon::now()->day . ' Tháng ' . \Carbon\Carbon::now()->month . ' Năm ' . \Carbon\Carbon::now()->year }}</p>
                                         </div>
                                     </div>
                                 </td>
