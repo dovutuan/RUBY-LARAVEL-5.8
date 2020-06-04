@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>RUBYSHOP</title>
-    <link rel="icon" href="{{ asset('logo') }}/ruby.png">
+    <link rel="icon" href="{{ asset('logo') }}/icon_ruby.png">
     <link rel="stylesheet" href="{{ asset('theme_home') }}/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('theme_home') }}/css/animate.css">
     <link rel="stylesheet" href="{{ asset('theme_home') }}/css/owl.carousel.min.css">

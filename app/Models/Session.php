@@ -33,11 +33,11 @@ class Session extends Model
                 $discount = Discount::where('code', $session_discount['discount_code'])->where('status', ONE)->where('amount', '>', ZERO)->where('created_by', $seller)->where('finish', '>=', $date_now)->first();
                 $discount_price = $discount->price;
             }
-            $total_price = $discount_price && $total_price - $discount->price;
-
-            $total_price = ($total_price <= ZERO) && $total_price = ZERO;
+            $discount_price && $total_price = $total_price - $discount->price;
         }
         $total_price = $total_price - $money_paid;
+
+        $total_price <= ZERO && $total_price = ZERO;
 
         $data = [
             'discount_id' => $discount_id,
@@ -46,7 +46,14 @@ class Session extends Model
             'discount_name' => $discount_name,
             'total_price' => $total_price,
             'money_paid' => $money_paid,
+            'carts' => $carts
         ];
         return $data;
+    }
+
+    static public function getSessionCart()
+    {
+        $carts = Cart::content();
+        return $carts;
     }
 }

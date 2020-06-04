@@ -245,4 +245,13 @@ return [
     'payment-was-not-successful' => 'Payment was not successful',
     'payment-made-successfully' => 'Payment made successfully',
     'money_paid' => 'Money paid',
+    '[RUBY]-order' => '[RUBY] order',
+    'discount-warning' => 'Invalid discount',
+    'hour' => ' hour ',
+    'minute' => ' minute',
+    'day' => ' day ',
+    'month' => ' month ',
+    'year' => ' year ',
+    'information-customer' => 'Information customer',
+    'information-order' => ' Information order',
 ];

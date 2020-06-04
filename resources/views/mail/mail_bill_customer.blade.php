@@ -86,9 +86,9 @@
                                     >
                                         <div class="m_2860634586473474317contents-section-block"
                                              style="padding-right: 25px; padding-left: 25px;">
-                                         [RUBY] Đơn hàng
+                                            {{__('messages.[RUBY]-order')}}
                                             <p style="font-size: 21px; font-weight: 400; margin-top: 3px; margin-bottom: 0;">
-                                                {{\Carbon\Carbon::now()->hour . ' Giờ ' . \Carbon\Carbon::now()->minute . ' Phút ' . ',' . ' Ngày ' . \Carbon\Carbon::now()->day . ' Tháng ' . \Carbon\Carbon::now()->month . ' Năm ' . \Carbon\Carbon::now()->year }}</p>
+                                                {{\Carbon\Carbon::now()->hour .  __('messages.hour') . \Carbon\Carbon::now()->minute . __('messages.minute') . ',' .  __('messages.day') . \Carbon\Carbon::now()->day .  __('messages.month') . \Carbon\Carbon::now()->month .  __('messages.year') . \Carbon\Carbon::now()->year }}</p>
                                         </div>
                                     </div>
                                 </td>
@@ -117,8 +117,75 @@
                                         style="color: #4a4a4a; font-family: 'Open Sans', Helvetica, 'Hiragino Kaku Gothic ProN', Meiryo, Arial, sans-serif; font-size: 16px; line-height: 30px; text-align: left;">
                                         <div class="m_2860634586473474317contents-section-block"
                                              style="padding-right: 25px; padding-left: 25px;">
-                                            <b style="font-weight: 600;">Over Due</b> 2 issues<br/>
-                                            The following issues are overdue:
+                                            <table style="margin: auto">
+                                                <tr>
+                                                    <td>
+                                                        <h2>{{ __('messages.information-customer') }}</h2>
+                                                        <table style="margin: auto">
+                                                            <tr>
+                                                                <th>{{ __('messages.check-out-name') }}</th>
+                                                                <td>: {{$user->name}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>{{ __('messages.check-out-phone') }}</th>
+                                                                <td>: {{$user->phone}}</td>
+
+                                                            </tr>
+                                                            <tr>
+                                                                <th>{{ __('messages.check-out-email') }}</th>
+                                                                <td>: {{$user->email}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>{{ __('messages.check-out-address') }}</th>
+                                                                <td>: {{$user->address}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>{{ __('messages.check-out-other-address') }}</th>
+                                                                <th>{{$request->other_address}}</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>{{ __('messages.check-out-note') }}</th>
+                                                                <th>{{$request->note}}</th>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                    <td style="margin-left: 80px; display: block;">
+                                                        <h2>{{ __('messages.information-order') }}</h2>
+                                                        <table style="margin: auto">
+                                                            <tr>
+                                                                <th>{{ __('messages.money-goods') }}</th>
+                                                                <td>: {{Cart::priceTotal(ZERO, THREE)}}
+                                                                    {{ __('messages.a-vnđ') }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>{{ __('messages.transport-fee') }}</th>
+                                                                <td>: {{Cart::tax(ZERO, THREE)}}
+                                                                    {{ __('messages.a-vnđ') }}</td>
+
+                                                            </tr>
+                                                            @if($discount_price)
+                                                                <tr>
+                                                                    <th>{{ __('messages.a-discount') }}</th>
+                                                                    <td>: - {{number_format($discount_price)}}
+                                                                        {{ __('messages.a-vnđ') }}</td>
+                                                                </tr>
+                                                            @endif
+                                                            @if($money_paid)
+                                                                <tr>
+                                                                    <th>{{ __('messages.money_paid') }}</th>
+                                                                    <td>: {{number_format($money_paid)}}
+                                                                        {{ __('messages.a-vnđ') }}</td>
+                                                                </tr>
+                                                            @endif
+                                                            <tr>
+                                                                <th>{{ __('messages.total-payment') }}</th>
+                                                                <td>: {{number_format($total_price)}}
+                                                                    {{ __('messages.a-vnđ') }}</td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
                                         </div>
                                     </div>
                                 </td>
@@ -138,34 +205,24 @@
                                                 style="border-collapse: collapse; width: 100%; font-size: 16px; line-height: 22px; color: #4a4a4a; border-bottom: solid 1px #eee;"
                                             >
                                                 <tbody>
-                                                <tr>
-                                                    <th
-                                                        class="m_2860634586473474317table-striped-list__th"
-                                                        style="
+                                                @foreach($carts as $cart)
+                                                    <tr>
+                                                        <th class="m_2860634586473474317table-striped-list__th" style="
                                                                                         width: 25%;
                                                                                         font-weight: 400;
                                                                                         vertical-align: top;
                                                                                         border-top: solid 1px #eee;
                                                                                         border-left: solid 1px #eee;
-                                                                                        padding-top: 12px;
+                                                                                        padding-top: 15px;
                                                                                         padding-left: 20px;
                                                                                         padding-right: 15px;
                                                                                         padding-bottom: 12px;
-                                                                                    "
-                                                        valign="top"
-                                                    >
-                                                        <a
-                                                            href="https://ominext.backlog.com/view/PFM-2"
-                                                            style="color: #4cbd9b; text-decoration: none;"
-                                                            target="_blank"
-                                                            data-saferedirecturl="https://www.google.com/url?q=https://ominext.backlog.com/view/PFM-2&amp;source=gmail&amp;ust=1590569404878000&amp;usg=AFQjCNHYA_d7S4klbTIhhQODALJ8YrhA4A"
-                                                        >
-                                                            PFM-2
-                                                        </a>
-                                                    </th>
-                                                    <td
-                                                        class="m_2860634586473474317table-striped-list__td"
-                                                        style="
+                                                                                    " valign="top">
+                                                            {{$cart->name}}
+                                                        </th>
+                                                        <td
+                                                            class="m_2860634586473474317table-striped-list__td"
+                                                            style="
                                                                                         font-weight: 400;
                                                                                         border-top: solid 1px #eee;
                                                                                         border-left: solid 1px #eee;
@@ -173,77 +230,27 @@
                                                                                         padding-top: 4px;
                                                                                         padding-left: 15px;
                                                                                         padding-right: 20px;
-                                                                                        padding-bottom: 4px;
-                                                                                    "
-                                                    >
-                                                        <p style="margin-top: 8px; margin-bottom: 6px;">Thiết kế màn
-                                                            hình quản lý Client</p>
-                                                        <p style="margin-top: 8px; margin-bottom: 6px;">
-                                                            <span style="white-space: nowrap;">Status: Resolved</span>
-                                                            <span
-                                                                style="padding-left: 1em; padding-right: 1em; color: #666;">|</span>
-                                                            <span>Assignee: NghiemVanNam[namnv04](dev)</span>
-                                                        </p>
-                                                    </td>
-                                                </tr>
-
-                                                <tr>
-                                                    <th
-                                                        class="m_2860634586473474317table-striped-list__th"
-                                                        style="
-                                                                                        width: 25%;
-                                                                                        font-weight: 400;
-                                                                                        vertical-align: top;
-                                                                                        border-top: solid 1px #eee;
-                                                                                        border-left: solid 1px #eee;
-                                                                                        padding-top: 12px;
-                                                                                        padding-left: 20px;
-                                                                                        padding-right: 15px;
-                                                                                        padding-bottom: 12px;
-                                                                                        background-color: #eee;
-                                                                                        border-top-color: #eee;
-                                                                                        border-left-color: #eee;
-                                                                                    "
-                                                        valign="top"
-                                                        bgcolor="#eee"
-                                                    >
-                                                        <a
-                                                            href="https://ominext.backlog.com/view/PFM-1"
-                                                            style="color: #4cbd9b; text-decoration: none;"
-                                                            target="_blank"
-                                                            data-saferedirecturl="https://www.google.com/url?q=https://ominext.backlog.com/view/PFM-1&amp;source=gmail&amp;ust=1590569404878000&amp;usg=AFQjCNE8o98sIfxxVogqaGd5F5cV1Yxx1w"
-                                                        >
-                                                            PFM-1
-                                                        </a>
-                                                    </th>
-                                                    <td
-                                                        class="m_2860634586473474317table-striped-list__td"
-                                                        style="
-                                                                                        font-weight: 400;
-                                                                                        border-top: solid 1px #eee;
-                                                                                        border-left: solid 1px #eee;
-                                                                                        border-right: solid 1px #eee;
-                                                                                        padding-top: 4px;
-                                                                                        padding-left: 15px;
-                                                                                        padding-right: 20px;
-                                                                                        padding-bottom: 4px;
-                                                                                        background-color: #eee;
-                                                                                        border-top-color: #eee;
-                                                                                        border-left-color: #fff;
-                                                                                        border-right-color: #eee;
-                                                                                    "
-                                                        bgcolor="#eee"
-                                                    >
-                                                        <p style="margin-top: 8px; margin-bottom: 6px;">Thiết kế màn
-                                                            hình master services</p>
-                                                        <p style="margin-top: 8px; margin-bottom: 6px;">
-                                                            <span style="white-space: nowrap;">Status: Resolved</span>
-                                                            <span
-                                                                style="padding-left: 1em; padding-right: 1em; color: #666;">|</span>
-                                                            <span>Assignee: Nguyễn Thế Đại[Daint02](dev)</span>
-                                                        </p>
-                                                    </td>
-                                                </tr>
+                                                                                        padding-bottom: 4px;">
+                                                            <p style="margin-top: 8px; margin-bottom: 6px;">
+                                                                 <span
+                                                                     style="white-space: nowrap;">{{ __('messages.a-option') }}: {{$cart->options->amount}} <sup>{{$cart->options->species}}</sup> - {{number_format($cart->price)}}
+                                                                <sup>{{ __('messages.a-vnđ') }}</sup>
+                                                                </span>
+                                                                <span
+                                                                    style="padding-left: 1em; padding-right: 1em; color: #666;">|
+                                                                </span>
+                                                                <span
+                                                                    style="white-space: nowrap;">{{ __('messages.a-amount') }}: {{$cart->qty}}
+                                                                </span>
+                                                                <span
+                                                                    style="padding-left: 1em; padding-right: 1em; color: #666;">|
+                                                                </span>
+                                                                <span style="white-space: nowrap;">{{ __('messages.a-total') }}: {{number_format($cart->qty*$cart->price)}} <sup>{{ __('messages.a-vnđ') }}</sup>
+                                                                </span>
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
                                                 </tbody>
                                             </table>
                                         </div>

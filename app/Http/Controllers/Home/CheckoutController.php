@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use phpDocumentor\Reflection\DocBlock\Description;
 
 class CheckoutController extends Controller
@@ -38,6 +39,7 @@ class CheckoutController extends Controller
             DB::beginTransaction();
             $session_discount = Session::getSessionDiscount();
             $carts = Cart::content();
+            $user = Auth::user();
 
             $bill = Bill::create([
                 'user_id' => Auth::user()->id,
@@ -74,8 +76,24 @@ class CheckoutController extends Controller
                 'amount' => $discount->amount = $discount->amount - ONE,
 
             ]);
+
+            $data = [
+                'user' => $user,
+                'carts' => $carts,
+                'discount_price' => $session_discount['discount_price'],
+                'total_price' => $session_discount['total_price'],
+                'money_paid' => $session_discount['money_paid'],
+                'request' => $request->all(),
+            ];
+
+            Mail::send('mail.mail_bill_customer', $data, function ($message) use ($user) {
+                $message->to($user->email, $user->name)->subject(__('messages.[RUBY]-order'));
+                $message->from(config('app.mail_user'), config('app.mail_name'));
+            });
+
             DB::commit();
             session()->forget(md5('discount_code'));
+            session()->forget(md5('totalPricePayPal'));
             Cart::destroy();
             return redirect()->route('home')->with('success', __('messages.order-success'));
         } catch (\Exception $e) {

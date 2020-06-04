@@ -76,6 +76,8 @@
                     <div class="shoping__cart__btns">
                         <a href="{{route('home')}}"
                            class="primary-btn cart-btn">{{ __('messages.continue-shopping') }}</a>
+                        <a href="{{route('send-mail-bill')}}"
+                           class="primary-btn cart-btn">mail</a>
                         @if(Cart::count() > ZERO)
                             <a class="primary-btn cart-btn cart-btn-right" href="{{route('delete-all-cart')}}"
                                onclick="return confirm('Are you sure you want to delete all products in your cart?')">{{ __('messages.delete-all') }}</a>

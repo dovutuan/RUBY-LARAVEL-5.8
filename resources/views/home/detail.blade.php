@@ -9,7 +9,7 @@
                         <h2>{{$product->name}}</h2>
                         <div class="breadcrumb__option">
                             <a href="{{route('home')}}">{{ __('messages.home') }}</a>
-                            <a href="./index.html">{{$product->categories->name}}</a>
+                            <a href="">{{$product->categories->name}}</a>
                             <span>{{$product->name}}</span>
                         </div>
                     </div>
