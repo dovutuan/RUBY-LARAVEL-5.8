@@ -46,13 +46,13 @@ class CheckoutController extends Controller
                 'seller_id' => Auth::user()->id,
                 'created_by' => Auth::user()->id,
                 'price' => $session_discount['total_price'],
-                'price_paid' => $session_discount['money_paid'],
+                'price_paid' => null || $session_discount['money_paid'],
                 'address' => $request->input('other_address'),
                 'note' => $request->input('note'),
-                'discount_id' => $session_discount['discount_id'],
-                'discount_code' => $session_discount['discount_code'],
-                'discount_name' => $session_discount['discount_name'],
-                'discount_price' => $session_discount['discount_price'],
+                'discount_id' => null || $session_discount['discount_id'],
+                'discount_code' => null || $session_discount['discount_code'],
+                'discount_name' => null || $session_discount['discount_name'],
+                'discount_price' => null || $session_discount['discount_price'],
                 'tax_rate' => str_replace(',', '', Cart::tax(ZERO, THREE)),
             ]);
             if ($bill) {
@@ -70,12 +70,13 @@ class CheckoutController extends Controller
                     ]);
                 }
             }
-            $discount = Discount::where('id', $session_discount['discount_id'])->first();
-            $discount->update([
-                'use' => $discount->use = $discount->use + ONE,
-                'amount' => $discount->amount = $discount->amount - ONE,
-
-            ]);
+            if ($session_discount['discount_id']) {
+                $discount = Discount::where('id', $session_discount['discount_id'])->first();
+                $discount->update([
+                    'use' => $discount->use = $discount->use + ONE,
+                    'amount' => $discount->amount = $discount->amount - ONE,
+                ]);
+            }
 
             $data = [
                 'user' => $user,
@@ -83,7 +84,8 @@ class CheckoutController extends Controller
                 'discount_price' => $session_discount['discount_price'],
                 'total_price' => $session_discount['total_price'],
                 'money_paid' => $session_discount['money_paid'],
-                'request' => $request->all(),
+                'other_address' => $request->input('other_address'),
+                'note' => $request->input('note'),
             ];
 
             Mail::send('mail.mail_bill_customer', $data, function ($message) use ($user) {

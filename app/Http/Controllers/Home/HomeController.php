@@ -71,6 +71,13 @@ class HomeController extends Controller
 
     public function search(Request $request)
     {
+        $min_price = $request->input('min_price');
+        $max_price = $request->input('max_price');
+        $format_min_price = str_replace(',', '', $min_price);
+        $format_max_price = str_replace(',', '', $max_price);
+        $category_id = $request->input('category_id');
+        $supplier_id = $request->input('supplier_id');
+        $specie_id = $request->input('specie_id');
         $categories = Category::loadCategories();
         $allCategories = Category::loadAllCategories();
         $species = Species::all();
@@ -78,20 +85,21 @@ class HomeController extends Controller
         $productNews = Product::take(EIGHT)->latest()->get();
         $short = $request->input('short') ? $request->input('short') : null;
         $name = $request->input('name');
-        $products = Product::
-        when($name, function ($qr) use ($name) {
-            $qr->where('name', 'like', "%$name%");
-        })
-            ->latest($short)
-            ->paginate(TWELVE);
+        $products = Product::searchHome($name, $category_id, $supplier_id, $specie_id, $format_min_price, $format_max_price, $short);
         $data = [
+            'name' => $name,
+            'category_id' => $category_id,
+            'supplier_id' => $supplier_id,
+            'specie_id' => $specie_id,
             'categories' => $categories,
             'allCategories' => $allCategories,
             'species' => $species,
             'suppliers' => $suppliers,
             'counts' => $products->count(),
             'products' => $products,
-            'productNews' => $productNews
+            'productNews' => $productNews,
+            'min_price' => $min_price,
+            'max_price' => $max_price,
         ];
         return view('home.search', $data);
     }

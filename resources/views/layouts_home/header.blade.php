@@ -87,7 +87,7 @@
 <div class="humberger__menu__overlay"></div>
 <div class="humberger__menu__wrapper">
     <div class="humberger__menu__logo">
-        <a href="{{route('home')}}"><img src="{{ asset('theme_home_new') }}/img/logo.png" alt=""></a>
+        <a href="{{route('home')}}"><img class="logo-image" src="{{ asset('logo') }}/icon_ruby.png" alt=""></a>
     </div>
     <div class="humberger__menu__cart">
         <ul>
@@ -146,7 +146,7 @@
     </div>
     <div class="humberger__menu__contact">
         <ul>
-            <li><i class="fa fa-envelope"></i> {{ __('messages.ruby.RBS.shop@gmail.com') }}</li>
+            <li><a class="color-a" href="mailto:ruby.RBS.shop@gmail.com"><i class="fa fa-envelope"></i> {{ __('messages.ruby.RBS.shop@gmail.com') }}</a></li>
             <li>{{ __('messages.free-shipping') }}</li>
         </ul>
     </div>
@@ -158,7 +158,7 @@
                 <div class="col-lg-6">
                     <div class="header__top__left">
                         <ul>
-                            <li><i class="fa fa-envelope"></i> {{ __('messages.ruby.RBS.shop@gmail.com') }}</li>
+                            <li><a class="color-a" href="mailto:ruby.RBS.shop@gmail.com"><i class="fa fa-envelope"></i> {{ __('messages.ruby.RBS.shop@gmail.com') }}</a></li>
                             <li>{{ __('messages.free-shipping') }}</li>
                         </ul>
                     </div>
@@ -204,7 +204,7 @@
         <div class="row">
             <div class="col-lg-3">
                 <div class="header__logo">
-                    <a href="{{route('home')}}"><img src="{{ asset('theme_home_new') }}/img/logo.png" alt=""></a>
+                    <a href="{{route('home')}}"><img class="logo-image" src="{{ asset('logo') }}/icon_ruby.png" alt=""></a>
                 </div>
             </div>
             <div class="col-lg-6">
@@ -263,16 +263,16 @@
                                 All Categories
                                 <span class="arrow_carrot-down"></span>
                             </div>
-                            <input type="text" placeholder="{{ __('messages.search...') }}" name="name">
+                            <input type="text" placeholder="{{ __('messages.search...') }}" name="name" value="{{ isset($key) ? $key : old('key') }}">
                             <button type="submit" class="site-btn">SEARCH</button>
                         </form>
                     </div>
                     <div class="hero__search__phone">
                         <div class="hero__search__phone__icon">
-                            <i class="fa fa-phone"></i>
+                            <a class="color-a" href="tel:0398599888"><i class="fa fa-phone"></i></a>
                         </div>
                         <div class="hero__search__phone__text">
-                            <h5>+65 11.188.888</h5>
+                            <a href="tel:0398599888"> <h5>0398 599 888</h5></a>
                             <span>{{ __('messages.support-time') }}</span>
                         </div>
                     </div>

@@ -78,4 +78,41 @@ class Product extends Model
             })
             ->latest()->paginate($paginate);
     }
+
+    static function searchHome($name, $category_id, $supplier_id, $specie_id, $format_min_price, $format_max_price, $short)
+    {
+        return self::when($name, function ($qr) use ($name) {
+            $qr->where('name', 'like', "%$name%");
+        })
+            ->when($category_id, function ($qr) use ($category_id) {
+                $qr->where('category_id', $category_id);
+            })
+            ->when($supplier_id, function ($qr) use ($supplier_id) {
+                $qr->WhereHas('optionProduct', function ($qr) use ($supplier_id) {
+                    $qr->where('supplier_id', $supplier_id);
+                });
+            })
+            ->when($specie_id, function ($qr) use ($specie_id) {
+                $qr->WhereHas('optionProduct', function ($qr) use ($specie_id) {
+                    $qr->where('species_id', $specie_id);
+                });
+            })
+            ->when($format_min_price, function ($qr) use ($format_min_price) {
+                $qr->WhereHas('optionProduct', function ($qr) use ($format_min_price) {
+                    $qr->where('price', '>=', $format_min_price);
+                });
+            })
+            ->when($format_max_price, function ($qr) use ($format_max_price) {
+                $qr->WhereHas('optionProduct', function ($qr) use ($format_max_price) {
+                    $qr->where('price', '<=', $format_max_price);
+                });
+            })
+            ->when($format_min_price & $format_max_price, function ($qr) use ($format_min_price, $format_max_price) {
+                $qr->WhereHas('optionProduct', function ($qr) use ($format_min_price, $format_max_price) {
+                    $qr->where('price', '>=', $format_min_price)->where('price', '<=', $format_max_price);
+                });
+            })
+            ->latest($short)
+            ->paginate(TWELVE);
+    }
 }

@@ -59,12 +59,12 @@
                             <div class="checkout__input">
                                 <p>{{ __('messages.check-out-other-address') }}</p>
                                 <textarea class="text-area" name="other_address"
-                                          placeholder="{{ __('messages.check-out-address-about') }}"></textarea>
+                                          placeholder="{{ __('messages.check-out-address-about') }}">{{old('other_address')}}</textarea>
                             </div>
                             <div class="checkout__input">
                                 <p>{{ __('messages.check-out-note') }}</p>
                                 <textarea class="text-area" name="note"
-                                          placeholder="{{ __('messages.check-out-note-about') }}"></textarea>
+                                          placeholder="{{ __('messages.check-out-note-about') }}">{{old('note')}}</textarea>
                             </div>
                             <div class="checkout__input">
                                 <button type="submit"

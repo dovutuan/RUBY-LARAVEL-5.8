@@ -21,189 +21,109 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-5">
-                    <div class="sidebar">
-                        <div class="sidebar__item">
-                            <h4>{{ __('messages.a-category') }}</h4>
-                            <ul>
-                                @foreach($allCategories as $category)
-                                    <li><a href="#">{{$category->name}}</a></li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        <div class="sidebar__item">
-                            <h4>{{ __('messages.a-supplier') }}</h4>
-                            <ul>
-                                @foreach($suppliers as $supplier)
-                                    <li><a href="#">{{$supplier->name}}</a></li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        <div class="sidebar__item">
-                            <h4>{{ __('messages.a-species') }}</h4>
-                            @foreach($species as $specie)
-                                <div class="sidebar__item__size">
-                                    <label for="large">
-                                        {{$specie->name}}
-                                        {{--                                        <input type="radio" id="large">--}}
-                                    </label>
-                                </div>
-                            @endforeach
-                        </div>
-                        <div class="sidebar__item">
-                            <h4>{{ __('messages.a-price') }}</h4>
-                            <div class="price-range-wrap">
-                                <div
-                                    class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
-                                    data-min="1000" data-max="100000000">
-                                    <div class="ui-slider-range ui-corner-all ui-widget-header"></div>
-                                    <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
-                                    <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
-                                </div>
-                                <div class="range-slider">
-                                    <div class="price-input">
-                                        <input type="text" id="minamount" readonly>
-                                        -
-                                        <input type="text" id="maxamount" readonly>
+                    <form action="{{route('search')}}" method="GET">
+                        <div class="sidebar">
+                            <div class="sidebar__item">
+                                <h4>{{ __('messages.a-category') }}</h4>
+                                <ul>
+                                    @foreach($allCategories as $category)
+                                        <li>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="category_id" value="{{$category->id}}"
+                                                       @if($category->id == $category_id) checked @endif> {{$category->name}}
+                                            </label>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            <div class="sidebar__item">
+                                <h4>{{ __('messages.a-supplier') }}</h4>
+                                <ul>
+                                    @foreach($suppliers as $supplier)
+                                        <li>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="supplier_id" value="{{$supplier->id}}"
+                                                       @if($supplier->id == $supplier_id) checked @endif> {{$supplier->name}}
+                                            </label>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            <div class="sidebar__item">
+                                <h4>{{ __('messages.a-species') }}</h4>
+                                <div class="btn-group-toggle" data-toggle="buttons">
+                                    @foreach($species as $specie)
+                                        <div class="sidebar__item__size">
+                                            <label class="btn btn-outline-info">
+                                                <input type="radio" name="specie_id"
+                                                       value="{{$specie->id}}"
+                                                       @if($specie->id == $specie_id) checked @endif> {{$specie->name}}
+                                            </label>
+                                        </div>
+                                    @endforeach</div>
+                            </div>
+                            <div class="sidebar__item">
+                                <h4>{{ __('messages.a-price') }}</h4>
+                                <div class="price-range-wrap">
+                                    <div
+                                        class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
+                                        data-min="1000" data-max="100000000">
+                                        <div class="ui-slider-range ui-corner-all ui-widget-header"></div>
+                                        <span tabindex="0"
+                                              class="ui-slider-handle ui-corner-all ui-state-default"></span>
+                                        <span tabindex="0"
+                                              class="ui-slider-handle ui-corner-all ui-state-default"></span>
+                                    </div>
+                                    <div class="range-slider">
+                                        <div class="price-input">
+                                            <input type="text" id="minamount" readonly name="min_price"
+                                                   value="{{ isset($min_price) ? $min_price : old('min_price') }}">
+                                            -
+                                            <input type="text" id="maxamount" readonly name="max_price"
+                                                   value="{{ isset($max_price) ? $max_price : old('max_price') }}">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="sidebar__item">
-                            <div class="latest-product__text">
-                                <h4>{{ __('messages.latest-products') }}</h4>
-                                <div class="latest-product__slider owl-carousel">
-                                    @foreach($productNews as $productNew)
-                                        <div class="latest-prdouct__slider__item">
-                                            <a href="{{route('detail-product', $productNew->id)}}" class="latest-product__item">
-                                                <div class="latest-product__item__pic">
-                                                    <img src="{{$productNew->image}}" alt="">
-                                                </div>
-                                                <div class="latest-product__item__text">
-                                                    <h6>{{$productNew->name}}</h6>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    @endforeach
-                                </div>
+                            <div class="sidebar__item">
+                                <button type="submit"
+                                        class="btn btn-xs btn-outline-success">{{ __('messages.a-search') }}</button>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
                 <div class="col-lg-9 col-md-7">
                     <div class="product__discount">
                         <div class="section-title product__discount__title">
-                            <h2>Sale Off</h2>
+                            <h2>{{ __('messages.latest-products') }}</h2>
                         </div>
                         <div class="row">
                             <div class="product__discount__slider owl-carousel">
-                                <div class="col-lg-4">
-                                    <div class="product__discount__item">
-                                        <div class="product__discount__item__pic set-bg"
-                                             data-setbg="img/product/discount/pd-1.jpg">
-                                            <div class="product__discount__percent">-20%</div>
-                                            <ul class="product__item__pic__hover">
-                                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="product__discount__item__text">
-                                            <span>Dried Fruit</span>
-                                            <h5><a href="#">Raisin’n’nuts</a></h5>
-                                            <div class="product__item__price">$30.00 <span>$36.00</span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="product__discount__item">
-                                        <div class="product__discount__item__pic set-bg"
-                                             data-setbg="img/product/discount/pd-2.jpg">
-                                            <div class="product__discount__percent">-20%</div>
-                                            <ul class="product__item__pic__hover">
-                                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="product__discount__item__text">
-                                            <span>Vegetables</span>
-                                            <h5><a href="#">Vegetables’package</a></h5>
-                                            <div class="product__item__price">$30.00 <span>$36.00</span></div>
+                                @foreach($productNews as $productNew)
+                                    <div class="col-lg-4">
+                                        <div class="product__discount__item">
+                                            <div class="product__discount__item__pic set-bg"
+                                                 data-setbg="{{$productNew->image}}">
+                                                @if($productNew->sale)
+                                                    <div class="product__discount__percent">
+                                                        - {{$productNew->sale->sale}} %
+                                                    </div>
+                                                @endif
+                                                <ul class="product__item__pic__hover">
+                                                    <li><a href="{{route('detail-product', $productNew->id)}}"><i
+                                                                class="fa fa-eye"></i></a></li>
+                                                    <li><a href="{{route('heart-product', $productNew->id)}}"><i
+                                                                class="fa fa-heart"></i></a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="product__discount__item__text">
+                                                <h6>
+                                                    <a href="{{route('detail-product', $productNew->id)}}">{{$productNew->name}}</a>
+                                                </h6>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="product__discount__item">
-                                        <div class="product__discount__item__pic set-bg"
-                                             data-setbg="img/product/discount/pd-3.jpg">
-                                            <div class="product__discount__percent">-20%</div>
-                                            <ul class="product__item__pic__hover">
-                                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="product__discount__item__text">
-                                            <span>Dried Fruit</span>
-                                            <h5><a href="#">Mixed Fruitss</a></h5>
-                                            <div class="product__item__price">$30.00 <span>$36.00</span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="product__discount__item">
-                                        <div class="product__discount__item__pic set-bg"
-                                             data-setbg="img/product/discount/pd-4.jpg">
-                                            <div class="product__discount__percent">-20%</div>
-                                            <ul class="product__item__pic__hover">
-                                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="product__discount__item__text">
-                                            <span>Dried Fruit</span>
-                                            <h5><a href="#">Raisin’n’nuts</a></h5>
-                                            <div class="product__item__price">$30.00 <span>$36.00</span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="product__discount__item">
-                                        <div class="product__discount__item__pic set-bg"
-                                             data-setbg="img/product/discount/pd-5.jpg">
-                                            <div class="product__discount__percent">-20%</div>
-                                            <ul class="product__item__pic__hover">
-                                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="product__discount__item__text">
-                                            <span>Dried Fruit</span>
-                                            <h5><a href="#">Raisin’n’nuts</a></h5>
-                                            <div class="product__item__price">$30.00 <span>$36.00</span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="product__discount__item">
-                                        <div class="product__discount__item__pic set-bg"
-                                             data-setbg="img/product/discount/pd-6.jpg">
-                                            <div class="product__discount__percent">-20%</div>
-                                            <ul class="product__item__pic__hover">
-                                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="product__discount__item__text">
-                                            <span>Dried Fruit</span>
-                                            <h5><a href="#">Raisin’n’nuts</a></h5>
-                                            <div class="product__item__price">$30.00 <span>$36.00</span></div>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -213,9 +133,9 @@
                                 <div class="filter__sort">
                                     <span>{{ __('messages.sort-by') }}</span>
                                     <select>
-                                       <option value="created_at">{{ __('messages.new') }}</option>
-                                       <option value="created_at">{{ __('messages.price-from-high-to-low') }}</option>
-                                       <option value="created_at">{{ __('messages.price-from-low-to-high') }}</option>
+                                        <option value="created_at">{{ __('messages.new') }}</option>
+                                        <option value="created_at">{{ __('messages.price-from-high-to-low') }}</option>
+                                        <option value="created_at">{{ __('messages.price-from-low-to-high') }}</option>
                                     </select>
                                 </div>
                             </div>
@@ -236,12 +156,15 @@
                                             <div class="product__discount__percent">-{{$product->sale->sale}}%</div>
                                         @endif
                                         <ul class="product__item__pic__hover">
-                                            <li><a href="{{route('detail-product', $product->id)}}"><i class="fa fa-eye"></i></a></li>
-                                            <li><a href="{{route('heart-product', $product->id)}}"><i class="fa fa-heart"></i></a></li>
+                                            <li><a href="{{route('detail-product', $product->id)}}"><i
+                                                        class="fa fa-eye"></i></a></li>
+                                            <li><a href="{{route('heart-product', $product->id)}}"><i
+                                                        class="fa fa-heart"></i></a></li>
                                         </ul>
                                     </div>
                                     <div class="product__discount__item__text">
-                                        <h6><a href="{{route('detail-product', $product->id)}}">{{$product->name}}</a></h6>
+                                        <h6><a href="{{route('detail-product', $product->id)}}">{{$product->name}}</a>
+                                        </h6>
                                     </div>
                                 </div>
                             </div>

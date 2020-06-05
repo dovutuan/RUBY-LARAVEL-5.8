@@ -173,12 +173,18 @@
         max: maxPrice,
         values: [minPrice, maxPrice],
         slide: function (event, ui) {
-            minamount.val((Intl.NumberFormat('en').format(ui.values[0])) + ' Vnđ');
-            maxamount.val((Intl.NumberFormat('en').format(ui.values[1])) + ' Vnđ');
+            // minamount.val((Intl.NumberFormat('en').format(ui.values[0])) + ' Vnđ');
+            // maxamount.val((Intl.NumberFormat('en').format(ui.values[1])) + ' Vnđ');
+
+            minamount.val((Intl.NumberFormat('en').format(ui.values[0])));
+            maxamount.val((Intl.NumberFormat('en').format(ui.values[1])));
         }
     });
-    minamount.val((Intl.NumberFormat('en').format(rangeSlider.slider("values", 0))) + ' Vnđ');
-    maxamount.val((Intl.NumberFormat('en').format(rangeSlider.slider("values", 1))) + ' Vnđ');
+    // minamount.val((Intl.NumberFormat('en').format(rangeSlider.slider("values", 0))) + ' Vnđ');
+    // maxamount.val((Intl.NumberFormat('en').format(rangeSlider.slider("values", 1))) + ' Vnđ');
+
+    minamount.val((Intl.NumberFormat('en').format(rangeSlider.slider("values", 0))));
+    maxamount.val((Intl.NumberFormat('en').format(rangeSlider.slider("values", 1))));
 
     /*--------------------------
         Select

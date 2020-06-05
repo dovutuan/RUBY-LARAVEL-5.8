@@ -137,6 +137,11 @@ Route::group(['middleware' => 'auth'], function () {
                 Route::post('create-mini-shop', 'AccountController@SeedMailCreateMiniShop');
             });
         });
+
+        //mail
+        Route::group(['namespace' => 'Mails'], function () {
+            Route::get('send-mail-bill', 'MailController@sendMailBill')->name('send-mail-bill');
+        });
     });
 });
 
