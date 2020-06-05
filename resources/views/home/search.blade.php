@@ -18,10 +18,10 @@
     </section>
 
     <section class="product spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-5">
-                    <form action="{{route('search')}}" method="GET">
+        <form action="{{route('search')}}" method="GET">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-5">
                         <input type="text" value="{{ isset($name) ? $name : old('name') }}" hidden name="name">
                         <div class="sidebar">
                             <div class="sidebar__item">
@@ -91,90 +91,101 @@
                                         class="btn btn-xs btn-outline-success">{{ __('messages.search') }}</button>
                             </div>
                         </div>
-                    </form>
-                </div>
-                <div class="col-lg-9 col-md-7">
-                    <div class="product__discount">
-                        <div class="section-title product__discount__title">
-                            <h2>{{ __('messages.latest-products') }}</h2>
-                        </div>
-                        <div class="row">
-                            <div class="product__discount__slider owl-carousel">
-                                @foreach($productNews as $productNew)
-                                    <div class="col-lg-4">
-                                        <div class="product__discount__item">
-                                            <div class="product__discount__item__pic set-bg"
-                                                 data-setbg="{{$productNew->image}}">
-                                                @if($productNew->sale)
-                                                    <div class="product__discount__percent">
-                                                        - {{$productNew->sale->sale}} %
-                                                    </div>
-                                                @endif
-                                                <ul class="product__item__pic__hover">
-                                                    <li><a href="{{route('detail-product', $productNew->id)}}"><i
-                                                                class="fa fa-eye"></i></a></li>
-                                                    <li><a href="{{route('heart-product', $productNew->id)}}"><i
-                                                                class="fa fa-heart"></i></a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="product__discount__item__text">
-                                                <h6>
-                                                    <a href="{{route('detail-product', $productNew->id)}}">{{$productNew->name}}</a>
-                                                </h6>
+                    </div>
+                    <div class="col-lg-9 col-md-7">
+                        <div class="product__discount">
+                            <div class="section-title product__discount__title">
+                                <h2>{{ __('messages.latest-products') }}</h2>
+                            </div>
+                            <div class="row">
+                                <div class="product__discount__slider owl-carousel">
+                                    @foreach($productNews as $productNew)
+                                        <div class="col-lg-4">
+                                            <div class="product__discount__item">
+                                                <div class="product__discount__item__pic set-bg"
+                                                     data-setbg="{{$productNew->image}}">
+                                                    @if($productNew->sale)
+                                                        <div class="product__discount__percent">
+                                                            - {{$productNew->sale->sale}} %
+                                                        </div>
+                                                    @endif
+                                                    <ul class="product__item__pic__hover">
+                                                        <li><a href="{{route('detail-product', $productNew->id)}}"><i
+                                                                    class="fa fa-eye"></i></a></li>
+                                                        <li><a href="{{route('heart-product', $productNew->id)}}"><i
+                                                                    class="fa fa-heart"></i></a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="product__discount__item__text">
+                                                    <h6>
+                                                        <a href="{{route('detail-product', $productNew->id)}}">{{$productNew->name}}</a>
+                                                    </h6>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                @endforeach
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="filter__item">
+                        <div class="filter__item">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-5">
+                                    <div class="filter__sort">
+                                        <span>{{ __('messages.sort-by') }}</span>
+{{--                                        <div class="dropdown">--}}
+{{--                                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">--}}
+{{--                                                Dropdown button--}}
+{{--                                            </button>--}}
+{{--                                            <div class="dropdown-menu">--}}
+{{--                                                <a class="dropdown-item" href="#">Link 1</a>--}}
+{{--                                                <a class="dropdown-item" href="#">Link 2</a>--}}
+{{--                                                <a class="dropdown-item" href="#">Link 3</a>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+                                        <select name="short">
+                                            <a href="{{route('search')}}"><option value="created_at" @if($short === 'created_at') selected @endif>{{ __('messages.new') }}</option></a>
+                                            <option value="likes" @if($short === 'likes') selected @endif>{{ __('messages.like') }}</option>
+                                            <option value="views" @if($short === 'views') selected @endif>{{ __('messages.view') }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-8 col-md-7">
+                                    <div class="filter__found">
+                                        <h6><span>{{$counts}}</span> {{ __('messages.products-found') }}</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="row">
-                            <div class="col-lg-4 col-md-5">
-                                <div class="filter__sort">
-                                    <span>{{ __('messages.sort-by') }}</span>
-                                    <select>
-                                        <option value="created_at">{{ __('messages.new') }}</option>
-                                        <option value="created_at">{{ __('messages.price-from-high-to-low') }}</option>
-                                        <option value="created_at">{{ __('messages.price-from-low-to-high') }}</option>
-                                    </select>
+                            @foreach($products as $product)
+                                <div class="col-lg-3 col-md-4 col-sm-6 mix">
+                                    <div class="product__discount__item">
+                                        <div class="product__discount__item__pic set-bg"
+                                             data-setbg="{{$product->image}}">
+                                            @if($product->sale)
+                                                <div class="product__discount__percent">-{{$product->sale->sale}}%</div>
+                                            @endif
+                                            <ul class="product__item__pic__hover">
+                                                <li><a href="{{route('detail-product', $product->id)}}"><i
+                                                            class="fa fa-eye"></i></a></li>
+                                                <li><a href="{{route('heart-product', $product->id)}}"><i
+                                                            class="fa fa-heart"></i></a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="product__discount__item__text">
+                                            <h6>
+                                                <a href="{{route('detail-product', $product->id)}}">{{$product->name}}</a>
+                                            </h6>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-8 col-md-7">
-                                <div class="filter__found">
-                                    <h6><span>{{$counts}}</span> {{ __('messages.products-found') }}</h6>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
+                        {{ $products->appends(['name' => $name, 'category_id' => $category_id, 'supplier_id' => $supplier_id, 'specie_id' => $specie_id, 'min_price' => $min_price, 'max_price'=> $max_price , 'short' => $short])->links() }}
                     </div>
-                    <div class="row">
-                        @foreach($products as $product)
-                            <div class="col-lg-3 col-md-4 col-sm-6 mix">
-                                <div class="product__discount__item">
-                                    <div class="product__discount__item__pic set-bg"
-                                         data-setbg="{{$product->image}}">
-                                        @if($product->sale)
-                                            <div class="product__discount__percent">-{{$product->sale->sale}}%</div>
-                                        @endif
-                                        <ul class="product__item__pic__hover">
-                                            <li><a href="{{route('detail-product', $product->id)}}"><i
-                                                        class="fa fa-eye"></i></a></li>
-                                            <li><a href="{{route('heart-product', $product->id)}}"><i
-                                                        class="fa fa-heart"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="product__discount__item__text">
-                                        <h6><a href="{{route('detail-product', $product->id)}}">{{$product->name}}</a>
-                                        </h6>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                    {{ $products->links() }}
                 </div>
             </div>
-        </div>
+        </form>
     </section>
 
     {{--    <section class="cat_product_area section_padding">--}}

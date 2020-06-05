@@ -87,6 +87,7 @@ class HomeController extends Controller
         $name = $request->input('name');
         $products = Product::searchHome($name, $category_id, $supplier_id, $specie_id, $format_min_price, $format_max_price, $short);
         $data = [
+            'short' => $short,
             'name' => $name,
             'category_id' => $category_id,
             'supplier_id' => $supplier_id,
