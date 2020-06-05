@@ -263,8 +263,8 @@
                                 All Categories
                                 <span class="arrow_carrot-down"></span>
                             </div>
-                            <input type="text" placeholder="{{ __('messages.search...') }}" name="name" value="{{ isset($key) ? $key : old('key') }}">
-                            <button type="submit" class="site-btn">SEARCH</button>
+                            <input type="text" placeholder="{{ __('messages.search...') }}" name="name" value="{{ isset($name) ? $name : old('name') }}">
+                            <button type="submit" class="site-btn">{{ __('messages.search') }}</button>
                         </form>
                     </div>
                     <div class="hero__search__phone">

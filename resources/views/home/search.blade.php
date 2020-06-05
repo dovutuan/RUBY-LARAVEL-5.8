@@ -22,6 +22,7 @@
             <div class="row">
                 <div class="col-lg-3 col-md-5">
                     <form action="{{route('search')}}" method="GET">
+                        <input type="text" value="{{ isset($name) ? $name : old('name') }}" hidden name="name">
                         <div class="sidebar">
                             <div class="sidebar__item">
                                 <h4>{{ __('messages.a-category') }}</h4>
@@ -67,7 +68,7 @@
                                 <div class="price-range-wrap">
                                     <div
                                         class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
-                                        data-min="1000" data-max="100000000">
+                                        data-min="1000" data-max="10000000">
                                         <div class="ui-slider-range ui-corner-all ui-widget-header"></div>
                                         <span tabindex="0"
                                               class="ui-slider-handle ui-corner-all ui-state-default"></span>
@@ -87,7 +88,7 @@
                             </div>
                             <div class="sidebar__item">
                                 <button type="submit"
-                                        class="btn btn-xs btn-outline-success">{{ __('messages.a-search') }}</button>
+                                        class="btn btn-xs btn-outline-success">{{ __('messages.search') }}</button>
                             </div>
                         </div>
                     </form>
