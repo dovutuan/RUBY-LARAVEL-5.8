@@ -123,4 +123,17 @@ class HomeController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
     }
+
+    public function contact()
+    {
+        $categories = Category::loadCategories();
+        $allCategories = Category::loadAllCategories();
+        $user = Auth::user();
+        $data = [
+            'categories' => $categories,
+            'allCategories' => $allCategories,
+            'user' => $user,
+        ];
+        return view('home.contact', $data);
+    }
 }

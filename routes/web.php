@@ -101,10 +101,6 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('search', 'HomeController@search')->name('search');
             Route::get('pay', 'CheckoutController@checkOut')->name('checkout');
             Route::post('pay', 'CheckoutController@pay');
-
-            Route::get('checkout-payment', 'PaymentController@index')->name('checkout-payment');
-            Route::post('/checkout', 'PaymentController@createPayment')->name('create-payment');
-            Route::get('/confirm', 'PaymentController@confirmPayment')->name('confirm-payment');
         });
 
         //shopping
@@ -125,6 +121,18 @@ Route::group(['middleware' => 'auth'], function () {
             });
         });
 
+        //checkOut
+        Route::group(['namespace' => 'Home'], function () {
+            Route::get('checkout-payment', 'PaymentController@index')->name('checkout-payment');
+            Route::post('/checkout', 'PaymentController@createPayment')->name('create-payment');
+            Route::get('/confirm', 'PaymentController@confirmPayment')->name('confirm-payment');
+        });
+
+        //contact
+        Route::group(['namespace' => 'Home'], function () {
+            Route::get('contact', 'HomeController@contact')->name('contact');
+        });
+
         //account
         Route::group(['namespace' => 'Account'], function () {
             Route::group(['prefix' => 'account'], function () {
@@ -141,6 +149,7 @@ Route::group(['middleware' => 'auth'], function () {
         //mail
         Route::group(['namespace' => 'Mails'], function () {
             Route::get('send-mail-bill', 'MailController@sendMailBill')->name('send-mail-bill');
+            Route::post('send-mail-contact', 'MailController@sendMessageContact')->name('send-mail-contact');
         });
     });
 });

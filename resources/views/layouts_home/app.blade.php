@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="{{ asset('theme_home_new') }}/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="{{ asset('theme_home_new') }}/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="{{ asset('theme_home_new') }}/css/style.css" type="text/css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+    <script src="{{ asset('theme_home_new') }}/js/numeral.min.js"></script>
 </head>
 <body>
 <div id="preloder">
@@ -70,6 +70,10 @@
 {{--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>--}}
 
 <script src="{{ asset('theme_home_new') }}/js/main.js"></script>
+<script src="{{ asset('theme_home_new') }}/ckeditor/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('content');
+</script>
 
 @yield('script')
 </body>

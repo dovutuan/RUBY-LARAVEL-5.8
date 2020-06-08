@@ -30,7 +30,7 @@
                                     @foreach($allCategories as $category)
                                         <li>
                                             <label class="radio-inline">
-                                                <input type="radio" name="category_id" value="{{$category->id}}"
+                                                <input type="checkbox" name="category_id" value="{{$category->id}}"
                                                        @if($category->id == $category_id) checked @endif> {{$category->name}}
                                             </label>
                                         </li>
@@ -43,7 +43,7 @@
                                     @foreach($suppliers as $supplier)
                                         <li>
                                             <label class="radio-inline">
-                                                <input type="radio" name="supplier_id" value="{{$supplier->id}}"
+                                                <input type="checkbox" name="supplier_id" value="{{$supplier->id}}"
                                                        @if($supplier->id == $supplier_id) checked @endif> {{$supplier->name}}
                                             </label>
                                         </li>
@@ -56,7 +56,7 @@
                                     @foreach($species as $specie)
                                         <div class="sidebar__item__size">
                                             <label class="btn btn-outline-info">
-                                                <input type="radio" name="specie_id"
+                                                <input type="checkbox" name="specie_id"
                                                        value="{{$specie->id}}"
                                                        @if($specie->id == $specie_id) checked @endif> {{$specie->name}}
                                             </label>

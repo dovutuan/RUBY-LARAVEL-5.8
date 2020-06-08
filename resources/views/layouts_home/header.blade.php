@@ -134,7 +134,7 @@
                 </ul>
             </li>
             <li><a href="./blog.html">Blog</a></li>
-            <li><a href="./contact.html">Contact</a></li>
+            <li><a href="{{route('contact')}}">Contact</a></li>
         </ul>
     </nav>
     <div id="mobile-menu-wrap"></div>
@@ -221,7 +221,7 @@
                             </ul>
                         </li>
                         <li><a href="./blog.html">Blog</a></li>
-                        <li><a href="./contact.html">Contact</a></li>
+                        <li><a href="{{route('contact')}}">Contact</a></li>
                     </ul>
                 </nav>
             </div>
@@ -246,7 +246,7 @@
                 <div class="hero__categories">
                     <div class="hero__categories__all">
                         <i class="fa fa-bars"></i>
-                        <span>All departments</span>
+                        <span>{{ __('messages.all-departments') }}</span>
                     </div>
                     <ul>
                         @foreach($allCategories as $category)
@@ -259,10 +259,6 @@
                 <div class="hero__search">
                     <div class="hero__search__form">
                         <form method="GET" action="{{route('search')}}">
-                            <div class="hero__search__categories">
-                                All Categories
-                                <span class="arrow_carrot-down"></span>
-                            </div>
                             <input type="text" placeholder="{{ __('messages.search...') }}" name="name" value="{{ isset($name) ? $name : old('name') }}">
                             <button type="submit" class="site-btn">{{ __('messages.search') }}</button>
                         </form>

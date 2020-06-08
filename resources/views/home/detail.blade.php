@@ -191,7 +191,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <textarea class="form-control different-control w-100 content"
-                                                                  name="content" rows="30" cols="30"
+                                                                  name="content" rows="30" cols="30" id="content"
                                                                   placeholder="{{ __('messages.enter-content') }}"></textarea>
                                                     </div>
                                                     <div class="form-group text-center text-md-right mt-3">

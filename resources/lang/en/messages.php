@@ -254,4 +254,8 @@ return [
     'year' => ' year ',
     'information-customer' => 'Information customer',
     'information-order' => ' Information order',
+    'all-departments' => 'All departments',
+    '[RUBY]-contact' => '[RUBY] contact',
+    'send-contact-successfully' => 'Send contact successfully',
+    'messages' => 'Messages',
 ];
