@@ -6,7 +6,7 @@
                     <nav>
                         <ul id="nav_menu">
                             <li>
-                                <a href="javascript:void(0)"><i
+                                <a href="{{route('dashboard')}}"><i
                                         class="fa fa-fw fa-dashboard"></i><span>{{__('messages.a-dashboard')}}</span></a>
                             </li>
                             <li class="{{\Request::route()->getName()==('list.role') || \Request::route()->getName()==('list.user') || \Request::route()->getName()==('list.permission') ?'active':''}}">

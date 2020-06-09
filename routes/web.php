@@ -14,6 +14,8 @@ Route::group(['middleware' => 'auth'], function () {
         //admin
         Route::group(['namespace' => 'Admin'], function () {
             Route::group(['prefix' => 'admin'], function () {
+                Route::get('', 'AdminController@index')->name('dashboard');
+
                 Route::group(['prefix' => 'user'], function () {
                     Route::get('', 'UserController@index')->name('list.user');
                     Route::post('', 'UserController@store')->name('store.user');

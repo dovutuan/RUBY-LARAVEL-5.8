@@ -258,4 +258,9 @@ return [
     '[RUBY]-contact' => '[RUBY] contact',
     'send-contact-successfully' => 'Send contact successfully',
     'messages' => 'Messages',
+    'contact-us' => 'Contact Us',
+    'total-bill' => 'Total bill',
+    'bill-are-pending' => 'Bill are pending',
+    'bill-complete' => 'Bill complete',
+    'bill-cancel' => 'Bill cancel',
 ];
