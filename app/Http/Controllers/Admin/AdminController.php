@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Bill;
 use App\Models\Product;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -23,8 +24,14 @@ class AdminController extends Controller
         $count_bill_cancel = $bills->where('status', SIX)->count();
         $sum_price = $bills->where('status', THREE)->sum('price');
 
-
-
+        $date = [];
+        $price = [];
+        foreach ($bills as $bill) {
+            if ($bill->status === THREE) {
+                $date[] = $bill->updated_at->format('d-m-Y');
+                $price[] = $bill->price;
+            }
+        }
         $data = [
             'sum_likes' => $sum_likes,
             'sum_views' => $sum_views,
@@ -34,6 +41,8 @@ class AdminController extends Controller
             'count_bill_complete' => $count_bill_complete,
             'count_bill_cancel' => $count_bill_cancel,
             'sum_price' => $sum_price,
+            'date' => json_encode($date),
+            'price' => json_encode($price),
         ];
 
         return view('admin.dashboard.index', $data);

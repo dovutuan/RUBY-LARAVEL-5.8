@@ -1,24 +1,9 @@
 @extends('layouts_admin.app')
 @section('content')
 
-    {{--    <div class="main-content-inner">--}}
-    {{--        <div class="row">--}}
-    {{--            <div class="col-12 mt-5">--}}
-    {{--                <div class="card">--}}
-    {{--                    <div class="card-body">--}}
-    {{--                       <div class="row">--}}
-    {{--                           --}}
-    {{--                       </div>--}}
-    {{--                    </div>--}}
-    {{--                </div>--}}
-    {{--            </div>--}}
-    {{--        </div>--}}
-    {{--    </div>--}}
-
     <div class="main-content-inner">
         <div class="row">
-            <!-- seo fact area start -->
-            <div class="col-lg-9">
+            <div class="col-lg-9 col-md-9">
                 <div class="row">
                     <div class="col-md-4 mt-5 mb-3">
                         <div class="card">
@@ -102,48 +87,14 @@
                     </div>
                 </div>
             </div>
-            <!-- seo fact area end -->
-            <!-- Social Campain area start -->
-            <div class="col-lg-3 mt-5">
+            <div class="col-lg-3 col-md-3 mt-5">
                 <div class="card">
                     <div class="card-body pb-0">
                         <h4 class="header-title">Social ads Campain</h4>
-                        <div id="socialads" style="height: 245px;"></div>
+                        <canvas id="myChart" width="400" height="400"></canvas>
                     </div>
                 </div>
             </div>
-            <!-- Social Campain area end -->
-            <!-- Statistics area start -->
-            <div class="col-lg-8 mt-5">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="header-title">User Statistics</h4>
-                        <div id="user-statistics"></div>
-                    </div>
-                </div>
-            </div>
-            <!-- Statistics area end -->
-            <!-- Advertising area start -->
-            <div class="col-lg-4 mt-5">
-                <div class="card h-full">
-                    <div class="card-body">
-                        <h4 class="header-title">Advertising & Marketing</h4>
-                        <canvas id="seolinechart8" height="233"></canvas>
-                    </div>
-                </div>
-            </div>
-            <!-- Advertising area end -->
-            <!-- sales area start -->
-            <div class="col-xl-9 col-ml-8 col-lg-8 mt-5">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="header-title">Sales</h4>
-                        <div id="salesanalytic"></div>
-                    </div>
-                </div>
-            </div>
-            <!-- sales area end -->
-            <!-- timeline area start -->
             <div class="col-xl-3 col-ml-4 col-lg-4 mt-5">
                 <div class="card">
                     <div class="card-body">
@@ -208,4 +159,46 @@
             </div>
         </div>
     </div>
+
+    <script>
+        $(function () {
+            var ctx = document.getElementById("myChart").getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: <?php echo $date ?>,
+                    datasets: [{
+                        label: 'price',
+                        data: <?php echo $price ?>,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255,99,132,1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero:true
+                            }
+                        }]
+                    }
+                }
+            });
+        });
+    </script>
 @endsection
