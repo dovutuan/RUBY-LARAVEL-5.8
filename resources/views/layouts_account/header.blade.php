@@ -114,20 +114,30 @@
     <div class="row">
         <div id="admin-sidebar" class="col-md-2 p-x-0 p-y-3">
             <ul class="sidenav admin-sidenav list-unstyled">
-                <li class="{{\Request::route()->getName()==('information') ? 'active':''}}">
-                    <a href="{{route('information')}}">{{ __('messages.information') }}</a></li>
-                <li class="{{\Request::route()->getName()==('change-information') ?'active':''}}">
-                    <a href="{{route('change-information')}}">{{ __('messages.change-information') }}</a></li>
-                <li class="{{\Request::route()->getName()==('change-password') ?'active':''}}">
-                    <a href="{{route('change-password')}}">{{ __('messages.change-password') }}</a></li>
+                <a class="color-a-red" href="{{route('information')}}">
+                    <li class="{{\Request::route()->getName()==('information') ? 'active':''}}">
+                        {{ __('messages.information') }}</li>
+                </a>
+                <a class="color-a-red" href="{{route('change-information')}}">
+                    <li class="{{\Request::route()->getName()==('change-information') ?'active':''}}">
+                        {{ __('messages.change-information') }}</li>
+                </a>
+                <a class="color-a-red" href="{{route('change-password')}}">
+                    <li class="{{\Request::route()->getName()==('change-password') ?'active':''}}">
+                        {{ __('messages.change-password') }}</li>
+                </a>
                 @foreach(\Auth::user()->getRoleNames() as $role)
                     @if($role == 'Customer' || $role == 'customer')
-                        <li class="{{\Request::route()->getName()==('create-mini-shop') ?'active':''}}">
-                            <a href="{{route('create-mini-shop')}}">{{ __('messages.create-mini-shop') }}</a></li>
+                        <a class="color-a-red" href="{{route('create-mini-shop')}}">
+                            <li class="{{\Request::route()->getName()==('create-mini-shop') ?'active':''}}">
+                                {{ __('messages.create-mini-shop') }}</li>
+                        </a>
                     @endif
                 @endforeach
-                <li class="{{\Request::route()->getName()==('order-customer') || \Request::route()->getName()==('detail-order-customer') ?'active':''}}">
-                    <a href="{{route('order-customer')}}">{{ __('messages.order') }}</a></li>
+                <a class="color-a-red" href="{{route('order-customer')}}">
+                    <li class="{{\Request::route()->getName()==('order-customer') || \Request::route()->getName()==('detail-order-customer') ?'active':''}}">
+                        {{ __('messages.order') }}</li>
+                </a>
             </ul>
         </div>
         <div class="col-md-1"></div>

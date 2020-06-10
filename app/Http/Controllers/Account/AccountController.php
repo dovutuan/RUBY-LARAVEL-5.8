@@ -81,7 +81,7 @@ class AccountController extends Controller
 
     public function bill()
     {
-        $bills = Bill::where('created_by', Auth::user()->id)->get();
+        $bills = Bill::where('created_by', Auth::user()->id)->paginate(PAGINATE);
         $data = [
             'bills' => $bills,
         ];

@@ -3,7 +3,7 @@
 
     <div id="admin-main-control" class="col-md-9 p-x-3 p-y-1">
         <div class="row">
-            <table class="table table-hover table-responsive">
+            <table class="table table-hover">
                 <thead class="thead-dark">
                 <tr>
                     <th>Stt</th>
@@ -41,16 +41,16 @@
                                 class="badge {{ $bill->getStatus($bill->status)['class'] }}">{{ $bill->getStatus($bill->status)['name'] }}</lable>
                         </td>
                         <td>{{$bill->created_at->format('H:i:s d-m-Y')}}</td>
-                        <td class="text-left">
+                        <td class="text-left white-space-nowrap">
                             <a href="{{route('detail-order-customer', $bill->id)}}"
-                               class="btn btn-xs btn-outline-info"><i
+                               class="btn btn-sm btn-outline-info"><i
                                     class="fa fa-eye"></i></a>
                             <a target="_blank" href="{{route('print-order-customer', $bill->id)}}"
-                               class="btn btn-xs btn-outline-primary"><i
+                               class="btn btn-sm btn-outline-primary"><i
                                     class="fa fa-print"></i></a>
                             @if($bill->status === ZERO || $bill->status === ONE)
                                 <a href="{{route('cancel-order-customer', $bill->id)}}"
-                                   class="btn btn-xs btn-outline-danger"
+                                   class="btn btn-sm btn-outline-danger"
                                    onclick="return confirm('Do you want to delete?')"><i
                                         class="fa fa-trash"></i></a>
                             @endif
@@ -59,6 +59,7 @@
                 @endforeach
                 </tbody>
             </table>
+            {{ $bills->links() }}
         </div>
     </div>
 
