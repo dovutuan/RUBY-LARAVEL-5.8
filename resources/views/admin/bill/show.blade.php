@@ -145,8 +145,7 @@
                         <br>
                         <div class="row">
                             <button class="btn btn-xs btn-outline-dark" onclick="window.history.go(-1); return false;">
-                                <i
-                                    class="fa fa-angle-double-left"> {{ __('messages.back-to-list') }}</i></button>
+                                <i class="fa fa-angle-double-left"> {{ __('messages.back-to-list') }}</i></button>
                         </div>
                     </div>
                 </div>

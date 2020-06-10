@@ -145,6 +145,9 @@ Route::group(['middleware' => 'auth'], function () {
                 Route::post('change-password', 'AccountController@updateChangePassword');
                 Route::get('create-mini-shop', 'AccountController@CreateMiniShop')->name('create-mini-shop');
                 Route::post('create-mini-shop', 'AccountController@SeedMailCreateMiniShop');
+                Route::get('order', 'AccountController@bill')->name('order-customer');
+                Route::get('order-detail/{id}', 'AccountController@billDetail')->name('detail-order-customer');
+                Route::get('cancel-order/{id}', 'AccountController@cancelBill')->name('cancel-order-customer');
             });
         });
 

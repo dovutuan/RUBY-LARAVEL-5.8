@@ -109,7 +109,7 @@
             <span class="arrow_carrot-down"></span>
             <ul>
                 <li><a href="{{route('information')}}">{{ __('messages.information') }}</a></li>
-                <li><a href="">{{ __('messages.order') }}</a></li>
+                <li><a href="{{route('order-customer')}}">{{ __('messages.order') }}</a></li>
                 <li>
                     <a href="{{ route('logout') }}"
                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> {{ __('messages.logout') }}</a>
@@ -184,7 +184,7 @@
                             <span class="arrow_carrot-down"></span>
                             <ul>
                                 <li><a href="{{route('information')}}">{{ __('messages.information') }}</a></li>
-                                <li><a href="">{{ __('messages.order') }}</a></li>
+                                <li><a href="{{route('order-customer')}}">{{ __('messages.order') }}</a></li>
                                 <li>
                                     <a href="{{ route('logout') }}"
                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> {{ __('messages.logout') }}</a>
