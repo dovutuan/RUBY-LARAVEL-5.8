@@ -37,7 +37,7 @@
                                             </select>
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="date" class="form-control" name="birth">
+                                            <input type="date" class="form-control" name="birth" value="{{old('birth')}}">
                                             @error('birth')
                                             <div class="text-danger text-left">{{ $message }}</div>
                                             @enderror

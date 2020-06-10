@@ -37,7 +37,7 @@ CKEDITOR.editorConfig = function( config ) {
 	config.removeDialogTabs = 'image:advanced;link:advanced';
 
     config.language = 'en';
-    config.height = 200;
+    config.height = 100;
     config.toolbar_Full = [
         ['Source','-','Save','NewPage','Preview','-','Templates'],
         ['Cut','Copy','Paste','PasteText','PasteFromWord','-','Print', 'SpellChecker', 'Scayt'],
@@ -55,10 +55,10 @@ CKEDITOR.editorConfig = function( config ) {
         ['Maximize', 'ShowBlocks','-','About']
     ];
     config.entities = false;
-    config.filebrowserBrowseUrl = 'http://localhost:81/rubyshop/public/theme_admin/ckfinder/ckfinder.html';
-    config.filebrowserImageBrowseUrl = 'http://localhost:81/rubyshop/public/theme_admin/ckfinder/ckfinder.html?type=Images';
-    config.filebrowserFlashBrowseUrl = 'http://localhost:81/rubyshop/public/theme_admin/ckfinder/ckfinder.html?type=Flash';
-    config.filebrowserUploadUrl = 'http://localhost:81/rubyshop/public/theme_admin/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
-    config.filebrowserImageUploadUrl = 'http://localhost:81/rubyshop/public/theme_admin/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images';
-    config.filebrowserFlashUploadUrl = 'http://localhost:81/rubyshop/public/theme_admin/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash';
+    config.filebrowserBrowseUrl = '/theme_admin/ckfinder/ckfinder.html';
+    config.filebrowserImageBrowseUrl = '/theme_admin/ckfinder/ckfinder.html?type=Images';
+    config.filebrowserFlashBrowseUrl = '/theme_admin/ckfinder/ckfinder.html?type=Flash';
+    config.filebrowserUploadUrl = '/theme_admin/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
+    config.filebrowserImageUploadUrl = '/theme_admin/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images';
+    config.filebrowserFlashUploadUrl = '/theme_admin/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash';
 };

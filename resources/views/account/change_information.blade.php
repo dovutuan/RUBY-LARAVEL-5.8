@@ -14,10 +14,10 @@
             <div class="col-md-12 form-group p_star">
                 <div class="row">
                     <div class="col-md-6">
-                        <select name="gender" class="form-control">
-                            <option value="0">{{ __('messages.male') }}</option>
-                            <option value="1">{{ __('messages.female') }}</option>
-                            <option value="2">{{ __('messages.other') }}</option>
+                        <select name="gender" class="nice-select nice-select-full-width">
+                            <option value="0" @if($user->gender == 0) selected @endif>{{ __('messages.male') }}</option>
+                            <option value="1" @if($user->gender == 0) selected @endif>{{ __('messages.female') }}</option>
+                            <option value="2" @if($user->gender == 0) selected @endif>{{ __('messages.other') }}</option>
                         </select>
                     </div>
                     <div class="col-md-6">
@@ -54,7 +54,7 @@
                 @enderror
             </div>
             <div class="col-md-3 form-group p_star">
-                <button type="submit" class="button button-login w-100">{{ __('messages.change') }}</button>
+                <button type="submit" class="btn btn-xs btn-outline-success">{{ __('messages.change') }}</button>
             </div>
         </form>
     </div>
