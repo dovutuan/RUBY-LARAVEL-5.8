@@ -269,4 +269,6 @@ return [
     'a-bill-information' => 'Thông tin hóa đơn',
     'a-bill-detail-information' => 'Thông tin chi tiết hóa đơn',
     'a-bill-detail' => 'Chi tiết hóa đơn',
+    'add-product-to-cart-successfully'=> 'Thêm sản phẩm vào giỏ hàng thành công',
+    'product-are-not-the-same-seller'=> 'Sản phẩm không cùng người bán',
 ];

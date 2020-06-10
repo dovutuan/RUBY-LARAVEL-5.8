@@ -40,10 +40,10 @@ class CheckoutController extends Controller
             $session_discount = Session::getSessionDiscount();
             $carts = Cart::content();
             $user = Auth::user();
-
+            
             $bill = Bill::create([
                 'user_id' => Auth::user()->id,
-                'seller_id' => Auth::user()->id,
+                'seller_id' => $session_discount['seller'],
                 'created_by' => Auth::user()->id,
                 'price' => $session_discount['total_price'],
                 'price_paid' => null || $session_discount['money_paid'],

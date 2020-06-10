@@ -18,19 +18,18 @@ class Session extends Model
         $discount_price = null;
         $total_price = str_replace(',', '', Cart::total(ZERO, THREE));
         $money_paid = session(md5('totalPricePayPal')) ? session(md5('totalPricePayPal')) : null;
+        $seller = null;
 
         if ($session_discount) {
-            $sellers = [];
             $discount_id = $session_discount['discount_id'];
             $discount_code = $session_discount['discount_code'];
             $discount_name = $session_discount['discount_name'];
             foreach ($carts as $cart) {
-                $sellers[] = $cart->options->seller;
+                $seller = $cart->options->seller;
             }
-            $sellers = array_unique($sellers);
-            foreach ($sellers as $seller) {
-                $date_now = Carbon::now()->format('Y-m-d');
-                $discount = Discount::where('code', $session_discount['discount_code'])->where('status', ONE)->where('amount', '>', ZERO)->where('created_by', $seller)->where('finish', '>=', $date_now)->first();
+            $date_now = Carbon::now()->format('Y-m-d');
+            $discount = Discount::where('code', $session_discount['discount_code'])->where('status', ONE)->where('amount', '>', ZERO)->where('created_by', $seller)->where('finish', '>=', $date_now)->first();
+            if ($discount) {
                 $discount_price = $discount->price;
             }
             $discount_price && $total_price = $total_price - $discount->price;
@@ -46,7 +45,8 @@ class Session extends Model
             'discount_name' => $discount_name,
             'total_price' => $total_price,
             'money_paid' => $money_paid,
-            'carts' => $carts
+            'carts' => $carts,
+            'seller' => $seller,
         ];
         return $data;
     }

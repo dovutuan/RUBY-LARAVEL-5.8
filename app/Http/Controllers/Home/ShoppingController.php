@@ -19,24 +19,45 @@ class ShoppingController extends Controller
         if ($product && $option_product) {
             $sale = $product->sale ? $product->sale->sale : ZERO;
             $price = $product->sale ? $option_product->price * (ONE_HUNDRED - $sale) / ONE_HUNDRED : $option_product->price;
-            Cart::add([
-                'id' => $id,
-                'name' => $product->name,
-                'qty' => $amount,
-                'price' => $price,
-                'weight' => 0,
-                'options' => [
-                    'supplier' => $option_product->suppliers->name,
-                    'species' => $option_product->species->name,
-                    'amount' => $option_product->amount,
-                    'image' => $product->image,
-                    'seller' => $product->created_by,
-                    'species_id' => $option_product->species_id,
-                ],
-            ]);
-            return redirect()->back();
+
+            if (Cart::count() > 0) {
+                $seller = '';
+                foreach (Cart::content() as $cart) {
+                    $seller = $cart->options['seller'];
+                }
+                if ($seller === $product->created_by) {
+                    $this->createCart($id, $product->name, $amount, $price, $option_product->suppliers->name, $option_product->species->name, $option_product->amount, $product->image, $seller, $option_product->species_id);
+
+                    return redirect()->back()->with('success', __('messages.add-product-to-cart-successfully'));
+                } else {
+                    return redirect()->back()->with('error', __('messages.product-are-not-the-same-seller'));
+                }
+            } else {
+                $this->createCart($id, $product->name, $amount, $price, $option_product->suppliers->name, $option_product->species->name, $option_product->amount, $product->image, $product->created_by, $option_product->species_id);
+
+                return redirect()->back()->with('success', __('messages.add-product-to-cart-successfully'));
+            }
         } else {
-            return redirect()->back()->with('error', 'Error');
+            return redirect()->back()->with('error', __('messages.error'));
         }
+    }
+
+    public function createCart($id, $name, $qty, $price, $supplier, $species, $amount, $image, $seller, $species_id)
+    {
+        Cart::add([
+            'id' => $id,
+            'name' => $name,
+            'qty' => $qty,
+            'price' => $price,
+            'weight' => 0,
+            'options' => [
+                'supplier' => $supplier,
+                'species' => $species,
+                'amount' => $amount,
+                'image' => $image,
+                'seller' => $seller,
+                'species_id' => $species_id,
+            ],
+        ]);
     }
 }

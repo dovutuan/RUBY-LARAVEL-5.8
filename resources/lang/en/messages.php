@@ -270,4 +270,6 @@ return [
     'a-bill-information' => 'Bill information',
     'a-bill-detail-information' => 'Bill detail information',
     'a-bill-detail' => 'Bill detail',
+    'add-product-to-cart-successfully'=> 'Add product to cart successfully',
+    'product-are-not-the-same-seller'=> 'Products are not the same seller',
 ];
