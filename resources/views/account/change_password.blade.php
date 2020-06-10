@@ -19,7 +19,7 @@
                 @enderror
             </div>
             <div class="col-md-3 form-group p_star">
-                <button type="submit" class="button button-login w-100">{{ __('messages.change') }}</button>
+                <button type="submit" class="btn btn-xs btn-outline-success">{{ __('messages.change') }}</button>
             </div>
         </form>
     </div>

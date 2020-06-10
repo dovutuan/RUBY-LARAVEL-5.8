@@ -40,7 +40,7 @@
                 @enderror
             </div>
             <div class="col-md-3 form-group p_star">
-                <button type="submit" class="button button-login w-100">{{ __('messages.submit') }}</button>
+                <button type="submit" class="btn btn-xs btn-outline-success">{{ __('messages.submit') }}</button>
             </div>
         </form>
     </div>
