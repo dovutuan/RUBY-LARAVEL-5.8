@@ -263,4 +263,11 @@ return [
     'bill-are-pending' => 'Bill are pending',
     'bill-complete' => 'Bill complete',
     'bill-cancel' => 'Bill cancel',
+    'shipping-address' => 'Shipping address',
+    'staff' => 'Staff',
+    'bill' => 'BILL',
+    'a-qty' => 'Qty',
+    'a-bill-information' => 'Bill information',
+    'a-bill-detail-information' => 'Bill detail information',
+    'a-bill-detail' => 'Bill detail',
 ];

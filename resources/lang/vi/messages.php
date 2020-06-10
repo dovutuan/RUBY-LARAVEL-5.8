@@ -262,4 +262,11 @@ return [
     'bill-are-pending' => 'Đơn hàng đang xử lý',
     'bill-complete' => 'Đơn hàng giao thành công',
     'bill-cancel' => 'Đơn hàng bị hủy',
+    'shipping-address' => 'Địa chỉ nhận hàng',
+    'staff' => 'Nhân viên',
+    'bill' => 'HÓA ĐƠN THANH TOÁN',
+    'a-qty' => 'Số lượng',
+    'a-bill-information' => 'Thông tin hóa đơn',
+    'a-bill-detail-information' => 'Thông tin chi tiết hóa đơn',
+    'a-bill-detail' => 'Chi tiết hóa đơn',
 ];

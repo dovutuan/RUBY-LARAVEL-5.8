@@ -45,6 +45,9 @@
                             <a href="{{route('detail-order-customer', $bill->id)}}"
                                class="btn btn-xs btn-outline-info"><i
                                     class="fa fa-eye"></i></a>
+                            <a target="_blank" href="{{route('print-order-customer', $bill->id)}}"
+                               class="btn btn-xs btn-outline-primary"><i
+                                    class="fa fa-print"></i></a>
                             @if($bill->status === ZERO || $bill->status === ONE)
                                 <a href="{{route('cancel-order-customer', $bill->id)}}"
                                    class="btn btn-xs btn-outline-danger"

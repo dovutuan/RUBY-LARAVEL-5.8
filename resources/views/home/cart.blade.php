@@ -38,7 +38,8 @@
                                     <tr>
                                         <td class="shoping__cart__item">
                                             <img class="image-cart" src="{{$cart->options->image}}" alt="">
-                                            <a href="{{route('detail-product', $cart->id)}}"> <h5>{{$cart->name}}</h5></a>
+                                            <a href="{{route('detail-product', $cart->id)}}"><h5>{{$cart->name}}</h5>
+                                            </a>
                                         </td>
                                         <td class="shoping__cart__price white-space-nowrap">
                                             {{$cart->options->amount}} <sup>{{$cart->options->species}}</sup>
@@ -47,7 +48,8 @@
                                         <td class="shoping__cart__quantity">
                                             <div class="quantity">
                                                 <div class="pro-qty">
-                                                    <input type="text" name="amount" value="{{$cart->qty}}" min="1" readonly>
+                                                    <input type="text" name="amount" value="{{$cart->qty}}" min="1"
+                                                           readonly>
                                                 </div>
                                             </div>
                                         </td>
@@ -76,8 +78,6 @@
                     <div class="shoping__cart__btns">
                         <a href="{{route('home')}}"
                            class="primary-btn cart-btn">{{ __('messages.continue-shopping') }}</a>
-                        <a href="{{route('send-mail-bill')}}"
-                           class="primary-btn cart-btn">mail</a>
                         @if(Cart::count() > ZERO)
                             <a class="primary-btn cart-btn cart-btn-right" href="{{route('delete-all-cart')}}"
                                onclick="return confirm('Are you sure you want to delete all products in your cart?')">{{ __('messages.delete-all') }}</a>
@@ -90,7 +90,8 @@
                             <h5>{{ __('messages.a-discount') }}</h5>
                             <form action="{{route('check-discount')}}" method="POST">
                                 @csrf
-                                <input type="text" placeholder="{{ __('messages.enter-discount-code') }}" name="discount">
+                                <input type="text" placeholder="{{ __('messages.enter-discount-code') }}"
+                                       name="discount">
                                 <button type="submit" class="site-btn">{{ __('messages.APPLY') }}</button>
                             </form>
                         </div>
@@ -100,11 +101,18 @@
                     <div class="shoping__checkout">
                         <h5>{{ __('messages.cart-total') }}</h5>
                         <ul>
-                            <li>{{ __('messages.money-goods') }} <span>{{Cart::priceTotal(ZERO, THREE)}} <sup>{{ __('messages.a-vnđ') }}</sup></span></li>
-                            <li>{{ __('messages.transport-fee') }} <span>{{Cart::tax(ZERO, THREE)}} <sup>{{ __('messages.a-vnđ') }}</sup></span></li>
-                            <li>{{ __('messages.total-payment') }} <span>{{Cart::total(ZERO, THREE)}} <sup>{{ __('messages.a-vnđ') }}</sup></span></li>
+                            <li>{{ __('messages.money-goods') }}
+                                <span>{{Cart::priceTotal(ZERO, THREE)}} <sup>{{ __('messages.a-vnđ') }}</sup></span>
+                            </li>
+                            <li>{{ __('messages.transport-fee') }}
+                                <span>{{Cart::tax(ZERO, THREE)}} <sup>{{ __('messages.a-vnđ') }}</sup></span></li>
+                            <li>{{ __('messages.total-payment') }}
+                                <span>{{Cart::total(ZERO, THREE)}} <sup>{{ __('messages.a-vnđ') }}</sup></span></li>
                         </ul>
-                        <a href="{{route('checkout')}}" class="primary-btn">{{ __('messages.proceed-to-checkout') }}</a>
+                        @if(Cart::count() > ZERO)
+                            <a href="{{route('checkout')}}"
+                               class="primary-btn">{{ __('messages.proceed-to-checkout') }}</a>
+                        @endif
                     </div>
                 </div>
             </div>

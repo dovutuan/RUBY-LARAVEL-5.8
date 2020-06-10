@@ -106,6 +106,12 @@ class AccountController extends Controller
         } else {
             return back()->with('warning', __('messages.some-error-occur'));
         }
-        dd($bill);
+    }
+
+    public function printBill($id)
+    {
+        $bill = Bill::where('id', $id)->where('created_by', Auth::user()->id)->first();
+        if ($bill) return view('account.print_bill', compact('bill'));
+        else return back()->with('warning', __('messages.some-error-occur'));
     }
 }
