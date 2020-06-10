@@ -2890,3 +2890,7 @@ table.dataTable thead td {
 .toast-danger {
     box-shadow: 0 0.25rem 0.75rem #dc3545 !important;
 }
+
+.white-space-nowrap {
+    white-space: nowrap !important;
+}

@@ -16,7 +16,7 @@
                                     </ol>
                                 </nav>
                             </div>
-                            <div class="col-md-1 clearfix text-right">
+                            <div class="col-md-1 clearfix text-right white-space-nowrap">
                                 <a href="{{route('export.user')}}" class="btn btn-sm btn-info"><i
                                         class="fa fa-file-excel-o"></i></a>
                                 @can('user-create')

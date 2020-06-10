@@ -3,7 +3,6 @@
 
     <div class="main-content-inner">
         <div class="row">
-
             <div class="col-12 mt-5">
                 <div class="card">
                     <div class="card-body">
@@ -17,7 +16,7 @@
                                     </ol>
                                 </nav>
                             </div>
-                            <div class="col-md-1 clearfix text-right">
+                            <div class="col-md-1 clearfix text-right white-space-nowrap">
                                 <a href="{{route('export.product')}}" class="btn btn-sm btn-info"><i
                                         class="fa fa-file-excel-o"></i></a>
                                 @can('product-create')
