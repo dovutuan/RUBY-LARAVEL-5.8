@@ -28,13 +28,6 @@
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
         }
 
-        .subpage {
-            padding: 1cm;
-            border: 5px red solid;
-            height: 237mm;
-            outline: 2cm #FFEAEA solid;
-        }
-
         @page {
             size: A4;
             margin: 0;
@@ -130,31 +123,6 @@
             background: rgba(0, 0, 0, 0.05);
         }
 
-        .TableData .cotSTT {
-            text-align: center;
-            width: 10%;
-        }
-
-        .TableData .cotTenSanPham {
-            text-align: left;
-            width: 40%;
-        }
-
-        .TableData .cotHangSanXuat {
-            text-align: left;
-            width: 20%;
-        }
-
-        .TableData .cotGia {
-            text-align: right;
-            width: 120px;
-        }
-
-        .TableData .cotSoLuong {
-            text-align: center;
-            width: 50px;
-        }
-
         .TableData .cotSo {
             text-align: center;
             width: 120px;
@@ -232,23 +200,24 @@
         @endforeach
         <tr>
             <td colspan="4" class="tong">{{ __('messages.a-tax-rate') }}</td>
-            <td class="cotSo">{{$bill->tax_rate}} <sup>{{ __('messages.a-vnđ') }}</sup></td>
+            <td class="cotSo">{{number_format($bill->tax_rate)}} <sup>{{ __('messages.a-vnđ') }}</sup></td>
         </tr>
         <tr>
             <td colspan="4" class="tong">{{ __('messages.a-discount') }}</td>
-            <td class="cotSo">{{$bill->discount_price}} <sup>{{ __('messages.a-vnđ') }}</sup></td>
+            <td class="cotSo">{{number_format($bill->discount_price)}} <sup>{{ __('messages.a-vnđ') }}</sup></td>
         </tr>
         <tr>
             <td colspan="4" class="tong">{{ __('messages.money_paid') }}</td>
-            <td class="cotSo">{{$bill->price_paid}} <sup>{{ __('messages.a-vnđ') }}</sup></td>
+            <td class="cotSo">{{number_format($bill->price_paid)}} <sup>{{ __('messages.a-vnđ') }}</sup></td>
         </tr>
         <tr>
             <td colspan="4" class="tong">{{ __('messages.total-payment') }}</td>
-            <td class="cotSo">{{$bill->price}} <sup>{{ __('messages.a-vnđ') }}</sup></td>
+            <td class="cotSo">{{number_format($bill->price)}} <sup>{{ __('messages.a-vnđ') }}</sup></td>
         </tr>
         </tbody>
     </table>
-    <div class="footer-right">{{__('messages.day') . \Carbon\Carbon::now()->day .  __('messages.month') . \Carbon\Carbon::now()->month .  __('messages.year') . \Carbon\Carbon::now()->year }}
+    <div
+        class="footer-right">{{__('messages.day') . \Carbon\Carbon::now()->day .  __('messages.month') . \Carbon\Carbon::now()->month .  __('messages.year') . \Carbon\Carbon::now()->year }}
         <br/><br>
         {{ __('messages.staff') }}
     </div>

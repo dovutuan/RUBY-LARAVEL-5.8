@@ -1,13 +1,20 @@
 <div class="modal" id="myModal">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <form action="{{route('store.category')}}" method="post">
+            <form action="{{route('store.category')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-header">
                     <h4 class="modal-title">{{ __('messages.create-category') }}</h4>
                     <button type="button" class="close" data-dismiss="modal"><i class="fa fa-close"></i></button>
                 </div>
                 <div class="modal-body">
+                    <div class="form-group">
+                        <label for="txtImage" class="label-margin-left">
+                            <img id="showImage" class="image-user"
+                                 src="{{asset('files') . '/categories/no_categories.jpg'}}"
+                                 alt="">
+                        </label>
+                    </div>
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-8">
@@ -50,17 +57,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="control-label"><b>{{ __('messages.a-image') }}</b></label>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <buton id="btnImage"
-                                           class="btn btn-outline-success">{{ __('messages.select-image') }}
-                                    </buton>
-                                </div>
-                                <input name="image" id="txtImage" type="text" class="form-control"
+                        <div class="form-group display-none">
+                                <input name="image" id="txtImage" type="file" class="form-control"
                                        value="{{old('image')}}">
-                            </div>
                         </div>
                     </div>
                 </div>

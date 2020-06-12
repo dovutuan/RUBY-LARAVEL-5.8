@@ -20,7 +20,7 @@ class ShoppingController extends Controller
             $sale = $product->sale ? $product->sale->sale : ZERO;
             $price = $product->sale ? $option_product->price * (ONE_HUNDRED - $sale) / ONE_HUNDRED : $option_product->price;
 
-            if (Cart::count() > 0) {
+            if (Cart::count() > ZERO) {
                 $seller = '';
                 foreach (Cart::content() as $cart) {
                     $seller = $cart->options['seller'];

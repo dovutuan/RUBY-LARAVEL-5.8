@@ -10,7 +10,6 @@
     "require": {
         "php": "^7.1.3",
         "bumbummen99/shoppingcart": "^2.9",
-        "ckfinder/ckfinder-laravel-package": "v3.5.1.3",
         "fideloper/proxy": "^4.0",
         "laravel-admin-ext/chartjs": "^1.0",
         "laravel/framework": "5.8.*",
@@ -42,7 +41,8 @@
             "App\\": "app/"
         },
         "files": [
-            "app/Constants/constants.php"
+            "app/Constants/constants.php",
+            "app/Helpers/function.php"
         ],
         "classmap": [
             "database/seeds",

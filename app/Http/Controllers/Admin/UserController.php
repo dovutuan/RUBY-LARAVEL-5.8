@@ -47,8 +47,10 @@ class UserController extends Controller
 
     public function store(UserRequest $request)
     {
+        $name_image = $this->upLoadImage($request->file('image'));
         $user = User::create(
             array_merge($request->all(), [
+                'image' => $name_image,
                 'email_verified_at' => Carbon::now(),
                 'password' => Hash::make($request->input('password')),
                 'created_by' => Auth::user()->id,
@@ -75,9 +77,12 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
+        $name_image = $this->upLoadImage($request->file('image'));
+
         $user = User::find($id);
         $user->update(
             array_merge($request->all(), [
+                'image' => $name_image,
                 'updated_by' => Auth::user()->id,
             ])
         );
@@ -127,5 +132,14 @@ class UserController extends Controller
     public function export()
     {
         return Excel::download(new UsersExport, 'users.xlsx');
+    }
+
+    public function upLoadImage($image)
+    {
+        $name_image = null;
+        if ($image) {
+            $name_image = uploadImage(USERS, $image);
+        }
+        return $name_image;
     }
 }

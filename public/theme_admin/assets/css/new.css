@@ -64,3 +64,25 @@
 .step .step-item.active ~ .step-item a::before {
     background: #e7e9ed;
 }
+
+.image-user {
+    margin: 5%;
+    min-width: 120px;
+    max-width: 120px;
+    min-height: 120px;
+    max-height: 120px;
+    border-radius: 50%;
+    border: #7a7a7a solid 1px;
+}
+
+.display-none {
+    display: none;
+}
+
+.btn-padding {
+    padding: 11px 12px !important;
+}
+
+.label-margin-left {
+    margin-left: 35%;
+}
