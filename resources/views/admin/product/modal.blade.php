@@ -1,7 +1,7 @@
 <div class="modal" id="myModal">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
-            <form action="{{route('store.product')}}" method="post">
+            <form action="{{route('store.product')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-header">
                     <h4 class="modal-title">{{ __('messages.create-product') }}</h4>
@@ -101,23 +101,37 @@
                             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
                                  data-parent="#accordionExample">
                                 <div class="card-body">
-                                    <div class="form-group">
-                                        <label class="control-label"><b>{{ __('messages.a-image') }}</b></label>
-                                        <div class="input-group mb-3">
-                                            <div class="input-group-prepend">
-                                                <buton id="btnImage"
-                                                       class="btn btn-outline-success">{{ __('messages.select-image') }}
-                                                </buton>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label
+                                                    class="control-label"><b>{{ __('messages.a-main-image') }}</b></label>
+                                                <label for="txtImage">
+                                                    <img id="showImage" class="image-user"
+                                                         src="{{asset('files') . '/products/no_products.jpg'}}"
+                                                         alt="">
+                                                </label>
+                                                <input name="main_image" id="txtImage" type="file"
+                                                       class="form-control display-none"
+                                                       value="{{old('image')}}">
                                             </div>
-                                            <input name="image_product" id="txtImage" type="text" class="form-control"
-                                                   value="{{old('image')}}">
                                         </div>
-                                    </div>
-                                    <div class="form-group text-center">
-                                        <span class="ac1"><button class="btn btn-xs btn-outline-primary"><i
-                                                    class="faac1 fa fa-angle-double-down"></i></button></span>
-                                        <span class="ac2"><button class="btn btn-xs btn-outline-primary"><i
-                                                    class="faac2 fa fa-angle-double-down"></i></button></span>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label
+                                                    class="control-label"><b>{{ __('messages.a-secondary-image') }}</b></label>
+                                                <div class="form-control form-control-image">
+                                                    <label for="txtImage">
+                                                        <img id="showImage" class="image-user"
+                                                             src="{{asset('files') . '/products/no_products.jpg'}}"
+                                                             alt="">
+                                                    </label>
+                                                    <input name="secondary_image[]" id="txtImage" type="file"
+                                                           class="form-control display-none"
+                                                           value="{{old('secondary_image')}}">
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -139,7 +153,8 @@
                                         <div class="col-md-7">
                                             <div class="form-group">
                                                 <label
-                                                    class="control-label"><b>{{ __('messages.a-amount') }} / {{ __('messages.a-species') }}</b></label>
+                                                    class="control-label"><b>{{ __('messages.a-amount') }}
+                                                        / {{ __('messages.a-species') }}</b></label>
                                                 <div class="input-group mb-3">
                                                     <input name="amount[]" id="amount" type="number" min="0"
                                                            class="form-control"

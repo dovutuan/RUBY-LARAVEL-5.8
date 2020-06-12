@@ -56,6 +56,7 @@ class ProductController extends Controller
     {
         try {
             DB::beginTransaction();
+            $name_image = $this->upLoadImage($request->file('image_product'));
             $product = Product::create([
                 'name' => $request->input('name'),
                 'slug' => str_slug($request->input('name')),
@@ -63,7 +64,7 @@ class ProductController extends Controller
                 'detail' => $request->input('detail'),
                 'status' => $request->input('status'),
                 'category_id' => $request->input('category_id'),
-                'image' => $request->input('image_product'),
+                'image' => $name_image,
                 'created_by' => Auth::user()->id,
             ]);
             if ($product) {
@@ -139,5 +140,14 @@ class ProductController extends Controller
     public function export()
     {
         return Excel::download(new ProductsExport, 'products.xlsx');
+    }
+
+    public function upLoadImage($image)
+    {
+        $name_image = null;
+        if ($image) {
+            $name_image = uploadImage(PRODUCTS, $image);
+        }
+        return $name_image;
     }
 }

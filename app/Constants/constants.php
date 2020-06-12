@@ -18,3 +18,4 @@ define('ONE_MILLION', 1000000);
 define('CURRENCY', 23295.03);
 define('USERS', 'users');
 define('CATEGORIES', 'categories');
+define('PRODUCTS', 'products');

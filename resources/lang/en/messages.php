@@ -272,4 +272,6 @@ return [
     'a-bill-detail' => 'Bill detail',
     'add-product-to-cart-successfully'=> 'Add product to cart successfully',
     'product-are-not-the-same-seller'=> 'Products are not the same seller',
+    'a-main-image' => 'Main image',
+    'a-secondary-image' => 'Secondary image',
 ];
