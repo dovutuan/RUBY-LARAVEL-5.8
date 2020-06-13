@@ -52,9 +52,6 @@
 
 <script src="{{ asset('theme_home_new') }}/js/main.js"></script>
 <script src="{{ asset('theme_home_new') }}/ckeditor/ckeditor.js"></script>
-<script>
-    CKEDITOR.replace('content');
-</script>
 
 @yield('script')
 </body>

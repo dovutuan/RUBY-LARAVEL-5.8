@@ -56,7 +56,12 @@ class ProductController extends Controller
     {
         try {
             DB::beginTransaction();
-            $name_image = $this->upLoadImage($request->file('image_product'));
+            $data_secondary_image = [];
+            foreach ($request->file('secondary_image') as $item) {
+                $data_secondary_image[] = $this->upLoadImage($item);
+            }
+
+            $name_image = $this->upLoadImage($request->file('main_image'));
             $product = Product::create([
                 'name' => $request->input('name'),
                 'slug' => str_slug($request->input('name')),
@@ -68,14 +73,10 @@ class ProductController extends Controller
                 'created_by' => Auth::user()->id,
             ]);
             if ($product) {
-//                $listImage = [];
-//                foreach ($request->input('image') as $image) {
-//                    $listImage[] = [
-//                        'product_id' => $product->id,
-//                        'image' => $image,
-//                    ];
-//                }
-//                ImageProduct::insert($listImage);
+                ImageProduct::insert([
+                    'product_id' => $product->id,
+                    'image' => json_encode($data_secondary_image)
+                ]);
 
                 if ($request->input('sale')) {
                     Sale::insert([

@@ -92,15 +92,26 @@
 
 @section('script')
     <script>
+        var i = 1;
         $(document).ready(function () {
-            var i = 1;
-            $('#add').click(function () {
-                $('#dynamic_field').append('<div id="stt' + i + '" style="display: contents"><div class="col-md-7"><div class="form-group"><label class="control-label"><b>{{ __('messages.a-amount') }} / {{ __('messages.a-species') }}</b></label><div class="input-group mb-3"><input name="amount[]" id="amount" type="number" min="0" class="form-control" value="{{old('amount[]') ? old('amount[]') : 0}}"/><div class="input-group-prepend"><select name="specie_id[]" class="s-example-basic-single form-control">@foreach($species as $specie)<option value="{{$specie->id}}">{{$specie->name}}</option>@endforeach</select></div></div></div></div><div class="col-md-4"><div class="form-group"><label class="control-label"><b>{{ __('messages.a-price') }}</b></label><div class="input-group mb-3"><input name="price[]" id="price" min="0" type="number" class="form-control" value="{{old('price[]') ? old('price[]') :0}}"><div class="input-group-append"><span class="input-group-text">vnđ</span></div></div></div></div><div class="col-md-1"> <div class="form-group"> <button style="margin-top: 29px;margin-left: -8px;" type="button" name="remove" id="' + i + '" class="btn btn-sm btn-outline-danger btn_remove"><i class="fa fa-times"></i></button> </div></div></div>');
+            $('#addOption').click(function () {
+                $('#rowOption').append('<div id="iOption' + i + '" style="display: contents"><div class="col-md-7"><div class="form-group"><label class="control-label"><b>{{ __('messages.a-amount') }} / {{ __('messages.a-species') }}</b></label><div class="input-group mb-3"><input name="amount[]" id="amount" type="number" min="0" class="form-control" value="{{old('amount[]') ? old('amount[]') : 0}}"/><div class="input-group-prepend"><select name="specie_id[]" class="s-example-basic-single form-control">@foreach($species as $specie)<option value="{{$specie->id}}">{{$specie->name}}</option>@endforeach</select></div></div></div></div><div class="col-md-4"><div class="form-group"><label class="control-label"><b>{{ __('messages.a-price') }}</b></label><div class="input-group mb-3"><input name="price[]" id="price" min="0" type="number" class="form-control" value="{{old('price[]') ? old('price[]') :0}}"><div class="input-group-append"><span class="input-group-text">vnđ</span></div></div></div></div><div class="col-md-1"> <div class="form-group"> <button style="margin-top: 29px;margin-left: -8px;" type="button" name="remove" id="' + i + '" class="btn btn-sm btn-outline-danger btn_remove"><i class="fa fa-times"></i></button> </div></div></div>');
             });
 
             $(document).on('click', '.btn_remove', function () {
                 var button_id = $(this).attr("id");
-                $('#stt' + button_id + '').remove();
+                $('#iOption' + button_id + '').remove();
+            });
+        });
+
+        $(document).ready(function () {
+            $('#addImageSecondary').click(function () {
+                $('#rowImageSecondary').append('<span id="idImageSecondary' + i + '" style="display: contents"><div class="col-md-5"><div class="row"><div class="col-md-10"><input name="secondary_image[]" type="file" class="form-control" value="{{old('secondary_image')}}"></div><div class="col-md-2"><button name="remove" id="' + i + '" type="button" class="btn btn-outline-danger btnRemoveImageSecondary"><i class="fa fa-times"></i></button></div></div></div><div class="col-md-1"></div></span>');
+            });
+
+            $(document).on('click', '.btnRemoveImageSecondary', function () {
+                var button_id = $(this).attr("id");
+                $('#idImageSecondary' + button_id + '').remove();
             });
         });
     </script>

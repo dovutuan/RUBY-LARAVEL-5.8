@@ -2,7 +2,7 @@
 if (!function_exists('upload_image')) {
     function uploadImage($path, $file)
     {
-        $name = now()->format('HisumdY') . '.' . $file->extension();
+        $name = now()->format('HisumdY') . str_random(10) . '.' . $file->extension();
         $file->move(public_path() . '/files/' . $path . '/', $name);
         return $name;
     }

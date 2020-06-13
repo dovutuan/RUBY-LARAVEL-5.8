@@ -53,7 +53,7 @@
                     <div class="col-lg-3 col-md-4 col-sm-6 mix {{$productOfFastFood->categories->slug}}">
                         <div class="product__discount__item">
                             <div class="product__discount__item__pic set-bg"
-                                 data-setbg="{{$productOfFastFood->image}}">
+                                 data-setbg="{{fileUrl(PRODUCTS, $productOfFastFood->image)}}">
                                 @if($productOfFastFood->sale)
                                 <div class="product__discount__percent">-{{$productOfFastFood->sale->sale}}%</div>
                                 @endif

@@ -25,7 +25,7 @@
                     <div class="product__details__pic">
                         <div class="product__details__pic__item">
                             <img class="product__details__pic__item--large"
-                                 src="{{$product->image}}" alt="">
+                                 src="{{fileUrl(PRODUCTS, $product->image)}}" alt="">
                             @if($product->sale)
                                 <lable class="product-discount-label">- {{$product->sale->sale}} %</lable>
                             @endif
@@ -33,9 +33,9 @@
                         <div class="product__details__pic__slider owl-carousel">
                             <img data-imgbigurl="{{$product->image}}"
                                  src="{{$product->image}}" alt="">
-                            @foreach($product->img as $item)
-                                <img data-imgbigurl="{{$item->image}}"
-                                     src="{{$item->image}}" alt="">
+                            @foreach($product->img->image as $image)
+                                <img data-imgbigurl="{{fileUrl(PRODUCTS, $image)}}"
+                                     src="{{fileUrl(PRODUCTS, $image)}}" alt="">
                             @endforeach
                         </div>
                     </div>
@@ -53,7 +53,7 @@
                                 @for($i = ONE; $i <= $point; $i++)
                                     <i class="fa fa-star"></i>
                                 @endfor
-                                    <span>({{$total_rate}} {{ __('messages.innings') }})</span>
+                                <span>({{$total_rate}} {{ __('messages.innings') }})</span>
                             </div>
                             @if($product->sale)
                                 <div class="product__details__price">
@@ -167,7 +167,7 @@
                                                                 @endfor
                                                             </div>
                                                         </div>
-                                                        <p class="text-area-white-space">{{$rate->content}}</p>
+                                                        <p class="text-area-white-space">{!! $rate->content !!}</p>
                                                     </div>
                                                 @endforeach
                                             </div>
@@ -338,7 +338,7 @@
                         <div class="product__discount__item">
                             <div class="product__discount__item__pic set-bg"
                                  data-href="{{route('detail-product', $product->id)}}"
-                                 data-setbg="{{$product->image}}">
+                                 data-setbg="{{fileUrl(PRODUCTS, $product->image)}}">
                                 @if($product->sale)
                                     <div class="product__discount__percent">- {{$product->sale->sale}} %</div>
                                 @endif
@@ -362,6 +362,7 @@
 
 @section('script')
     <script src="{{ asset('theme_home_new') }}/js/rating.js"></script>
+    <script>CKEDITOR.replace('content');</script>
 @stop
 
 @endsection

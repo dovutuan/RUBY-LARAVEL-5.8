@@ -240,3 +240,7 @@ function readURL(input) {
 $("#txtImage").change(function () {
     readURL(this);
 });
+
+$("#imageSecondary").change(function () {
+    readURL(this);
+});

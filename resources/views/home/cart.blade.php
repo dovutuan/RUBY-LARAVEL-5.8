@@ -37,7 +37,7 @@
                                 <form action="{{route('update-cart', $key)}}" method="GET">
                                     <tr>
                                         <td class="shoping__cart__item">
-                                            <img class="image-cart" src="{{$cart->options->image}}" alt="">
+                                            <img class="image-cart" src="{{fileUrl(PRODUCTS, $cart->options->image)}}" alt="">
                                             <a href="{{route('detail-product', $cart->id)}}"><h5>{{$cart->name}}</h5>
                                             </a>
                                         </td>

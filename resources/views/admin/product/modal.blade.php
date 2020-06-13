@@ -102,12 +102,13 @@
                                  data-parent="#accordionExample">
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="form-group">
                                                 <label
                                                     class="control-label"><b>{{ __('messages.a-main-image') }}</b></label>
+                                                <br>
                                                 <label for="txtImage">
-                                                    <img id="showImage" class="image-user"
+                                                    <img id="showImage" class="main_image"
                                                          src="{{asset('files') . '/products/no_products.jpg'}}"
                                                          alt="">
                                                 </label>
@@ -116,19 +117,18 @@
                                                        value="{{old('image')}}">
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-8">
                                             <div class="form-group">
                                                 <label
                                                     class="control-label"><b>{{ __('messages.a-secondary-image') }}</b></label>
-                                                <div class="form-control form-control-image">
-                                                    <label for="txtImage">
-                                                        <img id="showImage" class="image-user"
-                                                             src="{{asset('files') . '/products/no_products.jpg'}}"
-                                                             alt="">
-                                                    </label>
-                                                    <input name="secondary_image[]" id="txtImage" type="file"
-                                                           class="form-control display-none"
-                                                           value="{{old('secondary_image')}}">
+                                                <br>
+                                                <div class="row" id="rowImageSecondary">
+                                                </div>
+                                                <div class="form-group">
+                                                    <button name="addImageSecondary" id="addImageSecondary"
+                                                            type="button" class="form-control btn btn-outline-success">
+                                                        <i
+                                                            class="fa fa-plus"></i></button>
                                                 </div>
                                             </div>
                                         </div>
@@ -149,7 +149,7 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="row" id="dynamic_field">
+                                    <div class="row" id="rowOption">
                                         <div class="col-md-7">
                                             <div class="form-group">
                                                 <label
@@ -195,7 +195,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <button type="button" name="add" id="add"
+                                        <button type="button" name="addOption" id="addOption"
                                                 class="form-control btn btn-sm btn-outline-success"><i
                                                 class="fa fa-plus"></i></button>
                                     </div>

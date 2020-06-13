@@ -47,11 +47,11 @@
                                                 <div class="form-group">
                                                     <div class="row">
                                                         <div class="col-md-2">
-                                                            <img src="{{$product->image}}" class="img-fluid rounded">
+                                                            <img src="{{fileUrl(PRODUCTS, $product->image)}}" class="img-fluid rounded">
                                                         </div>
-                                                        @foreach($product->img as $image)
+                                                        @foreach($product->img->image as $image)
                                                             <div class="col-md-2">
-                                                                <img src="{{$image->image}}" class="img-fluid rounded">
+                                                                <img src="{{fileUrl(PRODUCTS, $image)}}" class="img-fluid rounded">
                                                             </div>
                                                         @endforeach
                                                     </div>
