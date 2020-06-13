@@ -71,7 +71,7 @@
                 </div>
             </div>
             <div class="col-md-3">
-                <img src="{{asset('logo')}}/ruby.png" alt="">
+                <img src="{{fileUrl(USERS, $user->image)}}" alt="">
             </div>
         </div>
     </div>
