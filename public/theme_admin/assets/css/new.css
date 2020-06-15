@@ -95,3 +95,8 @@
     /*max-height: 120px;*/
     border: #7a7a7a solid 1px;
 }
+
+.image-category {
+    border: #7a7a7a solid 1px;
+    max-width: 45%;
+}

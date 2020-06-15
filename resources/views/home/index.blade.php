@@ -21,7 +21,7 @@
                     @foreach($allCategories as $category)
                         <div class="col-lg-3">
                             <div class="categories__item set-bg"
-                                 data-setbg="{{ asset('theme_home_new') }}/img/categories/cat-1.jpg">
+                                 data-setbg="{{fileUrl(CATEGORIES, $category->image)}}">
                                 <h5><a href="#">{{$category->name}}</a></h5>
                             </div>
                         </div>
