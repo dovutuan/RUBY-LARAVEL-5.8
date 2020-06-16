@@ -22,7 +22,7 @@
                         <div class="col-lg-3">
                             <div class="categories__item set-bg"
                                  data-setbg="{{fileUrl(CATEGORIES, $category->image)}}">
-                                <h5><a href="#">{{$category->name}}</a></h5>
+                                <h5><a href="">{{$category->name}}</a></h5>
                             </div>
                         </div>
                     @endforeach

@@ -82,7 +82,7 @@
                                 @enderror
                             </div>
                             <div class="col-md-2 display-none">
-                                <input name="image" id="txtImage" type="file"
+                                <input name="image" id="txtImage" type="file" accept="{{TYPE_FILES}}"
                                        class="form-control"
                                        value="{{old('image')}}">
                             </div>

@@ -98,7 +98,7 @@
                                         @enderror
                                     </div>
                                     <div class="col-md-1 display-none">
-                                        <input name="image" id="txtImage" type="file"
+                                        <input name="image" id="txtImage" type="file" accept="{{TYPE_FILES}}"
                                                class="form-control input-display-none"
                                                value="{{$user->image}}">
                                     </div>

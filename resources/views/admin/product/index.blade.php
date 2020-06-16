@@ -106,7 +106,7 @@
 
         $(document).ready(function () {
             $('#addImageSecondary').click(function () {
-                $('#rowImageSecondary').append('<span id="idImageSecondary' + i + '" style="display: contents"><div class="col-md-5"><div class="row"><div class="col-md-10"><input name="secondary_image[]" type="file" class="form-control" value="{{old('secondary_image')}}"></div><div class="col-md-2"><button name="remove" id="' + i + '" type="button" class="btn btn-outline-danger btnRemoveImageSecondary"><i class="fa fa-times"></i></button></div></div></div><div class="col-md-1"></div></span>');
+                $('#rowImageSecondary').append('<span id="idImageSecondary' + i + '" style="display: contents"><div class="col-md-5"><div class="row"><div class="col-md-10"><input name="secondary_image[]" type="file" accept="{{TYPE_FILES}}" class="form-control" value="{{old('secondary_image')}}"></div><div class="col-md-2"><button name="remove" id="' + i + '" type="button" class="btn btn-outline-danger btnRemoveImageSecondary"><i class="fa fa-times"></i></button></div></div></div><div class="col-md-1"></div></span>');
             });
 
             $(document).on('click', '.btnRemoveImageSecondary', function () {

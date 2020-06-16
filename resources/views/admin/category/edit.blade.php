@@ -26,8 +26,7 @@
                                     <div class="form-group">
                                         <label for="txtImage">
                                             <img id="showImage" class="image-category"
-                                                 src="{{$category->image ? fileUrl(CATEGORIES, $category->image) : asset('files') . '/categories/no_categories.jpg'}}"
-                                                 alt="">
+                                                 src="{{$category->image ? fileUrl(CATEGORIES, $category->image) : asset('files') . '/categories/no_categories.jpg'}}">
                                         </label>
                                     </div>
                                 </div>
@@ -79,7 +78,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <input name="image" id="txtImage" type="file" class="form-control display-none"
+                            <input name="image" id="txtImage" type="file" class="form-control display-none" accept="{{TYPE_FILES}}"
                                    value="{{$category->image}}">
                             <div class="form-group">
                                 <button class="btn btn-xs btn-outline-dark"

@@ -11,8 +11,7 @@
                     <div class="form-group">
                         <label for="txtImage" class="label-margin-left">
                             <img id="showImage" class="image-category"
-                                 src="{{asset('files') . '/categories/no_categories.jpg'}}"
-                                 alt="">
+                                 src="{{asset('files') . '/categories/no_categories.jpg'}}">
                         </label>
                     </div>
                     <div class="form-group">
@@ -58,7 +57,7 @@
                             </div>
                         </div>
                         <div class="form-group display-none">
-                                <input name="image" id="txtImage" type="file" class="form-control"
+                                <input name="image" id="txtImage" type="file" class="form-control" accept="{{TYPE_FILES}}"
                                        value="{{old('image')}}">
                         </div>
                     </div>

@@ -19,3 +19,4 @@ define('CURRENCY', 23295.03);
 define('USERS', 'users');
 define('CATEGORIES', 'categories');
 define('PRODUCTS', 'products');
+define('TYPE_FILES', '.png,.jpg, .gif, .jpeg');

@@ -20,6 +20,7 @@ class PermissionTableSeeder extends Seeder
             'bill-list', 'bill-create', 'bill-edit', 'bill-detail', 'bill-delete',
         ];
 
+
         foreach ($permissions as $permission) {
             Permission::create(['name' => $permission]);
         }
