@@ -13,7 +13,6 @@ class CartController extends Controller
 {
     public function index()
     {
-        $categories = Category::loadCategories();
         $allCategories = Category::loadAllCategories();
         $carts = Cart::content();
         $price = [];
@@ -35,7 +34,6 @@ class CartController extends Controller
                 Cart::setGlobalTax(ZERO);
         }
         $data = [
-            'categories' => $categories,
             'allCategories' => $allCategories,
             'carts' => $carts
         ];
@@ -84,7 +82,9 @@ class CartController extends Controller
             $date_now = Carbon::now()->format('Y-m-d');
             $discount = Discount::where('code', $discount_code)->where('status', ONE)->where('amount', '>', ZERO)->where('created_by', $seller)->where('finish', '>=', $date_now)->first();
         }
-        if ($discount) {
+        if (session(md5('discount_code'))) {
+            return redirect()->back()->with('warning', __('messages.discount-code-has-been-selected'));
+        } elseif ($discount) {
             session([md5('discount_code') => [
                 'discount_id' => $discount->id,
                 'discount_code' => $discount->code,

@@ -271,4 +271,7 @@ return [
     'a-bill-detail' => 'Chi tiết hóa đơn',
     'add-product-to-cart-successfully'=> 'Thêm sản phẩm vào giỏ hàng thành công',
     'product-are-not-the-same-seller'=> 'Sản phẩm không cùng người bán',
+    'a-main-image' => 'Ảnh chính',
+    'a-secondary-image' => 'Ảnh phụ',
+    'discount-code-has-been-selected' => 'Mã giảm giá đã được chọn',
 ];
