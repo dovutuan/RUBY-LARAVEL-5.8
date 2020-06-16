@@ -42,7 +42,7 @@
                                     <thead class="text-uppercase">
                                     <tr>
                                         <th>{{ __('messages.a-stt') }}</th>
-                                        <th>{{ __('messages.a-company') }}</th>
+                                        <th>{{ __('messages.a-name') }}</th>
                                         <th>{{ __('messages.a-information') }}</th>
                                         <th>{{ __('messages.a-date-create') }}</th>
                                         <th></th>
@@ -52,10 +52,10 @@
                                     @foreach($suppliers as $supplier)
                                         <tr>
                                             <th>{{$loop->iteration}}</th>
-                                            <th>{{$supplier->company}}</th>
+                                            <th>{{$supplier->name}}</th>
                                             <td class="text-left">
                                                 <ul>
-                                                    <li><b>{{ __('messages.a-name') }}</b>: {{$supplier->name}}</li>
+                                                    <li><b>{{ __('messages.a-company') }}</b>: {{$supplier->company}}</li>
                                                     <li><b>{{ __('messages.a-phone') }}</b>: {{$supplier->phone}}</li>
                                                     <li><b>{{ __('messages.a-fax') }}</b>: {{$supplier->fax}}</li>
                                                     <li><b>{{ __('messages.a-email') }}</b>: {{$supplier->email}}</li>
