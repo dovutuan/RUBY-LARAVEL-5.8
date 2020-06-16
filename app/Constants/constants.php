@@ -22,4 +22,6 @@ define('USERS', 'users');
 define('CATEGORIES', 'categories');
 define('PRODUCTS', 'products');
 
-define('TYPE_FILES', '.png,.jpg, .gif, .jpeg');
+define('TYPE_FILES', '.png, .jpg, .gif, .jpeg');
+
+define('FAST_FOOD_AND_DRINK', 'Đồ uống và đồ ăn nhanh');

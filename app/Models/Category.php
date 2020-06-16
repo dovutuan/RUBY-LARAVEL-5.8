@@ -50,14 +50,15 @@ class Category extends Model
             ->paginate($paginate);
     }
 
-    static function loadCategories()
-    {
-        return self::whereNull('category_id')->get();
-    }
-
     static function loadAllCategories()
     {
         return self::whereNotNull('category_id')->get();
     }
+
+    static function fastFoodAndDrink()
+    {
+        return self::whereNull('category_id')->where('name', FAST_FOOD_AND_DRINK)->first();
+    }
+
 }
 

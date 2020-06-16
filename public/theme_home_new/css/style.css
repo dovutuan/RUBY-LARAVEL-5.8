@@ -1514,7 +1514,7 @@ ol {
 
 .filter__found h6 {
     font-size: 16px;
-    color: #b2b2b2;
+    color: #6f6f6f;
 }
 
 .filter__found h6 span {
@@ -2026,7 +2026,7 @@ ol {
     height: 46px;
     border: 1px solid #cccccc;
     font-size: 16px;
-    color: #b2b2b2;
+    color: #000000;
     text-align: center;
     display: inline-block;
     margin-right: 15px;

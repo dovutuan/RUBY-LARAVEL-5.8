@@ -103,7 +103,7 @@
                                         <div class="col-lg-4">
                                             <div class="product__discount__item">
                                                 <div class="product__discount__item__pic set-bg"
-                                                     data-setbg="{{$productNew->image}}">
+                                                     data-setbg="{{fileUrl(PRODUCTS, $productNew->image)}}">
                                                     @if($productNew->sale)
                                                         <div class="product__discount__percent">
                                                             - {{$productNew->sale->sale}} %
@@ -132,20 +132,25 @@
                                 <div class="col-lg-4 col-md-5">
                                     <div class="filter__sort">
                                         <span>{{ __('messages.sort-by') }}</span>
-{{--                                        <div class="dropdown">--}}
-{{--                                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">--}}
-{{--                                                Dropdown button--}}
-{{--                                            </button>--}}
-{{--                                            <div class="dropdown-menu">--}}
-{{--                                                <a class="dropdown-item" href="#">Link 1</a>--}}
-{{--                                                <a class="dropdown-item" href="#">Link 2</a>--}}
-{{--                                                <a class="dropdown-item" href="#">Link 3</a>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
+                                        {{--                                        <div class="dropdown">--}}
+                                        {{--                                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">--}}
+                                        {{--                                                Dropdown button--}}
+                                        {{--                                            </button>--}}
+                                        {{--                                            <div class="dropdown-menu">--}}
+                                        {{--                                                <a class="dropdown-item" href="#">Link 1</a>--}}
+                                        {{--                                                <a class="dropdown-item" href="#">Link 2</a>--}}
+                                        {{--                                                <a class="dropdown-item" href="#">Link 3</a>--}}
+                                        {{--                                            </div>--}}
+                                        {{--                                        </div>--}}
                                         <select name="short">
-                                            <a href="{{route('search')}}"><option value="created_at" @if($short === 'created_at') selected @endif>{{ __('messages.new') }}</option></a>
-                                            <option value="likes" @if($short === 'likes') selected @endif>{{ __('messages.like') }}</option>
-                                            <option value="views" @if($short === 'views') selected @endif>{{ __('messages.view') }}</option>
+                                            <a href="{{route('search')}}">
+                                                <option value="created_at"
+                                                        @if($short === 'created_at') selected @endif>{{ __('messages.new') }}</option>
+                                            </a>
+                                            <option value="likes"
+                                                    @if($short === 'likes') selected @endif>{{ __('messages.like') }}</option>
+                                            <option value="views"
+                                                    @if($short === 'views') selected @endif>{{ __('messages.view') }}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -161,7 +166,7 @@
                                 <div class="col-lg-3 col-md-4 col-sm-6 mix">
                                     <div class="product__discount__item">
                                         <div class="product__discount__item__pic set-bg"
-                                             data-setbg="{{$product->image}}">
+                                             data-setbg="{{fileUrl(PRODUCTS, $product->image)}}">
                                             @if($product->sale)
                                                 <div class="product__discount__percent">-{{$product->sale->sale}}%</div>
                                             @endif
