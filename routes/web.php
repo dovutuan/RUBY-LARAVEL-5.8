@@ -1,7 +1,7 @@
 <?php
-Route::get('/', function () {
-    return redirect()->route('home');
-});
+//Route::get('/', function () {
+//    return redirect()->route('');
+//});
 
 Auth::routes(['verify' => true]);
 
@@ -92,25 +92,23 @@ Route::group(['middleware' => 'auth'], function () {
 
         //home
         Route::group(['namespace' => 'Home'], function () {
-            Route::get('home', 'HomeController@index')->name('home');
+            Route::get('', 'HomeController@index')->name('home');
             Route::get('detail/{id}', 'HomeController@detailProduct')->name('detail-product');
             Route::post('detail/{id}', 'HomeController@reviewProduct');
             Route::post('review/{id}', 'HomeController@reviewProduct')->name('review-product');
             Route::get('heart/{id}', 'HomeController@heart')->name('heart-product');
+
             Route::get('search', 'HomeController@search')->name('search');
+
             Route::get('pay', 'CheckoutController@checkOut')->name('checkout');
             Route::post('pay', 'CheckoutController@pay');
-        });
 
-        //shopping
-        Route::group(['namespace' => 'Home'], function () {
+            //shopping
             Route::group(['prefix' => 'shopping'], function () {
                 Route::get('add/{id}', 'ShoppingController@addCart')->name('add-shopping-cart');
             });
-        });
 
-        //cart
-        Route::group(['namespace' => 'Home'], function () {
+            //cart
             Route::group(['prefix' => 'cart'], function () {
                 Route::get('', 'CartController@index')->name('cart');
                 Route::get('update-cart/{key}', 'CartController@update')->name('update-cart');
@@ -118,17 +116,13 @@ Route::group(['middleware' => 'auth'], function () {
                 Route::get('delete-all', 'CartController@destroyAll')->name('delete-all-cart');
                 Route::post('check-discount', 'CartController@checkDiscount')->name('check-discount');
             });
-        });
 
-        //checkOut
-        Route::group(['namespace' => 'Home'], function () {
+            //checkOut
             Route::get('checkout-payment', 'PaymentController@index')->name('checkout-payment');
             Route::post('/checkout', 'PaymentController@createPayment')->name('create-payment');
             Route::get('/confirm', 'PaymentController@confirmPayment')->name('confirm-payment');
-        });
 
-        //contact
-        Route::group(['namespace' => 'Home'], function () {
+            //contact
             Route::get('contact', 'HomeController@contact')->name('contact');
         });
 
