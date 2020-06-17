@@ -63,10 +63,6 @@
 
 <script src="{{ asset('theme_admin') }}/assets/js/scripts.js"></script>
 <script src="{{ asset('theme_admin') }}/ckeditor/ckeditor.js"></script>
-<script>
-    CKEDITOR.replace('content');
-    CKEDITOR.replace('detail');
-</script>
 
 @yield('script')
 </body>

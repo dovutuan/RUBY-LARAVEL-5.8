@@ -31,8 +31,8 @@
                             @endif
                         </div>
                         <div class="product__details__pic__slider owl-carousel">
-                            <img data-imgbigurl="{{$product->image}}"
-                                 src="{{$product->image}}" alt="">
+                            <img data-imgbigurl="{{fileUrl(PRODUCTS, $product->image)}}"
+                                 src="{{fileUrl(PRODUCTS, $product->image)}}" alt="">
                             @foreach($product->img->image as $image)
                                 <img data-imgbigurl="{{fileUrl(PRODUCTS, $image)}}"
                                      src="{{fileUrl(PRODUCTS, $image)}}" alt="">
