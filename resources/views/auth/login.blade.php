@@ -38,7 +38,7 @@
                                 <div class="col-md-12 form-group">
                                     <div class="creat_account d-flex align-items-center">
                                         <input type="checkbox" name="remember selector"
-                                               id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                               id="remember" {{ old('remember') ? 'checked' : '' }} checked>
                                         <label for="remember">{{ __('messages.remember-me') }}</label>
                                     </div>
                                     <button type="submit" value="submit"

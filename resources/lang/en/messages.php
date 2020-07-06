@@ -275,4 +275,5 @@ return [
     'a-main-image' => 'Main image',
     'a-secondary-image' => 'Secondary image',
     'discount-code-has-been-selected' => 'Discount code has been selected',
+    'money-paid' => 'Money paid',
 ];

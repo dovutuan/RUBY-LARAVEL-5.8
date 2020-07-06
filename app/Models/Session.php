@@ -19,14 +19,13 @@ class Session extends Model
         $total_price = str_replace(',', '', Cart::total(ZERO, THREE));
         $money_paid = session(md5('totalPricePayPal')) ? session(md5('totalPricePayPal')) : null;
         $seller = null;
-
+        foreach ($carts as $cart) {
+            $seller = $cart->options->seller;
+        }
         if ($session_discount) {
             $discount_id = $session_discount['discount_id'];
             $discount_code = $session_discount['discount_code'];
             $discount_name = $session_discount['discount_name'];
-            foreach ($carts as $cart) {
-                $seller = $cart->options->seller;
-            }
             $date_now = Carbon::now()->format('Y-m-d');
             $discount = Discount::where('code', $session_discount['discount_code'])->where('status', ONE)->where('amount', '>', ZERO)->where('created_by', $seller)->where('finish', '>=', $date_now)->first();
             if ($discount) {

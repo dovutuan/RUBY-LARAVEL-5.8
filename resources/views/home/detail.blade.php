@@ -33,10 +33,12 @@
                         <div class="product__details__pic__slider owl-carousel">
                             <img data-imgbigurl="{{$product->image}}"
                                  src="{{$product->image}}" alt="">
-                            @foreach($product->img->image as $image)
-                                <img data-imgbigurl="{{fileUrl(PRODUCTS, $image)}}"
-                                     src="{{fileUrl(PRODUCTS, $image)}}" alt="">
-                            @endforeach
+                            @if($product->img)
+                                @foreach($product->img->image as $image)
+                                    <img data-imgbigurl="{{fileUrl(PRODUCTS, $image)}}"
+                                         src="{{fileUrl(PRODUCTS, $image)}}" alt="">
+                                @endforeach
+                            @endif
                         </div>
                     </div>
                 </div>

@@ -61,7 +61,7 @@ class Bill extends Model
             'class' => 'btn-success',
         ],
         THREE => [
-            'name' => 'Giao hàng thành công/ Đổi trả trong vòng 3 ngày',
+            'name' => 'Giao hàng thành công',
             'class' => 'btn-success',
         ],
         FOUR => [

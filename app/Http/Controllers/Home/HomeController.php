@@ -24,7 +24,7 @@ class HomeController extends Controller
         $productOfFastFoods = Product::
         whereHas('categories', function ($qr) use ($fastFoods) {
             $qr->where('category_id', $fastFoods->id);
-        })->take(EIGHT)->get();
+        })->take(SIXTY)->get();
         $data = [
             'allCategories' => $allCategories,
             'productOfFastFoods' => $productOfFastFoods,

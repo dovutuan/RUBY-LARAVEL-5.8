@@ -11,6 +11,7 @@ define('SIX', 6);
 define('EIGHT', 8);
 define('TEN', 10);
 define('TWELVE', 12);
+define('SIXTY', 16);
 define('PAGINATE', 30);
 define('ONE_HUNDRED', 100);
 define('TEN_THOUSAND', 10000);

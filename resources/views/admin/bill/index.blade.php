@@ -37,6 +37,7 @@
                                     <tr>
                                         <th>Stt</th>
                                         <th>{{ __('messages.a-customer') }}</th>
+                                        <th>{{ __('messages.money-paid') }}</th>
                                         <th>{{ __('messages.a-price') }}</th>
                                         <th>{{ __('messages.a-tax-rate') }}</th>
                                         <th class="text-left">{{ __('messages.a-discount') }}</th>
@@ -50,6 +51,7 @@
                                         <tr>
                                             <th>{{$loop->iteration}}</th>
                                             <th>{{$bill->users->name}}</th>
+                                            <th>{{number_format($bill->price_paid)}} <sup>{{ __('messages.a-vnđ') }}</sup></th>
                                             <td>{{number_format($bill->price)}} <sup>{{ __('messages.a-vnđ') }}</sup>
                                             </td>
                                             <td>{{number_format($bill->tax_rate)}} <sup>{{ __('messages.a-vnđ') }}</sup>
@@ -84,7 +86,7 @@
                                     </tbody>
                                     <tfoot>
                                     <tr>
-                                        <th colspan="8"
+                                        <th colspan="9"
                                             class="text-right">{{ __('messages.a-total-bill:') }} {{$totalBill}}
                                             <sup>{{ __('messages.a-bill') }}</sup></th>
                                     </tr>

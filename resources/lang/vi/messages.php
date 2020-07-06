@@ -274,4 +274,5 @@ return [
     'a-main-image' => 'Ảnh chính',
     'a-secondary-image' => 'Ảnh phụ',
     'discount-code-has-been-selected' => 'Mã giảm giá đã được chọn',
+    'money-paid' => 'Tiền đã thanh toán',
 ];

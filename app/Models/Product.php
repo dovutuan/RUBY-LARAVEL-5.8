@@ -113,6 +113,6 @@ class Product extends Model
                 });
             })
             ->latest($short)
-            ->paginate(TWELVE);
+            ->paginate(SIXTY);
     }
 }

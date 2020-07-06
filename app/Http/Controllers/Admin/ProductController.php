@@ -34,7 +34,7 @@ class ProductController extends Controller
             $key = $request->input('key');
             $categories = Category::whereNotNull('category_id')->get();
             $species = Species::all();
-            $suppliers = Supplier::all();
+            $suppliers = Supplier::where('created_by', Auth::user()->id)->get();
             $products = Product::search($key);
             $totalProduct = $products->count();
             $data = [
@@ -57,10 +57,11 @@ class ProductController extends Controller
         try {
             DB::beginTransaction();
             $data_secondary_image = [];
-            foreach ($request->file('secondary_image') as $item) {
-                $data_secondary_image[] = $this->upLoadImage($item);
+            if ($request->file('secondary_image')) {
+                foreach ($request->file('secondary_image') as $item) {
+                    $data_secondary_image[] = $this->upLoadImage($item);
+                }
             }
-
             $name_image = $this->upLoadImage($request->file('main_image'));
             $product = Product::create([
                 'name' => $request->input('name'),
@@ -73,11 +74,12 @@ class ProductController extends Controller
                 'created_by' => Auth::user()->id,
             ]);
             if ($product) {
-                ImageProduct::insert([
-                    'product_id' => $product->id,
-                    'image' => json_encode($data_secondary_image)
-                ]);
-
+                if ($request->file('secondary_image')) {
+                    ImageProduct::insert([
+                        'product_id' => $product->id,
+                        'image' => json_encode($data_secondary_image)
+                    ]);
+                }
                 if ($request->input('sale')) {
                     Sale::insert([
                         'product_id' => $product->id,
