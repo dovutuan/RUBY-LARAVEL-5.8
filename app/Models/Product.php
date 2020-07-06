@@ -58,6 +58,11 @@ class Product extends Model
         return $this->hasMany(Rate::class, 'product_id', 'id');
     }
 
+    public function billDetail()
+    {
+        return $this->hasMany(BillDetail::class, 'product_id', 'id');
+    }
+
     public function getSalePrice()
     {
         foreach ($this->optionProduct as $item) {
