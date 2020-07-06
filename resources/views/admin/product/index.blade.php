@@ -114,6 +114,9 @@
                 $('#idImageSecondary' + button_id + '').remove();
             });
         });
+
+        CKEDITOR.replace('content');
+        CKEDITOR.replace('detail');
     </script>
 @stop
 
