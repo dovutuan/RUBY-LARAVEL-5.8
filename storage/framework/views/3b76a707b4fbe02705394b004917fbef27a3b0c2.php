@@ -25,8 +25,7 @@
                                     <div class="form-group">
                                         <label for="txtImage">
                                             <img id="showImage" class="image-category"
-                                                 src="<?php echo e($category->image ? fileUrl(CATEGORIES, $category->image) : asset('files') . '/categories/no_categories.jpg'); ?>"
-                                                 alt="">
+                                                 src="<?php echo e($category->image ? fileUrl(CATEGORIES, $category->image) : asset('files') . '/categories/no_categories.jpg'); ?>">
                                         </label>
                                     </div>
                                 </div>
@@ -82,7 +81,7 @@ endif; ?>
                                     </div>
                                 </div>
                             </div>
-                            <input name="image" id="txtImage" type="file" class="form-control display-none"
+                            <input name="image" id="txtImage" type="file" class="form-control display-none" accept="<?php echo e(TYPE_FILES); ?>"
                                    value="<?php echo e($category->image); ?>">
                             <div class="form-group">
                                 <button class="btn btn-xs btn-outline-dark"

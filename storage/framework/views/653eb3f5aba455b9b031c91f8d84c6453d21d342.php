@@ -44,8 +44,8 @@ endif; ?>
                                 <div class="col-md-12 form-group">
                                     <div class="creat_account d-flex align-items-center">
                                         <input type="checkbox" name="remember selector"
-                                               id="f-option remember" <?php echo e(old('remember') ? 'checked' : ''); ?>>
-                                        <label for="f-option"><?php echo e(__('messages.remember-me')); ?></label>
+                                               id="remember" <?php echo e(old('remember') ? 'checked' : ''); ?> checked>
+                                        <label for="remember"><?php echo e(__('messages.remember-me')); ?></label>
                                     </div>
                                     <button type="submit" value="submit"
                                             class="btn_3"><?php echo e(__('messages.sign-in')); ?></button>

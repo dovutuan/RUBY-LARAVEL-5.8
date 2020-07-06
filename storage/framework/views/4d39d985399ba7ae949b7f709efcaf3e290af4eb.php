@@ -41,7 +41,7 @@
                                     <thead class="text-uppercase">
                                     <tr>
                                         <th><?php echo e(__('messages.a-stt')); ?></th>
-                                        <th><?php echo e(__('messages.a-company')); ?></th>
+                                        <th><?php echo e(__('messages.a-name')); ?></th>
                                         <th><?php echo e(__('messages.a-information')); ?></th>
                                         <th><?php echo e(__('messages.a-date-create')); ?></th>
                                         <th></th>
@@ -51,10 +51,10 @@
                                     <?php $__currentLoopData = $suppliers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $supplier): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <tr>
                                             <th><?php echo e($loop->iteration); ?></th>
-                                            <th><?php echo e($supplier->company); ?></th>
+                                            <th><?php echo e($supplier->name); ?></th>
                                             <td class="text-left">
                                                 <ul>
-                                                    <li><b><?php echo e(__('messages.a-name')); ?></b>: <?php echo e($supplier->name); ?></li>
+                                                    <li><b><?php echo e(__('messages.a-company')); ?></b>: <?php echo e($supplier->company); ?></li>
                                                     <li><b><?php echo e(__('messages.a-phone')); ?></b>: <?php echo e($supplier->phone); ?></li>
                                                     <li><b><?php echo e(__('messages.a-fax')); ?></b>: <?php echo e($supplier->fax); ?></li>
                                                     <li><b><?php echo e(__('messages.a-email')); ?></b>: <?php echo e($supplier->email); ?></li>

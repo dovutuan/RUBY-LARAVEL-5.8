@@ -9,6 +9,7 @@
                                 <a href="<?php echo e(route('dashboard')); ?>"><i
                                         class="fa fa-fw fa-dashboard"></i><span><?php echo e(__('messages.a-dashboard')); ?></span></a>
                             </li>
+                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check(['user-list', 'role-list', 'permission-list'])): ?>
                             <li class="<?php echo e(\Request::route()->getName()==('list.role') || \Request::route()->getName()==('list.user') || \Request::route()->getName()==('list.permission') ?'active':''); ?>">
                                 <a href="javascript:void(0)"><i
                                         class="fa fa-fw fa-users"></i><span><?php echo e(__('messages.a-user')); ?></span></a>
@@ -28,6 +29,7 @@
                                     <?php endif; ?>
                                 </ul>
                             </li>
+                            <?php endif; ?>
                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('category-list')): ?>
                                 <li class="<?php echo e(\Request::route()->getName()=='list.category'?'active':''); ?>">
                                     <a href="<?php echo e(route('list.category')); ?>"><i

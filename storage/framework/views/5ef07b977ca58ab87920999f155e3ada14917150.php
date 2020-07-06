@@ -124,7 +124,7 @@ endif; ?>
                                                          src="<?php echo e(asset('files') . '/products/no_products.jpg'); ?>"
                                                          alt="">
                                                 </label>
-                                                <input name="main_image" id="txtImage" type="file"
+                                                <input name="main_image" id="txtImage" type="file" accept="<?php echo e(TYPE_FILES); ?>"
                                                        class="form-control display-none"
                                                        value="<?php echo e(old('image')); ?>">
                                             </div>
