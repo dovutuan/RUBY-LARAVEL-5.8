@@ -19,37 +19,42 @@ class StatisticController extends Controller
             })->get();
         $price_bill = $bills->sum('price');
         $total_bill = $bills->count();
-        $products = Product::where('created_by', Auth::user()->id)->withCount('billDetail')->latest('bill_detail_count')->take(EIGHT)->get();
-        $count_product_bill = [];
-        if ($bills) {
-            foreach ($bills as $bill) {
-                foreach ($bill->billDetail as $bill_detail) {
-                    if ($count_product_bill != []) {
-                        if ($bill_detail->product_id != $count_product_bill['product_id']) {
-                            $count_product_bill[] = [
-                                'product_id' => $bill_detail->product_id,
-                                'qty' => $bill_detail->qty,
-                            ];
-                        } else {
-                            $count_product_bill['qty'] = $count_product_bill['qty'] + $bill_detail->qty;
-                        }
-                    } else {
-                        $count_product_bill[] = [
-                            'product_id' => $bill_detail->product_id,
-                            'qty' => $bill_detail->qty,
-                        ];
-                    }
+        $count_products = Product::where('created_by', Auth::user()->id)->count();
+        $products = Product::where('created_by', Auth::user()->id)
+            ->when($date, function ($qr) use ($date) {
+                $qr->whereDate('updated_at', $date);
+            })
+            ->latest('updated_at')->get();
+        $count_product_to_bills = Product::where('created_by', Auth::user()->id)
+            ->when($date, function ($qr) use ($date) {
+                $qr->whereDate('updated_at', $date);
+            })
+            ->withCount('billDetail')
+            ->latest('bill_detail_count')
+            ->take(EIGHT)
+            ->get();
+        $count_product_bills = [];
+        if ($products) {
+            foreach ($products as $product) {
+                foreach ($product->billDetail as $bill_detail) {
+                    $count_product_bills[] = [
+                        'product_name' => $product->name,
+                        'product_qty' => +$bill_detail->qty,
+                        'updated_at' => $bill_detail->updated_at,
+                    ];
                 }
             }
         }
-        dd($count_product_bill);
+//        dd($count_product_bills);
         $data = [
             'date' => $date,
             'price_bill' => $price_bill,
             'total_bill' => $total_bill,
-            'products' => $products
+            'count_product_to_bills' => $count_product_to_bills,
+            'count_product_bills' => $count_product_bills,
+            'count_products' => $count_products
         ];
-        dd($data);
+
         return view('admin.statistic.index', $data);
     }
 }

@@ -30,70 +30,99 @@
                             </div>
                         </div>
                         <br>
-{{--                        <div class="single-table">--}}
-{{--                            <div class="table-responsive">--}}
-{{--                                <table class="table table-hover progress-table text-center">--}}
-{{--                                    <thead class="text-uppercase">--}}
-{{--                                    <tr>--}}
-{{--                                        <th>Stt</th>--}}
-{{--                                        <th>{{ __('messages.a-customer') }}</th>--}}
-{{--                                        <th>{{ __('messages.money-paid') }}</th>--}}
-{{--                                        <th>{{ __('messages.a-price') }}</th>--}}
-{{--                                        <th>{{ __('messages.a-tax-rate') }}</th>--}}
-{{--                                        <th class="text-left">{{ __('messages.a-discount') }}</th>--}}
-{{--                                        <th>{{ __('messages.a-status') }}</th>--}}
-{{--                                        <th>{{ __('messages.a-date-create') }}</th>--}}
-{{--                                        <th></th>--}}
-{{--                                    </tr>--}}
-{{--                                    </thead>--}}
-{{--                                    <tbody>--}}
-{{--                                    @foreach($bills as $bill)--}}
-{{--                                        <tr>--}}
-{{--                                            <th>{{$loop->iteration}}</th>--}}
-{{--                                            <th>{{$bill->users->name}}</th>--}}
-{{--                                            <th>{{number_format($bill->price_paid)}} <sup>{{ __('messages.a-vnđ') }}</sup></th>--}}
-{{--                                            <td>{{number_format($bill->price)}} <sup>{{ __('messages.a-vnđ') }}</sup>--}}
-{{--                                            </td>--}}
-{{--                                            <td>{{number_format($bill->tax_rate)}} <sup>{{ __('messages.a-vnđ') }}</sup>--}}
-{{--                                            </td>--}}
-{{--                                            <td class="text-left">--}}
-{{--                                                <ul>--}}
-{{--                                                    <li>{{ __('messages.a-discount-name') }}:--}}
-{{--                                                        <b>{{$bill->discount_name}}</b></li>--}}
-{{--                                                    <li>{{ __('messages.a-discount-code') }}:--}}
-{{--                                                        <b>{{$bill->discount_code}}</b></li>--}}
-{{--                                                    <li>{{ __('messages.a-discount-price') }}:--}}
-{{--                                                        <b>- {{number_format($bill->discount_price)}}--}}
-{{--                                                            <sup>{{ __('messages.a-vnđ') }}</sup></b></li>--}}
-{{--                                                </ul>--}}
-{{--                                            </td>--}}
-{{--                                            <td>--}}
-{{--                                                <a href="{{route('change.status.bill', $bill->id)}}">--}}
-{{--                                                    <lable--}}
-{{--                                                        class="badge {{ $bill->getStatus($bill->status)['class'] }}">{{ $bill->getStatus($bill->status)['name'] }}</lable>--}}
-{{--                                                </a>--}}
-{{--                                            </td>--}}
-{{--                                            <td>{{$bill->created_at->format('H:i:s d-m-Y')}}</td>--}}
-{{--                                            <td class="text-left">--}}
-{{--                                                @can('bill-detail')--}}
-{{--                                                    <a href="{{route('detail.bill', $bill->id)}}"--}}
-{{--                                                       class="btn btn-xs btn-outline-info"><i--}}
-{{--                                                            class="fa fa-eye"></i></a>--}}
-{{--                                                @endcan--}}
-{{--                                            </td>--}}
-{{--                                        </tr>--}}
-{{--                                    @endforeach--}}
-{{--                                    </tbody>--}}
-{{--                                    <tfoot>--}}
-{{--                                    <tr>--}}
-{{--                                        <th colspan="9"--}}
-{{--                                            class="text-right">{{ __('messages.a-total-bill:') }} {{$totalBill}}--}}
-{{--                                            <sup>{{ __('messages.a-bill') }}</sup></th>--}}
-{{--                                    </tr>--}}
-{{--                                    </tfoot>--}}
-{{--                                </table>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
+                        <div class="row">
+                            <div class="card">
+                                <div class="card-body bg4">
+                                    <h4 class="header-title text-white">{{ __('messages.a-information') }}</h4>
+                                    <div class="testimonial-carousel owl-carousel">
+                                        <div class="tst-item">
+                                            <div class="tstu-img">
+                                                <i class="ti-money"></i>
+                                            </div>
+                                            <div class="tstu-content">
+                                                <h4 class="tstu-name">
+                                                    {{ __('messages.a-price') }}
+                                                </h4>
+                                                <p>{{number_format($price_bill)}} <sup>{{ __('messages.a-vnđ') }}</sup></p>
+                                            </div>
+                                        </div>
+                                        <div class="tst-item">
+                                            <div class="tstu-img">
+                                                <i class="ti-shopping-cart"></i>
+                                            </div>
+                                            <div class="tstu-content">
+                                                <h4 class="tstu-name">
+                                                    {{ __('messages.total-bill') }}
+                                                </h4>
+                                                <p>{{$total_bill}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="tst-item">
+                                            <div class="tstu-img">
+                                                <i class="ti-shopping-cart"></i>
+                                            </div>
+                                            <div class="tstu-content">
+                                                <h4 class="tstu-name">
+                                                    {{ __('messages.total-product') }}
+                                                </h4>
+                                                <p>{{$count_products}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col-md-6">
+                                <div class="single-table">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover progress-table text-center">
+                                            <thead class="text-uppercase">
+                                            <tr>
+                                                <th>Stt</th>
+                                                <th>{{ __('messages.a-product') }}</th>
+                                                <th>{{ __('messages.total-bill') }}</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach($count_product_to_bills as $count_product_to_bill)
+                                                <tr>
+                                                    <th>{{$loop->iteration}}</th>
+                                                    <th>{{$count_product_to_bill->name}}</th>
+                                                    <th>{{number_format($count_product_to_bill->bill_detail_count)}}</th>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="single-table">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover progress-table text-center">
+                                            <thead class="text-uppercase">
+                                            <tr>
+                                                <th>Stt</th>
+                                                <th>{{ __('messages.a-product') }}</th>
+                                                <th>{{ __('messages.total-bill') }}</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach($count_product_bills as $count_product_bill)
+                                                <tr>
+                                                    <th>{{$loop->iteration}}</th>
+                                                    <th>{{$count_product_bill['product_name']}}</th>
+                                                    <th>{{number_format($count_product_bill['product_qty'])}}</th>
+                                                    <th>{{$count_product_bill['updated_at']->format('H:i:s d-m-Y')}}</th>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -275,4 +275,5 @@ return [
     'a-secondary-image' => 'Ảnh phụ',
     'discount-code-has-been-selected' => 'Mã giảm giá đã được chọn',
     'money-paid' => 'Tiền đã thanh toán',
+    'total-product' => 'Tổng sản phẩm'
 ];

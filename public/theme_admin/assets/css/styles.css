@@ -1467,6 +1467,11 @@ table.dbkit-table tr td {
     background: #F7CB3F;
 }
 
+.bg4 {
+    background: linear-gradient(159deg, rgb(5, 176, 133) 0%, rgb(87, 108, 103) 59%);
+    height: 215px !important;
+}
+
 .tm-title {
     margin-bottom: 6px;
 }
@@ -1603,7 +1608,7 @@ table.dbkit-table tr td {
 
 .testimonial-carousel .owl-dots {
     text-align: center;
-    margin-top: 60px;
+    margin-top: 15px;
 }
 
 .testimonial-carousel .owl-dots > div {
