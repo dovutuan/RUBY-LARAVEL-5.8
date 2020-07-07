@@ -96,7 +96,7 @@
             <div class="col-lg-3 col-md-3 mt-5">
                 <div class="card">
                     <div class="card-body pb-0">
-                        <h4 class="header-title">Social ads Campain</h4>
+                        <h4 class="header-title">{{ __('messages.a-price') }}</h4>
                         <canvas id="myChart" width="400" height="400"></canvas>
                     </div>
                 </div>
@@ -104,70 +104,8 @@
             <div class="col-xl-6 col-ml-6 col-lg-6 mt-5">
                 <div class="card">
                     <div class="card-body pb-0">
-                        <h4 class="header-title">Social ads Campain</h4>
+                        <h4 class="header-title">{{ __('messages.a-price') }}</h4>
                         <canvas id="myChartBar"></canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-ml-4 col-lg-4 mt-5">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="header-title">Timeline</h4>
-                        <div class="timeline-area">
-                            <div class="timeline-task">
-                                <div class="icon bg1">
-                                    <i class="fa fa-envelope"></i>
-                                </div>
-                                <div class="tm-title">
-                                    <h4>Rashed sent you an email</h4>
-                                    <span class="time"><i class="ti-time"></i>09:35</span>
-                                </div>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at.
-                                </p>
-                            </div>
-                            <div class="timeline-task">
-                                <div class="icon bg2">
-                                    <i class="fa fa-exclamation-triangle"></i>
-                                </div>
-                                <div class="tm-title">
-                                    <h4>Rashed sent you an email</h4>
-                                    <span class="time"><i class="ti-time"></i>09:35</span>
-                                </div>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at.
-                                </p>
-                            </div>
-                            <div class="timeline-task">
-                                <div class="icon bg2">
-                                    <i class="fa fa-exclamation-triangle"></i>
-                                </div>
-                                <div class="tm-title">
-                                    <h4>Rashed sent you an email</h4>
-                                    <span class="time"><i class="ti-time"></i>09:35</span>
-                                </div>
-                            </div>
-                            <div class="timeline-task">
-                                <div class="icon bg3">
-                                    <i class="fa fa-bomb"></i>
-                                </div>
-                                <div class="tm-title">
-                                    <h4>Rashed sent you an email</h4>
-                                    <span class="time"><i class="ti-time"></i>09:35</span>
-                                </div>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at.
-                                </p>
-                            </div>
-                            <div class="timeline-task">
-                                <div class="icon bg3">
-                                    <i class="ti-signal"></i>
-                                </div>
-                                <div class="tm-title">
-                                    <h4>Rashed sent you an email</h4>
-                                    <span class="time"><i class="ti-time"></i>09:35</span>
-                                </div>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at.
-                                </p>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

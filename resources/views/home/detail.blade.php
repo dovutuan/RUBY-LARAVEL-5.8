@@ -164,7 +164,7 @@
                                                                  alt=""/>
                                                             <div class="media-body">
                                                                 <h4>{{$rate->users->name}}</h4>
-                                                                @for($i = 1; $i <= $rate->star; $i++)
+                                                                @for($i = ONE; $i <= $rate->star; $i++)
                                                                     <i class="fa fa-star"></i>
                                                                 @endfor
                                                             </div>

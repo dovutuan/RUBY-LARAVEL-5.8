@@ -66,6 +66,12 @@
                                             class="fa fa-fw fa-shopping-cart"></i><span>{{__('messages.a-bill')}}</span></a>
                                 </li>
                             @endcan
+                            @can('statistics')
+                                <li class="{{\Request::route()->getName()=='statistic'?'active':''}}">
+                                    <a href="{{route('statistic')}}"><i
+                                            class="fa fa-fw fa-bar-chart"></i><span>{{__('messages.statistic')}}</span></a>
+                                </li>
+                            @endcan
                         </ul>
                     </nav>
                 </div>

@@ -276,5 +276,9 @@ return [
     'a-secondary-image' => 'Secondary image',
     'discount-code-has-been-selected' => 'Discount code has been selected',
     'money-paid' => 'Money paid',
-    'total-product' => 'Total product'
+    'total-product' => 'Total product',
+    'time-of-purchase' => 'Time of purchase',
+    'evaluation-time' => 'Evaluation time',
+    'rate' => 'Rate',
+    'statistic' => 'Statistic'
 ];
