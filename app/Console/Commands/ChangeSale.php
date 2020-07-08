@@ -25,8 +25,8 @@ class ChangeSale extends Command
             $finish = Sale::formatTime($sale->finish, 'd-m-Y');
             if ($finish < $now) {
                 $sale->delete();
-                \Log::info("running finnish < now in sale of product");
             }
+            \Log::info("running finnish < now in sale of product");
         }
     }
 }
