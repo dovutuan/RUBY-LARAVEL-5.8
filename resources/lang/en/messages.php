@@ -282,4 +282,7 @@ return [
     'rate' => 'Rate',
     'statistic' => 'Statistic',
     'sold' => 'Sold',
+    'contact' => 'Contact',
+    'used' => 'Used',
+    'rest' => 'Rest',
 ];

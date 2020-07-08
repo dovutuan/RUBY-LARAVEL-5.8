@@ -128,6 +128,9 @@ Route::group(['middleware' => 'auth'], function () {
 
             //contact
             Route::get('contact', 'HomeController@contact')->name('contact');
+
+            //discount
+            Route::get('discount', 'HomeController@discount')->name('discount');
         });
 
         //account

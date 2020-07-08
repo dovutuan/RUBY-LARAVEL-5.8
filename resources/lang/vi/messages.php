@@ -281,4 +281,7 @@ return [
     'rate' => 'Đánh giá',
     'statistic' => 'Thống kê',
     'sold' => 'Dã bán',
+    'contact' => 'Liên hệ',
+    'used' => 'Đã dùng',
+    'rest' => 'Còn lại',
 ];

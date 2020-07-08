@@ -3,8 +3,8 @@
         <div class="row align-items-center">
             <div class="col-md-3">
                 <div class="logo">
-                    <a href="index.html"><img src="{{ asset('theme_admin') }}/assets/images/icon/logo2.png"
-                                              alt="logo"></a>
+                    <a href="{{route('dashboard')}}"><img class="logo-image image-admin" src="{{ asset('logo') }}/icon_ruby.png" alt=""></a>
+
                 </div>
             </div>
             <div class="col-md-9 clearfix text-right">

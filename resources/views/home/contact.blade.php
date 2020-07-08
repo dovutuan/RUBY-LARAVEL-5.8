@@ -95,8 +95,8 @@
             </form>
         </div>
     </div>
+@endsection
 
 @section('script')
     <script>CKEDITOR.replace('content');</script>
-
 @endsection

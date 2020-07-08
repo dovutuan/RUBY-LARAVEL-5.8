@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Home;
 
 use App\Http\Requests\RateRequest;
 use App\Models\Category;
+use App\Models\Discount;
 use App\Models\OptionProduct;
 use App\Models\Product;
 use App\Models\Rate;
@@ -122,5 +123,16 @@ class HomeController extends Controller
             'user' => $user,
         ];
         return view('home.contact', $data);
+    }
+
+    public function discount()
+    {
+        $allCategories = Category::loadAllCategories();
+        $discounts = Discount::all();
+        $data = [
+            'allCategories' => $allCategories,
+            'discounts' => $discounts,
+        ];
+        return view('home.discount', $data);
     }
 }
