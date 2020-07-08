@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Console\Commands\ChangeSale;
 use App\Console\Commands\ChangeStatusDiscount;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -14,7 +15,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        'App\Console\Commands\ChangeStatusDiscount'
+        'App\Console\Commands\ChangeStatusDiscount',
+        'App\Console\Commands\ChangeSale',
     ];
 
     /**
@@ -25,7 +27,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command(ChangeStatusDiscount::class)->everyMinute();
+        $schedule->command(ChangeStatusDiscount::class)->daily();
+        $schedule->command(ChangeSale::class)->daily();
     }
 
     /**

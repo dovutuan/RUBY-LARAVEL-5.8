@@ -26,7 +26,7 @@ class ChangeStatusDiscount extends Command
                 $discount->update([
                     'status' => OUT_STOCK,
                 ]);
-                \Log::info("running finnish < now or amount <=0");
+                \Log::info("running finnish < now or amount <=0 in discount");
             }
         }
     }
