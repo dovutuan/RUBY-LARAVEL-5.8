@@ -280,5 +280,6 @@ return [
     'time-of-purchase' => 'Time of purchase',
     'evaluation-time' => 'Evaluation time',
     'rate' => 'Rate',
-    'statistic' => 'Statistic'
+    'statistic' => 'Statistic',
+    'sold' => 'Sold',
 ];

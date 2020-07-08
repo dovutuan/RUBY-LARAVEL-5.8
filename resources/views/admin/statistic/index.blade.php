@@ -121,7 +121,7 @@
                                             <tr>
                                                 <th>Stt</th>
                                                 <th>{{ __('messages.a-product') }}</th>
-                                                <th>{{ __('messages.total-bill') }}</th>
+                                                <th>{{ __('messages.sold') }}</th>
                                                 <th>{{ __('messages.time-of-purchase') }}</th>
                                             </tr>
                                             </thead>

@@ -279,5 +279,6 @@ return [
     'time-of-purchase' => 'Thời gian mua hàng',
     'evaluation-time' => 'Thời gian đánh giá',
     'rate' => 'Đánh giá',
-    'statistic' => 'Thống kê'
+    'statistic' => 'Thống kê',
+    'sold' => 'Dã bán',
 ];
