@@ -12,6 +12,7 @@ class ProductsExport implements FromCollection, WithHeadings
     public function headings(): array
     {
         return [
+            'stt',
             'id',
             'name',
             'category_id',
@@ -24,15 +25,16 @@ class ProductsExport implements FromCollection, WithHeadings
     public function collection()
     {
         $products = Product::where('created_by', Auth::user()->id)->get();
-        foreach ($products as $row) {
-            $product[] = array(
-                '0' => $row->id,
-                '1' => $row->name,
-                '2' => $row->category->name,
-                '5' => $row->likes,
-                '6' => $row->views,
-                '10' => $row->created_at
-            );
+        foreach ($products as $key => $row) {
+            $product[] = [
+                '0' => $key + ONE,
+                '1' => $row->id,
+                '2' => $row->name,
+                '3' => $row->categories->name,
+                '4' => $row->likes,
+                '5' => $row->views,
+                '6' => $row->created_at,
+            ];
         }
 
         return (collect($product));
