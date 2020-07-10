@@ -120,4 +120,35 @@ class Product extends Model
             ->latest($short)
             ->paginate(SIXTY);
     }
+
+    static public function countProductStatistic()
+    {
+        return self::where('created_by', Auth::user()->id)->count();
+    }
+
+    static public function getProductStatistic()
+    {
+        return self::where('created_by', Auth::user()->id)->get();
+    }
+
+    static public function getAllProductStatistic($date)
+    {
+        return self::where('created_by', Auth::user()->id)
+            ->when($date, function ($qr) use ($date) {
+                $qr->whereDate('updated_at', $date);
+            })
+            ->latest('updated_at')->get();
+    }
+
+    static public function countProductToBill($date)
+    {
+        return self::where('created_by', Auth::user()->id)
+            ->when($date, function ($qr) use ($date) {
+                $qr->whereDate('updated_at', $date);
+            })
+            ->withCount('billDetail')
+            ->latest('bill_detail_count')
+            ->take(EIGHT)
+            ->get();
+    }
 }

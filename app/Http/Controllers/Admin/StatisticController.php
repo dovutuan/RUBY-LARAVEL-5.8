@@ -14,22 +14,18 @@ class StatisticController extends Controller
     {
         $this->middleware('permission:statistics', ['only' => ['index']]);
     }
+
     public function index(Request $request)
     {
         $date = $request->input('date');
-        $bills = Bill::where('seller_id', Auth::user()->id)
-            ->when($date, function ($qr) use ($date) {
-                $qr->whereDate('updated_at', $date);
-            })->get();
+        $bills = Bill::getBillStatistic($date);
         $price_bill = $bills->sum('price');
         $total_bill = $bills->count();
-        $count_products = Product::where('created_by', Auth::user()->id)->count();
-        $all_products = Product::where('created_by', Auth::user()->id)->get();
-        $products = Product::where('created_by', Auth::user()->id)
-            ->when($date, function ($qr) use ($date) {
-                $qr->whereDate('updated_at', $date);
-            })
-            ->latest('updated_at')->get();
+        $count_products = Product::countProductStatistic();
+        $all_products = Product::getProductStatistic();
+        $products = Product::getAllProductStatistic($date);
+        $rate_products = $products->take(TWELVE);
+        $count_product_to_bills = Product::countProductToBill($date);
         $star_shop = FIVE;
         $count_rate = ZERO;
         $count_star = ZERO;
@@ -42,15 +38,6 @@ class StatisticController extends Controller
         if ($count_rate != ZERO && $count_star != ZERO) {
             $star_shop = round($count_star / $count_rate, ONE);
         }
-        $rate_products = $products->take(TWELVE);
-        $count_product_to_bills = Product::where('created_by', Auth::user()->id)
-            ->when($date, function ($qr) use ($date) {
-                $qr->whereDate('updated_at', $date);
-            })
-            ->withCount('billDetail')
-            ->latest('bill_detail_count')
-            ->take(EIGHT)
-            ->get();
         $count_product_bills = [];
         if ($products) {
             foreach ($products as $product) {
@@ -63,7 +50,6 @@ class StatisticController extends Controller
                 }
             }
         }
-//        dd($count_product_bills);
         $data = [
             'date' => $date,
             'price_bill' => $price_bill,

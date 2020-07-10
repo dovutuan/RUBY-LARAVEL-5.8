@@ -147,6 +147,7 @@ Route::group(['middleware' => 'auth'], function () {
                 Route::get('order-detail/{id}', 'AccountController@billDetail')->name('detail-order-customer');
                 Route::get('cancel-order/{id}', 'AccountController@cancelBill')->name('cancel-order-customer');
                 Route::get('print-order/{id}', 'AccountController@printBill')->name('print-order-customer');
+                Route::post('rate', 'AccountController@rate')->name('rate-product');
             });
         });
 

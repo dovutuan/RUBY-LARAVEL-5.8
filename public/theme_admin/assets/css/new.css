@@ -79,7 +79,7 @@
 }
 
 .display-none {
-    display: none;
+    display: none !important;
 }
 
 .btn-padding {
@@ -108,4 +108,14 @@
     .modal-lg {
         max-width: 900px !important;
     }
+}
+
+.input-radius-unset {
+    border-radius: unset !important;
+    padding-right: 5px !important;
+    padding-left: 5px !important;
+}
+
+.btn-i {
+    padding: 18px 25px;
 }
