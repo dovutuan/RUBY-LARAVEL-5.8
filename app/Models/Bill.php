@@ -91,4 +91,12 @@ class Bill extends Model
             })
             ->latest()->paginate($paginate);
     }
+
+    static public function getBillStatistic($date)
+    {
+        return self::where('seller_id', Auth::user()->id)
+            ->when($date, function ($qr) use ($date) {
+                $qr->whereDate('updated_at', $date);
+            })->get();
+    }
 }

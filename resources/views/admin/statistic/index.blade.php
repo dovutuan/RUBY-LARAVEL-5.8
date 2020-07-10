@@ -22,9 +22,9 @@
                             <div class="col-md-12 clearfix text-right">
                                 <div class="search-box pull-right">
                                     <form action="" method="GET">
-                                        <input type="date" name="date"
+                                        <input class="input-radius-unset" type="date" name="date"
                                                value="{{ isset($date) ? $date : old('date') }}">
-                                        <i class="ti-search"></i>
+                                        <button type="submit" class="btn btn-i btn-outline-primary"> <i class="ti-search"></i></button>
                                     </form>
                                 </div>
                             </div>

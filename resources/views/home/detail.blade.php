@@ -66,13 +66,28 @@
                                     @endforeach
                                 </div>
                             @endif
-                            <select name="option" id="option_product" class="nice-select height-select">
-                                @foreach($product->optionProduct as $optionProduct)
-                                    <option
-                                        value="{{$optionProduct->id}}">{{number_format($optionProduct->getPrice())}} {{ __('messages.a-vnđ') }}
-                                        - {{$optionProduct->amount}} {{$optionProduct->species->name}}</option>
-                                @endforeach
-                            </select>
+                            <div class="sidebar__item">
+                                <div class="btn-group-toggle" data-toggle="buttons">
+                                    <div class="sidebar__item__size">
+                                        @foreach($product->optionProduct as $optionProduct)
+                                            <label class="btn btn-outline-success mt-2">
+                                                <input type="radio" name="option"
+                                                       value="{{$optionProduct->id}}">
+                                                {{$optionProduct->amount}} {{$optionProduct->species->name}}
+                                                - {{number_format($optionProduct->getPrice())}} {{ __('messages.a-vnđ') }}
+                                            </label>
+                                            <br>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                            {{--                            <select name="option" id="option_product" class="nice-select height-select">--}}
+                            {{--                                @foreach($product->optionProduct as $optionProduct)--}}
+                            {{--                                    <option--}}
+                            {{--                                        value="{{$optionProduct->id}}">{{number_format($optionProduct->getPrice())}} {{ __('messages.a-vnđ') }}--}}
+                            {{--                                        - {{$optionProduct->amount}} {{$optionProduct->species->name}}</option>--}}
+                            {{--                                @endforeach--}}
+                            {{--                            </select>--}}
                             <div class="product__details__quantity">
                                 <div class="quantity">
                                     <div class="pro-qty">
@@ -84,7 +99,7 @@
                                     onclick="return confirm('Are you sure you want to buy this product?')"><i
                                     class="fa fa-shopping-cart"></i>
                             </button>
-                            <a href="{{route('heart-product', $product->id)}}" class="heart-icon"><span
+                            <a href="{{route('heart-product', $product->id)}}" class="heart-icon danger-btn"><span
                                     class="icon_heart_alt"></span></a>
                             <ul>
                                 {{--                                <li><b>Availability</b> <span>In Stock</span></li>--}}
