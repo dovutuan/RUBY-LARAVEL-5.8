@@ -284,4 +284,5 @@ return [
     'contact' => 'Liên hệ',
     'used' => 'Đã dùng',
     'rest' => 'Còn lại',
+    'star-content-empty' => 'Sao hoặc nội dung đánh giá không được để trống'
 ];

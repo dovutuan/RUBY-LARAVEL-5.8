@@ -285,4 +285,5 @@ return [
     'contact' => 'Contact',
     'used' => 'Used',
     'rest' => 'Rest',
+    'star-content-empty' => 'Star or review content cannot be empty'
 ];

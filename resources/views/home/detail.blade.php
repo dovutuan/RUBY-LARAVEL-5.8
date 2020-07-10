@@ -162,7 +162,7 @@
                             <div class="tab-pane active" id="tabs-3" role="tabpanel">
                                 <div class="product__details__tab__desc">
                                     <div class="row">
-                                        <div class="col-lg-7 col-md-7">
+                                        <div class="col-lg-12 col-md-12">
                                             <div class="total_rate">
                                                 <div class="box_total">
                                                     <h5>{{ __('messages.overall') }}</h5>
@@ -189,36 +189,36 @@
                                                 @endforeach
                                             </div>
                                         </div>
-                                        <div class="col-md-5 col-lg-5">
-                                            <div class="review_box">
-                                                <form action="{{route('review-product', $product->id)}}"
-                                                      class="form-contact form-review mt-3" method="post">
-                                                    @csrf
-                                                    <h4>{{ __('messages.add-a-review') }}</h4>
-                                                    <div class="form-group">
-                                                        <p class="margin-text-review">{{ __('messages.your-review:') }}</p>
-                                                        <ul class="list list_star">
-                                                            @for($i = ONE; $i <= FIVE; $i++)
-                                                                <li><i class="fa fa-star" data-key="{{$i}}"></i></li>
-                                                            @endfor
-                                                            <span class="rsStar list_text"></span>
-                                                            <input type="hidden" value="" class="number_rating"
-                                                                   name="star">
-                                                        </ul>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <textarea class="form-control different-control w-100 content"
-                                                                  name="content" rows="30" cols="30" id="content"
-                                                                  placeholder="{{ __('messages.enter-content') }}"></textarea>
-                                                    </div>
-                                                    <div class="form-group text-center text-md-right mt-3">
-                                                        <button type="submit"
-                                                                class="btn btn-xs btn-outline-success">{{ __('messages.review') }}
-                                                        </button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
+{{--                                        <div class="col-md-5 col-lg-5">--}}
+{{--                                            <div class="review_box">--}}
+{{--                                                <form action="{{route('review-product', $product->id)}}"--}}
+{{--                                                      class="form-contact form-review mt-3" method="post">--}}
+{{--                                                    @csrf--}}
+{{--                                                    <h4>{{ __('messages.add-a-review') }}</h4>--}}
+{{--                                                    <div class="form-group">--}}
+{{--                                                        <p class="margin-text-review">{{ __('messages.your-review:') }}</p>--}}
+{{--                                                        <ul class="list list_star">--}}
+{{--                                                            @for($i = ONE; $i <= FIVE; $i++)--}}
+{{--                                                                <li><i class="fa fa-star" data-key="{{$i}}"></i></li>--}}
+{{--                                                            @endfor--}}
+{{--                                                            <span class="rsStar list_text"></span>--}}
+{{--                                                            <input type="hidden" value="" class="number_rating"--}}
+{{--                                                                   name="star">--}}
+{{--                                                        </ul>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="form-group">--}}
+{{--                                                        <textarea class="form-control different-control w-100 content"--}}
+{{--                                                                  name="content" rows="30" cols="30" id="content"--}}
+{{--                                                                  placeholder="{{ __('messages.enter-content') }}"></textarea>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="form-group text-center text-md-right mt-3">--}}
+{{--                                                        <button type="submit"--}}
+{{--                                                                class="btn btn-xs btn-outline-success">{{ __('messages.review') }}--}}
+{{--                                                        </button>--}}
+{{--                                                    </div>--}}
+{{--                                                </form>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
                                     </div>
                                 </div>
                             </div>
@@ -376,10 +376,9 @@
         </div>
     </section>
 
-
-@section('script')
-    <script src="{{ asset('theme_home_new') }}/js/rating.js"></script>
-    <script>CKEDITOR.replace('content');</script>
-@stop
-
 @endsection
+
+{{--@section('script')--}}
+{{--    <script src="{{ asset('theme_home_new') }}/js/rating.js"></script>--}}
+{{--    <script>CKEDITOR.replace('content');</script>--}}
+{{--@stop--}}

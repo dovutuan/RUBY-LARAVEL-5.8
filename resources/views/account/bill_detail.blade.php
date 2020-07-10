@@ -45,6 +45,7 @@
                         <th>{{ __('messages.a-amount') }} / {{ __('messages.a-species') }}</th>
                         <th>{{ __('messages.a-qty') }}</th>
                         <th>{{ __('messages.a-price') }}</th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -55,6 +56,15 @@
                             <td>{{$billDetail->amount}} <sup>{{$billDetail->species->name}}</sup></td>
                             <td>{{$billDetail->qty}}</td>
                             <td>{{number_format($billDetail->price)}} <sup>{{ __('messages.a-vnđ') }}</sup></td>
+                            <td>
+                                @if($bill->status === THREE)
+                                    <button type="button" class="open-dialog-rate btn btn-sm btn-outline-success"
+                                            data-toggle="modal" data-target="#exampleModalCenter"
+                                            data-id="{{$billDetail->product_id}}">
+                                        <i class="fa fa-star"></i>
+                                    </button>
+                                @endif
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>
@@ -63,4 +73,48 @@
         </div>
     </div>
 
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content review_box">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">{{ __('messages.add-a-review') }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{route('rate-product')}}" method="POST">
+                    @csrf
+                    <div class="modal-body">
+                        <input style="display: none" class="display-none" type="text" name="product_id" id="product_id" value=""/>
+                        <div class="form-group">
+                            <ul class="list list_star">
+                                @for($i = ONE; $i <= FIVE; $i++)
+                                    <li><i class="fa fa-star" data-key="{{$i}}"></i></li>
+                                @endfor
+                                <span class="rsStar list_text"></span>
+                                <input type="hidden" value="" class="number_rating"
+                                       name="star">
+                            </ul>
+                        </div>
+                        <div class="form-group">
+                              <textarea class="form-control different-control w-100 content"
+                                        name="content" rows="30" cols="30" id="content"
+                                        placeholder="{{ __('messages.enter-content') }}"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-sm btn-info"><i class="fa fa-check"></i></button>
+                        <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal"><i
+                                class="fa fa-close"></i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+@endsection
+
+@section('script')
+    <script src="{{ asset('theme_home_new') }}/js/rating.js"></script>
+    <script>CKEDITOR.replace('content');</script>
 @endsection

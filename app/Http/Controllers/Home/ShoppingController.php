@@ -15,30 +15,34 @@ class ShoppingController extends Controller
         $option = $request->input('option');
         $amount = $request->input('amount');
         $product = Product::findOrFail($id);
-        $option_product = OptionProduct::where('id', $option)->where('product_id', $product->id)->first();
-        if ($product && $option_product) {
-            $sale = $product->sale ? $product->sale->sale : ZERO;
-            $price = $product->sale ? $option_product->price * (ONE_HUNDRED - $sale) / ONE_HUNDRED : $option_product->price;
+        if ($option) {
+            $option_product = OptionProduct::where('id', $option)->where('product_id', $product->id)->first();
+            if ($product && $option_product) {
+                $sale = $product->sale ? $product->sale->sale : ZERO;
+                $price = $product->sale ? $option_product->price * (ONE_HUNDRED - $sale) / ONE_HUNDRED : $option_product->price;
 
-            if (Cart::count() > ZERO) {
-                $seller = '';
-                foreach (Cart::content() as $cart) {
-                    $seller = $cart->options['seller'];
-                }
-                if ($seller === $product->created_by) {
-                    $this->createCart($id, $product->name, $amount, $price, $option_product->suppliers->name, $option_product->species->name, $option_product->amount, $product->image, $seller, $option_product->species_id);
+                if (Cart::count() > ZERO) {
+                    $seller = '';
+                    foreach (Cart::content() as $cart) {
+                        $seller = $cart->options['seller'];
+                    }
+                    if ($seller === $product->created_by) {
+                        $this->createCart($id, $product->name, $amount, $price, $option_product->suppliers->name, $option_product->species->name, $option_product->amount, $product->image, $seller, $option_product->species_id);
 
-                    return redirect()->back()->with('success', __('messages.add-product-to-cart-successfully'));
+                        return back()->with('success', __('messages.add-product-to-cart-successfully'));
+                    } else {
+                        return back()->with('error', __('messages.product-are-not-the-same-seller'));
+                    }
                 } else {
-                    return redirect()->back()->with('error', __('messages.product-are-not-the-same-seller'));
+                    $this->createCart($id, $product->name, $amount, $price, $option_product->suppliers->name, $option_product->species->name, $option_product->amount, $product->image, $product->created_by, $option_product->species_id);
+
+                    return back()->with('success', __('messages.add-product-to-cart-successfully'));
                 }
             } else {
-                $this->createCart($id, $product->name, $amount, $price, $option_product->suppliers->name, $option_product->species->name, $option_product->amount, $product->image, $product->created_by, $option_product->species_id);
-
-                return redirect()->back()->with('success', __('messages.add-product-to-cart-successfully'));
+                return back()->with('error', __('messages.error'));
             }
         } else {
-            return redirect()->back()->with('error', __('messages.error'));
+            return back()->with('warning', __('messages.error'));
         }
     }
 
@@ -49,7 +53,7 @@ class ShoppingController extends Controller
             'name' => $name,
             'qty' => $qty,
             'price' => $price,
-            'weight' => 0,
+            'weight' => ZERO,
             'options' => [
                 'supplier' => $supplier,
                 'species' => $species,

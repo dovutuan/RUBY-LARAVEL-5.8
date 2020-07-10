@@ -39,6 +39,7 @@
 <script src="{{ asset('theme_home_new') }}/js/owl.carousel.min.js"></script>
 
 <script src="{{ asset('theme_home_new') }}/js/main.js"></script>
+<script src="{{ asset('theme_home_new') }}/ckeditor/ckeditor.js"></script>
 
 @yield('script')
 </body>
