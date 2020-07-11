@@ -17,13 +17,6 @@
       'Cart' => 'Gloudemans\\Shoppingcart\\Facades\\Cart',
     ),
   ),
-  'ckfinder/ckfinder-laravel-package' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'CKSource\\CKFinderBridge\\CKFinderServiceProvider',
-    ),
-  ),
   'fideloper/proxy' => 
   array (
     'providers' => 

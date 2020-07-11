@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-11 text-left">
+                            <div class="col-md-10 text-left">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="#">{{ __('messages.a-home') }}</a></li>
@@ -16,7 +16,7 @@
                                     </ol>
                                 </nav>
                             </div>
-                            <div class="col-md-1 clearfix text-right">
+                            <div class="col-md-2 clearfix text-right">
                                 <button type="button" class="btn btn-sm btn-success" data-toggle="modal"
                                         data-target="#myModal">
                                     <i class="fa fa-plus"></i>

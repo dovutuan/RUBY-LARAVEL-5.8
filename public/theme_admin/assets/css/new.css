@@ -3,6 +3,9 @@
     width: 10%;
 }
 
+.image-admin {
+    max-width: 35% !important;
+}
 
 /*thanh %*/
 .step {
@@ -63,4 +66,56 @@
 
 .step .step-item.active ~ .step-item a::before {
     background: #e7e9ed;
+}
+
+.image-user {
+    margin: 5%;
+    min-width: 120px;
+    max-width: 120px;
+    min-height: 120px;
+    max-height: 120px;
+    border-radius: 50%;
+    border: #a1a1a1 solid 1px;
+}
+
+.display-none {
+    display: none !important;
+}
+
+.btn-padding {
+    padding: 11px 12px !important;
+}
+
+.label-margin-left {
+    margin-left: 35%;
+}
+
+.image-product {
+    /*width: 30%;*/
+    /*min-width: 120px;*/
+    /*max-width: 120px;*/
+    /*min-height: 120px;*/
+    /*max-height: 120px;*/
+    border: #7a7a7a solid 1px;
+}
+
+.image-category {
+    border: #7a7a7a solid 1px;
+    max-width: 45%;
+}
+
+@media screen and (min-width: 992px) {
+    .modal-lg {
+        max-width: 900px !important;
+    }
+}
+
+.input-radius-unset {
+    border-radius: unset !important;
+    padding-right: 5px !important;
+    padding-left: 5px !important;
+}
+
+.btn-i {
+    padding: 18px 25px;
 }

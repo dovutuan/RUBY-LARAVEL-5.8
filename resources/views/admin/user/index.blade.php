@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-11 text-left">
+                            <div class="col-md-10 text-left">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="#">{{ __('messages.a-home') }}</a></li>
@@ -16,7 +16,7 @@
                                     </ol>
                                 </nav>
                             </div>
-                            <div class="col-md-1 clearfix text-right white-space-nowrap">
+                            <div class="col-md-2 clearfix text-right white-space-nowrap">
                                 <a href="{{route('export.user')}}" class="btn btn-sm btn-info"><i
                                         class="fa fa-file-excel-o"></i></a>
                                 @can('user-create')
@@ -57,7 +57,7 @@
                                     @foreach($users as $user)
                                         <tr>
                                             <th>{{$loop->iteration}}</th>
-                                            <th class="text-left"><img class="img-user" src="{{$user->image}}"
+                                            <th class="text-left"><img class="img-user" src="{{fileUrl(USERS, $user->image)}}"
                                                                        alt=""> {{$user->name}}</th>
                                             <td>
                                                 <a href="{{route('change.status.user', $user->id)}}">

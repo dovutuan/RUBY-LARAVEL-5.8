@@ -62,13 +62,7 @@
 <script src="{{ asset('theme_admin') }}/assets/js/Chart.bundle.min.js"></script>
 
 <script src="{{ asset('theme_admin') }}/assets/js/scripts.js"></script>
-@include('ckfinder::setup')
-<script src="{{ asset('theme_admin') }}/assets/js/controller/ckfinder.js"></script>
 <script src="{{ asset('theme_admin') }}/ckeditor/ckeditor.js"></script>
-<script>
-    CKEDITOR.replace('content');
-    CKEDITOR.replace('detail');
-</script>
 
 @yield('script')
 </body>

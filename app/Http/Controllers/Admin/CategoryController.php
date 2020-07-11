@@ -39,8 +39,10 @@ class CategoryController extends Controller
 
     public function store(CategoryRequest $request)
     {
+        $name_image = $this->upLoadImage($request->file('image'));
         Category::create(
             array_merge($request->all(), [
+                'image' => $name_image,
                 'slug' => str_slug($request->input('name')),
                 'created_by' => Auth::user()->id,
             ])
@@ -63,8 +65,10 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $category = Category::find($id);
+        $name_image = $this->upLoadImage($request->file('image'));
         $category->update(
             array_merge($request->all(), [
+                'image' => $name_image,
                 'slug' => str_slug($request->input('name')),
                 'updated_by' => Auth::user()->id,
             ])
@@ -83,5 +87,14 @@ class CategoryController extends Controller
         $category->delete();
 
         return redirect()->back()->with('success', __('messages.delete-successfully'));
+    }
+
+    public function upLoadImage($image)
+    {
+        $name_image = null;
+        if ($image) {
+            $name_image = uploadImage(CATEGORIES, $image);
+        }
+        return $name_image;
     }
 }

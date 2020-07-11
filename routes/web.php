@@ -1,20 +1,21 @@
 <?php
-Route::get('/', function () {
-    return redirect()->route('home');
-});
+//Route::get('/', function () {
+//    return redirect()->route('');
+//});
 
 Auth::routes(['verify' => true]);
 
 Route::get('lang/{lang}', 'LangController@changeLang')->name('lang');
 Route::group(['middleware' => 'auth'], function () {
     Route::group(['middleware' => 'verified'], function () {
-
-        Route::any('/ckfinder/examples/{example?}', 'CKSource\CKFinderBridge\Controller\CKFinderController@examplesAction')->name('ckfinder_examples');
-
         //admin
         Route::group(['namespace' => 'Admin'], function () {
             Route::group(['prefix' => 'admin'], function () {
                 Route::get('', 'AdminController@index')->name('dashboard');
+
+                Route::group(['prefix' => 'statistic'], function () {
+                    Route::get('', 'StatisticController@index')->name('statistic');
+                });
 
                 Route::group(['prefix' => 'user'], function () {
                     Route::get('', 'UserController@index')->name('list.user');
@@ -95,25 +96,23 @@ Route::group(['middleware' => 'auth'], function () {
 
         //home
         Route::group(['namespace' => 'Home'], function () {
-            Route::get('home', 'HomeController@index')->name('home');
+            Route::get('', 'HomeController@index')->name('home');
             Route::get('detail/{id}', 'HomeController@detailProduct')->name('detail-product');
             Route::post('detail/{id}', 'HomeController@reviewProduct');
             Route::post('review/{id}', 'HomeController@reviewProduct')->name('review-product');
             Route::get('heart/{id}', 'HomeController@heart')->name('heart-product');
+
             Route::get('search', 'HomeController@search')->name('search');
+
             Route::get('pay', 'CheckoutController@checkOut')->name('checkout');
             Route::post('pay', 'CheckoutController@pay');
-        });
 
-        //shopping
-        Route::group(['namespace' => 'Home'], function () {
+            //shopping
             Route::group(['prefix' => 'shopping'], function () {
                 Route::get('add/{id}', 'ShoppingController@addCart')->name('add-shopping-cart');
             });
-        });
 
-        //cart
-        Route::group(['namespace' => 'Home'], function () {
+            //cart
             Route::group(['prefix' => 'cart'], function () {
                 Route::get('', 'CartController@index')->name('cart');
                 Route::get('update-cart/{key}', 'CartController@update')->name('update-cart');
@@ -121,18 +120,17 @@ Route::group(['middleware' => 'auth'], function () {
                 Route::get('delete-all', 'CartController@destroyAll')->name('delete-all-cart');
                 Route::post('check-discount', 'CartController@checkDiscount')->name('check-discount');
             });
-        });
 
-        //checkOut
-        Route::group(['namespace' => 'Home'], function () {
+            //checkOut
             Route::get('checkout-payment', 'PaymentController@index')->name('checkout-payment');
             Route::post('/checkout', 'PaymentController@createPayment')->name('create-payment');
             Route::get('/confirm', 'PaymentController@confirmPayment')->name('confirm-payment');
-        });
 
-        //contact
-        Route::group(['namespace' => 'Home'], function () {
+            //contact
             Route::get('contact', 'HomeController@contact')->name('contact');
+
+            //discount
+            Route::get('discount', 'HomeController@discount')->name('discount');
         });
 
         //account
@@ -149,6 +147,7 @@ Route::group(['middleware' => 'auth'], function () {
                 Route::get('order-detail/{id}', 'AccountController@billDetail')->name('detail-order-customer');
                 Route::get('cancel-order/{id}', 'AccountController@cancelBill')->name('cancel-order-customer');
                 Route::get('print-order/{id}', 'AccountController@printBill')->name('print-order-customer');
+                Route::post('rate', 'AccountController@rate')->name('rate-product');
             });
         });
 

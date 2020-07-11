@@ -3,8 +3,8 @@
         <div class="row align-items-center">
             <div class="col-md-3">
                 <div class="logo">
-                    <a href="index.html"><img src="{{ asset('theme_admin') }}/assets/images/icon/logo2.png"
-                                              alt="logo"></a>
+                    <a href="{{route('dashboard')}}"><img class="logo-image image-admin" src="{{ asset('logo') }}/icon_ruby.png" alt=""></a>
+
                 </div>
             </div>
             <div class="col-md-9 clearfix text-right">
@@ -17,7 +17,8 @@
                 <div class="clearfix d-md-inline-block d-block">
                     <div class="user-profile m-0">
                         <img class="avatar user-thumb"
-                             src="" alt="avatar">
+                             src="{{Auth::user()->image ? fileUrl(USERS, Auth::user()->image) : ''}}"
+                             alt="avatar">
                         <h4 class="user-name dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name }} <i
                                 class="fa fa-angle-down"></i></h4>
                         <div class="dropdown-menu">
@@ -26,7 +27,8 @@
                             <a href="{{route('lang',['lang' => 'en'])}}" class="dropdown-item"><img
                                     src="{{ asset('icon') }}/en.png"></a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('messages.logout') }}</a>
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('messages.logout') }}</a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>

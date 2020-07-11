@@ -271,4 +271,18 @@ return [
     'a-bill-detail' => 'Chi tiết hóa đơn',
     'add-product-to-cart-successfully'=> 'Thêm sản phẩm vào giỏ hàng thành công',
     'product-are-not-the-same-seller'=> 'Sản phẩm không cùng người bán',
+    'a-main-image' => 'Ảnh chính',
+    'a-secondary-image' => 'Ảnh phụ',
+    'discount-code-has-been-selected' => 'Mã giảm giá đã được chọn',
+    'money-paid' => 'Tiền đã thanh toán',
+    'total-product' => 'Tổng sản phẩm',
+    'time-of-purchase' => 'Thời gian mua hàng',
+    'evaluation-time' => 'Thời gian đánh giá',
+    'rate' => 'Đánh giá',
+    'statistic' => 'Thống kê',
+    'sold' => 'Dã bán',
+    'contact' => 'Liên hệ',
+    'used' => 'Đã dùng',
+    'rest' => 'Còn lại',
+    'star-content-empty' => 'Sao hoặc nội dung đánh giá không được để trống'
 ];

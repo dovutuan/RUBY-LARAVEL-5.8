@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:admin', ['only' => ['index']]);
+    }
     public function index()
     {
         $products = Product::where('created_by', Auth::user()->id)->get();

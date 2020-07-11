@@ -105,9 +105,6 @@
                                     <div class="col-md-4"><img class="select-pay"
                                                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Visa.svg/1200px-Visa.svg.png">
                                     </div>
-                                    <div class="col-md-4"><img class="select-pay"
-                                                               src="https://pluspng.com/img-png/mastercard-hd-png-mastercard-png-picture-1456.png">
-                                    </div>
                                 </div>
 
                             </div>

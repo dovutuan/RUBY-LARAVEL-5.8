@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Account;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\ChangeInfomationRequest;
 use App\Http\Requests\ChangePasswordRequest;
 use App\Models\AddressUser;
 use App\Models\Bill;
-use App\Models\User;
+use App\Models\Rate;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
@@ -113,5 +113,33 @@ class AccountController extends Controller
         $bill = Bill::where('id', $id)->where('created_by', Auth::user()->id)->first();
         if ($bill) return view('account.print_bill', compact('bill'));
         else return back()->with('warning', __('messages.some-error-occur'));
+    }
+
+    public function rate(Request $request)
+    {
+        $content = $request->input('content');
+        $product_id = $request->input('product_id');
+        $star = $request->input('star');
+        $user_id = Auth::user()->id;
+
+        if ($star === null || $content === null) {
+            return back()->with('warning', __('messages.star-content-empty'));
+        } else {
+            $rate = Rate::whereProductId($product_id)->whereUserId($user_id)->first();
+            if ($rate)
+                $rate->update([
+                    'star' => $request->input('star'),
+                    'content' => $request->input('content'),
+                ]);
+            else {
+                Rate::create([
+                    'product_id' => $request->input('product_id'),
+                    'user_id' => Auth::user()->id,
+                    'star' => $request->input('star'),
+                    'content' => $request->input('content'),
+                ]);
+            }
+            return back()->with('success', __('messages.rate-successfully'));
+        }
     }
 }

@@ -234,3 +234,8 @@ $(document).ready(function () {
     // $(".toast").toast({ autohide: true });
     $('.toast').toast('show');
 });
+
+$(document).on("click", ".open-dialog-rate", function () {
+    var product_id = $(this).data('id');
+    $(".modal-body #product_id").val( product_id );
+});

@@ -34,6 +34,11 @@ class Discount extends Model
         return $this->hasMany(Bill::class, 'discount_id', 'id');
     }
 
+    public function users()
+    {
+        return $this->belongsTo(User::class, 'created_by', 'id');
+    }
+
     static function search($key, $paginate = PAGINATE)
     {
         return self::where('created_by', Auth::user()->id)

@@ -272,4 +272,18 @@ return [
     'a-bill-detail' => 'Bill detail',
     'add-product-to-cart-successfully'=> 'Add product to cart successfully',
     'product-are-not-the-same-seller'=> 'Products are not the same seller',
+    'a-main-image' => 'Main image',
+    'a-secondary-image' => 'Secondary image',
+    'discount-code-has-been-selected' => 'Discount code has been selected',
+    'money-paid' => 'Money paid',
+    'total-product' => 'Total product',
+    'time-of-purchase' => 'Time of purchase',
+    'evaluation-time' => 'Evaluation time',
+    'rate' => 'Rate',
+    'statistic' => 'Statistic',
+    'sold' => 'Sold',
+    'contact' => 'Contact',
+    'used' => 'Used',
+    'rest' => 'Rest',
+    'star-content-empty' => 'Star or review content cannot be empty'
 ];

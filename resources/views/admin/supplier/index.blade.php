@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-11 text-left">
+                            <div class="col-md-10 text-left">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="#">{{ __('messages.a-home') }}</a></li>
@@ -16,7 +16,7 @@
                                     </ol>
                                 </nav>
                             </div>
-                            <div class="col-md-1 clearfix text-right">
+                            <div class="col-md-2 clearfix text-right">
                                 <button type="button" class="btn btn-sm btn-success" data-toggle="modal"
                                         data-target="#myModal">
                                     <i class="fa fa-plus"></i>
@@ -42,7 +42,7 @@
                                     <thead class="text-uppercase">
                                     <tr>
                                         <th>{{ __('messages.a-stt') }}</th>
-                                        <th>{{ __('messages.a-company') }}</th>
+                                        <th>{{ __('messages.a-name') }}</th>
                                         <th>{{ __('messages.a-information') }}</th>
                                         <th>{{ __('messages.a-date-create') }}</th>
                                         <th></th>
@@ -52,10 +52,10 @@
                                     @foreach($suppliers as $supplier)
                                         <tr>
                                             <th>{{$loop->iteration}}</th>
-                                            <th>{{$supplier->company}}</th>
+                                            <th>{{$supplier->name}}</th>
                                             <td class="text-left">
                                                 <ul>
-                                                    <li><b>{{ __('messages.a-name') }}</b>: {{$supplier->name}}</li>
+                                                    <li><b>{{ __('messages.a-company') }}</b>: {{$supplier->company}}</li>
                                                     <li><b>{{ __('messages.a-phone') }}</b>: {{$supplier->phone}}</li>
                                                     <li><b>{{ __('messages.a-fax') }}</b>: {{$supplier->fax}}</li>
                                                     <li><b>{{ __('messages.a-email') }}</b>: {{$supplier->email}}</li>

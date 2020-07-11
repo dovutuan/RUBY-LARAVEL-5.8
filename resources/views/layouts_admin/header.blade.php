@@ -9,6 +9,7 @@
                                 <a href="{{route('dashboard')}}"><i
                                         class="fa fa-fw fa-dashboard"></i><span>{{__('messages.a-dashboard')}}</span></a>
                             </li>
+                            @can(['user-list', 'role-list', 'permission-list'])
                             <li class="{{\Request::route()->getName()==('list.role') || \Request::route()->getName()==('list.user') || \Request::route()->getName()==('list.permission') ?'active':''}}">
                                 <a href="javascript:void(0)"><i
                                         class="fa fa-fw fa-users"></i><span>{{__('messages.a-user')}}</span></a>
@@ -28,6 +29,7 @@
                                     @endcan
                                 </ul>
                             </li>
+                            @endcan
                             @can('category-list')
                                 <li class="{{\Request::route()->getName()=='list.category'?'active':''}}">
                                     <a href="{{route('list.category')}}"><i
@@ -62,6 +64,12 @@
                                 <li class="{{\Request::route()->getName()=='list.bill'?'active':''}}">
                                     <a href="{{route('list.bill')}}"><i
                                             class="fa fa-fw fa-shopping-cart"></i><span>{{__('messages.a-bill')}}</span></a>
+                                </li>
+                            @endcan
+                            @can('statistics')
+                                <li class="{{\Request::route()->getName()=='statistic'?'active':''}}">
+                                    <a href="{{route('statistic')}}"><i
+                                            class="fa fa-fw fa-bar-chart"></i><span>{{__('messages.statistic')}}</span></a>
                                 </li>
                             @endcan
                         </ul>

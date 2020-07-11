@@ -93,7 +93,8 @@
         <ul>
             <li><a href="{{route('cart')}}"><i class="fa fa-shopping-bag"></i> <span>{{Cart::count()}}</span></a></li>
         </ul>
-        <div class="header__cart__price">{{ __('messages.a-price') }}: <span>{{Cart::priceTotal(0, 3)}} {{ __('messages.a-vnđ') }}</span></div>
+        <div class="header__cart__price">{{ __('messages.a-price') }}:
+            <span>{{Cart::priceTotal(0, 3)}} {{ __('messages.a-vnđ') }}</span></div>
     </div>
     <div class="humberger__menu__widget">
         <div class="header__top__right__language">
@@ -125,15 +126,6 @@
         <ul>
             <li class="active"><a href="{{route('home')}}">{{ __('messages.home') }}</a></li>
             <li><a href="./shop-grid.html">Shop</a></li>
-            <li><a href="#">Pages</a>
-                <ul class="header__menu__dropdown">
-                    <li><a href="./shop-details.html">Shop Details</a></li>
-                    <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                    <li><a href="./checkout.html">Check Out</a></li>
-                    <li><a href="./blog-details.html">Blog Details</a></li>
-                </ul>
-            </li>
-            <li><a href="./blog.html">Blog</a></li>
             <li><a href="{{route('contact')}}">Contact</a></li>
         </ul>
     </nav>
@@ -146,7 +138,8 @@
     </div>
     <div class="humberger__menu__contact">
         <ul>
-            <li><a class="color-a" href="mailto:ruby.RBS.shop@gmail.com"><i class="fa fa-envelope"></i> {{ __('messages.ruby.RBS.shop@gmail.com') }}</a></li>
+            <li><a class="color-a" href="mailto:ruby.RBS.shop@gmail.com"><i
+                        class="fa fa-envelope"></i> {{ __('messages.ruby.RBS.shop@gmail.com') }}</a></li>
             <li>{{ __('messages.free-shipping') }}</li>
         </ul>
     </div>
@@ -158,7 +151,9 @@
                 <div class="col-lg-6">
                     <div class="header__top__left">
                         <ul>
-                            <li><a class="color-a" href="mailto:ruby.RBS.shop@gmail.com"><i class="fa fa-envelope"></i> {{ __('messages.ruby.RBS.shop@gmail.com') }}</a></li>
+                            <li><a class="color-a" href="mailto:ruby.RBS.shop@gmail.com"><i
+                                        class="fa fa-envelope"></i> {{ __('messages.ruby.RBS.shop@gmail.com') }}</a>
+                            </li>
                             <li>{{ __('messages.free-shipping') }}</li>
                         </ul>
                     </div>
@@ -175,7 +170,8 @@
                             <div>{{ __('messages.language') }}</div>
                             <span class="arrow_carrot-down"></span>
                             <ul>
-                                <li><a href="{{route('lang',['lang' => 'vi'])}}">{{ __('messages.vietnamese') }}</a></li>
+                                <li><a href="{{route('lang',['lang' => 'vi'])}}">{{ __('messages.vietnamese') }}</a>
+                                </li>
                                 <li><a href="{{route('lang',['lang' => 'en'])}}">{{ __('messages.english') }}</a></li>
                             </ul>
                         </div>
@@ -211,26 +207,19 @@
                 <nav class="header__menu">
                     <ul>
                         <li class="active"><a href="{{route('home')}}">{{ __('messages.home') }}</a></li>
-                        <li class=""><a href="./shop-grid.html">Shop</a></li>
-                        <li><a href="#">Pages</a>
-                            <ul class="header__menu__dropdown">
-                                <li><a href="./shop-details.html">Shop Details</a></li>
-                                <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                                <li><a href="./checkout.html">Check Out</a></li>
-                                <li><a href="./blog-details.html">Blog Details</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="./blog.html">Blog</a></li>
-                        <li><a href="{{route('contact')}}">Contact</a></li>
+                        <li><a href="{{route('discount')}}">{{ __('messages.a-discount') }}</a></li>
+                        <li><a href="{{route('contact')}}">{{ __('messages.contact') }}</a></li>
                     </ul>
                 </nav>
             </div>
             <div class="col-lg-3">
                 <div class="header__cart">
                     <ul>
-                        <li><a href="{{route('cart')}}"><i class="fa fa-shopping-bag"></i> <span>{{Cart::count()}}</span></a></li>
+                        <li><a href="{{route('cart')}}"><i class="fa fa-shopping-bag"></i>
+                                <span>{{Cart::count()}}</span></a></li>
                     </ul>
-                    <div class="header__cart__price">{{ __('messages.a-price') }}: <span>{{Cart::priceTotal(0, 3)}} {{ __('messages.a-vnđ') }}</span></div>
+                    <div class="header__cart__price">{{ __('messages.a-price') }}:
+                        <span>{{Cart::priceTotal(0, 3)}} {{ __('messages.a-vnđ') }}</span></div>
                 </div>
             </div>
         </div>
@@ -250,7 +239,8 @@
                     </div>
                     <ul>
                         @foreach($allCategories as $category)
-                            <li><a href="#">{{$category->name}}</a></li>
+                            <li><a href="{{route('search', 'category_id=' . $category->id)}}">{{$category->name}}</a>
+                            </li>
                         @endforeach
                     </ul>
                 </div>
@@ -259,7 +249,8 @@
                 <div class="hero__search">
                     <div class="hero__search__form">
                         <form method="GET" action="{{route('search')}}">
-                            <input type="text" placeholder="{{ __('messages.search...') }}" name="name" value="{{ isset($name) ? $name : old('name') }}">
+                            <input type="text" placeholder="{{ __('messages.search...') }}" name="name"
+                                   value="{{ isset($name) ? $name : old('name') }}">
                             <button type="submit" class="site-btn">{{ __('messages.search') }}</button>
                         </form>
                     </div>
@@ -268,7 +259,7 @@
                             <a class="color-a" href="tel:0398599888"><i class="fa fa-phone"></i></a>
                         </div>
                         <div class="hero__search__phone__text">
-                            <a href="tel:0398599888"> <h5>0398 599 888</h5></a>
+                            <a href="tel:0398599888"><h5>0398 599 888</h5></a>
                             <span>{{ __('messages.support-time') }}</span>
                         </div>
                     </div>

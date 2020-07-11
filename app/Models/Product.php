@@ -40,7 +40,7 @@ class Product extends Model
 
     public function img()
     {
-        return $this->hasMany(ImageProduct::class, 'product_id', 'id');
+        return $this->hasOne(ImageProduct::class, 'product_id', 'id');
     }
 
     public function optionProduct()
@@ -56,6 +56,11 @@ class Product extends Model
     public function rate()
     {
         return $this->hasMany(Rate::class, 'product_id', 'id');
+    }
+
+    public function billDetail()
+    {
+        return $this->hasMany(BillDetail::class, 'product_id', 'id');
     }
 
     public function getSalePrice()
@@ -113,6 +118,37 @@ class Product extends Model
                 });
             })
             ->latest($short)
-            ->paginate(TWELVE);
+            ->paginate(SIXTY);
+    }
+
+    static public function countProductStatistic()
+    {
+        return self::where('created_by', Auth::user()->id)->count();
+    }
+
+    static public function getProductStatistic()
+    {
+        return self::where('created_by', Auth::user()->id)->get();
+    }
+
+    static public function getAllProductStatistic($date)
+    {
+        return self::where('created_by', Auth::user()->id)
+            ->when($date, function ($qr) use ($date) {
+                $qr->whereDate('updated_at', $date);
+            })
+            ->latest('updated_at')->get();
+    }
+
+    static public function countProductToBill($date)
+    {
+        return self::where('created_by', Auth::user()->id)
+            ->when($date, function ($qr) use ($date) {
+                $qr->whereDate('updated_at', $date);
+            })
+            ->withCount('billDetail')
+            ->latest('bill_detail_count')
+            ->take(EIGHT)
+            ->get();
     }
 }

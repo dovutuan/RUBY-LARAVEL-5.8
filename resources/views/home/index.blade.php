@@ -21,8 +21,10 @@
                     @foreach($allCategories as $category)
                         <div class="col-lg-3">
                             <div class="categories__item set-bg"
-                                 data-setbg="{{ asset('theme_home_new') }}/img/categories/cat-1.jpg">
-                                <h5><a href="#">{{$category->name}}</a></h5>
+                                 data-setbg="{{fileUrl(CATEGORIES, $category->image)}}">
+                                <h5>
+                                    <a href="{{route('search', 'category_id=' . $category->id)}}">{{$category->name}}</a>
+                                </h5>
                             </div>
                         </div>
                     @endforeach
@@ -53,17 +55,21 @@
                     <div class="col-lg-3 col-md-4 col-sm-6 mix {{$productOfFastFood->categories->slug}}">
                         <div class="product__discount__item">
                             <div class="product__discount__item__pic set-bg"
-                                 data-setbg="{{$productOfFastFood->image}}">
+                                 data-setbg="{{fileUrl(PRODUCTS, $productOfFastFood->image)}}">
                                 @if($productOfFastFood->sale)
-                                <div class="product__discount__percent">-{{$productOfFastFood->sale->sale}}%</div>
+                                    <div class="product__discount__percent">-{{$productOfFastFood->sale->sale}}%</div>
                                 @endif
                                 <ul class="product__item__pic__hover">
-                                    <li><a href="{{route('detail-product', $productOfFastFood->id)}}"><i class="fa fa-eye"></i></a></li>
-                                    <li><a href="{{route('heart-product', $productOfFastFood->id)}}"><i class="fa fa-heart"></i></a></li>
+                                    <li><a href="{{route('detail-product', $productOfFastFood->id)}}"><i
+                                                class="fa fa-eye"></i></a></li>
+                                    <li><a href="{{route('heart-product', $productOfFastFood->id)}}"><i
+                                                class="fa fa-heart"></i></a></li>
                                 </ul>
                             </div>
                             <div class="product__discount__item__text">
-                                <h6><a href="{{route('detail-product', $productOfFastFood->id)}}">{{$productOfFastFood->name}}</a></h6>
+                                <h6>
+                                    <a href="{{route('detail-product', $productOfFastFood->id)}}">{{$productOfFastFood->name}}</a>
+                                </h6>
                             </div>
                         </div>
                     </div>

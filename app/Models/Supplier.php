@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class Supplier
@@ -27,5 +28,14 @@ class Supplier extends Model
     public function optionProducts()
     {
         return $this->hasMany(OptionProduct::class, 'supplier_id', 'id');
+    }
+
+    static function search($key, $paginate = PAGINATE)
+    {
+        return self::when($key, function ($qr) use ($key) {
+            $qr->where('id', 'like', "%$key%")->orWhere('name', 'like', "%$key%");
+        })
+            ->where('created_by', Auth::user()->id)
+            ->paginate($paginate);
     }
 }

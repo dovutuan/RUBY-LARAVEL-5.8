@@ -9,10 +9,22 @@ define('FOUR', 4);
 define('FIVE', 5);
 define('SIX', 6);
 define('EIGHT', 8);
+define('TEN', 10);
 define('TWELVE', 12);
+define('SIXTY', 16);
 define('PAGINATE', 30);
 define('ONE_HUNDRED', 100);
+define('ONE_THOUSAND', 1000);
 define('TEN_THOUSAND', 10000);
 define('ONE_HUNDRED_THOUSAND', 100000);
 define('ONE_MILLION', 1000000);
+define('TEN_MILLION', 10000000);
 define('CURRENCY', 23295.03);
+
+define('USERS', 'users');
+define('CATEGORIES', 'categories');
+define('PRODUCTS', 'products');
+
+define('TYPE_FILES', '.png, .jpg, .gif, .jpeg');
+
+define('FAST_FOOD_AND_DRINK', 'Đồ uống và đồ ăn nhanh');

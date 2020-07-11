@@ -19,61 +19,67 @@
                                 </nav>
                             </div>
                         </div>
-                        <form action="" method="post">
+                        <form action="" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
-                                <div class="col-md-8">
+                                <div class="col-md-2">
                                     <div class="form-group">
-                                        <label
-                                            class="control-label"><b>{{ __('messages.a-parent-category') }}</b></label>
-                                        <select name="category_id" class="form-control">
-                                            <option></option>
-                                            @foreach($allCategories as $item)
-                                                <option value="{{$item->id}}">{{$item->name}}</option>
-                                            @endforeach
-                                        </select>
+                                        <label for="txtImage">
+                                            <img id="showImage" class="image-category"
+                                                 src="{{$category->image ? fileUrl(CATEGORIES, $category->image) : asset('files') . '/categories/no_categories.jpg'}}">
+                                        </label>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="control-label"><b>{{ __('messages.a-status') }}</b></label>
-                                        <select name="status" class="form-control">
-                                            <option value="1">{{ __('messages.active') }}</option>
-                                            <option value="0">{{ __('messages.inactive') }}</option>
-                                        </select>
+                                <div class="col-md-10">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <div class="form-group">
+                                                <label
+                                                    class="control-label"><b>{{ __('messages.a-parent-category') }}</b></label>
+                                                <select name="category_id" class="form-control">
+                                                    <option></option>
+                                                    @foreach($allCategories as $item)
+                                                        <option value="{{$item->id}}"
+                                                                @if($category->category_id == $item->id) selected @endif>{{$item->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label
+                                                    class="control-label"><b>{{ __('messages.a-status') }}</b></label>
+                                                <select name="status" class="form-control">
+                                                    <option value="1">{{ __('messages.active') }}</option>
+                                                    <option value="0">{{ __('messages.inactive') }}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <div class="form-group">
+                                                <label class="control-label"><b>{{ __('messages.a-name') }} <span
+                                                            class="text-danger">*</span></b></label>
+                                                <input name="name" type="text" class="form-control"
+                                                       value="{{$category->name}}">
+                                                @error('name')
+                                                <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label"><b>{{ __('messages.a-icon') }}</b></label>
+                                                <input type="text" class="form-control" name="icon"
+                                                       value="{{$category->icon}}">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <div class="form-group">
-                                        <label class="control-label"><b>{{ __('messages.a-name') }} <span
-                                                    class="text-danger">*</span></b></label>
-                                        <input name="name" type="text" class="form-control" value="{{$category->name}}">
-                                        @error('name')
-                                        <div class="text-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="control-label"><b>{{ __('messages.a-icon') }}</b></label>
-                                        <input type="text" class="form-control" name="icon" value="{{$category->icon}}">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label"><b>{{ __('messages.a-image') }}</b></label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <buton id="btnImage"
-                                               class="btn btn-outline-success">{{ __('messages.select-image') }}
-                                        </buton>
-                                    </div>
-                                    <input name="image" id="txtImage" type="text" class="form-control"
-                                           value="{{$category->image}}">
-                                </div>
-                            </div>
+                            <input name="image" id="txtImage" type="file" class="form-control display-none" accept="{{TYPE_FILES}}"
+                                   value="{{$category->image}}">
                             <div class="form-group">
                                 <button class="btn btn-xs btn-outline-dark"
                                         onclick="window.history.go(-1); return false;"><i

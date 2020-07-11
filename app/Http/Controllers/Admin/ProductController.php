@@ -34,7 +34,7 @@ class ProductController extends Controller
             $key = $request->input('key');
             $categories = Category::whereNotNull('category_id')->get();
             $species = Species::all();
-            $suppliers = Supplier::all();
+            $suppliers = Supplier::where('created_by', Auth::user()->id)->get();
             $products = Product::search($key);
             $totalProduct = $products->count();
             $data = [
@@ -56,6 +56,13 @@ class ProductController extends Controller
     {
         try {
             DB::beginTransaction();
+            $data_secondary_image = [];
+            if ($request->file('secondary_image')) {
+                foreach ($request->file('secondary_image') as $item) {
+                    $data_secondary_image[] = $this->upLoadImage($item);
+                }
+            }
+            $name_image = $this->upLoadImage($request->file('main_image'));
             $product = Product::create([
                 'name' => $request->input('name'),
                 'slug' => str_slug($request->input('name')),
@@ -63,19 +70,16 @@ class ProductController extends Controller
                 'detail' => $request->input('detail'),
                 'status' => $request->input('status'),
                 'category_id' => $request->input('category_id'),
-                'image' => $request->input('image_product'),
+                'image' => $name_image,
                 'created_by' => Auth::user()->id,
             ]);
             if ($product) {
-//                $listImage = [];
-//                foreach ($request->input('image') as $image) {
-//                    $listImage[] = [
-//                        'product_id' => $product->id,
-//                        'image' => $image,
-//                    ];
-//                }
-//                ImageProduct::insert($listImage);
-
+                if ($request->file('secondary_image')) {
+                    ImageProduct::insert([
+                        'product_id' => $product->id,
+                        'image' => json_encode($data_secondary_image)
+                    ]);
+                }
                 if ($request->input('sale')) {
                     Sale::insert([
                         'product_id' => $product->id,
@@ -139,5 +143,14 @@ class ProductController extends Controller
     public function export()
     {
         return Excel::download(new ProductsExport, 'products.xlsx');
+    }
+
+    public function upLoadImage($image)
+    {
+        $name_image = null;
+        if ($image) {
+            $name_image = uploadImage(PRODUCTS, $image);
+        }
+        return $name_image;
     }
 }

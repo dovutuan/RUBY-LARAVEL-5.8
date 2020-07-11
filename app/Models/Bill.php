@@ -61,7 +61,7 @@ class Bill extends Model
             'class' => 'btn-success',
         ],
         THREE => [
-            'name' => 'Giao hàng thành công/ Đổi trả trong vòng 3 ngày',
+            'name' => 'Giao hàng thành công',
             'class' => 'btn-success',
         ],
         FOUR => [
@@ -90,5 +90,13 @@ class Bill extends Model
                 $qr->where('name', 'like', "%$key%");
             })
             ->latest()->paginate($paginate);
+    }
+
+    static public function getBillStatistic($date)
+    {
+        return self::where('seller_id', Auth::user()->id)
+            ->when($date, function ($qr) use ($date) {
+                $qr->whereDate('updated_at', $date);
+            })->get();
     }
 }

@@ -21,7 +21,7 @@ class SupplierController extends Controller
     public function index(Request $request)
     {
         $key = $request->input('key');
-        $suppliers = Supplier::all();
+        $suppliers = Supplier::search($key);
         $totalSupplier = $suppliers->count();
         $data = [
             'suppliers' => $suppliers,

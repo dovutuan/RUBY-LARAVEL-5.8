@@ -14,7 +14,7 @@ class RegisterController extends Controller
 {
     use RegistersUsers;
 
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     public function __construct()
     {
@@ -26,7 +26,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => 'required|max:255|unique:users,name',
             'birth' => 'required',
-            'phone' => 'required|max:11',
+            'phone' => 'required|max:12',
             'address' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users,email',
             'password' => 'required|confirmed|min:6|max:255',

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Home;
 
 use App\Http\Requests\RateRequest;
 use App\Models\Category;
+use App\Models\Discount;
 use App\Models\OptionProduct;
 use App\Models\Product;
 use App\Models\Rate;
@@ -17,22 +18,15 @@ use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
-//    function __construct()
-////    {
-////        $this->middleware('permission:home', ['only' => ['index']]);
-////    }
-
     public function index()
     {
-        $categories = Category::loadCategories();
         $allCategories = Category::loadAllCategories();
-        $fastFoods = $categories->where('name', 'Đồ uống và đồ ăn nhanh')->first();
+        $fastFoods = Category::fastFoodAndDrink();
         $productOfFastFoods = Product::
         whereHas('categories', function ($qr) use ($fastFoods) {
             $qr->where('category_id', $fastFoods->id);
-        })->take(EIGHT)->get();
+        })->take(SIXTY)->get();
         $data = [
-            'categories' => $categories,
             'allCategories' => $allCategories,
             'productOfFastFoods' => $productOfFastFoods,
 
@@ -42,7 +36,6 @@ class HomeController extends Controller
 
     public function detailProduct($id)
     {
-        $categories = Category::loadCategories();
         $allCategories = Category::loadAllCategories();
         $product = Product::findOrFail($id);
         $rates = $product->rate->take(EIGHT);
@@ -51,7 +44,6 @@ class HomeController extends Controller
         $product_category = Product::where('category_id', $product->category_id)->where('id', '!=', $product->id)->inRandomOrder()->take(EIGHT)->get();
         $product->update(['views' => $product->views + ONE]);
         $data = [
-            'categories' => $categories,
             'allCategories' => $allCategories,
             'product' => $product,
             'product_category' => $product_category,
@@ -78,7 +70,6 @@ class HomeController extends Controller
         $category_id = $request->input('category_id');
         $supplier_id = $request->input('supplier_id');
         $specie_id = $request->input('specie_id');
-        $categories = Category::loadCategories();
         $allCategories = Category::loadAllCategories();
         $species = Species::all();
         $suppliers = Supplier::all();
@@ -92,7 +83,6 @@ class HomeController extends Controller
             'category_id' => $category_id,
             'supplier_id' => $supplier_id,
             'specie_id' => $specie_id,
-            'categories' => $categories,
             'allCategories' => $allCategories,
             'species' => $species,
             'suppliers' => $suppliers,
@@ -126,14 +116,23 @@ class HomeController extends Controller
 
     public function contact()
     {
-        $categories = Category::loadCategories();
         $allCategories = Category::loadAllCategories();
         $user = Auth::user();
         $data = [
-            'categories' => $categories,
             'allCategories' => $allCategories,
             'user' => $user,
         ];
         return view('home.contact', $data);
+    }
+
+    public function discount()
+    {
+        $allCategories = Category::loadAllCategories();
+        $discounts = Discount::all();
+        $data = [
+            'allCategories' => $allCategories,
+            'discounts' => $discounts,
+        ];
+        return view('home.discount', $data);
     }
 }
