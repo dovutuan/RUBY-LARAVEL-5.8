@@ -158,7 +158,7 @@
                                                 <div class="input-group mb-3">
                                                     <input name="amount[]" id="amount" type="number" min="0"
                                                            class="form-control"
-                                                           value="{{old('amount[]') ? old('amount[]') : 0}}"/>
+                                                           value="{{old('amount[]') ? old('amount[]') : ''}}"  placeholder="{{ZERO}}"/>
                                                     @error('amount')
                                                     <div class="text-danger">{{ $message }}</div>
                                                     @enderror
@@ -183,7 +183,7 @@
                                                 <div class="input-group mb-3">
                                                     <input name="price[]" id="price" min="0" type="number"
                                                            class="form-control"
-                                                           value="{{old('price[]') ? old('price[]') :0}}">
+                                                           value="{{old('price[]') ? old('price[]') : ''}}" placeholder="{{ZERO}}">
                                                     <div class="input-group-append">
                                                         <span class="input-group-text">vnđ</span>
                                                     </div>

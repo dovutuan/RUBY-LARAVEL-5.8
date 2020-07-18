@@ -285,5 +285,20 @@ return [
     'contact' => 'Contact',
     'used' => 'Used',
     'rest' => 'Rest',
-    'star-content-empty' => 'Star or review content cannot be empty'
+    'star-content-empty' => 'Star or review content cannot be empty',
+
+    'link' => 'Useful Links',
+    'about-us' => 'About Us',
+    'about-our-shop' => 'About Our Shop',
+    'secure-shopping' => 'Secure Shopping',
+    'delivery-information' => 'Delivery information',
+    'our-sitemap' => 'Our Sitemap',
+    'join-our-news-letter-now' => 'Join Our News Letter Now',
+    'get-e-mail-updates-about-our-latest-shop-and-special-offers.' => 'Get E-mail updates about our latest shop and special offers.',
+    'subscribe' => 'subscribe',
+    'ruby-buy-online-good-price' => 'RUBY | Buy online good price',
+
+    'top-rated-products' => 'Top Rated Products',
+    'review-products' => 'Review Products',
+    'from-the-blog' => 'From The Blog',
 ];

@@ -7,40 +7,32 @@
                         <a href="{{route('home')}}"><img class="logo-image" src="{{ asset('logo') }}/icon_ruby.png" alt=""></a>
                     </div>
                     <ul>
-                        <li>Address: 60-49 Road 11378 New York</li>
-                        <li>Phone: +65 11.188.888</li>
-                        <li>Email: ruby.RBS.shop@gmail.com</li>
+                        <li>{{ __('messages.a-address') }}: Hà Nội</li>
+                        <li>{{ __('messages.a-phone') }}: +65 11.188.888</li>
+                        <li>{{ __('messages.a-email') }}: {{ __('messages.ruby.RBS.shop@gmail.com') }}</li>
                     </ul>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
                 <div class="footer__widget">
-                    <h6>Useful Links</h6>
+                    <h6>{{ __('messages.link') }}</h6>
                     <ul>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">About Our Shop</a></li>
-                        <li><a href="#">Secure Shopping</a></li>
-                        <li><a href="#">Delivery infomation</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Our Sitemap</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="#">Who We Are</a></li>
-                        <li><a href="#">Our Services</a></li>
-                        <li><a href="#">Projects</a></li>
-                        <li><a href="#">Contact</a></li>
-                        <li><a href="#">Innovation</a></li>
-                        <li><a href="#">Testimonials</a></li>
+                        <li><a href="#">{{ __('messages.about-us') }}</a></li>
+                        <li><a href="#">{{ __('messages.about-our-shop') }}</a></li>
+                        <li><a href="#">{{ __('messages.secure-shopping') }}</a></li>
+                        <li><a href="#">{{ __('messages.delivery-information') }}</a></li>
+                        <li><a href="#">{{ __('messages.privacy-policy') }}</a></li>
+                        <li><a href="#">{{ __('messages.our-sitemap') }}</a></li>
                     </ul>
                 </div>
             </div>
             <div class="col-lg-4 col-md-12">
                 <div class="footer__widget">
-                    <h6>Join Our Newsletter Now</h6>
-                    <p>Get E-mail updates about our latest shop and special offers.</p>
+                    <h6>{{ __('messages.join-our-news-letter-now') }}</h6>
+                    <p>{{ __('messages.get-e-mail-updates-about-our-latest-shop-and-special-offers.') }}</p>
                     <form action="#">
-                        <input type="text" placeholder="Enter your mail">
-                        <button type="submit" class="site-btn">Subscribe</button>
+                        <input type="text" placeholder="{{ __('messages.email') }}">
+                        <button type="submit" class="site-btn">{{ __('messages.subscribe') }}</button>
                     </form>
                     <div class="footer__widget__social">
                         <a href="#"><i class="fa fa-facebook"></i></a>
