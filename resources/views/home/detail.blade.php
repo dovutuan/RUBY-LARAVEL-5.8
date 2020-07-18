@@ -69,10 +69,10 @@
                             <div class="sidebar__item">
                                 <div class="btn-group-toggle" data-toggle="buttons">
                                     <div class="sidebar__item__size">
-                                        @foreach($product->optionProduct as $optionProduct)
+                                        @foreach($product->optionProduct as $key => $optionProduct)
                                             <label class="btn btn-outline-success mt-2">
                                                 <input type="radio" name="option"
-                                                       value="{{$optionProduct->id}}">
+                                                       value="{{$optionProduct->id}}" @if($key === ZERO) checked @endif>
                                                 {{$optionProduct->amount}} {{$optionProduct->species->name}}
                                                 - {{number_format($optionProduct->getPrice())}} {{ __('messages.a-vnđ') }}
                                             </label>
@@ -113,9 +113,9 @@
                                         <span>{{$product->sale->sale}} <sup>%</sup></span></li>
                                 @endif
                                 <li><b>{{ __('messages.view') }}</b>
-                                    <span>{{$product->views}} <sup>{{ __('messages.innings') }}</sup></span></li>
+                                    <span>{{number_format($product->views)}} <sup>{{ __('messages.innings') }}</sup></span></li>
                                 <li><b>{{ __('messages.like') }}</b>
-                                    <span>{{$product->likes}} <sup>{{ __('messages.innings') }}</sup></span></li>
+                                    <span>{{number_format($product->likes)}} <sup>{{ __('messages.innings') }}</sup></span></li>
                                 <li><b>{{ __('messages.share-on') }}</b>
                                     <div class="share">
                                         <a href="#"><i class="fa fa-facebook"></i></a>

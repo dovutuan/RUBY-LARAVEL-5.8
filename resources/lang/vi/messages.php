@@ -284,5 +284,20 @@ return [
     'contact' => 'Liên hệ',
     'used' => 'Đã dùng',
     'rest' => 'Còn lại',
-    'star-content-empty' => 'Sao hoặc nội dung đánh giá không được để trống'
+    'star-content-empty' => 'Sao hoặc nội dung đánh giá không được để trống',
+
+    'link' => 'Liên kết',
+    'about-us' => 'Giới thiệu',
+    'about-our-shop' => 'Giới thiệu về Ruby',
+    'secure-shopping' => 'Thông tin mua sắm',
+    'delivery-information' => 'Thông tin giao hàng',
+    'our-sitemap' => 'Sơ lược website',
+    'join-our-news-letter-now' => 'Nhận thư tin tức của Ruby',
+    'get-e-mail-updates-about-our-latest-shop-and-special-offers.' => 'Nhận cập nhật email mới nhất về Ruby và ưu đã đặc biệt.',
+    'subscribe' => 'Đăng ký',
+    'ruby-buy-online-good-price' => 'RUBY | Mua hàng trực tuyến giá tốt',
+    
+    'top-rated-products' => 'Sản phẩm đánh giá cao',
+    'review-products' => 'Sản phẩm bình luận nhiều',
+    'from-the-blog' => 'Blog',
 ];

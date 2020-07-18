@@ -48,8 +48,6 @@ class AdminController extends Controller
                 ]
             ];
         }
-//        dd(\GuzzleHttp\json_encode($data_sets));
-//        dd($discounts);
 
         foreach ($bills as $bill) {
             if ($bill->status === THREE) {

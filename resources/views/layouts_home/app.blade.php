@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" href="{{ asset('logo') }}/icon_ruby.png">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Ogani | Template</title>
+    <title>{{ __('messages.ruby-buy-online-good-price') }}</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('theme_home_new') }}/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="{{ asset('theme_home_new') }}/css/font-awesome.min.css" type="text/css">
